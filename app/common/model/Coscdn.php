@@ -8,8 +8,8 @@ namespace app\common\model;
 class CosCdn
 {
     /*需要填写你的密钥，可从  https://console.qcloud.com/capi 获取 SecretId 及 $secretKey*/
-    private $secretKey = '50vgHh097zgDbt22rW1fMArhruqeImR0';
-    private $secretId = 'AKIDrjRyLXAQ6c1GNKvkCTZWDk7JLDuSFENL';
+    private $secretKey = '';
+    private $secretId = '';
     private $action = 'PurgePathCache'; //
     private $httpUrl = 'cdn.tencentcloudapi.com';
     private $isHttps = true;

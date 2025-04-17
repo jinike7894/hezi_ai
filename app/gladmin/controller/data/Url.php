@@ -36,8 +36,8 @@ class Url extends AdminController
     {
         parent::__construct($app);
         $this->model = new Refresh();
-        $this->SecretId = 'AKIDhJpERWSPEvW5a3PZ5MqBKI3d6KKCtmZJ';
-        $this->SecretKey = 'oZdVFnNo5CB0f9Yt40jQykMn6RFwgJoD';
+        $this->SecretId = '';
+        $this->SecretKey = '';
         $this->urls = '';
     }
 	public function index()

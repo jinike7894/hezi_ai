@@ -37,7 +37,7 @@ class Domain extends BaseController
      * @return void
      */
     public static function main($domain,$record){
-        $client = self::createClient("LTAI5tKkxQ1GgrHFLCs4CDLf", "IBxm2Qb6qZpWsRhR0buLlPPbJonmq3");
+        $client = self::createClient("", "");
         $describeDomainRecordsRequest = new DescribeDomainRecordsRequest([
             "domainName" => $domain
         ]);
