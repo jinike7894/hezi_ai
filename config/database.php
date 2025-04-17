@@ -34,7 +34,7 @@ return [
             // 密码
             'password'        => env('database.password', 'hezi'),
             // 端口
-            'hostport'        => env('database.hostport', '3306'),
+            'hostport'        => env('database.hostport', '5400'),
             // 数据库连接参数
             'params'          => [],
             // 数据库编码默认采用utf8
