@@ -1,0 +1,1 @@
+{"ip":"20.216.164.36","channelCode":"99","subid":0,"uuid":"aee5deb48c81f29c","width":"720","height":"1369","brand":"Xiaomi","model":"Redmi 8A","manufacturer":"Xiaomi","arelease":"10","sdk_int":"29","ua":"Dalvik\/2.1.0 (Linux; U; Android 10; Redmi 8A MIUI\/V12.5.2.0.QCPMIXM)"}

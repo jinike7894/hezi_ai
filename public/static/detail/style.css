@@ -1,0 +1,239 @@
+body {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    color: #FFFFFFCC;
+    overflow-y: auto;
+    font-family: -apple-system, BlinkMacSystemFont, Microsoft YaHei, Arial, sans-serif;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top left;
+    background-image: url(/static/detail/img/back.png);
+    background-color: #131719;
+}
+.page{
+        max-width: 500px;
+}
+
+.index_back {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.index_page {
+    padding-bottom: 20px;
+}
+
+.index_nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    padding: 0 12px;
+}
+
+.index_left {
+    width: 24px;
+    height: 24px;
+
+}
+
+.index_pageName {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #FFFFFF;
+}
+
+.index_share {
+    width: 24px;
+    height: 24px;
+}
+
+.index_appLeft {
+    display: flex;
+    align-items: center;
+}
+
+.index_appLeft_tx {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    margin-right: 12px;
+
+}
+
+.index_appName {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.index_appName_name {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+}
+
+.index_appName_txt {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 21.6px;
+
+    color: #FFFFFF99;
+}
+
+.index_download {
+    width: 22px;
+    height: 22px;
+}
+
+.index_appRight {
+    width: 100px;
+    height: 36px;
+    border-radius: 22px;
+    background:#ED397D;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22.4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.index_appBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    margin-top: 20px;
+}
+
+.index_appContent {
+    margin: 12px 12px;
+    padding: 12px;
+    border: 1px solid #FFFFFF14;
+    border-radius: 12px;
+    display: flex;
+}
+
+.index_yinhao {
+    width: 24px;
+    height: 24px;
+}
+
+.index_appContent_txt {
+    margin-left: 12px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 21.6px;
+    color: #FFFFFFCC;
+    /*text-decoration: underline;*/
+}
+
+.index_banner {
+    width: 150px;
+    height: 250px;
+    margin-right: 12px;
+}
+
+.index_imgBox {
+    display: flex;
+    width: calc(100% - 12px);
+    overflow: scroll;
+    padding-left: 12px;
+}
+
+.index_tuijian {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.6px;
+    color: #FFFFFFCC;
+    margin: 20px 0 8px 12px;
+}
+
+.index_jggImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+
+}
+
+.index_jggTxt {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16.8px;
+    color: #FFFFFF99;
+    margin: 4px 0;
+
+}
+
+.index_jggDownBtn {
+    width: 54px;
+    height: 22px;
+    border-radius: 22px;
+    background: #00FFE114;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 14px;
+    color:#FFD6D4CC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.index_download_green {
+    width: 12px;
+    height: 12px;
+}
+
+.index_jgg_dot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+    margin-right: 12px;
+}
+
+.index_jgg {
+    display: flex;
+    width: calc(100% - 12px);
+    overflow: scroll;
+    padding-left: 12px;
+
+}
+
+.alive_left {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+
+}
+
+.download_black {
+    width: 20px;
+    height: 20px;
+    margin-left: 4px;
+}
+
+.alive_btn {
+        color: #fff;
+    height: 40px;
+    margin: 0 13.5px;
+    border-radius: 18px;
+    background: #ED397D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

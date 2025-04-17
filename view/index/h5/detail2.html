@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="my" k="{$key}">
+    <meta name="c" c="{$channel}">
+    <meta name="s" s="{$linkId}">
+    <title>直播详情</title>
+    <link rel="stylesheet" href="__STATIC__/detail/style.css">
+    <link rel="stylesheet" href="__STATIC__/detail/swiper.css">
+    <script type="text/javascript" src="__STATIC__/detail/jquery.js"></script>
+    <script type="text/javascript" src="__STATIC__/detail/swiper.js"></script>
+    <style>
+    
+        a { text-decoration: none; }
+        .swiper {
+          width: 100%;
+          height: 400px;
+        }
+    
+        .swiper-slide {
+          text-align: center;
+          font-size: 18px;
+          background: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+    
+        .swiper-slide img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="index_page">
+            <a href="javascript:history.back()">
+            <img src="__STATIC__/detail/img/alive_left.png" class="alive_left">
+            </a>
+            <div class="swiper mySwiper">
+                
+                <div class="swiper-wrapper">
+                  {volist name="$arr['list']['pics']" id="item"}
+                  <div class="swiper-slide">
+                    <img src="{$arr['cdn_url']}{$item|imgtypeTojs}">
+                  </div>
+                  {/volist}
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            
+           
+            <div class="index_appContent" style=" background: #00000099;">
+                <img src="__STATIC__/detail/img/yinhao.png" class="index_yinhao">
+                <div class="index_appContent_txt">
+                   {$arr["list"]["content"]|raw}
+
+                </div>
+            </div>
+            <a class="alive_btn" href="{$arr['list']['androidurl']}"  i="{$arr['list']['id']}"  target="_blank">
+                <!--<img src="__STATIC__/detail/img/download_black.png" class="download_black">-->
+                 {$arr["list"]["cid"]|downFont}
+            </a>
+            
+            <!--<div class="index_tuijian">-->
+            <!--    相关推荐-->
+            <!--</div>-->
+            <!--<div class="index_jgg">-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+
+            <!--</div>-->
+            <!--<div class="index_tuijian">-->
+            <!--    热门推荐-->
+            <!--</div>-->
+            <!--<div class="index_jgg">-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--    <div class="index_jgg_dot">-->
+            <!--        <img src="__STATIC__/detail/img/jgg.png" class="index_jggImg">-->
+            <!--        <div class="index_jggTxt">-->
+            <!--             乱伦直播-->
+            <!--        </div>-->
+            <!--        <div class="index_jggDownBtn">-->
+            <!--              <img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+            <!--              下载-->
+            <!--        </div>-->
+            <!--    </div>-->
+
+            <!--</div>-->
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+          pagination: {
+            el: ".swiper-pagination",
+          },
+        });
+      </script>
+</body>
+
+<script>
+    var base = '{$base_url}';
+</script>
+<script src="__JS__/abcd//swiper-bundle.min.js"></script>
+<script src="__JS__/abcd/app.js?v=4"></script>
+
+</html>

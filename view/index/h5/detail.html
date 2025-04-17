@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="my" k="{$key}">
+    <meta name="c" c="{$channel}">
+    <meta name="s" s="{$linkId}">
+    <title>&#24212;&#29992;&#35814;&#24773;</title>
+    <link rel="stylesheet" href="__STATIC__/detail/style.css">
+    <script type="text/javascript" src="__STATIC__/detail/jquery.js"></script>
+   
+</head>
+   <style>
+       a { text-decoration: none; }
+       .enlarged {
+        width: 70%;
+        height: auto;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+    }
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 500;
+    }
+    .gallery {
+        /*display: flex;*/
+        /*overflow: hidden;*/
+        /*justify-content: center;*/
+    }
+    .gallery img {
+        flex-shrink: 0;
+    }
+    .prev, .next {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        width: 0;
+        display: none;
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2em;
+        color: white;
+        cursor: pointer;
+        z-index: 1001;
+    }
+    .prev {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        left: 20px;
+    }
+    .next {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        right: 20px;
+    }
+   </style>
+<body>
+    <div class="page">
+       
+            <!--<img src="__STATIC__/detail/img/back.png" class="index_back">-->
+      
+        <div class="index_page">
+            <div class="index_nav">
+               <a href="javascript:history.back()">
+               <img src="__STATIC__/detail/img/index_left.png" class="index_left">
+               </a>
+                <div class="index_pageName">
+                    &#24212;&#29992;&#35814;&#24773;
+                </div>
+               <img src="__STATIC__/detail/img/index_share.png" class="index_share">
+            </div>
+            <div class="index_appBox">
+                <div class="index_appLeft">
+                   <img src="{$arr['cdn_url']}{$arr['list']['img']|imgtypeTojs}" class="index_appLeft_tx">
+                    <div class="index_appName">
+                        <div class="index_appName_name">{$arr["list"]["name"]|raw}</div>
+                       
+                    </div>
+                </div>
+                <a href="{$arr['list']['androidurl']}" i="{$arr['list']['id']}"  target="_blank"  class="index_appRight">
+                    <!--<img src="__STATIC__/detail/img/download.png" class="index_download">-->
+                    {$arr["list"]["cid"]|downFont}
+                </a>
+            </div>
+            <div class="index_appContent">
+                <img src="__STATIC__/detail/img/yinhao.png" class="index_yinhao">
+                <div class="index_appContent_txt">
+                  {$arr["list"]["content"]}
+                </div>
+            </div>
+             <div class="overlay"></div>
+            <div class="index_imgBox gallery">
+                {volist name="$arr['list']['pics']" id="item"}
+               <img src="{$arr['cdn_url']}{$item|imgtypeTojs}" class="index_banner thumbnail">
+               {/volist}
+            </div>
+            <div class="prev">&#10094;</div>
+            <div class="next">&#10095;</div>
+            
+             <script>
+                $(document).ready(function() {  
+                    var currentImgIndex = 0;
+                    var $thumbnails = $('.thumbnail');
+                    var $overlay = $('.overlay');
+                    
+                    function showImage(index) {
+                        var src = $thumbnails.eq(index).attr('src');
+                        var enlargedImg = $('<img src="' + src + '" class="enlarged">');
+                        $('body').append(enlargedImg);
+                        $overlay.show();
+                        $('.prev, .next').show();
+            
+                        enlargedImg.on('click', function() {
+                            $(this).remove();
+                            $overlay.hide();
+                            $('.prev, .next').hide();
+                        });
+            
+                        $overlay.on('click', function() {
+                            enlargedImg.remove();
+                            $(this).hide();
+                            $('.prev, .next').hide();
+                        });
+            
+                        // 实现缩放功能
+                        enlargedImg.on('wheel', function(event) {
+                            event.preventDefault();
+                            var scale = Number($(this).css('transform').split(',')[0].split('(')[1]) || 1;
+                            if (event.originalEvent.deltaY < 0) {
+                                scale += 0.1; // 放大
+                            } else {
+                                scale -= 0.1; // 缩小
+                            }
+                            $(this).css('transform', 'translate(-50%, -50%) scale(' + scale + ')');
+                        });
+                    }
+            
+                    $thumbnails.on('click', function() {
+                        currentImgIndex = $thumbnails.index(this);
+                        showImage(currentImgIndex);
+                    });
+            
+                    $('.prev').on('click', function() {
+                        if (currentImgIndex > 0) {
+                            currentImgIndex--;
+                            $('.enlarged').remove();
+                            showImage(currentImgIndex);
+                        }
+                    });
+            
+                    $('.next').on('click', function() {
+                        if (currentImgIndex < $thumbnails.length - 1) {
+                            currentImgIndex++;
+                            $('.enlarged').remove();
+                            showImage(currentImgIndex);
+                        }
+                    });
+                });
+            </script>
+
+            
+            <div class="index_tuijian">
+                &#30456;&#20851;&#25512;&#33616;
+            </div>
+            <div class="index_jgg">
+                {volist name="$arr['related']" id="item"}
+                <a href="{$item['androidurl']}" target="_blank" i="{$item['id']}"  class="index_jgg_dot">
+                   <img src="{$arr['cdn_url']}{$item.img|imgtypeTojs}" class="index_jggImg">
+                    <div class="index_jggTxt">
+                         {$item.name}
+                    </div>
+                    <div  class="index_jggDownBtn">
+                         <!--<img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+                          {$item["cid"]|downFont}
+                    </div>
+                </a>
+                {/volist}
+               
+
+            </div>
+            <div class="index_tuijian">
+                &#28909;&#38376;&#25512;&#33616;
+            </div>
+            <div class="index_jgg">
+               {volist name="$arr['hot']" id="item"}
+                <a href="{$item['androidurl']}" target="_blank" i="{$item['id']}"  class="index_jgg_dot">
+                   <img src="{$arr['cdn_url']}{$item.img|imgtypeTojs}" class="index_jggImg">
+                    <div class="index_jggTxt">
+                          {$item.name}
+                    </div>
+                    <div class="index_jggDownBtn">
+                         <!--<img src="__STATIC__/detail/img/download_green.png" class="index_download_green">-->
+                          {$item["cid"]|downFont}
+                    </div>
+                </a>
+                {/volist}
+        
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</body>
+<script>
+    var base = '{$base_url}';
+</script>
+<script src="__JS__/abcd//swiper-bundle.min.js"></script>
+<script src="__JS__/abcd/app.js?v=4"></script>
+
+
+</html>

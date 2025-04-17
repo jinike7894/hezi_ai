@@ -1,0 +1,413 @@
+.flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.flex-one {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.h5_shuqian_tip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999; }
+  .h5_shuqian_tip img {
+    width: 100%;
+    height: 100%; }
+
+.yc {
+  display: none !important; }
+
+.fandutishi {
+  margin-top: 3px;
+  padding: 0 0.21rem;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .fandutishi .tipspan {
+    display: block;
+    width: .12rem;
+    height: 20px;
+    background-color: #19b955; }
+  .fandutishi .tiptitle {
+    height: 0.32rem;
+    line-height: .32rem;
+    border-left: 0.12rem solid #19b955;
+    font-size: .34rem;
+    color: #000;
+    padding-left: 0.2rem;
+    font-weight: 700; }
+
+.cctv_bottom_top {
+  background: -webkit-gradient(linear, left top, right top, from(#9e54ef), to(#464548));
+  background: linear-gradient(90deg, #9e54ef, #464548);
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative; }
+  .cctv_bottom_top .pic {
+    position: absolute;
+    top: 5.6px;
+    margin-left: 0px;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    border-radius: 10px; }
+    .cctv_bottom_top .pic img {
+      width: 100%;
+      height: 100%; }
+  .cctv_bottom_top .text {
+    margin-left: 88px;
+    line-height: 60px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600; }
+  .cctv_bottom_top .desc {
+    margin-left: 88px;
+    line-height: 25px;
+    font-size: 12px;
+    color: #fff; }
+  .cctv_bottom_top .btn {
+    position: absolute;
+    top: 12px;
+    width: 80px;
+    right: 20px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    background: -webkit-gradient(linear, left top, right top, from(#ef54cd), to(#f2b90d));
+    background: linear-gradient(90deg, #ef54cd, #f2b90d);
+    border-radius: 55px;
+    text-align: center;
+    font-size: 16px;
+    padding: 0 5px;
+    font-weight: bold; }
+
+.cctv_head_top {
+  opacity: .85; }
+
+.cctv_dp {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 99999;
+  display: block;
+  width: 100%; }
+  .cctv_dp img {
+    width: 100%;
+    height: 100%; }
+
+.pc_shuqian_tip {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99999; }
+  .pc_shuqian_tip img {
+    width: 100%;
+    height: 100%; }
+
+.yuehui-mask {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999999;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); }
+  .yuehui-mask .yuehui-window {
+    position: absolute;
+    margin: 0px auto;
+    width: 90%;
+    max-width: 380px;
+    height: 160px;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-top: -50px;
+    -webkit-box-shadow: 0px 3px 0px #ec6bed inset;
+    box-shadow: 0px 3px 0px #ec6bed inset;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px 0;
+    text-align: center;
+    z-index: 9999; }
+    .yuehui-mask .yuehui-window .yuehui-hd h2 {
+      position: relative;
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 5px; }
+    .yuehui-mask .yuehui-window .yuehui-hd p {
+      font-size: 14px;
+      color: #727272;
+      font-weight: 100; }
+    .yuehui-mask .yuehui-window .yuehui-bd .txt {
+      margin-top: 15px;
+      font-size: 18px;
+      font-family: "Microsoft Yahei"; }
+      .yuehui-mask .yuehui-window .yuehui-bd .txt span {
+        padding: 0 5px;
+        color: #ec6bed; }
+    .yuehui-mask .yuehui-window .yuehui-bd .btn {
+      margin-top: 20px; }
+      .yuehui-mask .yuehui-window .yuehui-bd .btn a {
+        display: inline-block;
+        width: 140px;
+        height: 36px;
+        line-height: 36px;
+        background-image: -webkit-gradient(linear, left top, right top, from(#fe9ac0), to(#ff65d4));
+        background-image: linear-gradient(to right, #fe9ac0, #ff65d4);
+        color: #fff;
+        font-size: 20px;
+        border-radius: 50px;
+        -webkit-box-shadow: 0 2px 0 0 #da20a6cc;
+        box-shadow: 0 2px 0 0 #da20a6cc; }
+    .yuehui-mask .yuehui-window .close-quote {
+      position: absolute;
+      display: inline-block;
+      right: 15px;
+      top: 15px;
+      width: 24px;
+      height: 24px; }
+
+.yuehui-window .close-quote:before {
+  position: absolute;
+  content: '';
+  width: 2px;
+  height: 25px;
+  background: #d2d2d2;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: -3px;
+  left: 11px; }
+
+.yuehui-window .close-quote:after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 25px;
+  background: #d2d2d2;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: -3px;
+  left: 11px; }
+
+.yuepa-warp {
+  margin-top: 4px;
+  background-color: #fff; }
+  .yuepa-warp .title {
+    text-align: center;
+    padding: 10px 0; }
+    .yuepa-warp .title h3 {
+      margin: 0 auto;
+      font-size: 18px;
+      font-weight: 700;
+      max-width: 700px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+  .yuepa-warp .yuepa-list {
+    padding: 5px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+    .yuepa-warp .yuepa-list ul {
+      width: 100%;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -moz-box-orient: horizontal;
+      -moz-box-direction: normal;
+      -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+      -webkit-box-pack: justify;
+      -moz-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between; }
+      .yuepa-warp .yuepa-list ul li {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #EEEEEE; }
+        .yuepa-warp .yuepa-list ul li .y-img {
+          width: 124px; }
+          .yuepa-warp .yuepa-list ul li .y-img img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px; }
+        .yuepa-warp .yuepa-list ul li .y-txt {
+          -webkit-box-flex: 1;
+          -moz-box-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+          width: 70%; }
+          .yuepa-warp .yuepa-list ul li .y-txt .name {
+            margin-top: 3px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex; }
+            .yuepa-warp .yuepa-list ul li .y-txt .name .v {
+              color: #fff;
+              background-image: -webkit-gradient(linear, left top, left bottom, from(#fe9ac0), to(#ff65d4));
+              background-image: linear-gradient(to bottom, #fe9ac0, #ff65d4);
+              padding: 0px 8px;
+              border-radius: 15px 0 15px 0; }
+            .yuepa-warp .yuepa-list ul li .y-txt .name b {
+              display: inline-block;
+              margin-left: 6px;
+              font-weight: 500; }
+          .yuepa-warp .yuepa-list ul li .y-txt .tag {
+            margin-bottom: 6px; }
+            .yuepa-warp .yuepa-list ul li .y-txt .tag span {
+              font-size: 12px;
+              color: #fff;
+              display: inline-block;
+              margin-right: 3px;
+              background-color: #fe9ac0;
+              padding: 3px 6px;
+              border-radius: 10px; }
+          .yuepa-warp .yuepa-list ul li .y-txt .info {
+            margin-bottom: 0px; }
+            .yuepa-warp .yuepa-list ul li .y-txt .info span {
+              margin: 0 8px;
+              font-size: 12px; }
+          .yuepa-warp .yuepa-list ul li .y-txt .btn a {
+            display: block;
+            width: 100%;
+            font-size: 13px;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#fe9ac0), to(#ff65d4));
+            background-image: linear-gradient(to bottom, #fe9ac0, #ff65d4);
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 15px;
+            padding: 6px 0; }
+    .yuepa-warp .yuepa-list .more-btn {
+      margin: 14px 0;
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+      height: 32px;
+      line-height: 32px;
+      background-image: -webkit-gradient(linear, left top, right top, from(#fe9ac0), to(#ff65d4));
+      background-image: linear-gradient(to right, #fe9ac0, #ff65d4);
+      color: #fff;
+      font-size: 14px;
+      border-radius: 50px; }
+
+.copy_url {
+  border: 1px solid red;
+  color: red;
+  font-size: 12px;
+  border-radius: 20px;
+  padding: 0 10px;
+  line-height: 25px; }
+
+.live-games-list {
+  width: 100%;
+  padding: 0 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+  .live-games-list .games-item {
+    border-radius: 20px;
+    width: 100%;
+    border: 1px solid #CCCCCC;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    background-color: #ffffff; }
+    .live-games-list .games-item .item-top-dv .item-logo {
+      width: 25%;
+      display: block; }
+    .live-games-list .games-item .item-top-dv .item-right-dv {
+      width: 73%; }
+      .live-games-list .games-item .item-top-dv .item-right-dv .item-right-dv-top .item-right-dv-top-left {
+        width: 50%; }
+        .live-games-list .games-item .item-top-dv .item-right-dv .item-right-dv-top .item-right-dv-top-left .title-dv .title-dv-title1 {
+          background-color: #166fe3;
+          border-radius: 20px;
+          color: #FFFFFF;
+          font-size: 12px;
+          padding: 0 5px;
+          margin-right: 10px; }
+        .live-games-list .games-item .item-top-dv .item-right-dv .item-right-dv-top .item-right-dv-top-left .title-dv .title-dv-info {
+          font-weight: 900;
+          font-size: 14px;
+          margin-top: 3px; }
+        .live-games-list .games-item .item-top-dv .item-right-dv .item-right-dv-top .item-right-dv-top-left .title2-dv {
+          color: #958e8e;
+          font-size: 12px; }
+      .live-games-list .games-item .item-top-dv .item-right-dv .item-right-dv-top .item-right-dv-top-right {
+        width: 40%; }
+        .live-games-list .games-item .item-top-dv .item-right-dv .item-right-dv-top .item-right-dv-top-right img {
+          display: block; }
+        .live-games-list .games-item .item-top-dv .item-right-dv .item-right-dv-top .item-right-dv-top-right .item-right-dv-top-right-imgtop {
+          width: 100%; }
+        .live-games-list .games-item .item-top-dv .item-right-dv .item-right-dv-top .item-right-dv-top-right .item-right-dv-top-right-imgbottom {
+          width: 80%;
+          margin: 3px auto 0; }
+    .live-games-list .games-item .item-top-dv .taginfo {
+      margin-top: 3px;
+      color: red;
+      word-wrap: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; }
+    .live-games-list .games-item .btns-down {
+      margin: 10px 0; }
+      .live-games-list .games-item .btns-down img {
+        width: 46%;
+        display: block;
+        cursor: pointer; }
+    .live-games-list .games-item .bottom-dv p {
+      line-height: 27px;
+      font-size: 18px;
+      font-weight: 700; }
+
+@media (min-width: 768px) {
+  .cctv_head_top {
+    width: 750px;
+    margin: 0 auto; }
+  .cctv_dp {
+    display: none; }
+  .cctv_head_top_dom {
+    width: 750px;
+    margin: 0 auto; } }

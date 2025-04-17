@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>index</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="c" c="{$channel}">
+  <meta name="s" s="{$linkId}">
+  <meta name="my" k="{$key}">
+  <link rel="stylesheet" href="__CSS__/abcd/home.css?v=1">
+  <link rel="stylesheet" href="__CSS__/abcd/swiper-bundle.min.css">
+  <script src="__JS__/abcd/rem.min.js"></script>
+  <script src="__JS__/abcd/jquery.min.js"></script>
+</head>
+<body>
+{if !empty($testPro)}
+<div style="height:10px;width:100%;position:fixed;z-index:999;">
+    <a i="{$testPro['id']}" href="{$testPro['url']}" target="_blank" style="float:left;height:100%;width:100%;display:inline-block;"></a>
+</div>
+{/if}
+{if !empty($banners) }
+<div id="swiper-banner" class="swiper">
+  <div class="swiper-wrapper">
+    {foreach $banners as $banner}
+    <div class="swiper-slide">
+      <a  i="{$banner['id']}"  href="{$banner['url']}" target="_blank">
+        <img src="{$banner['img']}" alt="">
+      </a>
+    </div>
+    {/foreach}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+{/if}
+
+<div class="f0">
+  <div class="marquee-b">
+    <svg class="marquee-svg" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.8242 1.7445C11.6109 1.63138 11.3523 1.64108 11.1487 1.77682L5.75781 5.3449H3.15932C2.79411 5.3449 2.5 5.63901 2.5 6.00422V13.1662C2.5 13.5315 2.79411 13.8256 3.15932 13.8256H5.75781L11.1487 17.3936C11.4848 17.5779 11.7272 17.4777 11.8242 17.426C12.0375 17.3096 12.1733 17.0866 12.1733 16.8442V2.32625C12.1733 2.08386 12.0375 1.85762 11.8242 1.7445ZM3.81864 6.66354H5.23101V12.5069H3.81864V6.66354ZM10.8514 15.6161L6.54964 12.7687V6.40175L10.8514 3.5544V15.6161Z"></path><path d="M16.5651 5.22856C16.3098 4.96677 15.8896 4.96354 15.6311 5.21886C15.3725 5.47419 15.366 5.89111 15.6214 6.1529C17.4797 8.04359 17.4797 11.1237 15.6214 13.0143C15.366 13.2729 15.3466 13.7157 15.6278 13.9484C15.9672 14.2263 16.4326 14.0712 16.5619 13.9419C18.9244 11.5406 18.9244 7.6299 16.5651 5.22856Z"></path><path d="M14.5292 7.30025C14.2739 7.04169 13.8538 7.03523 13.5952 7.29055C13.3366 7.54588 13.3302 7.9628 13.5855 8.22459C14.3224 8.9744 14.3224 10.1961 13.5855 10.9459C13.3302 11.2045 13.3108 11.6472 13.5952 11.8799C13.9539 12.174 14.4 12.0027 14.5292 11.8702C15.7671 10.6098 15.7671 8.56071 14.5292 7.30025Z"></path>
+    </svg>
+    <div class="marquee-box">
+      <p>检测到当前浏览器已拦截本站部分色情APP，如</p>
+      <p>APP图标无法点击，请复制网址尝试不同浏览器</p>
+    </div>
+    <div>
+      <div class="btn-cc" onclick="copy()">复制网址</div>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="nav-c">
+    <div class="item active">
+      <em>首页</em>
+    </div>
+    <div class="item">
+      <em>视频</em>
+    </div>
+    {if (!empty($zhiboZbList) && count($zhiboZbList) > 0) }
+    <div class="item">
+      <em>直播</em>
+    </div>
+    {/if}
+    <div class="item">
+      <em>青楼</em>
+    </div>
+    <div class="item">
+      <em>赚钱</em>
+    </div>
+  </div>
+</div>
+<div>
+    <div class="swiper-c">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="split-box">
+              <img src="__IMG__/abcd/gftj_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div class="nav-list">
+                {foreach $indexList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <dl>
+                    <dt>
+                      <img src="{$index['img']}" alt="">
+                    </dt>
+                    <dd class="name">{if (strpos($index['name'], 'city') !== false)}<span class="city"></span>{/if}{$index['name']|str_replace='city','',###}</dd>
+                    <dd class="download"></dd>
+                  </dl>
+                </a>
+                {/foreach}
+              </div>
+            </div>
+            <div class="rows-d">
+              {foreach $indexTjList as $index}
+              <a i="{$index['id']}" href="{$index['url']}" rel="noreferrer" target="_blank">
+                <div class="item">
+                  <div class="img-wrap"><img cclass="img" src="{$index['img']}" alt=""></div>
+                  <dd class="info">
+                    <div class="t1">{if (strpos($index['name'], 'city') !== false)}<span class="city"></span>{/if}{$index['name']|str_replace='city','',###}</div>
+                    <div class="t2">下载次数: {$index['downnum']} 次</div>
+                  </dd>
+                  <div class="down"></div>
+                </div>
+              </a>
+              {/foreach}
+              
+            </div>
+            <div class="split-box">
+              <img src="__IMG__/abcd/lf_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div id="dating">
+                {foreach $tongchengList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <div class="item">
+                    <div class="bg img-wrap">
+                      <img src="{$index['img']}" alt="">
+                    </div>
+                    <div class="tag">{$index['yueNum']}人约过</div>
+                    <div class="tag1">距离您&lt;{$index['juli']}m</div>
+                    <!--<div class="name">{$index['name']}</div>-->
+                    <div class="name">
+                        {foreach $index['names'] as $name}
+                        {$name}
+                        <br>
+                        {/foreach}
+                    </div>
+                  </div>
+                </a>
+                {/foreach}
+              </div>
+            </div>
+            {if (!empty($zhiboList) && count($zhiboList) > 0)}
+            <div class="split-box">
+              <img src="__IMG__/abcd/zb_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div id="live">
+                {foreach $zhiboList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <div class="item">
+                    <div class="bg img-wrap">
+                      <img src="{$index['img']}" alt="">
+                    </div>
+                    <div class="tag"></div>
+                    <div class="bottom">
+                      <div class="hot-wrap">
+                        <div class="hot">热门</div> {$index['name']}
+                      </div>
+                      <p class="online-num">{$index['onlineNum']}人在线</p>
+                    </div>
+                  </div>
+                </a>
+                {/foreach}
+                
+              </div>
+            </div>
+            {/if}
+        </div>
+        <!-- shiping -->
+        <div class="swiper-slide">
+          <div class="split-box">
+              <img src="__IMG__/abcd/gftj_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div class="nav-list">
+                {foreach $indexSpList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <dl>
+                    <dt>
+                      <img src="{$index['img']}" alt="">
+                    </dt>
+                    <dd class="name">{if (strpos($index['name'], 'city') !== false)}<span class="city"></span>{/if}{$index['name']|str_replace='city','',###}</dd>
+                    <dd class="download"></dd>
+                  </dl>
+                </a>
+                {/foreach}
+              </div>
+            </div>
+            <div class="rows-d">
+              {foreach $indexSpTjList as $index}
+              <a i="{$index['id']}" href="{$index['url']}" rel="noreferrer" target="_blank">
+                <div class="item">
+                  <div class="img-wrap"><img cclass="img" src="{$index['img']}" alt=""></div>
+                  <dd class="info">
+                    <div class="t1">{if (strpos($index['name'], 'city') !== false)}<span class="city"></span>{/if}{$index['name']|str_replace='city','',###}</div>
+                    <div class="t2">下载次数: {$index['downnum']} 次</div>
+                  </dd>
+                  <div class="down"></div>
+                </div>
+              </a>
+              {/foreach}
+              
+            </div>
+            <div class="split-box">
+              <img src="__IMG__/abcd/lf_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div id="dating1">
+                {foreach $tongChengSpList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <div class="item">
+                    <div class="bg img-wrap">
+                      <img src="{$index['img']}" alt="">
+                    </div>
+                    <div class="tag">{$index['yueNum']}人约过</div>
+                    <div class="tag1">距离您&lt;{$index['juli']}m</div>
+                    <!--<div class="name">{$index['name']}</div>-->
+                    <div class="name">
+                        {foreach $index['names'] as $name}
+                        {$name}
+                        <br>
+                        {/foreach}
+                    </div>
+                  </div>
+                </a>
+                {/foreach}
+                
+              </div>
+            </div>
+            {if (!empty($zhiboSpList) && count($zhiboSpList) > 0) }
+            <div class="split-box">
+              <img src="__IMG__/abcd/zb_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div id="live1">
+                {foreach $zhiboSpList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <div class="item">
+                    <div class="bg img-wrap">
+                      <img src="{$index['img']}" alt="">
+                    </div>
+                    <div class="tag"></div>
+                    <div class="bottom">
+                      <div class="hot-wrap">
+                        <div class="hot">热门</div> {$index['name']}
+                      </div>
+                      <p class="online-num">{$index['onlineNum']}人在线</p>
+                    </div>
+                  </div>
+                </a>
+                {/foreach}
+                
+              </div>
+            </div>
+            {/if}
+        </div>
+        {if (!empty($zhiboZbList) && count($zhiboZbList) > 0) }
+        <!-- zhibo -->
+        <div class="swiper-slide">
+            <div class="split-box">
+              <img src="__IMG__/abcd/zb_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div class="nav-list">
+                {foreach $zhiboZbList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <dl>
+                    <dt>
+                      <img src="{$index['img']}" alt="">
+                    </dt>
+                    <dd class="name">{if (strpos($index['name'], 'city') !== false)}<span class="city"></span>{/if}{$index['name']|str_replace='city','',###}</dd>
+                    <dd class="download"></dd>
+                  </dl>
+                </a>
+                {/foreach}
+              </div>
+            </div>
+            <div class="rows-d">
+              {foreach $indexZBTjList as $index}
+              <a i="{$index['id']}" href="{$index['url']}" rel="noreferrer" target="_blank">
+                <div class="item">
+                  <div class="img-wrap"><img cclass="img" src="{$index['img']}" alt=""></div>
+                  <dd class="info">
+                    <div class="t1">{if (strpos($index['name'], 'city') !== false)}<span class="city"></span>{/if}{$index['name']|str_replace='city','',###}</div>
+                    <div class="t2">下载次数: {$index['downnum']} 次</div>
+                  </dd>
+                  <div class="down"></div>
+                </div>
+              </a>
+              {/foreach}
+              
+            </div>
+            {if (!empty($zbTongchengList) && count($zbTongchengList) > 0) }
+            <div class="split-box">
+              <img src="__IMG__/abcd/lf_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div id="dating4">
+                {foreach $zbTongchengList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <div class="item">
+                    <div class="bg img-wrap">
+                      <img src="{$index['img']}" alt="">
+                    </div>
+                    <div class="tag">{$index['yueNum']}人约过</div>
+                    <div class="tag1">距离您&lt;{$index['juli']}m</div>
+                    <!--<div class="name">{$index['name']}</div>-->
+                    <div class="name">
+                        {foreach $index['names'] as $name}
+                        {$name}
+                        <br>
+                        {/foreach}
+                    </div>
+                  </div>
+                </a>
+                {/foreach}
+              </div>
+            </div>
+            {/if}
+            <!--<div class="panel">-->
+            <!--  <div id="live2">-->
+            <!--    {foreach $zhiboZbList as $index}-->
+            <!--    <a  i="{$index['id']}" href="{$index['url']}" target="_blank">-->
+            <!--      <div class="item">-->
+            <!--        <div class="bg img-wrap">-->
+            <!--          <img src="{$index['img']}" alt="">-->
+            <!--        </div>-->
+            <!--        <div class="tag"></div>-->
+            <!--        <div class="bottom">-->
+            <!--          <div class="hot-wrap">-->
+            <!--            <div class="hot">热门</div> {$index['name']}-->
+            <!--          </div>-->
+            <!--          <p class="online-num">{$index['onlineNum']}人在线</p>-->
+            <!--        </div>-->
+            <!--      </div>-->
+            <!--    </a>-->
+            <!--    {/foreach}-->
+                
+            <!--  </div>-->
+            <!--</div>-->
+        </div>
+        {/if}
+        <!-- qinglou -->
+        <div class="swiper-slide">
+            <div class="split-box">
+              <img src="__IMG__/abcd/lf_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div id="dating3">
+                {foreach $tongChengQlList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <div class="item">
+                    <div class="bg img-wrap">
+                      <img src="{$index['img']}" alt="">
+                    </div>
+                    <div class="tag">{$index['yueNum']}人约过</div>
+                    <div class="tag1">距离您&lt;{$index['juli']}m</div>
+                    <!--<div class="name">{$index['name']}</div>-->
+                    <div class="name">
+                        {foreach $index['names'] as $name}
+                        {$name}
+                        <br>
+                        {/foreach}
+                    </div>
+                  </div>
+                </a>
+                {/foreach}
+              </div>
+            </div>
+        </div>
+        <!-- zhuanqian -->
+        <div class="swiper-slide">
+          <div class="split-box">
+              <img src="__IMG__/abcd/gftj_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div class="nav-list">
+                {foreach $indexZhqList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <dl>
+                    <dt>
+                      <img src="{$index['img']}" alt="">
+                    </dt>
+                    <dd class="name">{if (strpos($index['name'], 'city') !== false)}<span class="city"></span>{/if}{$index['name']|str_replace='city','',###}</dd>
+                    <dd class="download"></dd>
+                  </dl>
+                </a>
+                {/foreach}
+              </div>
+            </div>
+            <div class="rows-d">
+              {foreach $indexZhqTjList as $index}
+              <a i="{$index['id']}" href="{$index['url']}" rel="noreferrer" target="_blank">
+                <div class="item">
+                  <div class="img-wrap"><img cclass="img" src="{$index['img']}" alt=""></div>
+                  <dd class="info">
+                    <div class="t1">{if (strpos($index['name'], 'city') !== false)}<span class="city"></span>{/if}{$index['name']|str_replace='city','',###}</div>
+                    <div class="t2">下载次数: {$index['downnum']} 次</div>
+                  </dd>
+                  <div class="down"></div>
+                </div>
+              </a>
+              {/foreach}
+              
+            </div>
+            <div class="split-box">
+              <img src="__IMG__/abcd/lf_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div id="dating4">
+                {foreach $tongChengZhqList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <div class="item">
+                    <div class="bg img-wrap">
+                      <img src="{$index['img']}" alt="">
+                    </div>
+                    <div class="tag">{$index['yueNum']}人约过</div>
+                    <div class="tag1">距离您&lt;{$index['juli']}m</div>
+                    <!--<div class="name">{$index['name']}</div>-->
+                    <div class="name">
+                        {foreach $index['names'] as $name}
+                        {$name}
+                        <br>
+                        {/foreach}
+                    </div>
+                  </div>
+                </a>
+                {/foreach}
+              </div>
+            </div>
+            {if (!empty($zhiboZhqList) && count($zhiboZhqList) > 0) }
+            <div class="split-box">
+              <img src="__IMG__/abcd/zb_label.png" alt="">
+            </div>
+            <div class="panel">
+              <div id="live3">
+                {foreach $zhiboZhqList as $index}
+                <a  i="{$index['id']}" href="{$index['url']}" target="_blank">
+                  <div class="item">
+                    <div class="bg img-wrap">
+                      <img src="{$index['img']}" alt="">
+                    </div>
+                    <div class="tag"></div>
+                    <div class="bottom">
+                      <div class="hot-wrap">
+                        <div class="hot">热门</div> {$index['name']}
+                      </div>
+                      <p class="online-num">{$index['onlineNum']}人在线</p>
+                    </div>
+                  </div>
+                </a>
+                {/foreach}
+                
+              </div>
+            </div>
+            {/if}
+        </div>
+        
+      </div>
+    </div>
+</div>
+
+
+<script>
+    var base = '{$base_url}';
+    {if !empty($tongjiCode)}
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?{$tongjiCode}";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    {/if}
+    
+    $(function(){
+        $.ajax({
+          type: 'post',
+          url: '/getip',
+          async: true,
+          contentType:'application/json',
+          dataType: 'json',
+          success: function (data) {
+              if(data.hasOwnProperty('city')){
+                  $(".city").html(data.city);
+              }
+          },
+        });
+    });
+</script>
+<script src="__JS__/abcd/jquery.min.js"></script>
+<script src="__JS__/abcd//swiper-bundle.min.js"></script>
+<script src="__JS__/abcd/app.js?v=3"></script>
+</body>
+</html>

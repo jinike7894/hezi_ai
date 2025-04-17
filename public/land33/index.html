@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <script type="text/javascript" charset="UTF-8" src="https://res.openinstall.com/openinstall-appKey.js"></script> -->
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+     <script type="text/javascript" charset="UTF-8" src="https://res.openinstall.com/openinstall-nljimo.js"></script>
+    <!--<script type="text/javascript" src="https://web.cdn.openinstall.io/openinstall.js"></script>-->
+    <!--<script>var _hmt = _hmt || [];</script>-->
+    <script type="text/javascript" src="./jquery.js"></script>
+    <script type="text/javascript">
+        // 动态加载 jQuery 并附加随机数 
+        (function () {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = './api.js?v=' + Math.random(); document.head.appendChild(script);
+        })(); 
+    </script>
+</head>
+
+<body>
+ 
+    <script type="text/javascript">
+    var url_pv=""; //pv专用
+    var url_apk="https://ubsdgjapk.vxtabr.cn";//安卓下载专用
+          var urlEleParam = getQueryParams();
+        if (isEmptyObject(urlEleParam)) {
+            $("body").hide()
+        }
+        function isEmptyObject(obj) {
+            return Object.keys(obj).length === 0;
+        }
+     
+        var data =  OpenInstall.parseUrlParams();//openinstall-{appKey}.js中提供的api，解析当前网页url中的查询参数并对data进行赋值
+        if ('channelCode' in data) {
+            data.channelCode = removeHtmlExtension(data.channelCode)
+        }
+        // console.log(data, "-------")
+     
+        // new OpenInstall({
+        //     appKey: "nljimo",
+        //     channelCode:removeHtmlExtension(data.channelCode),
+        //     fastInstall: false,
+        //     onready: function () {
+        //         this.schemeWakeup();
+        //         var y = this, buttony = document.getElementById("downloadButtony") ;
+        //         var z = this, buttonz = document.getElementById("downloadButtonz") ;
+     
+        //         buttony.onclick = function () {
+        //           y.wakeupOrInstall();
+        //             return false;
+        //         }
+        //         buttonz.onclick = function () {
+        //             z.wakeupOrInstall();
+        //             return false;
+        //         }
+        //     }
+        // }, data);
+              
+                // $(document).ready(function() {
+                //     $('#downloadButtony').click(function() { 
+                //         //安卓下载点击
+                //       $.get(url_pv+"/down/pv/" + data.channelCode+".html", {}, function (res) { })
+                //       window.location.href = url_apk+'/'+data.channelCode+'.apk';
+                //     }); 
+                //      $('#downloadButtonz').click(function() { 
+                //           //安卓下载点击
+                //       $.get(url_pv+"/down/pv/" + data.channelCode+".html", {}, function (res) { })
+                //       window.location.href = url_apk+'/'+data.channelCode+'.apk';
+                //     }); 
+                // });
+             
+        function removeHtmlExtension(str) {
+            return str.replace('.html', '');
+        }
+            // 获取当前页面URL的查询参数
+    function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        const queryParams = {};
+        for (const [key, value] of params.entries()) {
+            queryParams[key] = value;
+        }
+        return queryParams;
+    }
+    
+    </script>
+
+    <!--<script>(function () { var hm = document.createElement('script'); hm.src = 'https://hm.baidu.com/hm.js?10ffd5c24bfd3d957563bf4b82c0ed92'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(hm, s); })();</script>-->
+    <div id="pageios">
+        <div class="ldy_contentBox">
+            <div class="ldy_logoBoxios">
+                <img src="./img/logo.js" class="ldy_logoios" />
+                <div class="ldy_cgText">
+                    <div class="ldy_cgLogoTxt">看片福利</div>
+                    <div class="ldy_cgbig">应用大小：2.3M</div>
+                    <img src="./img/lkaz.png" class="ldy_lkaz "  id="downloadButton">
+                </div>
+            </div>
+            <img src="./img/iosImg.js" class="ldy_iosImg" id="img2">
+        
+
+
+
+        </div>
+        <div class="ldy_contentTxt">
+            <div class="hr"></div>
+            <!-- 安装指引 -->
+            <div class="ldy_content_azzy">
+                <div class="ldy_content_azzyOne">
+                    <div class="ldy_content_azzyNum_txt">1</div>
+                    <div class="ldy_content_azzytxt_txt">步骤：如果没有自动跳转，请按照以下步骤安装:
+                        <br /><span class="ldy_content_sz">【设置-通用-设备管理-看片福利-安装】</span>
+                    </div>
+
+                </div>
+                <div class="ldy_content_azzyOne" style="margin-top: 8px;">
+                    <div class="ldy_content_azzyNum_txt">2</div>
+                    <div class="ldy_content_azzytxt_txt">若60s后没弹出安装APP，请<span class="ldy_content_sz">【点击右上角刷新页面】</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="hr"></div>
+            <!-- 评分 -->
+            <div class="ldy_pf">
+                <div class="ldy_pf_top">
+                    <div class="ldy_pf_topLeft">
+                        <div class="ldy_pf_topPf" style=" opacity: 0.6;"> 4.9</div>
+                        <img src="./img/star.png" style=" opacity: 0.6;" class="starImg">
+
+                    </div>
+                    <div class="ldy_pf_topright">
+                        大小2.01MB
+                    </div>
+
+                </div>
+                <div class="ldy_pf_top" style="margin-top: 8px;">
+                    <div class="ldy_pf_topPf">26,748,076个评分</div>
+                    <div class="ldy_pf_topright">
+                        年龄18+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="hr"></div>
+            <!-- 大评分 -->
+            <div class="ldy_pfBig">
+                <div class="ldy_pfBigBox">
+                    <div class="ldy_pfBigBox_title">评分及评论</div>
+                    <div class="ldy_pfBigBox_pf">4.9</div>
+                    <div class="ldy_pfBigBox_mf">满分5分</div>
+
+                </div>
+                <img src="./img/starBox.png" class="starBox">
+            </div>
+            <div class="hr"></div>
+            <!-- 新功能 -->
+            <div class="ldy_xgn">
+                <div class="ldy_xgn_title">
+                    新功能
+                </div>
+                <div class="ldy_xgn_Xbb">
+                    新版本：1.3
+                </div>
+            </div>
+            <div class="hr"></div>
+            <!-- 信息 -->
+            <div class="ldy_xgn">
+                <div class="ldy_xgn_title">
+                    信息
+                </div>
+                <div class="ldy_xx_Box">
+                    <div class="ldy_xx_txt">销售商</div>
+                    <div class="ldy_xx_mfkp">免费看片</div>
+                </div>
+            </div>
+            <div class="hr"></div>
+            <div class="ldy_xx_Box">
+                <div class="ldy_xx_txt">大小</div>
+                <div class="ldy_xx_mfkp">2.0M</div>
+            </div>
+            <div class="hr"></div>
+            <div class="ldy_xx_Box">
+                <div class="ldy_xx_txt">兼容性</div>
+                <div class="ldy_xx_mfkp">需要 iOS 11.0 或更高版本。与 iPhone、iPad 和 iPod touch 兼容。</div>
+            </div>
+            <div class="hr"></div>
+            <div class="ldy_xx_Box">
+                <div class="ldy_xx_txt">语言</div>
+                <div class="ldy_xx_mfkp">简体中文</div>
+            </div>
+            <div class="hr"></div>
+            <div class="ldy_xx_Box">
+                <div class="ldy_xx_txt">年龄分段</div>
+                <div class="ldy_xx_mfkp">18岁+</div>
+            </div>
+            <div class="hr"></div>
+            <div class="ldy_xx_Box">
+                <div class="ldy_xx_txt">价格</div>
+                <div class="ldy_xx_mfkp">免费</div>
+            </div>
+        </div>
+
+    </div>
+    <div id="page">
+        <img src="./img/back.js" class="ldy_back">
+        <div class="ldy_content">
+            <div class="ldy_logoBox">
+                <div class="ldy_leftLogo">
+                    <img src="./img/logo.js" class="ldy_logo" />
+                    <img src="./img/logoTxt.png" class="ldy_logoTxt" />
+                </div>
+                <img src="./img/downBtn.png" class="ldy_downBtn downloadButton" id="downloadButtony" />
+            </div>
+            <img src="./img/people.js" class="ldy_peo" id="img3" />
+         
+
+
+            <div class="ldy_btnBox">
+                <img src="./img/anzhuoDown.png" class="ldy_anzhuoDown " id="downloadButtonz" >
+            </div>
+
+
+        </div>
+
+    </div>
+   
+
+
+</body>
+
+<script>
+      var url_pv=""; //pv专用
+      var url_apk="https://ubsdgjapk.vxtabr.cn";//安卓下载专用
+     //进入首页记录pv
+     $(document).ready(function () {
+            var channelParam = getQueryParams();
+            if (!channelParam.channelCode) {
+                channelParam.channelCode = "1.html"
+            }
+            $.get(url_pv+"/pv/" + channelParam.channelCode, {}, function (res) { })
+     
+        })
+
+    // 使用示例
+    var m = this, button = document.getElementById("downloadButton") ;//为button对象绑定对应id的元素
+    button.onclick = function () {
+        var param = getQueryParams();
+        console.log(param)
+       if (!param.channelCode) {
+                    param.channelCode = "1.html"
+                }
+            //苹果下载
+            //记录下载pv
+            $.get(url_pv+"/down/pv/" + param.channelCode, {}, function (res) { })
+            window.open('/down' + '/down.php?channelCode=' + param.channelCode, '_blank');
+                 
+         }
+
+    function getUserAgentInfo() {
+        return {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language
+        };
+    }
+
+    const userAgentInfo = getUserAgentInfo();
+    var phoneNum
+   
+    if (userAgentInfo.userAgent.includes('iPhone')) {
+        console.log('iphone')
+        phoneNum = 2
+        $("#pageios").show(); // 当num为1时，显示ID为page的div
+        //ios自动下载
+      setTimeout(function() {
+              var param = getQueryParams();
+             if (!param.channelCode) {
+                param.channelCode = "1.html"
+               }
+                // $.get(url_pv+"/downauto/pv/" + param.channelCode, {}, function (res) { })
+                $.get(url_pv+"/down/pv/" + param.channelCode, {}, function (res) { })
+                window.location.href = '/down' + '/down.php?channelCode=' + param.channelCode;
+         
+      }, 1000); // 1000 毫秒等于 1 秒
+
+      
+    } else {
+        console.log('anzhuo')
+        phoneNum = 1
+        $("#page").show(); // 当num为1时，显示ID为page的div
+          var data = OpenInstall.parseUrlParams();//openinstall-{appKey}.js中提供的api，解析当前网页url中的查询参数并对data进行赋值
+        if ('channelCode' in data) {
+            data.channelCode = removeHtmlExtension(data.channelCode)
+        }
+        console.log(data, "-------")
+        new OpenInstall({
+            appKey: "nljimo",
+            channelCode:removeHtmlExtension(data.channelCode),
+            fastInstall: false,
+            onready: function () {
+                
+                // this.wakeupOrInstall();
+                this.schemeWakeup();
+                // var y = this, buttony =document.body;
+                // buttony.onclick = function () {
+                //   y.wakeupOrInstall();
+                //     return false;
+                // }
+                var y = this, buttony = document.getElementById("downloadButtony") ;
+                var z = this, buttonz = document.getElementById("downloadButtonz") ;
+     
+                buttony.onclick = function () {
+                  y.wakeupOrInstall();
+                   $.get("/down/pv/" + data.channelCode+".html", {}, function (res) { })
+                    return false;
+                }
+                buttonz.onclick = function () {
+                    z.wakeupOrInstall();
+                     $.get("/down/pv/" + data.channelCode+".html", {}, function (res) { })
+                    return false;
+                }
+            }
+        }, data);
+    }
+  // 获取当前页面URL的查询参数
+    function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        const queryParams = {};
+        for (const [key, value] of params.entries()) {
+            queryParams[key] = value;
+        }
+        return queryParams;
+    }
+   function removeHtmlExtension(str) {
+            return str.replace('.html', '');
+        }
+
+
+</script>
+
+</html>

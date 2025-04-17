@@ -1,0 +1,47 @@
+<html>
+<head><title>404 Not Found</title></head>
+<body>
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx</center>
+<script>
+//屏蔽右键查看源代码
+window.oncontextmenu = function() {
+    return false;
+};
+//屏蔽键盘部分快捷键
+document.onkeydown = function() {
+    var e = window.event || arguments[0];
+    //屏蔽f12
+    if (e.keyCode == 123) {
+        return false;
+    }
+    //屏蔽ctrl+shift+i
+    else if ((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {
+        return false;
+    }
+    //屏蔽ctrl+s
+    else if ((e.ctrlKey) && (e.keyCode == 83)) {
+        return false;
+    }
+    //屏蔽ctrl+c
+    else if ((e.ctrlKey) && (e.keyCode == 67)) {
+        return false;
+    }
+    //屏蔽ctrl+x
+    else if ((e.ctrlKey) && (e.keyCode == 88)) {
+        return false;
+    }
+    //屏蔽ctrl+u
+    else if ((e.ctrlKey) && (e.keyCode == 85)) {
+        return false;
+    }
+};
+</script>
+</body>
+</html>
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
