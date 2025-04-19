@@ -34,4 +34,18 @@ Route::get('cron/deldata','cron/deldata');
 Route::get('tongbu/index','tongbu/index');
 Route::get('tongbu/dhclick','tongbu/dhclick');
 Route::get('tongbu/config','tongbu/config');
+//ai类接口
+//设备码 注册登录
+Route::post('ai/register','aiuserdata/registerUser');
+//修改用户名 密码
+Route::post('ai/updateUser','aiuserdata/updateUserData');
+//账号密码登录
+Route::post('ai/login','aiuserdata/loginByPasswd');
+//获取用户信息
+Route::get('ai/userInfo','aiuserdata/userInfo');
+//获取客服
+Route::get('ai/customerService','aiuserdata/customerService');
+//获取充值记录
+Route::get('ai/rechargeRecord','aiuserdata/rechargeRecord');
+
 })->allowCrossDomain();

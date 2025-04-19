@@ -59,6 +59,10 @@ class Config extends AdminController
             }
             TriggerService::updateMenu();
             TriggerService::updateSysconfig();
+            $res=file_put_contents("./down/url.json", $post["tg_url"]);
+            if(!$res){
+                $this->error('保存失败');
+            }
         } catch (\Exception $e) {
             $this->error('保存失败');
         }

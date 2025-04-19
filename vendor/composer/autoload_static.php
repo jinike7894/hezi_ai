@@ -14,9 +14,9 @@ class ComposerStaticInit71e0dd0f870e6b3d8071c87d8eedf19b
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '35fab96057f1bf5e7aba31a8a6d5fdde' => __DIR__ . '/..' . '/topthink/think-orm/stubs/load_stubs.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
-        '35fab96057f1bf5e7aba31a8a6d5fdde' => __DIR__ . '/..' . '/topthink/think-orm/stubs/load_stubs.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'd767e4fc2dc52fe66584ab8c6684783e' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/helpers.php',
@@ -27,6 +27,7 @@ class ComposerStaticInit71e0dd0f870e6b3d8071c87d8eedf19b
         '66453932bc1be9fb2f910a27947d11b6' => __DIR__ . '/..' . '/alibabacloud/client/src/Functions.php',
         'cd5441689b14144e5573bf989ee47b34' => __DIR__ . '/..' . '/qcloud/cos-sdk-v5/src/Common.php',
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
+        'cc25fa796cd7d2989f16cf9daf45371d' => __DIR__ . '/..' . '/thans/tp-jwt-auth/src/helper.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
     );
 
@@ -37,6 +38,7 @@ class ComposerStaticInit71e0dd0f870e6b3d8071c87d8eedf19b
             'think\\captcha\\' => 14,
             'think\\app\\' => 10,
             'think\\' => 6,
+            'thans\\jwt\\' => 10,
         ),
         'j' => 
         array (
@@ -101,6 +103,7 @@ class ComposerStaticInit71e0dd0f870e6b3d8071c87d8eedf19b
             'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\Cached\\' => 24,
             'League\\Flysystem\\' => 17,
+            'Lcobucci\\JWT\\' => 13,
         ),
         'J' => 
         array (
@@ -115,6 +118,10 @@ class ComposerStaticInit71e0dd0f870e6b3d8071c87d8eedf19b
             'GuzzleHttp\\Command\\Guzzle\\' => 26,
             'GuzzleHttp\\Command\\' => 19,
             'GuzzleHttp\\' => 11,
+        ),
+        'F' => 
+        array (
+            'Firebase\\JWT\\' => 13,
         ),
         'E' => 
         array (
@@ -154,10 +161,14 @@ class ComposerStaticInit71e0dd0f870e6b3d8071c87d8eedf19b
         ),
         'think\\' => 
         array (
-            0 => __DIR__ . '/..' . '/topthink/framework/src/think',
-            1 => __DIR__ . '/..' . '/topthink/think-helper/src',
+            0 => __DIR__ . '/..' . '/topthink/think-template/src',
+            1 => __DIR__ . '/..' . '/topthink/framework/src/think',
             2 => __DIR__ . '/..' . '/topthink/think-orm/src',
-            3 => __DIR__ . '/..' . '/topthink/think-template/src',
+            3 => __DIR__ . '/..' . '/topthink/think-helper/src',
+        ),
+        'thans\\jwt\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/thans/tp-jwt-auth/src',
         ),
         'jianyan\\excel\\' => 
         array (
@@ -181,8 +192,8 @@ class ComposerStaticInit71e0dd0f870e6b3d8071c87d8eedf19b
         ),
         'Test\\' => 
         array (
-            0 => __DIR__ . '/..' . '/zhongshaofa/easy-admin/tests',
-            1 => __DIR__ . '/..' . '/zhongshaofa/thinkphp-log-trace/tests',
+            0 => __DIR__ . '/..' . '/zhongshaofa/thinkphp-log-trace/tests',
+            1 => __DIR__ . '/..' . '/zhongshaofa/easy-admin/tests',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -285,6 +296,10 @@ class ComposerStaticInit71e0dd0f870e6b3d8071c87d8eedf19b
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
+        'Lcobucci\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/qeq66/jwt/src',
+        ),
         'JmesPath\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/jmespath.php/src',
@@ -316,6 +331,10 @@ class ComposerStaticInit71e0dd0f870e6b3d8071c87d8eedf19b
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'EasyAdmin\\' => 
         array (

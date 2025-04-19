@@ -3,7 +3,8 @@
 
 use app\common\service\AuthService;
 use think\facade\Cache;
-
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 if (!function_exists('__url')) {
 
     /**
@@ -427,4 +428,21 @@ function createDetailUrl($channel,$id){
 //创建详情2url
 function createDetailUrl2($channel,$id){
       return "./detail2/".$channel.".html?id=".$id;
+}
+//生成token
+ function generateToken($data){
+    $jwt = JWT::encode($data, "ai", 'HS256');
+    return $jwt;
+}
+//解析token
+function decodeToken($token){
+   
+    $data = JWT::decode($token, new Key("ai", 'HS256'));
+    return $data;
+}
+//生成随机用户名
+function generateUniqueUserName(){
+    $characters = 'abcdefghjkmnpqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $username = substr(str_shuffle($characters), 0, 8);
+    return $username;
 }
