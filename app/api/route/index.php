@@ -47,5 +47,15 @@ Route::get('ai/userInfo','aiuserdata/userInfo');
 Route::get('ai/customerService','aiuserdata/customerService');
 //获取充值记录
 Route::get('ai/rechargeRecord','aiuserdata/rechargeRecord');
+//获取ai使用记录
+Route::get('ai/aiUseRecord','aiuserdata/aiUseRecord');
+//删除ai使用记录
+Route::post('ai/delUseRecord','aiuserdata/delUseRecord');
+//获取vip产品
+Route::get('ai/vipProduct','aipay/getVipProduct');
+//获取点数产品
+Route::get('ai/pointsProduct','aipay/getPointsProduct');
+//获取支付通道
+Route::get('ai/payment','aipay/getPayment');
 
 })->allowCrossDomain();

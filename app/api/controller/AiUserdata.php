@@ -6,6 +6,7 @@ use app\api\controller\Aibase;
 use app\common\model\AiUser;
 use app\common\model\AiOrder;
 use app\gladmin\model\SystemConfig;
+use app\common\model\AiUseRecord;
 class Aiuserdata extends Aibase
 {
     //设备码注册/登录
@@ -128,15 +129,17 @@ class Aiuserdata extends Aibase
         return json_encode(["code" => 1, "msg" => "succ", "data" => $userData]);
     }
     //获取客服信息
-    public function customerService(){
+    public function customerService()
+    {
         $system = new SystemConfig();
-        $email=$system
-        ->where('name', "ai_onlinekf")
-        ->value("value");
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["customer_service"=>$email]]);
+        $email = $system
+            ->where('name', "ai_onlinekf")
+            ->value("value");
+        return json_encode(["code" => 1, "msg" => "succ", "data" => ["customer_service" => $email]]);
     }
     //获取充值记录
-    public function rechargeRecord(){
+    public function rechargeRecord()
+    {
         if (!input("get.page") || !input("get.limit")) {
             return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
@@ -145,8 +148,42 @@ class Aiuserdata extends Aibase
             "limit" => input("get.limit"),
         ];
         $uid = $this->uid;
-        $orderData = AiOrder::getOrderData($uid,$params["limit"],$params["page"]);
+        $orderData = AiOrder::getOrderData($uid, $params["limit"], $params["page"]);
         return json_encode(["code" => 1, "msg" => "succ", "data" => $orderData]);
     }
     //获取ai使用记录
+    public function aiUseRecord()
+    {
+        if (!input("get.page") || !input("get.limit")) {
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $params = [
+            "page" => input("get.page"),
+            "limit" => input("get.limit"),
+        ];
+        $uid = $this->uid;
+        $recordData = AiUseRecord::where(["uid" => $uid, "is_del" => 0])->order("create_time desc ")->field("id,ai_type,img,ai_generate_source,status,create_time")->paginate([
+            'list_rows' => $params["limit"],  // 每页条数
+            'page' => $params["page"],    // 当前页数
+        ]);
+        return json_encode(["code" => 1, "msg" => "succ", "data" => $recordData]);
+    }
+    //删除记录
+    public function delUseRecord()
+    {
+        if (!input("post.id")) {
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $params = [
+            "id" => input("post.id"),
+        ];
+        $uid = $this->uid;
+        $delRes = AiUseRecord::where(["uid" => $uid, "id" => $params["id"]])->update([
+            "is_del" => 1
+        ]);
+        if ($delRes) {
+            return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
+        }
+        return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
+    }
 }
