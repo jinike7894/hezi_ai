@@ -7,6 +7,25 @@ use Think\Db;
 use app\gladmin\model\SystemConfig;
 class AiOrder extends \think\Model
 {
+    // 设置字段信息
+    protected $schema = [
+        'id'          => 'int',
+        'name'          => 'string',
+        'order_num'          => 'string',
+        'uid'          => 'int',
+        'original_price'          => 'int',
+        'price'          => 'string',
+        'is_vip'          => 'int',
+        'data'          => 'string',
+        'pay_time'          => 'int',
+        'pay_type_id'          => 'int',
+        'pay_status'          => 'int',
+        'vip_expired_time'          => 'int',
+        'create_time' => 'int',
+        'update_time' => 'int',
+        'delete_time' => 'int',
+    ];
+
     //获取充值记录
     public static function getOrderData($uid,$limit,$page)
     {

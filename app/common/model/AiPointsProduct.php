@@ -3,11 +3,11 @@ namespace app\common\model;
 
 use Think\Model;
 use Think\Page;
-use Think\Db;
-use app\gladmin\model\SystemConfig;
-class AiVipProduct extends \think\Model
+use think\facade\Db;
+
+class AiPointsProduct extends \think\Model
 {
-    // 设置字段信息
+	// 设置字段信息
     protected $schema = [
         'id'          => 'int',
         'name'          => 'string',
@@ -24,6 +24,7 @@ class AiVipProduct extends \think\Model
         'update_time' => 'int',
         'delete_time' => 'int',
     ];
+	
 }
 
 ?>

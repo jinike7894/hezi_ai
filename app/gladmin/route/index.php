@@ -94,4 +94,21 @@ Route::post('data.category/delete','data.category/delete');
 Route::get('data.category/getpcate','data.category/getpcate');
 Route::get('data.config/index','data.config/index');
 Route::post('data.config/save','data.config/save');
+    Route::get('data.aivipproduct/index','data.aivipproduct/index');
+    Route::rule('data.aivipproduct/edit','data.aivipproduct/edit');
+    Route::post('data.aivipproduct/delete','data.aivipproduct/delete');
+
+    Route::get('data.aipointproduct/index','data.aipointproduct/index');
+    Route::rule('data.aipointproduct/edit','data.aipointproduct/edit');
+    Route::post('data.aipointproduct/delete','data.aipointproduct/delete');
+
+
+    Route::get('data.aiuser/index','data.aiuser/index');
+
+    Route::get('data.aiorder/index','data.aiorder/index');
+
+
+    Route::get('data.aipayment/index','data.aipayment/index');
+    Route::rule('data.aipayment/edit','data.aipayment/edit');
+
 });
