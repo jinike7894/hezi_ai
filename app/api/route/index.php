@@ -57,5 +57,8 @@ Route::get('ai/vipProduct','aipay/getVipProduct');
 Route::get('ai/pointsProduct','aipay/getPointsProduct');
 //获取支付通道
 Route::get('ai/payment','aipay/getPayment');
-
+//创建订单 获取支付链接
+Route::post('ai/createOrder','aipay/createOrder');
+//支付回调
+Route::post('ai/payNotify','aipay/payNotify');
 })->allowCrossDomain();

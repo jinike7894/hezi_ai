@@ -9,7 +9,7 @@ class Aibase extends BaseController
     public $uid;
     public function initialize(){
         $action = request()->action();
-        if ($action != 'registerUser'&&$action != "loginByPasswd"&&$action != "customerService") {
+        if ($action != 'registerUser'&&$action != "loginByPasswd"&&$action != "customerService"&&$action != "payNotify") {
            // 获取请求头中的 token
         $token = Request::header("accessToken");
       

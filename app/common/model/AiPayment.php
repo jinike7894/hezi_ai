@@ -21,7 +21,16 @@ class AiPayment extends \think\Model
         'update_time' => 'int',
         'delete_time' => 'int',
     ];
+    //获取单个支付通道
+    public static function getPayMentFind($id){
+        $data=self::where(["id"=>$id,"is_del"=>0])->field("id,name,discount,appid,secret")->find();
+        if($data){
+            return $data;
+        }
+        return false;
+    }
 	
 }
 
 ?>
+

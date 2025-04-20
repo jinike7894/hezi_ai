@@ -446,3 +446,9 @@ function generateUniqueUserName(){
     $username = substr(str_shuffle($characters), 0, 8);
     return $username;
 }
+//生成订单号
+function orderUniqueCode(){
+    $order_sn = date('YmdHis') . substr(microtime(), 2, 6) . sprintf('%03d', rand(0, 999));
+    return $order_sn;
+    
+}
