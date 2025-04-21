@@ -7,7 +7,7 @@ use app\common\model\Products;
 use think\facade\Db;
 use app\common\model\AiActivityRecord;
 use app\common\model\AiUser;
-
+use app\common\model\AiPointsBill;
 class AiActivity extends Aibase
 {
     //获取产品列表
@@ -61,8 +61,9 @@ class AiActivity extends Aibase
         if($recordData){
             return json_encode(["code" => 0, "msg" => "任务已完成", "data" => ""]);
         }
+        $userData = AiUser::where(['id' => $uid])->field("id,username,points,channelCode")->find();
         try {
-            Db::transaction(function () use ($uid, $productData, $params) {
+            Db::transaction(function () use ($uid, $productData, $params,$userData) {
                 // 增加用户点数
                 $userRes = AiUser::where(['id' => $uid])
                     ->inc("points", $productData["ai_activity_free_points"])
@@ -70,12 +71,28 @@ class AiActivity extends Aibase
                 if (!$userRes) {
                     return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
                 }
-                // 生成使用表记录
+                //生成points账单变记录
+                $pointsBillParams=[
+                    "uid"=>$uid,
+                    "username"=>$userData["username"],
+                    "channelCode"=>$userData["channelCode"],
+                    "original_points"=>$userData["points"],
+                    "points"=>$productData["ai_activity_free_points"],
+                    "after_points"=>$userData["points"]+$productData["ai_activity_free_points"],
+                    "bill_type"=>0,
+                    "points_type"=>1,
+                    "create_time"=>time(),
+                    "update_time"=>time(),
+            
+                ];
+                AiPointsBill::create($pointsBillParams);
+                // 生成做任务表记录
                 $activityRecord = [
                     "name" => $productData["name"],
                     "pid" => $params["pid"],
                     "uid" => $uid,
                     "points" => $productData["ai_activity_free_points"],
+                    "channelCode"=>$userData["channelCode"],
                     "create_time" => time(),
                     "update_time" => time(),
                 ];

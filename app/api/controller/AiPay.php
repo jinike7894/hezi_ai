@@ -33,7 +33,7 @@ class AiPay extends Aibase
     //创建支付
     public function createOrder()
     {
-        if (input("post.pid")=="" || input("post.is_vip")=="" || input("post.pay_id")=="") {
+        if (input("post.pid") == "" || input("post.is_vip") == "" || input("post.pay_id") == "") {
             return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
@@ -56,12 +56,24 @@ class AiPay extends Aibase
             "pay_type_id" => $params["pay_id"],
             "pay_status" => 0,
             "vip_expired_time" => 0,
+            "is_first" => 0,
             "create_time" => time(),
             "update_time" => time(),
 
         ];
         //生成订单号
         $orderParams["order_num"] = orderUniqueCode();
+        //判断是否首单 12小时内并且首次支付
+        $orderData = AiOrder::where(["uid" => $uid, "pay_status" => 1])->count();
+        
+        $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
+      
+        if (strtotime($userData["create_time"]) >= (time() - 12 * 3600) && $orderData == 0) {
+            $orderParams["is_first"] = 1;
+        }
+      
+        //设置产品渠道
+        $orderParams["channelCode"] = $userData["channelCode"];
         $discount = 0;//支付通道优惠金额
         //判断支付通道优惠金额
         $paymentData = AiPayment::getPayMentFind($params["pay_id"]);
@@ -70,7 +82,7 @@ class AiPay extends Aibase
         }
         $discount = $paymentData["discount"];
         //判断是否vip订单
-        if ($params["is_vip"]==1) {
+        if ($params["is_vip"] == 1) {
             $vipProduct = AiVipProduct::where(["id" => $params["pid"]])->find();
             //生成产品镜像 创建订单数据
             $orderParams["data"] = json_encode($vipProduct);
@@ -81,7 +93,11 @@ class AiPay extends Aibase
             //设置订单价格
             $orderParams["original_price"] = $vipProduct["price"];
             //获取vip总天数  产品天数+赠送天数
-            $total_day = $vipProduct["free_day"] + $vipProduct["day"];
+            if ($orderParams["is_first"] == 0) {
+                $total_day = $vipProduct["day"];
+            } else {
+                $total_day = $vipProduct["free_day"] + $vipProduct["day"];
+            }
             //计算 vip_expired_time
             $userVipExpiration = AiUser::where(["id" => $uid])->value("vip_expiration");
             $orderParams["vip_expired_time"] = $userVipExpiration + ($total_day * 86400);
@@ -98,12 +114,12 @@ class AiPay extends Aibase
 
         }
         //生成订单数据
-        $orderRes=AiOrder::create($orderParams);
-        if(!$orderRes){
+        $orderRes = AiOrder::create($orderParams);
+        if (!$orderRes) {
             return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
         }
         //请求三方支付 或者支付链接
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["pay_url"=>"https://google.com/"]]);
+        return json_encode(["code" => 1, "msg" => "succ", "data" => ["pay_url" => "https://google.com/"]]);
     }
     //支付回调
     public function payNotify()
@@ -114,12 +130,23 @@ class AiPay extends Aibase
         //验签
         //订单操作
         $orderRes = AiOrder::notify($params["ordernum"]);
-       
+
         if (!$orderRes) {
             echo "error";
             die;
         }
         //接下来得操作
         echo "success";
+    }
+    //获取是否是新用户
+    public function getUserNewFlag(){
+        $uid = $this->uid;
+        $is_first=0;
+        $orderData = AiOrder::where(["uid" => $uid, "pay_status" => 1])->count();
+        $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
+        if (strtotime($userData["create_time"]) >= (time() - 12 * 3600) && $orderData == 0) {
+            $is_first = 1;
+        }
+        return json_encode(["code" => 1, "msg" => "succ", "data" => ["is_first" => $is_first]]);
     }
 }

@@ -51,6 +51,8 @@ Route::get('ai/rechargeRecord','aiuserdata/rechargeRecord');
 Route::get('ai/aiUseRecord','aiuserdata/aiUseRecord');
 //删除ai使用记录
 Route::post('ai/delUseRecord','aiuserdata/delUseRecord');
+//获取是否是新用户
+Route::get('ai/UserNewFlag','aipay/getUserNewFlag');
 //获取vip产品
 Route::get('ai/vipProduct','aipay/getVipProduct');
 //获取点数产品

@@ -12,17 +12,18 @@ class Aiuserdata extends Aibase
     //设备码注册/登录
     public function registerUser()
     {
-        if (!input("post.unique_code") || !input("post.model")) {
+        if (input("post.unique_code")=="" || input("post.model")=="" || input("post.channelCode")=="" ) {
             return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "model" => input("post.model"),
             "unique_code" => input("post.unique_code"),
+            "channelCode"=>input("post.channelCode"),
         ];
         $token = "";
         //查询unique 
-        $userData = AiUser::where(['unique_code' => $params["unique_code"]])->field("id,username,unique_code")->find()->toArray();
-
+        $userData = AiUser::where(['unique_code' => $params["unique_code"]])->field("id,username,unique_code")->find();
+        $userData = $userData ? $userData->toArray() : []; 
         //已注册
         if ($userData) {
             $token = generateToken($userData);
@@ -42,7 +43,7 @@ class Aiuserdata extends Aibase
             "update_time" => time(),
             "is_update" => 0,
             "model" => $params["model"],
-
+            "channelCode"=>$params["channelCode"],
         ];
         $addRes = AiUser::create($userAddData);
         if ($addRes) {
