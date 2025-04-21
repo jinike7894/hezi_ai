@@ -61,4 +61,10 @@ Route::get('ai/payment','aipay/getPayment');
 Route::post('ai/createOrder','aipay/createOrder');
 //支付回调
 Route::post('ai/payNotify','aipay/payNotify');
+//获取任务中心产品
+Route::get('ai/activityData','AiActivity/getActivityData');
+//任务回调
+Route::post('ai/activityNotify','AiActivity/activityNotify');
+//任务记录列表
+Route::get('ai/activityRecord','AiActivity/getActivityRecord');
 })->allowCrossDomain();

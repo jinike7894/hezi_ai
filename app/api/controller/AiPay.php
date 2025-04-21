@@ -114,7 +114,7 @@ class AiPay extends Aibase
         //验签
         //订单操作
         $orderRes = AiOrder::notify($params["ordernum"]);
-        dd($orderRes);
+       
         if (!$orderRes) {
             echo "error";
             die;
