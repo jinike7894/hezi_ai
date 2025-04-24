@@ -41,6 +41,8 @@ define(["jquery", "easy-admin", "vue"], function ($, ea,Vue) {
                     {field: 'due_date', minWidth: 120, title: '到期日期', search: false},
                     {field: 'img', minWidth: 100, title: '产品图片', search: false, templet: ea.table.image},
                     {field: 'androidurl', minWidth: 150, title: '产品链接', edit: 'text',sort:true},
+                    {field: 'ai_activity_pro_type', minWidth: 0, title: '任务类型', search: 'select', selectList: {0: '点击赠送次数', 1: '下载赠送次数'}},
+                    {field: 'ai_activity_free_points', minWidth: 150, title: '赠送金币', edit: 'text',sort:true},
                     {field: 'downnum', minWidth: 150, title: '下载次数', edit: 'int', search: false},
                     {field: 'slogan', minWidth: 150, title: '简介', edit: 'text'},
                     {field: 'status', filter:'status1', title: '暂停', width: 85, search: false, templet: ea.table.switch, 

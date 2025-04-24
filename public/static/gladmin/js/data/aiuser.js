@@ -9,6 +9,8 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
         table_elem: '#currentTable',
         table_render_id: 'currentTableRenderId',
         index_url: 'data.aiuser/index',
+        edit_url: 'data.aiuser/edit',
+        changepw_url: 'data.aiuser/changepw',
     };
 
     var Controller = {
@@ -18,13 +20,38 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                 init: init,
                 toolbar: ['refresh'],
                 cols: [[
-                    {field: 'id', minWidth: 80, title: 'ID'},
+                    {field: 'id', minWidth: 80, title: '注册ID'},
+                    {field: 'channelCode', width: 80, title: '渠道'},
                     {field: 'username', minWidth: 0, title: '用户名'},
-                    {field: 'unique_code', Width: 80, title: '设备码',search: false, sort:true},
-                    {field: 'vip_expiration', Width: 80, title: 'vip过期时间', search: false,sort:true},
-                    {field: 'points', Width: 80, title: 'ai点数', search: false,sort:true},
+                    {field: 'balance', minWidth: 0, title: '余额'},
+                    {field: 'balance', minWidth: 0, title: '绑定收款卡-待定'},
+                    {field: 'points', minWidth: 0, title: '剩余金币'},
+                    {field: 'points', minWidth: 0, title: 'Vip等级-待定'},
+                    {field: 'vip_expiration', Width: 80, title: '剩余天数', search: false,sort:true},
+                    {field: 'create_time', minWidth: 0, title: '注册时间'},
+                    {field: 'create_time', minWidth: 0, title: '注册ip-待定'},
+                    {
+                        minWidth: 120,
+                        title: '操作',
+                        templet: ea.table.tool,
+                        fixed:'right',
+                        operat: [
+                            [{
+                                text: '修改密码',
+                                url: init.changepw_url,
+                                method: 'open',
+                                auth: 'stock',
+                                class: 'layui-btn layui-btn-normal layui-btn-xs',
+                                field: 'id',
+                            }],
+                            'edit',
+                        ]
+                    }
                 ]],
             });
+            ea.listen();
+        },
+        changepw: function () {
             ea.listen();
         },
         edit: function () {

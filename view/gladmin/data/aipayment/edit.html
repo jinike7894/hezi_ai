@@ -38,6 +38,20 @@
             </div>
         </div>
 
+        <div class="layui-form-item">
+            <label class="layui-form-label required">费率</label>
+            <div class="layui-input-block">
+                <input type="text" name="rate" class="layui-input" lay-verify="required"  value="{$row.rate|default=''}"  />
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">排序 小在前</label>
+            <div class="layui-input-block">
+                <input type="text" name="sort" class="layui-input" lay-verify="required"  value="{$row.sort|default=''}"  />
+            </div>
+        </div>
 
 
         <div class="hr-line"></div>

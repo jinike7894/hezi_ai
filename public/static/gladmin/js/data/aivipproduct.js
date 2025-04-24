@@ -27,6 +27,10 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                     {field: 'free_day', Width: 80, title: '赠送天数', search: false,sort:true},
                     {field: 'ai_video_face', Width: 80, title: '每日视频换脸次数', search: false,sort:true},
                     {field: 'ai_img_face', minWidth: 0, title: '每日图片换脸次数',search: false,},
+                    {field: 'ai_auto_face', minWidth: 0, title: '每日自动脱衣次数',search: false,},
+                    {field: 'ai_manual_face', minWidth: 0, title: '每日手动脱衣次数',search: false,},
+                    {field: 'price', minWidth: 0, title: '价格',search: false,},
+                    {field: 'sort', minWidth: 0, title: '排序（小在前）',search: false,},
                     {
                         minWidth: 120,
                         title: '操作',

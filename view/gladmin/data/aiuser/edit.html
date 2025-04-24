@@ -3,74 +3,78 @@
     <form id="app-form" class="layui-form layuimini-form">
 
         <div class="layui-form-item">
-            <label class="layui-form-label required">产品名称</label>
+            <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
-                <input type="text" name="name" class="layui-input" lay-verify="required" placeholder="请输入产品名称" value="{$row.name|default=''}"  />
+                <input type="text" name="" readonly class="layui-input"   value="{$row.username|default=''}"  />
             </div>
         </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">渠道</label>
+            <div class="layui-input-block">
+                <input type="text" name="" readonly class="layui-input"   value="{$row.channelCode|default=''}"  />
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">提成比例</label>
+            <div class="layui-input-block">
+                <input type="text" name="commission" class="layui-input" lay-verify="required" value="{$row.commission|default=''}"  />
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">收款类型-待定</label>
+            <div class="layui-input-block">
+                <input type="text" name="" class="layui-input"  value="{$row.username|default=''}"  />
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">收款地址-待定</label>
+            <div class="layui-input-block">
+                <input type="text" name="" class="layui-input"   value="{$row.username|default=''}"  />
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">可提余额</label>
+            <div class="layui-input-block">
+                <input type="text" name="balance" class="layui-input" readonly  value="{$row.balance|default=''}"  />
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">余额调整</label>
+            <div class="layui-input-block">
+                <input type="text" name="newbalance" class="layui-input"   value=""  />
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">调整类型-待定</label>
+            <div class="layui-input-block">
+                <select>
+                    <option value="0" >提款</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">调整备注-待定</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" class="layui-input" lay-verify="required" placeholder="请输入用户名" value="{$row.username|default=''}"  />
+            </div>
+        </div>
+
+
+
+
         
-
-
-        <div class="layui-form-item">
-            <label class="layui-form-label required">vip天数</label>
-            <div class="layui-input-block">
-                <input type="text" name="day" class="layui-input" lay-verify="required" placeholder="请输入vip天数" value="{$row.day|default=''}"  />
-            <tip>vip天数</tip>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label required">赠送天数</label>
-            <div class="layui-input-block">
-                <input type="text" name="free_day" class="layui-input" lay-verify="required" placeholder="请输入赠送天数" value="{$row.free_day|default=''}"  />
-                <tip>赠送天数</tip>
-            </div>
-        </div>
-
-
-        <div class="layui-form-item">
-            <label class="layui-form-label required">每日视频换脸次数</label>
-            <div class="layui-input-block">
-                <input type="text" name="ai_video_face" class="layui-input" lay-verify="required" value="{$row.ai_video_face|default=''}"  />
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label required">每日图片换脸次数</label>
-            <div class="layui-input-block">
-                <input type="text" name="ai_img_face" class="layui-input" lay-verify="required" value="{$row.ai_img_face|default=''}"  />
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label required">每日自动脱衣次数</label>
-            <div class="layui-input-block">
-                <input type="text" name="ai_auto_face" class="layui-input" lay-verify="required" value="{$row.ai_auto_face|default=''}"  />
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label required">每日手动脱衣次数</label>
-            <div class="layui-input-block">
-                <input type="text" name="ai_manual_face" class="layui-input" lay-verify="required" value="{$row.ai_manual_face|default=''}"  />
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label required">价格</label>
-            <div class="layui-input-block">
-                <input type="text" name="price" class="layui-input" lay-verify="required" value="{$row.price|default=''}"  />
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label required">排序 越小在前</label>
-            <div class="layui-input-block">
-                <input type="text" name="sort" class="layui-input" lay-verify="required" value="{$row.sort|default=''}"  />
-            </div>
-        </div>
-
-
+        
 
         <div class="hr-line"></div>
         <div class="layui-form-item text-center">

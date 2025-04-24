@@ -1,7 +1,7 @@
 <?php
 namespace app\gladmin\controller\data;
 use app\common\model\User;
-use app\common\model\AiUser as  AiUserModel;
+use app\common\model\AiBalanceBill as  AiBalanceBillModel;
 use app\gladmin\traits\Curd;
 use app\common\controller\AdminController;
 use EasyAdmin\annotation\ControllerAnnotation;
@@ -11,9 +11,9 @@ use think\App;
 /**
  * Class Goods
  * @package app\gladmin\controller\mall
- * @ControllerAnnotation(title="ai用户管理")
+ * @ControllerAnnotation(title="ai余额账变管理")
  */
-class Aiuser extends AdminController
+class Aibalancebill extends AdminController
 {
 
     use Curd;
@@ -23,7 +23,7 @@ class Aiuser extends AdminController
     public function __construct(App $app)
     {
         parent::__construct($app);
-        $this->model = new AiUserModel();
+        $this->model = new AiBalanceBillModel();
     }
     /**
      * @NodeAnotation(title="列表")
@@ -47,6 +47,8 @@ class Aiuser extends AdminController
         }
         return $this->fetch();
     }
+
+
     /**
      * @NodeAnotation(title="新增")
      */
@@ -64,33 +66,6 @@ class Aiuser extends AdminController
     }
 
     /**
-     * @NodeAnotation(title="修改密码")
-     */
-    public function changepw($id)
-    {
-        $row = $this->model->find($id);
-        empty($row) && $this->error('数据不存在');
-        if ($this->request->isPost()) {
-            $post = $this->request->post();
-            $rule = [];
-            $this->validate($post, $rule);
-            if($post['passwd']!=$post['repasswd']){
-                $this->error('两次密码不一致');
-            }
-            $post['plain_passwd'] = $post['passwd'];
-            $post['passwd'] = md5($post['passwd']);
-            try {
-                $save = $row->save($post);
-            } catch (\Exception $e) {
-                $this->error('保存失败');
-            }
-            $save ? $this->success('保存成功') : $this->error('保存失败');
-        }
-        $this->assign('row', $row);
-        return $this->fetch();
-    }
-
-    /**
      * @NodeAnotation(title="编辑")
      */
     public function edit($id)
@@ -101,7 +76,6 @@ class Aiuser extends AdminController
             $post = $this->request->post();
             $rule = [];
             $this->validate($post, $rule);
-            $post['balance'] = $post['newbalance'];
             try {
                 $save = $row->save($post);
             } catch (\Exception $e) {
@@ -109,7 +83,9 @@ class Aiuser extends AdminController
             }
             $save ? $this->success('保存成功') : $this->error('保存失败');
         }
+        $hours = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
         $this->assign('row', $row);
+        $this->assign('hours', $hours);
         return $this->fetch();
     }
 

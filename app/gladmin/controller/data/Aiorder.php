@@ -11,7 +11,7 @@ use think\App;
 /**
  * Class Goods
  * @package app\gladmin\controller\mall
- * @ControllerAnnotation(title="ai用户管理")
+ * @ControllerAnnotation(title="ai订单管理")
  */
 class Aiorder extends AdminController
 {
@@ -37,6 +37,15 @@ class Aiorder extends AdminController
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
             $list = $this->model->where($where)->page($page, $limit)->select();
+            $aiUser = new \app\common\model\AiUser();
+            $aiPayment = new \app\common\model\AiPayment();
+            for($i=0;$i<count($list);$i++){
+                $list[$i]['username'] = $aiUser->where(array('id'=>$list[$i]['uid']))->value('username') ?: '';
+                $list[$i]['pay_type_name'] = $aiPayment->where(array('id'=>$list[$i]['pay_type_id']))->value('name') ?: '';
+                $list[$i]['rate'] = $aiPayment->where(array('id'=>$list[$i]['pay_type_id']))->value('rate') ?: '';
+                $list[$i]['receipt'] = $list[$i]['price'] - $list[$i]['price']*($list[$i]['rate']/100);
+                $list[$i]['pay_time'] = $list[$i]['pay_time'] ?date('Y-m-d H:i:s',$list[$i]['pay_time']) : '';
+            }
             $data = [
                 'code'  => 0,
                 'msg'   => '',
@@ -47,6 +56,35 @@ class Aiorder extends AdminController
         }
         return $this->fetch();
     }
+
+    /**
+     * @NodeAnotation(title="冲正")
+     */
+    public function correct($id)
+    {
+        $row = $this->model->find($id);
+        empty($row) && $this->error('数据不存在');
+        if ($this->request->isPost()) {
+            $post = $this->request->post();
+            $rule = [];
+            $this->validate($post, $rule);
+            if($row['pay_status'] == 1){
+                $this->error('不能操作已支付的订单');
+            }
+            $post['pay_status'] = 1;
+            $post['pay_time'] = time();
+            try {
+                $save = $row->save($post);
+            } catch (\Exception $e) {
+                $this->error('保存失败');
+            }
+            $save ? $this->success('保存成功') : $this->error('保存失败');
+        }
+        $this->assign('row', $row);
+        return $this->fetch();
+    }
+
+
     /**
      * @NodeAnotation(title="新增")
      */

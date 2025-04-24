@@ -24,8 +24,10 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                     {field: 'id', minWidth: 80, title: 'ID'},
                     {field: 'name', minWidth: 0, title: '名称'},
                     {field: 'discount', Width: 80, title: '优惠金额',search: false, sort:true},
-                    {field: 'appid', Width: 80, title: '支付配置', search: false,sort:true},
-                    {field: 'secret', Width: 80, title: '支付配置密钥', search: false,sort:true},
+                    {field: 'appid', Width: 80, title: '商户id', search: false,sort:true},
+                    {field: 'secret', Width: 80, title: '密钥', search: false,sort:true},
+                    {field: 'rate', Width: 80, title: '费率', search: false,sort:true},
+                    {field: 'sort', Width: 80, title: '排序', search: false,sort:true},
                     {
                         minWidth: 120,
                         title: '操作',
