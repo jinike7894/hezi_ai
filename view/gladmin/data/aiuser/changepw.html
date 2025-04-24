@@ -3,34 +3,22 @@
     <form id="app-form" class="layui-form layuimini-form">
 
         <div class="layui-form-item">
-            <label class="layui-form-label required">产品名称</label>
+            <label class="layui-form-label required">输入密码</label>
             <div class="layui-input-block">
-                <input type="text" name="name" class="layui-input" lay-verify="required" placeholder="请输入产品名称" value="{$row.name|default=''}"  />
+                <input type="text" name="passwd" class="layui-input" lay-verify="required" placeholder="请输入用户密码" value="{$row.plain_passwd|default=''}"  />
             </div>
         </div>
         
 
 
         <div class="layui-form-item">
-            <label class="layui-form-label required">金币</label>
+            <label class="layui-form-label required">确认密码</label>
             <div class="layui-input-block">
-                <input type="text" name="points" class="layui-input" lay-verify="required"  value="{$row.points|default=''}"  />
+                <input type="text" name="repasswd" class="layui-input" lay-verify="required" placeholder="请输入确认密码" value="{$row.plain_passwd|default=''}"  />
+            <tip>两次密码请保持一致</tip>
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label required">免费金币</label>
-            <div class="layui-input-block">
-                <input type="text" name="free_points" class="layui-input" lay-verify="required"  value="{$row.free_points|default=''}"  />
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label required">排序</label>
-            <div class="layui-input-block">
-                <input type="text" name="sort" class="layui-input" lay-verify="required"  value="{$row.sort|default=''}"  />
-            </div>
-        </div>
 
         
         

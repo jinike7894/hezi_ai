@@ -7,6 +7,7 @@ use think\facade\Db;
 
 class AiBalanceBill extends \think\Model
 {
+
   //增加余额账单
   public static function createBill($userData, $amount, $bill_type, $amount_type)
   {
@@ -35,4 +36,5 @@ class AiBalanceBill extends \think\Model
     }
     return false;
   }
+
 }

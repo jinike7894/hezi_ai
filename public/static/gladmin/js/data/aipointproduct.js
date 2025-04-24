@@ -23,9 +23,10 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                 cols: [[
                     {field: 'id', minWidth: 80, title: 'ID'},
                     {field: 'name', minWidth: 0, title: '产品名称'},
-                    {field: 'points', Width: 80, title: '点数',search: false, sort:true},
+                    {field: 'points', Width: 80, title: '金币',search: false, sort:true},
                     {field: 'price', Width: 80, title: '价格', search: false,sort:true},
-                    {field: 'free_points', Width: 80, title: '免费点数', search: false,sort:true},
+                    {field: 'free_points', Width: 80, title: '免费金币', search: false,sort:true},
+                    {field: 'sort', Width: 80, title: '排序', search: false,sort:true},
                     {
                         minWidth: 120,
                         title: '操作',

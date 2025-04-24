@@ -104,11 +104,22 @@ Route::post('data.config/save','data.config/save');
 
 
     Route::get('data.aiuser/index','data.aiuser/index');
+    Route::rule('data.aiuser/changepw','data.aiuser/changepw');
+    Route::rule('data.aiuser/edit','data.aiuser/edit');
+
 
     Route::get('data.aiorder/index','data.aiorder/index');
+    Route::rule('data.aiorder/correct','data.aiorder/correct');
 
 
     Route::get('data.aipayment/index','data.aipayment/index');
     Route::rule('data.aipayment/edit','data.aipayment/edit');
+
+
+    Route::get('data.aiuserecord/index','data.aiuserecord/index');
+
+    Route::get('data.aibalancebill/index','data.aibalancebill/index');
+
+    Route::get('data.aipointsbill/index','data.aipointsbill/index');
 
 });

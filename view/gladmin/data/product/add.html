@@ -117,6 +117,53 @@
                 <input type="text" name="iosurl" class="layui-input" placeholder="请输入产品链接,必须以http://或者https://开头" value="">
             </div>
         </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否加入ai任务中心</label>
+            <div class="layui-input-block">
+                <select name="ai_activity_switch" id="ai_activity_switch">
+                    <option value="0">不加入</option>
+                    <option value="1">加入</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">ai任务中心手机区分</label>
+            <div class="layui-input-block">
+                <select name="ai_activity_show_type" id="ai_activity_show_type">
+                    <option value="1">苹果</option>
+                    <option value="2">安卓</option>
+                    <option value="3">全都显示</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">赠送金币</label>
+            <div class="layui-input-block">
+                <input type="number" name="ai_activity_free_points" class="layui-input"  value="">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">ai任务中心产品类型</label>
+            <div class="layui-input-block">
+                <select name="ai_activity_pro_type" id="ai_activity_pro_type">
+                    <option value="0">点击赠送次数</option>
+                    <option value="1">下载赠送次数</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">ai任务中心的排序</label>
+            <div class="layui-input-block">
+                <input type="number" name="ai_activity_sort" class="layui-input"  value="">
+            </div>
+        </div>
+
         
         <div class="layui-form-item">
             <label class="layui-form-label required">下载次数</label>
