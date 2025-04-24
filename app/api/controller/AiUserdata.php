@@ -7,23 +7,26 @@ use app\common\model\AiUser;
 use app\common\model\AiOrder;
 use app\gladmin\model\SystemConfig;
 use app\common\model\AiUseRecord;
+use app\common\model\AiPromotion;
+use think\facade\Db;
 class Aiuserdata extends Aibase
 {
     //设备码注册/登录
     public function registerUser()
     {
-        if (input("post.unique_code")=="" || input("post.model")=="" || input("post.channelCode")=="" ) {
+        if (input("post.unique_code") == "" || input("post.model") == "" || input("post.channelCode") == "") {
             return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "model" => input("post.model"),
             "unique_code" => input("post.unique_code"),
-            "channelCode"=>input("post.channelCode"),
+            "channelCode" => input("post.channelCode"),
+            "pid" => input("post.pid"),
         ];
         $token = "";
         //查询unique 
         $userData = AiUser::where(['unique_code' => $params["unique_code"]])->field("id,username,unique_code")->find();
-        $userData = $userData ? $userData->toArray() : []; 
+        $userData = $userData ? $userData->toArray() : [];
         //已注册
         if ($userData) {
             $token = generateToken($userData);
@@ -43,15 +46,48 @@ class Aiuserdata extends Aibase
             "update_time" => time(),
             "is_update" => 0,
             "model" => $params["model"],
-            "channelCode"=>$params["channelCode"],
+            "channelCode" => $params["channelCode"],
         ];
-        $addRes = AiUser::create($userAddData);
-        if ($addRes) {
-            $data = AiUser::where(['unique_code' => $userAddData['unique_code']])->field("id,username,unique_code")->find()->toArray();
-            $token = generateToken($data);
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ["token" => $token]]);
+        //判断携带推广参数
+        //判断pid 是否存在
+
+        if ($params["pid"] != "") {
+            $userAddData["pid"] = $params["pid"];
+            if (AiUser::where(['id' => $params["pid"]])->count() > 0) {
+                try {
+                    Db::transaction(function () use ($params, $userAddData) {
+                        // 创建用户
+                        $addRes = AiUser::create($userAddData);
+                        if (!$addRes) {
+                            throw new \Exception("创建用户失败");
+                        }
+                        // 生成推广表数据
+                        $promotionRes = AiPromotion::createRecord($params["pid"], $addRes->id);
+                        if (!$promotionRes) {
+                            throw new \Exception("推广记录创建失败");
+                        }
+                    });
+                } catch (\Exception $e) {
+                    return json_encode(["code" => 0, "msg" => $e->getMessage(), "data" => []]);
+                }
+            } else {
+                AiUser::create($userAddData);
+            }
+        } else {
+            AiUser::create($userAddData);
         }
-        return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+
+
+
+
+        $data = AiUser::where(['unique_code' => $userAddData['unique_code']])->field("id,username,unique_code")->find()->toArray();
+        if (empty($data)) {
+            return json_encode(["code" => 0, "msg" => "请刷新页面重试", "data" => []]);
+        }
+        $token = generateToken($data);
+        return json_encode(["code" => 1, "msg" => "succ", "data" => ["token" => $token]]);
+
+        // return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
 
     }
     //修改用户名密码
@@ -186,5 +222,61 @@ class Aiuserdata extends Aibase
             return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
         }
         return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
+    }
+    //设置钱包地址
+    public function setWallet()
+    {
+        if (!input("post.wallet")) {
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $params = [
+            "wallet" => input("post.wallet"),
+        ];
+        $uid = $this->uid;
+        $userRes = AiUser::where(["id" => $uid])->update([
+            "coin_wallet_address" => $params["wallet"],
+        ]);
+        if ($userRes) {
+            return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
+        }
+        return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
+    }
+    //测试
+    public function templant()
+    {
+        $jsonString = file_get_contents("./img.json"); // 读取 JSON 文件内容
+        $arrayData = json_decode($jsonString, true); // 转换为数组
+        dd(count($arrayData));
+        $i=0;
+        foreach ($arrayData as $k => $v) {
+            $i++;
+            if($i>100){
+                return;
+            }
+            $nowImg="./ai/img/".uniqid().".png";
+            $this->imgDecode($v["img"],$nowImg);      
+        }
+
+    }
+    public function imgDecode($path,$sqlpath)
+    {
+        $filePath = $path; // 加密文件路径
+        $outputPath = $sqlpath; // 输出图片路径
+
+        // 读取加密文件内容
+        $data = file_get_contents($filePath);
+
+        if ($data === false) {
+          return false;
+        }
+
+        // XOR 解密
+        $decryptedData = '';
+        for ($i = 0; $i < strlen($data); $i++) {
+            $decryptedData .= chr(ord($data[$i]) ^ 0x13);
+        }
+
+        // 保存解密后的数据为图片
+        file_put_contents($outputPath, $decryptedData);
     }
 }

@@ -7,6 +7,8 @@ use Think\Db;
 use app\gladmin\model\SystemConfig;
 use app\common\model\AiUser;
 use app\common\model\AiPointsBill;
+use function GuzzleHttp\default_ca_bundle;
+use app\common\model\AiUseRecord;
 class AiOrder extends \think\Model
 {
     // 设置字段信息
@@ -46,13 +48,14 @@ class AiOrder extends \think\Model
             ]);
         return $orderData;
     }
+    //订单回调
     public static function notify($ordernum)
     {
-        $orderData = self::where(["order_num" => $ordernum])->field("id,name,order_num,pid,uid,is_vip,data,pay_status,is_first")->find();
+        $orderData = self::where(["order_num" => $ordernum])->field("id,name,order_num,pid,uid,is_vip,data,pay_status,is_first,price")->find();
         if ($orderData["pay_status"] == 1) {
             return true;
         }
-        $userData = AiUser::where(["id" => $orderData["uid"]])->field("id,username,points,channelCode,create_time")->find();
+        $userData = AiUser::where(["id" => $orderData["uid"]])->field("id,username,points,pid,channelCode,commission,balance,create_time")->find();
         $productData = json_decode($orderData["data"], true);
         if ($orderData) {
             // 开启事务
@@ -93,6 +96,7 @@ class AiOrder extends \think\Model
                         "points_type" => 1,
                         "create_time" => time(),
                         "update_time" => time(),
+                        "operator" => $userData["username"],
                     ];
                     AiPointsBill::create($pointsBillParams);
                 }
@@ -101,8 +105,17 @@ class AiOrder extends \think\Model
                     "pay_time" => time(),
                     "pay_status" => 1,
                 ]);
+                if ($userData["pid"] != 0) {
+                    //佣金账单设置
+                    $balanceBillAmount = $orderData["price"] * ($userData["commission"] / 100);
+                    //查询代理信息
+                    $userPidData=AiUser::where(["id" => $userData["pid"]])->field("id,username,points,pid,channelCode,commission,balance,create_time")->find();
+                    AiBalanceBill::createBill($userPidData, $balanceBillAmount, 0, 1);
+                    AiUser::where(["id" => $userData["pid"]])->inc('balance', $balanceBillAmount)->update();
+                }
                 self::commit();
             } catch (\Exception $e) {
+                // echo $e->getMessage();
                 // 发生异常，回滚事务
                 self::rollback();
                 return false;
@@ -111,6 +124,45 @@ class AiOrder extends \think\Model
         }
 
         return false;
+    }
+    //获取当前vip 某产品可用次数
+    public static function availableTimes($uid, $aiType)
+    {
+        $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->order("create_time asc")->limit(1)->field("id,name,data")->find();
+        //获取当前vip 每天几次 
+        $aiProductParams = json_decode($orderData["data"], true);
+        $aiTimes = 0;
+        switch ($aiType) {
+            case 0:
+                //视频换脸
+                $aiTimes = $aiProductParams["ai_video_face"];
+                break;
+            case 1:
+                //图片换脸
+                $aiTimes = $aiProductParams["ai_img_face"];
+                break;
+            case 2:
+                //自动换脸
+                $aiTimes = $aiProductParams["ai_auto_face"];
+                break;
+            case 3:
+                //手动换脸
+                $aiTimes = $aiProductParams["ai_manual_face"];
+                break;
+            default:
+                $aiTimes = $aiProductParams["ai_manual_face"];
+                break;
+
+        }
+        //查询今日使用次数
+        $usedAiRecord = AiUseRecord::where(["is_use_vip" => 1, "ai_type" => $aiType])
+            ->whereIn("status", [0, 1])
+            ->whereTime('create_time', 'today')
+            ->count();
+        if ($aiTimes < $usedAiRecord) {
+            return 0;
+        }
+        return $aiTimes - $usedAiRecord;
     }
 }
 
