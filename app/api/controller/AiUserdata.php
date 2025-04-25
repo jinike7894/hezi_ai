@@ -241,55 +241,6 @@ class Aiuserdata extends Aibase
         }
         return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
     }
-    //测试
-    public function templant()
-    {
-        $jsonString = file_get_contents("./img.json"); // 读取 JSON 文件内容
-        $arrayData = json_decode($jsonString, true); // 转换为数组
-
-
-        $limit = 100; // 每页处理 10 条
-        $page = isset($_GET['page']) ? intval($_GET['page']) : 1; // 获取当前页（可从 URL 传递参数）
-        $offset = ($page - 1) * $limit; // 计算偏移量
-
-        // 进行分页
-        $pagedData = array_slice($arrayData, $offset, $limit);
-
-        foreach ($pagedData as $k => $v) {
-            $nowImg = "./ai/img/" . uniqid() . ".png";
-            $cleanPath = ltrim($nowImg, '.');
-            $this->imgDecode($v["img"], $nowImg);
-            $nowImg = "/ai/img/" . uniqid() . ".png";
-            $tm_array=[
-                "name"=>$v["title"],
-                "img"=>$cleanPath,
-                "create_time"=>time(),
-                "update_time"=>time(),
-            ];
-            Db::name("ai_img_template")->create($tm_array);
-        }
-        // 输出分页信息
-        $totalPages = ceil(count($arrayData) / $limit);
-    }
-    public function imgDecode($path, $sqlpath)
-    {
-        $filePath = $path; // 加密文件路径
-        $outputPath = $sqlpath; // 输出图片路径
-
-        // 读取加密文件内容
-        $data = file_get_contents($filePath);
-
-        if ($data === false) {
-            return false;
-        }
-
-        // XOR 解密
-        $decryptedData = '';
-        for ($i = 0; $i < strlen($data); $i++) {
-            $decryptedData .= chr(ord($data[$i]) ^ 0x13);
-        }
-
-        // 保存解密后的数据为图片
-        file_put_contents($outputPath, $decryptedData);
-    }
+   
+   
 }

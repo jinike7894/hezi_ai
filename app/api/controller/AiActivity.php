@@ -8,6 +8,7 @@ use think\facade\Db;
 use app\common\model\AiActivityRecord;
 use app\common\model\AiUser;
 use app\common\model\AiPointsBill;
+use app\common\model\AiProductClickRecord;
 class AiActivity extends Aibase
 {
     //获取产品列表
@@ -106,5 +107,27 @@ class AiActivity extends Aibase
         }
         return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
        
+    }
+    public function clickRecord(){
+        if (input("post.pid")==""){
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        } 
+        $params = [
+            "pid" => input("post.pid"),
+        ];
+        $uid = $this->uid;
+        $userData = AiUser::where(['id' => $uid])->field("id,username,points,channelCode")->find();
+        $clickParams=[
+            "pid"=>$params["pid"],
+            "uid"=>$uid,
+            "channelCode"=>$userData["channelCode"],
+            "create_time"=>time(),
+            "update_time"=>time(),
+        ];
+        $clickRecordRes=AiProductClickRecord::create($clickParams);
+        if (!$clickRecordRes) {
+            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+        }
+        return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
     }
 }

@@ -22,6 +22,7 @@ class AiUseRecord extends \think\Model
             "channelCode" => 0,
             "create_time" => time(),
             "update_time" => time(),
+            "task_id"=>"",
         ];
     }
    
