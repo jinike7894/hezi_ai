@@ -1,0 +1,40 @@
+define(["jquery", "easy-admin"], function ($, ea,Vue) {
+
+    var table = layui.table,
+        treetable = layui.treetable,
+        iconPickerFa = layui.iconPickerFa,
+        autocomplete = layui.autocomplete;
+
+    var init = {
+        table_elem: '#currentTable',
+        table_render_id: 'currentTableRenderId',
+        index_url: 'data.aireport/index',
+        edit_url: 'data.aiu$countser/edit',
+    };
+
+    var Controller = {
+
+        index: function () {
+            ea.table.render({
+                init: init,
+                toolbar: ['refresh'],
+                cols: [[
+                    {field: 'date', width: 80, title: '日期'},
+                    {field: 'registered_users', minWidth: 0, title: '注册用户'},
+                    {field: 'first_charge_count', minWidth: 0, title: '首冲人数'},
+                    {field: 'repeat_charge_count', minWidth: 0, title: '复充人数'},
+                    {field: 'total_charge_count', minWidth: 0, title: '总充人数'},
+                    {field: 'first_charge_amount', minWidth: 0, title: '首冲金额'},
+                    {field: 'repeat_charge_amount', minWidth: 0, title: '复充金额'},
+                    {field: 'total_charge_amount', minWidth: 0, title: '总充金额'},
+                    {field: 'total_coin_consumed', minWidth: 0, title: '金币消耗'},
+                ]],
+            });
+            ea.listen();
+        },
+        edit: function () {
+            ea.listen();
+        }
+    };
+    return Controller;
+});
