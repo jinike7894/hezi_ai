@@ -577,23 +577,33 @@ class Ai extends AiBase
     public function uploadFaceImg()
     {
         $file = request()->file('image'); // 获取上传的图片
+
         if ($file) {
             // 设置文件类型和大小限制
-            $validate = ['size' => 5242880, 'ext' => 'jpg,png,gif,jpeg,webp']; // 10MB，仅支持图片格式
-            if (!$file->validate($validate)) {
+            $validate = validate([
+                'image' => 'fileSize:5242880|fileExt:jpg,png,gif,jpeg,webp'
+            ]);
+        
+            // 进行文件验证
+            if (!$validate->check(['image' => $file])) {
                 return json_encode(["code" => 0, "msg" => "图片类型或者大小不符合要求", "data" => ""]);
             }
+        
             // 获取文件扩展名
             $extension = $file->getOriginalExtension();
+        
             // 生成唯一文件名
             $filename = 'img_' . date('Ymd_His') . '_' . uniqid() . '.' . $extension;
+        
             // 指定存储目录（以日期分类存储）
-            $directory = 'uploads/images/' . date('Ymd');
+            $directory = 'ai/img/' . date('Ymd');
+        
             // 存储文件到指定目录
             \think\facade\Filesystem::disk('public')->putFileAs($directory, $file, $filename);
-            echo "上传成功，路径：" . $directory . '/' . $filename;
+        
+            echo json_encode(["code" => 1, "msg" => "上传成功", "data" => $directory . '/' . $filename]);
         } else {
-            echo "未选择文件";
+            echo json_encode(["code" => 0, "msg" => "未选择文件", "data" => ""]);
         }
 
     }

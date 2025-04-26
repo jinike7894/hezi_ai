@@ -81,14 +81,14 @@ Route::get('ai/videoTemplateFindData','Ai/videoTemplateFindData');
 Route::get('ai/imgTemplateData','Ai/imgTemplateData');
 //获取单个图片模板列表
 Route::get('ai/imgTemplateFindData','Ai/imgTemplateFindData');
-
 //图片脱衣
 Route::post('ai/imgAi','Ai/imgAi');
-
 //自动脱衣
 Route::post('ai/imgAutoAi','Ai/imgAutoAi');
 //手动脱衣
 Route::post('ai/imgManualAi','Ai/imgManualAi');
+//上传文件
+Route::post('ai/uploadFaceImg','Ai/uploadFaceImg');
 //获取用户推广信息
 Route::get('ai/promotion','AiPromotion/getPromotionData');
 //获取用户推广信息
