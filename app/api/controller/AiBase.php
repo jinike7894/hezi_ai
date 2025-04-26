@@ -4,12 +4,12 @@ namespace app\api\controller;
 use app\BaseController;
 use think\facade\Request;
 use think\Response;
-class Aibase extends BaseController
+class AiBase extends BaseController
 {
     public $uid;
     public function initialize(){
         $action = request()->action();
-        if ($action != 'registerUser'&&$action != "loginByPasswd"&&$action != "customerService"&&$action != "payNotify") {
+        if ($action != 'registerUser'&&$action != "loginByPasswd"&&$action != "customerService"&&$action != "payNotify"&&$action != "getTaskStatus") {
            // 获取请求头中的 token
         $token = Request::header("accessToken");
       

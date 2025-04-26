@@ -1,14 +1,14 @@
 <?php
 namespace app\api\controller;
 
-use app\api\controller\Aibase;
+use app\api\controller\AiBase;
 use app\common\model\AiVipProduct;
 use app\common\model\AiPointsProduct;
 use app\common\model\AiPayment;
 use app\common\model\AiUser;
 use app\common\model\AiOrder;
 use think\facade\Db;
-class AiPay extends Aibase
+class AiPay extends AiBase
 {
 
     //获取vip产品

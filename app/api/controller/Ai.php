@@ -1,7 +1,7 @@
 <?php
 namespace app\api\controller;
 
-use app\api\controller\Aibase;
+use app\api\controller\AiBase;
 use app\api\controller\AiApi;
 use app\common\model\Products;
 
@@ -13,7 +13,7 @@ use app\common\model\AiPointsBill;
 use app\common\model\AiUseRecord;
 use app\common\model\AiVideoTemplate;
 use app\common\model\AiImgTemplate;
-class Ai extends Aibase
+class Ai extends AiBase
 {
 
     protected $aiVideoPoints = 28;//视频脱衣
@@ -563,6 +563,38 @@ class Ai extends Aibase
             return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
         }
     }
+    //批量获取任务
+    public function getTaskStatus()
+    {
+        $recordData = AiUseRecord::where(["status" => 0, "is_del" => 0])->field("id,task_id")->select();
+        $recordData = $recordData->toArray() ? $recordData->toArray() : [];
 
+        if ($recordData) {
+            $aiApi = new AiApi();
+            $aiApi->getTaskStatus($recordData);
+        }
+    }
+    public function uploadFaceImg()
+    {
+        $file = request()->file('image'); // 获取上传的图片
+        if ($file) {
+            // 设置文件类型和大小限制
+            $validate = ['size' => 5242880, 'ext' => 'jpg,png,gif,jpeg,webp']; // 10MB，仅支持图片格式
+            if (!$file->validate($validate)) {
+                return json_encode(["code" => 0, "msg" => "图片类型或者大小不符合要求", "data" => ""]);
+            }
+            // 获取文件扩展名
+            $extension = $file->getOriginalExtension();
+            // 生成唯一文件名
+            $filename = 'img_' . date('Ymd_His') . '_' . uniqid() . '.' . $extension;
+            // 指定存储目录（以日期分类存储）
+            $directory = 'uploads/images/' . date('Ymd');
+            // 存储文件到指定目录
+            \think\facade\Filesystem::disk('public')->putFileAs($directory, $file, $filename);
+            echo "上传成功，路径：" . $directory . '/' . $filename;
+        } else {
+            echo "未选择文件";
+        }
 
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace app\api\controller;
 
-use app\api\controller\Aibase;
+use app\api\controller\AiBase;
 use app\common\model\Products;
 
 use think\facade\Db;
@@ -10,7 +10,7 @@ use app\common\model\AiBalanceBill;
 use app\common\model\AiWithdrawalRecord;
 use app\common\model\AiPromotion as AiPromotionModel;
 use app\gladmin\model\SystemConfig;
-class AiPromotion extends Aibase
+class AiPromotion extends AiBase
 {
     //获取推广数据
     public function getPromotionData()

@@ -1,15 +1,16 @@
 <?php
 namespace app\api\controller;
 
-use app\api\controller\Aibase;
+use app\api\controller\AiBase;
 
+use app\api\controller\AiApi;
 use app\common\model\AiUser;
 use app\common\model\AiOrder;
 use app\gladmin\model\SystemConfig;
 use app\common\model\AiUseRecord;
 use app\common\model\AiPromotion;
 use think\facade\Db;
-class Aiuserdata extends Aibase
+class AiUserdata extends AiBase
 {
     //设备码注册/登录
     public function registerUser()
@@ -219,6 +220,10 @@ class Aiuserdata extends Aibase
             "is_del" => 1
         ]);
         if ($delRes) {
+            //发送删除请求到三方
+            $aiApi = new AiApi();
+            $useRecordData = AiUseRecord::where([ "id" => $params["id"]])->field("id,task_id")->find();
+            $aiApi->delTask($useRecordData["task_id"]);
             return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
         }
         return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);

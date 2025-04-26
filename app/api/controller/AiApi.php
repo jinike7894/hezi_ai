@@ -1,7 +1,7 @@
 <?php
 namespace app\api\controller;
 
-use app\api\controller\Aibase;
+use app\api\controller\AiBase;
 use app\common\model\Products;
 
 use think\facade\Db;
@@ -13,13 +13,16 @@ use app\common\model\AiUseRecord;
 use app\common\model\AiVideoTemplate;
 use app\common\model\AiImgTemplate;
 use app\gladmin\model\SystemConfig;
+
 class AiApi
 {
     public $token = "7e9b31fa6a2141d5a2981aa9f3e14110";
     public $taskHost = "https://test.aifacetools.com/openApi/submitTask"; //视频/图片/自动/手动 换脸
+    public $taskStatusHost = "https://test.aifacetools.com/openApi/batchGetTaskDetail"; //批量获取任务
+    public $delTaskHost = "https://test.aifacetools.com/openApi/removeTask"; //批量获取任务
 
     //发送任务至ai三方
-    public function dataToAi($taskType, $imgPath, $templateId,$recordId,$maskUrl="")
+    public function dataToAi($taskType, $imgPath, $templateId, $recordId, $maskUrl = "")
     {
         $aiParams = [];
         $templateParams = "";
@@ -27,7 +30,6 @@ class AiApi
         $imgHost = $system
             ->where('name', "pic_url")
             ->value("value");
-
         switch ($taskType) {
             case 0:
                 //视频脱衣
@@ -65,22 +67,84 @@ class AiApi
         }
         $aiParams["taskImage"] = $imgHost . $imgPath;//用户上传的图片
 
-        $apiResponse = $this->postParams($aiParams);
-        if($apiResponse){
-            $responseData=json_decode($apiResponse,true);
-            $taskId=$responseData["data"]["taskId"];
-            return AiUseRecord::where(["id"=>$recordId])->update([
-                "task_id"=>$taskId,
+        $apiResponse = $this->postParams($this->taskHost, $aiParams);
+        if ($apiResponse) {
+            $responseData = json_decode($apiResponse, true);
+            $taskId = $responseData["data"]["taskId"];
+            return AiUseRecord::where(["id" => $recordId])->update([
+                "task_id" => $taskId,
             ]);
         }
         return false;
     }
-    public function postParams($parmas)
+    //批量获取任务
+    public function getTaskStatus($dataList)
+    {
+        $aiParams = [];
+
+        $aiParams["taskIds"] = array_values(array_column($dataList, "task_id"));
+        $apiResponse = $this->postParams($this->taskStatusHost, $aiParams);
+        $apiResponseData = json_decode($apiResponse, true);
+        var_dump( $apiResponseData);
+        if ($apiResponseData["data"]["list"]) {
+            $useRecordParams = [];
+            foreach ($apiResponseData["data"]["list"] as $apik => $apiv) {
+               
+                if ($apiv["taskStatus"] != "1" &&$apiv["taskStatus"] != "2") {
+                    continue;
+                }
+                
+                switch ($apiv["taskStatus"]) {
+                    case "1":
+                        //更改任务状态
+                        $useRecordParams[] = [
+                            "status" => 1,
+                            "task_id" => $apiv["taskId"]
+                        ];
+                        break;
+                    case "2":
+                        //更改任务状态
+                        $useRecordParams[] = [
+                            "status" => 2,
+                            "task_id" => $apiv["taskId"]
+                        ];
+                        break;
+                }
+
+
+            }
+            if (count($useRecordParams) > 0) {
+                //更新任务表状态
+                $sql = "UPDATE dh_ai_use_record SET status = CASE task_id ";
+                foreach ($useRecordParams as $update) {
+                    $sql .= "WHEN {$update['task_id']} THEN {$update['status']} ";
+                }
+                $sql .= "END WHERE task_id IN (" . implode(",", array_column($useRecordParams, "task_id")) . ")";
+                Db::execute($sql);
+                //更新资源
+            }
+
+        }
+    }
+    //删除任务
+    public function delTask($taskId)
+    {
+
+        $aiParams = [];
+
+        $aiParams["taskId"] = $taskId;
+        $apiResponse = $this->postParams($this->taskStatusHost, $aiParams);
+        $apiResponseData = json_decode($apiResponse, true);
+        if($apiResponseData["code"]==200){
+            return true;
+        }
+        return false;
+    }
+    public function postParams($url, $parmas)
     {
         $curl = curl_init();
-
         curl_setopt_array($curl, [
-            CURLOPT_URL => $this->taskHost,
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -89,7 +153,7 @@ class AiApi
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => json_encode($parmas),
             CURLOPT_HTTPHEADER => [
-                "apiToken:".$this->token,
+                "apiToken:" . $this->token,
                 "Content-Type: application/json",
             ],
         ]);
