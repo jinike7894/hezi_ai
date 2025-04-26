@@ -597,13 +597,11 @@ class Ai extends AiBase
         
             // 指定存储目录（以日期分类存储）
             $directory = 'ai/img/' . date('Ymd');
-        
             // 存储文件到指定目录
             \think\facade\Filesystem::disk('public')->putFileAs($directory, $file, $filename);
-        
-            echo json_encode(["code" => 1, "msg" => "上传成功", "data" => $directory . '/' . $filename]);
+            return  json_encode(["code" => 1, "msg" => "上传成功", "data" =>"/".$directory . '/' . $filename]);
         } else {
-            echo json_encode(["code" => 0, "msg" => "未选择文件", "data" => ""]);
+            return json_encode(["code" => 0, "msg" => "未选择文件", "data" => ""]);
         }
 
     }
