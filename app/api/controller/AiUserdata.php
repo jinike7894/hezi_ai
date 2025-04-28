@@ -144,6 +144,7 @@ class AiUserdata extends AiBase
     {
         $uid = $this->uid;
         $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update,plain_passwd")->find()->toArray();
+        
         $userData["is_vip"] = 0;
         $userData["vip_params"] = [];
         //判断vip类型
