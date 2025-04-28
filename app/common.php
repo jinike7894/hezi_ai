@@ -477,7 +477,7 @@ function generatePaySign($data, $token)
     foreach ($data as $key => $value) {
         if (empty($value))
             continue;
-        if ($key == 'sign' || $key == 'attach')
+        if ($key == 'sign')
             continue;
         $str .= $key . '=' . $value . '&';
     }

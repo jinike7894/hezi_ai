@@ -66,13 +66,13 @@ class AiPay extends AiBase
         $orderParams["order_num"] = orderUniqueCode();
         //判断是否首单 12小时内并且首次支付
         $orderData = AiOrder::where(["uid" => $uid, "pay_status" => 1])->count();
-        
+
         $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
-      
+
         if (strtotime($userData["create_time"]) >= (time() - 12 * 3600) && $orderData == 0) {
             $orderParams["is_first"] = 1;
         }
-      
+
         //设置产品渠道
         $orderParams["channelCode"] = $userData["channelCode"];
         $discount = 0;//支付通道优惠金额
@@ -119,37 +119,38 @@ class AiPay extends AiBase
             return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
         }
         //请求三方支付 或者支付链接
-        $payReturnData=$this->doPay($orderParams,$params["pay_id"]);
-        if(!$payReturnData){
+        $payReturnData = $this->doPay($orderParams, $params["pay_id"]);
+        if (!$payReturnData) {
             return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
         }
 
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["pay_url" => $payReturnData["url"]]]);
     }
     //创建支付请求
-    public function doPay($orderParams,$payId){
+    public function doPay($orderParams, $payId)
+    {
         //查询当前域名配置
         $system = new SystemConfig();
         $imgHost = $system
-        ->where('name', "pic_url")
-        ->value("value");
+            ->where('name', "pic_url")
+            ->value("value");
         //查询支付网关和支付参数
         $paymentData = AiPayment::getPayMentFind($payId);
-        $payParams=[
-            "mchno"=>$paymentData["appid"],
-            "pid"=>$paymentData["pid"],
-            "money"=>(int)$orderParams["price"]*100,
-            "orderno"=>$orderParams["order_num"],
-            "paytype"=>$paymentData["pay_type"],
+        $payParams = [
+            "mchno" => $paymentData["appid"],
+            "pid" => $paymentData["pid"],
+            "money" => (int) $orderParams["price"] * 100,
+            "orderno" => $orderParams["order_num"],
+            "paytype" => $paymentData["pay_type"],
         ];
-        $payParams["sign"]=generatePaySign($payParams,$paymentData["secret"]);
-        $payParams["currency"]="cny";
+        $payParams["sign"] = generatePaySign($payParams, $paymentData["secret"]);
+        $payParams["currency"] = "cny";
         // $payParams["attach"]=$orderParams["order_num"];
-        $payParams["notifyurl"]=$imgHost . "/api/ai/payNotify";
-        $payParams["returnurl"]=$imgHost;
-        $payReturnData=postPayParams($paymentData["pay_gateway"],$payParams);
-        $payReturnData=json_decode($payReturnData,true);
-        if($payReturnData["code"]==200){
+        $payParams["notifyurl"] = $imgHost . "/api/ai/payNotify";
+        $payParams["returnurl"] = $imgHost;
+        $payReturnData = postPayParams($paymentData["pay_gateway"], $payParams);
+        $payReturnData = json_decode($payReturnData, true);
+        if ($payReturnData["code"] == 200) {
             return $payReturnData;
         }
         return false;
@@ -157,24 +158,42 @@ class AiPay extends AiBase
     //支付回调
     public function payNotify()
     {
+        $notifyParams = input("");
+        $paymentId = AiOrder::where(["order_num" => $notifyParams["orderno"]])->value("pay_type_id");
+        $token = AiPayment::where(["id" => $paymentId])->value("secret");
+        $signParams = [
+            "mchno" => $notifyParams["mchno"],
+            "orderno" => $notifyParams["orderno"],
+            "outtradeno" => $notifyParams["outtradeno"],
+            "money" => $notifyParams["money"],
+            "create_time" => $notifyParams["create_time"],
+            "pay_time" => $notifyParams["pay_time"],
+            "attach" => $notifyParams["attach"],
+            "paytype" => $notifyParams["paytype"],
+        ];
+        $sign = generatePaySign($signParams, $token);
+        if ($sign !== $notifyParams["sign"]) {
+            echo "fail";
+            return;
+        }
         $params = [
-            "ordernum" => input("ordernum"),
+            "ordernum" => $notifyParams["orderno"],
         ];
         //验签
         //订单操作
         $orderRes = AiOrder::notify($params["ordernum"]);
-
         if (!$orderRes) {
-            echo "error";
+            echo "fail";
             die;
         }
         //接下来得操作
-        echo "success";
+        echo "SUCCESS";
     }
     //获取是否是新用户
-    public function getUserNewFlag(){
+    public function getUserNewFlag()
+    {
         $uid = $this->uid;
-        $is_first=0;
+        $is_first = 0;
         $orderData = AiOrder::where(["uid" => $uid, "pay_status" => 1])->count();
         $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
         if (strtotime($userData["create_time"]) >= (time() - 12 * 3600) && $orderData == 0) {
