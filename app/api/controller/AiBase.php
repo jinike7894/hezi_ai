@@ -11,8 +11,8 @@ class AiBase extends BaseController
         $action = request()->action();
         if ($action != 'registerUser'&&$action != "loginByPasswd"&&$action != "customerService"&&$action != "payNotify"&&$action != "getTaskStatus") {
            // 获取请求头中的 token
-        $token = Request::header("accessToken");
-      
+        // $token = Request::header("AccessToken");
+        $token = input("accessToken");
         if (!$token) {
             abort(Response::create(["code" => 401, "msg" => "请登录", "data" => ""],"json"));
         }

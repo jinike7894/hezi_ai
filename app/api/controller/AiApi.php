@@ -85,11 +85,11 @@ class AiApi
         $aiParams["taskIds"] = array_values(array_column($dataList, "task_id"));
         $apiResponse = $this->postParams($this->taskStatusHost, $aiParams);
         $apiResponseData = json_decode($apiResponse, true);
-        var_dump( $apiResponseData);
+        
         if ($apiResponseData["data"]["list"]) {
             $useRecordParams = [];
             foreach ($apiResponseData["data"]["list"] as $apik => $apiv) {
-               
+                $json=json_decode($apiv["taskResults"],true);
                 if ($apiv["taskStatus"] != "1" &&$apiv["taskStatus"] != "2") {
                     continue;
                 }
@@ -99,14 +99,16 @@ class AiApi
                         //更改任务状态
                         $useRecordParams[] = [
                             "status" => 1,
-                            "task_id" => $apiv["taskId"]
+                            "task_id" => $apiv["taskId"],
+                            "ai_generate_source"=>$json[0]["dataUrl"],
                         ];
                         break;
                     case "2":
                         //更改任务状态
                         $useRecordParams[] = [
                             "status" => 2,
-                            "task_id" => $apiv["taskId"]
+                            "task_id" => $apiv["taskId"],
+                            "ai_generate_source"=>"",
                         ];
                         break;
                 }
@@ -115,11 +117,19 @@ class AiApi
             }
             if (count($useRecordParams) > 0) {
                 //更新任务表状态
-                $sql = "UPDATE dh_ai_use_record SET status = CASE task_id ";
-                foreach ($useRecordParams as $update) {
-                    $sql .= "WHEN {$update['task_id']} THEN {$update['status']} ";
+                $sql = "UPDATE dh_ai_use_record SET ";
+                $columns = ['status', 'ai_generate_source']; // 替换 'other_field' 为实际字段名称
+                foreach ($columns as $column) {
+                    $sql .= "$column = CASE task_id ";
+                    foreach ($useRecordParams as $update) {
+                        $sql .= "WHEN {$update['task_id']} THEN '{$update[$column]}' ";
+                    }
+                    $sql .= "END, ";
                 }
-                $sql .= "END WHERE task_id IN (" . implode(",", array_column($useRecordParams, "task_id")) . ")";
+                // 移除最后的逗号
+                $sql = rtrim($sql, ", ");
+                $sql .= " WHERE task_id IN (" . implode(",", array_column($useRecordParams, "task_id")) . ")";
+     
                 Db::execute($sql);
                 //更新资源
             }

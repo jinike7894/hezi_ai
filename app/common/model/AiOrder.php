@@ -40,7 +40,7 @@ class AiOrder extends \think\Model
         $orderData = self::alias('order')
             ->leftJoin('ai_payment payment', 'order.pay_type_id = payment.id')
             ->where("order.uid", $uid)
-            ->field('payment.name, order.price,order.pay_status,order.create_time')
+            ->field('payment.name, order.price,order.pay_status,order.create_time,payment.pay_type')
             ->order("create_time desc")
             ->paginate([
                 'list_rows' => $limit,  // 每页条数

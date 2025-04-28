@@ -23,7 +23,7 @@ class AiPayment extends \think\Model
     // ];
     //获取单个支付通道
     public static function getPayMentFind($id){
-        $data=self::where(["id"=>$id,"is_del"=>0])->field("id,name,discount,appid,secret")->find();
+        $data=self::where(["id"=>$id,"is_del"=>0])->field("id,name,discount,appid,secret,pay_gateway,pay_type,pid")->find();
         if($data){
             return $data;
         }

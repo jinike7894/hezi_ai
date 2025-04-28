@@ -143,7 +143,7 @@ class AiUserdata extends AiBase
     public function userInfo()
     {
         $uid = $this->uid;
-        $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points")->find()->toArray();
+        $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update")->find()->toArray();
         $userData["is_vip"] = 0;
         $userData["vip_params"] = [];
         //判断vip类型

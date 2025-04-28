@@ -588,13 +588,10 @@ class Ai extends AiBase
             if (!$validate->check(['image' => $file])) {
                 return json_encode(["code" => 0, "msg" => "图片类型或者大小不符合要求", "data" => ""]);
             }
-        
             // 获取文件扩展名
             $extension = $file->getOriginalExtension();
-        
             // 生成唯一文件名
             $filename = 'img_' . date('Ymd_His') . '_' . uniqid() . '.' . $extension;
-        
             // 指定存储目录（以日期分类存储）
             $directory = 'ai/img/' . date('Ymd');
             // 存储文件到指定目录

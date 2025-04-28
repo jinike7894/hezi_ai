@@ -8,6 +8,7 @@ use app\common\model\AiPayment;
 use app\common\model\AiUser;
 use app\common\model\AiOrder;
 use think\facade\Db;
+use app\gladmin\model\SystemConfig;
 class AiPay extends AiBase
 {
 
@@ -111,7 +112,6 @@ class AiPay extends AiBase
             $orderParams["price"] = $pointsProduct["price"] - $discount;
             //设置订单价格
             $orderParams["original_price"] = $pointsProduct["price"];
-
         }
         //生成订单数据
         $orderRes = AiOrder::create($orderParams);
@@ -119,7 +119,40 @@ class AiPay extends AiBase
             return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
         }
         //请求三方支付 或者支付链接
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["pay_url" => "https://google.com/"]]);
+        $payReturnData=$this->doPay($orderParams,$params["pay_id"]);
+        if(!$payReturnData){
+            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
+        }
+
+        return json_encode(["code" => 1, "msg" => "succ", "data" => ["pay_url" => $payReturnData["url"]]]);
+    }
+    //创建支付请求
+    public function doPay($orderParams,$payId){
+        //查询当前域名配置
+        $system = new SystemConfig();
+        $imgHost = $system
+        ->where('name', "pic_url")
+        ->value("value");
+        //查询支付网关和支付参数
+        $paymentData = AiPayment::getPayMentFind($payId);
+        $payParams=[
+            "mchno"=>$paymentData["appid"],
+            "pid"=>$paymentData["pid"],
+            "money"=>(int)$orderParams["price"]*100,
+            "orderno"=>$orderParams["order_num"],
+            "paytype"=>$paymentData["pay_type"],
+        ];
+        $payParams["sign"]=generatePaySign($payParams,$paymentData["secret"]);
+        $payParams["currency"]="cny";
+        // $payParams["attach"]=$orderParams["order_num"];
+        $payParams["notifyurl"]=$imgHost . "/api/ai/payNotify";
+        $payParams["returnurl"]=$imgHost;
+        $payReturnData=postPayParams($paymentData["pay_gateway"],$payParams);
+        $payReturnData=json_decode($payReturnData,true);
+        if($payReturnData["code"]==200){
+            return $payReturnData;
+        }
+        return false;
     }
     //支付回调
     public function payNotify()
