@@ -150,7 +150,7 @@ class AiUserdata extends AiBase
         if ($userData["vip_expiration"] > time()) {
             $userData["is_vip"] = 1;
             //查询拥有的vip
-            $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->field("id,name,data")->find();
+            $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->field("id,name,data,plain_passwd")->find();
 
             if ($orderData["data"]) {
                 $vipData = json_decode($orderData["data"], true);
