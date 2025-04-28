@@ -37,6 +37,10 @@ class Aiuser extends AdminController
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
             $list = $this->model->where($where)->page($page, $limit)->select();
+            for($i=0;$i<count($list);$i++) {
+                $list[$i]['have_coin_wallet'] = !empty($list[$i]['coin_wallet_address']) ? "是" : "否";
+                $list[$i]['remaining_days'] =  ceil(($list[$i]['vip_expiration'] - time()) / (24 * 60 * 60)) < 0 ? 0 : ceil(($list[$i]['vip_expiration'] - time()) / (24 * 60 * 60));
+            }
             $data = [
                 'code'  => 0,
                 'msg'   => '',

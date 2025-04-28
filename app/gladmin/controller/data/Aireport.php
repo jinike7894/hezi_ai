@@ -55,6 +55,9 @@ class Aireport extends AdminController
                 );
             }
             $merged_data = array_values($merged_data);
+            usort($merged_data, function ($a, $b) {
+                return strtotime($b['date']) - strtotime($a['date']);
+            });
             $data = [
                 'code'  => 0,
                 'msg'   => '',
