@@ -143,14 +143,14 @@ class AiUserdata extends AiBase
     public function userInfo()
     {
         $uid = $this->uid;
-        $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update")->find()->toArray();
+        $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update,plain_passwd")->find()->toArray();
         $userData["is_vip"] = 0;
         $userData["vip_params"] = [];
         //判断vip类型
         if ($userData["vip_expiration"] > time()) {
             $userData["is_vip"] = 1;
             //查询拥有的vip
-            $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->field("id,name,data,plain_passwd")->find();
+            $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->field("id,name,data")->find();
 
             if ($orderData["data"]) {
                 $vipData = json_decode($orderData["data"], true);
