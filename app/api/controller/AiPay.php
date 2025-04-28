@@ -176,6 +176,7 @@ class AiPay extends AiBase
             echo "fail";
             return;
         }
+        
         $params = [
             "ordernum" => $notifyParams["orderno"],
         ];
