@@ -122,4 +122,9 @@ Route::post('data.config/save','data.config/save');
 
     Route::get('data.aipointsbill/index','data.aipointsbill/index');
 
+
+    Route::get('data.aireport/index','data.aireport/index');
+    Route::get('data.aichannelreport/index','data.aichannelreport/index');
+    Route::get('data.aiactclickrecord/index','data.aiactclickrecord/index');
+
 });
