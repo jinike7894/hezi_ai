@@ -19,15 +19,15 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                 init: init,
                 toolbar: ['refresh'],
                 cols: [[
-                    {field: 'id', minWidth: 80, title: 'ID'},
-                    {field: 'cate_title', width: 80, title: '类别'},
-                    {field: 'type_title', width: 80, title: '分类'},
+                    {field: 'id', minWidth: 80, title: 'ID',search: false},
+                    {field: 'cate_title', width: 80, title: '类别',search: false},
+                    {field: 'type_title', minWidth: 110, title: '分类',search:'select',selectList:{'name':'/gladmin/data.type/getptype'},fieldAlias:'pid',dong:true},
                     {field: 'name', minWidth: 0, title: '外显名称'},
                     {field: 'k_name', minWidth: 0, title: '客户名称'},
-                    {field: 'androidurl', minWidth: 0, title: '产品链接'},
-                    {field: 'clicks', minWidth: 0, title: '点击数'},
-                    {field: 'points', minWidth: 0, title: '赠送金币'},
-                    {field: 'date', minWidth: 0, title: '查询时间'},
+                    {field: 'androidurl', minWidth: 0, title: '产品链接',search: false},
+                    {field: 'clicks', minWidth: 0, title: '点击数',search: false},
+                    {field: 'points', minWidth: 0, title: '赠送金币',search: false},
+                    {field: 'date', minWidth: 0, title: '查询时间',search: 'range'},
                 ]],
             });
             ea.listen();

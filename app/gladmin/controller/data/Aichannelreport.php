@@ -37,11 +37,27 @@ class Aichannelreport extends AdminController
                 return $this->selectList();
             }
             list($page, $limit, $where) = $this->buildTableParames4();
-            if(empty($where)) {
+            if(empty($where) || $where[0][0] == 'channelCode') {
                 $where[] = ['date','=',date('Y-m-d')];
             }
-            $map1[] = ['create_time','>=',strtotime($where[0][2].' 00:00:00')];
-            $map1[] = ['create_time','<=',strtotime($where[0][2].' 23:59:59')];
+            $searchDate = null;
+            foreach ($where as $k => $v) {
+                if($v[0] == 'date' &&  $v[1] == '>=') {
+                    $map1[] = ['create_time','>=',strtotime($v[2].' 00:00:00')];
+                    $searchDate = $v[2];
+                }elseif ($v[0] == 'date' &&  $v[1] == '='){
+                    $map1[] = ['create_time','>=',strtotime($v[2].' 00:00:00')];
+                    $map1[] = ['create_time','<=',strtotime($v[2].' 23:59:59')];
+                    $searchDate = $v[2];
+                }
+                elseif ($v[0] == 'date' &&  $v[1] == '<='){
+                    $map1[] = ['create_time','<=',strtotime($v[2].' 23:59:59')];
+                    $searchDate = $v[2];
+                }
+                elseif ($v[0] == 'channelCode') {
+                    $map1[] = ['channelCode','LIKE',$v[2]];
+                }
+            }
             $clicklist = AiProductClickRecord::field('count(id) as clicks,channelCode')->where($map1)->group('channelCode')->select()->toArray();
             $registerlist = AiUserModel::field('count(id) as register_user,channelCode')->where($map1)->group('channelCode')->select()->toArray();
             $chargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount,channelCode')->where($map1)->group('channelCode')->select()->toArray();
@@ -51,7 +67,7 @@ class Aichannelreport extends AdminController
             foreach (array_merge(...$all_data) as $data) {
                 $date = $data['channelCode'];
                 $merged_data[$date] = array_merge(
-                    $merged_data[$date] ?? ['clicks' => 0, 'register_user' => 0, 'user_charge_count' => 0, 'user_click_count' => 0, 'date' => $where[0][2]],
+                    $merged_data[$date] ?? ['clicks' => 0, 'register_user' => 0, 'user_charge_count' => 0, 'user_click_count' => 0, 'date' => $searchDate],
                     $data
                 );
             }

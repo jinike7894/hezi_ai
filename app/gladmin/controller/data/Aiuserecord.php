@@ -38,8 +38,11 @@ class Aiuserecord extends AdminController
             $count = $this->model->where($where)->count();
             $list = $this->model->where($where)->page($page, $limit)->select();
             $aiUser = new \app\common\model\AiUser();
+            $aiImgTemplate = new \app\common\model\AiImgTemplate();
+            $aiVideoTemplate = new \app\common\model\AiVideoTemplate();
             for($i=0;$i<count($list);$i++){
                 $list[$i]['username'] = $aiUser->where(array('id'=>$list[$i]['uid']))->value('username') ?: '';
+                $list[$i]['template_name'] = ($list[$i]['ai_type'] === 0) ? $aiVideoTemplate->where(array('id'=>$list[$i]['template_id']))->value('name') ?: '' : (($list[$i]['ai_type'] === 1) ? $aiImgTemplate->where(array('id'=>$list[$i]['template_id']))->value('name') ?: '' : '');
             }
             $data = [
                 'code'  => 0,
