@@ -281,7 +281,6 @@ class Ai extends AiBase
             //发送请求到三方ai
             $aiApi = new AiApi();
             $aiApi->dataToAi(1, $params["img"], $params["template_id"], $useRecordRes->id);
-
             return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
         }
         //vip已使用完扣减余额

@@ -143,7 +143,7 @@ class AiApi
         $aiParams = [];
 
         $aiParams["taskId"] = $taskId;
-        $apiResponse = $this->postParams($this->taskStatusHost, $aiParams);
+        $apiResponse = $this->postParams($this->delTaskHost, $aiParams);
         $apiResponseData = json_decode($apiResponse, true);
         if($apiResponseData["code"]==200){
             return true;
