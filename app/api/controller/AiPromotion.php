@@ -21,9 +21,9 @@ class AiPromotion extends AiBase
         $responseParams["commission"] = $userData["commission"];
         $responseParams["balance"] = $userData["balance"];
         //今日收益
-        $responseParams["today_income"] = AiBalanceBill::where(["amount_type" => 1])->whereTime("create_time", "today")->sum("amount");
+        $responseParams["today_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid])->whereTime("create_time", "today")->sum("amount");
         //累计收益
-        $responseParams["total_income"] = AiBalanceBill::where(["amount_type" => 1])->sum("amount");
+        $responseParams["total_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid])->sum("amount");
         //成功邀请
         $responseParams["total_invite"] = AiUser::where(["pid" => $uid])->count();
         return json_encode(["code" => 1, "msg" => "succ", "data" => $responseParams]);
