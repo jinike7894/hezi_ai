@@ -28,7 +28,7 @@ class AiPay extends AiBase
     //选择支付通道
     public function getPayment()
     {
-        $paymentData = AiPayment::where(["is_del" => 0])->field("id,name,pay_icon,discount,show_tips,sort")->order("sort desc")->select();
+        $paymentData = AiPayment::where(["is_del" => 0])->field("id,name,pay_icon,discount,show_tips,sort,pay_type")->order("sort desc")->select();
         return json_encode(["code" => 1, "msg" => "succ", "data" => $paymentData]);
     }
     //创建支付
