@@ -144,20 +144,21 @@ class AiUserdata extends AiBase
     {
         $uid = $this->uid;
         $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update,plain_passwd")->find()->toArray();
-        
         $userData["is_vip"] = 0;
         $userData["vip_params"] = [];
+       
         //判断vip类型
         if ($userData["vip_expiration"] > time()) {
             $userData["is_vip"] = 1;
             //查询拥有的vip
             $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->field("id,name,data")->find();
-
+            
             if ($orderData["data"]) {
                 $vipData = json_decode($orderData["data"], true);
 
                 $userData["vip_params"] = [
                     "name" => $orderData["name"],
+
                     "ai_video_face" => $vipData["ai_video_face"],//视频换脸
                     "ai_img_face" => $vipData["ai_img_face"],//图片换脸
                     "ai_auto_face" => $vipData["ai_auto_face"],//自动换脸
@@ -201,7 +202,9 @@ class AiUserdata extends AiBase
             "limit" => input("get.limit"),
         ];
         $uid = $this->uid;
-        $recordData = AiUseRecord::where(["uid" => $uid, "is_del" => 0])->order("create_time desc ")->field("id,ai_type,img,ai_generate_source,status,create_time")->paginate([
+        $recordData = AiUseRecord::where(["uid" => $uid, "is_del" => 0])
+        ->order("create_time desc ")
+        ->field("id,ai_type,REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(img, '.jpg', '.js'), '.jpeg', '.js'), '.png', '.js'), '.webp', '.js'), '.gif', '.js') as img,ai_generate_source,status,create_time")->paginate([
             'list_rows' => $params["limit"],  // 每页条数
             'page' => $params["page"],    // 当前页数
         ]);

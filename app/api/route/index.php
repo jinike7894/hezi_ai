@@ -89,6 +89,8 @@ Route::post('ai/imgAutoAi','Ai/imgAutoAi');
 Route::post('ai/imgManualAi','Ai/imgManualAi');
 //上传文件
 Route::post('ai/uploadFaceImg','Ai/uploadFaceImg');
+//获取vip次数
+Route::get('ai/vipTimes','Ai/vipTimes');
 //获取用户推广信息
 Route::get('ai/promotion','AiPromotion/getPromotionData');
 //获取用户推广信息
@@ -103,6 +105,6 @@ Route::post('ai/wallet','AiUserdata/setWallet');
 Route::get('ai/withdrawalInfo','AiPromotion/getWithdrawalInfo');
 //提现
 Route::post('ai/withdrawal','AiPromotion/withdrawal');
-//获取状态接口
+//获取任务状态接口
 Route::get('ai/taskStatus','Ai/getTaskStatus');
 })->allowCrossDomain();

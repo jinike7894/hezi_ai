@@ -202,4 +202,5 @@ class AiPay extends AiBase
         }
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["is_first" => $is_first]]);
     }
+    
 }
