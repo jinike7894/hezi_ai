@@ -16,6 +16,7 @@ class AiWithdrawalRecord extends \think\Model
                 "amount"=>$amount,
                 "status"=>0,
                 "coin_wallet_address"=>$userData["coin_wallet_address"],
+                "withdrawal_order_num"=>orderUniqueCode(),
                 "create_time"=>time(),
                 "update_time"=>time(),
             ];
