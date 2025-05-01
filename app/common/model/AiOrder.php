@@ -129,6 +129,9 @@ class AiOrder extends \think\Model
     public static function availableTimes($uid, $aiType)
     {
         $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->order("create_time asc")->limit(1)->field("id,name,data")->find();
+        if(!$orderData){
+                return 0;
+        }
         //获取当前vip 每天几次 
         $aiProductParams = json_decode($orderData["data"], true);
         $aiTimes = 0;
