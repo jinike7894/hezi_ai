@@ -146,7 +146,13 @@ class AiUserdata extends AiBase
         $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update,plain_passwd")->find()->toArray();
         $userData["is_vip"] = 0;
         $userData["vip_params"] = [];
-       
+        //获取当前网址
+        $system = new SystemConfig();
+        $land_host = $system
+        ->where('name', "ai_land_host")
+        ->value("value");
+        //落地页域名
+        $userData["land_host"]=$land_host;
         //判断vip类型
         if ($userData["vip_expiration"] > time()) {
             $userData["is_vip"] = 1;
@@ -158,7 +164,6 @@ class AiUserdata extends AiBase
 
                 $userData["vip_params"] = [
                     "name" => $orderData["name"],
-
                     "ai_video_face" => $vipData["ai_video_face"],//视频换脸
                     "ai_img_face" => $vipData["ai_img_face"],//图片换脸
                     "ai_auto_face" => $vipData["ai_auto_face"],//自动换脸

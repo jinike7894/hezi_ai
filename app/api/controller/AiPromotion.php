@@ -17,7 +17,7 @@ class AiPromotion extends AiBase
     {
         $uid = $this->uid;
         $responseParams = [];
-        $userData = AiUser::where(["id" => $uid])->field("id,username,commission,balance")->find();
+        $userData = AiUser::where(["id" => $uid])->field("id,username,commission,balance,channelCode")->find();
         $responseParams["commission"] = $userData["commission"];
         $responseParams["balance"] = $userData["balance"];
         //今日收益
@@ -26,6 +26,13 @@ class AiPromotion extends AiBase
         $responseParams["total_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid])->sum("amount");
         //成功邀请
         $responseParams["total_invite"] = AiUser::where(["pid" => $uid])->count();
+        //推广链接
+        $system = new SystemConfig();
+        $land_host = $system
+        ->where('name', "ai_land_host")
+        ->value("value");
+        //推广链接
+        $responseParams["promotion_host"]=$land_host."?pid=".$uid."&channelCode=".$userData["channelCode"];
         return json_encode(["code" => 1, "msg" => "succ", "data" => $responseParams]);
     }
     //获取推广记录
