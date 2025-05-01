@@ -32,12 +32,26 @@ class Ai extends AiBase
         $vipTimesParams = [
             "points" => 0,
             "vip_times" => 0,
-            "consume_points" => 0,
+            "consume_points"=>0,
         ];
 
         $uid = $this->uid;
         //查询points
         $vipTimesParams["points"] = AiUser::where(["id" => $uid])->value("points");
+        $vipTimesParams["vip_times"] = AiOrder::availableTimes($uid, $params["type"]);
+         switch ($params["type"]) {
+             case 0:
+                 $vipTimesParams["consume_points"] = $this->aiVideoPoints;
+                 break;
+             case 1:
+                 $vipTimesParams["consume_points"] = $this->aiImgPoints;
+                 break;
+             case 2:
+                 $vipTimesParams["consume_points"] = $this->aiAutoPoints;
+                 break;
+             case 3:
+                 $vipTimesParams["consume_points"] = $this->aiManualPoints;
+             }
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
         $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->order("create_time asc")->limit(1)->field("id,name,data")->find();
         if (!$orderData) {
@@ -45,20 +59,7 @@ class Ai extends AiBase
         }
         //获取当前vip剩余次数
         $vipTimesParams["vip_times"] = AiOrder::availableTimes($uid, $params["type"]);
-        switch ($params["type"]) {
-            case 0:
-                $vipTimesParams["consume_points"] = $this->aiVideoPoints;
-                break;
-            case 1:
-                $vipTimesParams["consume_points"] = $this->aiImgPoints;
-                break;
-            case 2:
-                $vipTimesParams["consume_points"] = $this->aiAutoPoints;
-                break;
-            case 3:
-                $vipTimesParams["consume_points"] = $this->aiManualPoints;
-                break;
-        }
+      
         return json_encode(["code" => 1, "msg" => "succ", "data" => $vipTimesParams]);
     }
     //视频换脸
@@ -642,7 +643,7 @@ class Ai extends AiBase
             $fileBaseName = pathinfo($imgPath, PATHINFO_FILENAME);
             $newPath = "./" . $directory . "/" . $fileBaseName . ".js";
             $filData = file_get_contents($imgPath);
-            file_put_contents($newPath, $filData);
+            file_put_contents($newPath,$filData);
             return json_encode(["code" => 1, "msg" => "上传成功", "data" => "/" . $directory . '/' . $filename]);
         } else {
             return json_encode(["code" => 0, "msg" => "未选择文件", "data" => ""]);
