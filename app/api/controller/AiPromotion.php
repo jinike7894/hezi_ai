@@ -63,7 +63,7 @@ class AiPromotion extends AiBase
         $uid = $this->uid;
         $balanceBillData = AiBalanceBill::where(["uid" => $uid])
             ->order("create_time desc")
-            ->field("id,amount,after_amount,bill_type,amount_type")
+            ->field("id,amount,after_amount,bill_type,amount_type,create_time")
             ->paginate([
                 'list_rows' => $params["limit"],
                 'page' => $params["page"],
