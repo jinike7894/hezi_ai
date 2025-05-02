@@ -121,7 +121,7 @@ class AiPay extends AiBase
         //请求三方支付 或者支付链接
         $payReturnData = $this->doPay($orderParams, $params["pay_id"]);
         if (!$payReturnData) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
+            return json_encode(["code" => 0, "msg" => "请稍后重试!", "data" => []]);
         }
 
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["pay_url" => $payReturnData["url"]]]);

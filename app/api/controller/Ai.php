@@ -80,7 +80,7 @@ class Ai extends AiBase
 
         if ($userData["vip_expiration"] < time()) {
             if ($userData["points"] < $this->aiVideoPoints) {
-                return json_encode(["code" => 0, "msg" => "金币不足请充值", "data" => ""]);
+                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
                 $instance = $this;
@@ -148,7 +148,7 @@ class Ai extends AiBase
         }
         //vip已使用完扣减余额
         if ($userData["points"] < $this->aiVideoPoints) {
-            return json_encode(["code" => 0, "msg" => "金币不足请充值", "data" => ""]);
+            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
         }
         try {
             $instance = $this;
@@ -261,7 +261,7 @@ class Ai extends AiBase
         $useRecordParams = AiUseRecord::$useRecordParams;
         if ($userData["vip_expiration"] < time()) {
             if ($userData["points"] < $this->aiImgPoints) {
-                return json_encode(["code" => 0, "msg" => "金币不足请充值", "data" => ""]);
+                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
                 $instance = $this;
@@ -326,7 +326,7 @@ class Ai extends AiBase
         }
         //vip已使用完扣减余额
         if ($userData["points"] < $this->aiImgPoints) {
-            return json_encode(["code" => 0, "msg" => "金币不足请充值", "data" => ""]);
+            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
         }
         try {
             $instance = $this;
@@ -380,7 +380,7 @@ class Ai extends AiBase
         $useRecordParams = AiUseRecord::$useRecordParams;
         if ($userData["vip_expiration"] < time()) {
             if ($userData["points"] < $this->aiAutoPoints) {
-                return json_encode(["code" => 0, "msg" => "金币不足请充值", "data" => ""]);
+                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
                 $instance = $this;
@@ -444,7 +444,7 @@ class Ai extends AiBase
         }
         //vip已使用完扣减余额
         if ($userData["points"] < $this->aiAutoPoints) {
-            return json_encode(["code" => 0, "msg" => "金币不足请充值", "data" => ""]);
+            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
         }
         try {
             $instance = $this;
@@ -499,7 +499,7 @@ class Ai extends AiBase
         $useRecordParams = AiUseRecord::$useRecordParams;
         if ($userData["vip_expiration"] < time()) {
             if ($userData["points"] < $this->aiManualPoints) {
-                return json_encode(["code" => 0, "msg" => "金币不足请充值", "data" => ""]);
+                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
                 $instance = $this;
@@ -564,7 +564,7 @@ class Ai extends AiBase
         }
         //vip已使用完扣减余额
         if ($userData["points"] < $this->aiManualPoints) {
-            return json_encode(["code" => 0, "msg" => "金币不足请充值", "data" => ""]);
+            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
         }
         try {
             $instance = $this;
