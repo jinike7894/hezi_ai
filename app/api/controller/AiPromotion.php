@@ -129,6 +129,9 @@ class AiPromotion extends AiBase
                 if (!$userData) {
                     throw new \Exception("用户不存在");
                 }
+                if($userData["coin_wallet_address"]==""){
+                    throw new \Exception("请先绑定收款卡");
+                }
                 // 检查余额是否足够
                 if ($userData["balance"] < $params["amount"]) {
                     throw new \Exception("余额不足");
