@@ -151,7 +151,7 @@ class AiPromotion extends AiBase
                 }
             });
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+            return json_encode(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
         }
         return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
     }
