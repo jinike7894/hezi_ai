@@ -120,8 +120,8 @@ class AiPay extends AiBase
         }
         //请求三方支付 或者支付链接
         $payReturnData = $this->doPay($orderParams, $params["pay_id"]);
-        if (!$payReturnData) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试!", "data" => []]);
+        if ($payReturnData["code"]!=200) {
+            return json_encode(["code" => 0, "msg" =>$payReturnData["message"], "data" => []]);
         }
 
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["pay_url" => $payReturnData["url"]]]);
@@ -151,10 +151,10 @@ class AiPay extends AiBase
         $payReturnData = postPayParams($paymentData["pay_gateway"], $payParams);
         $payReturnData = json_decode($payReturnData, true);
         
-        if ($payReturnData["code"] == 200) {
-            return $payReturnData;
-        }
-        return false;
+        // if ($payReturnData["code"] == 200) {
+        //     return $payReturnData;
+        // }
+        return $payReturnData;
     }
     //支付回调
     public function payNotify()
