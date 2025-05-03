@@ -150,7 +150,7 @@ class AiPay extends AiBase
         $payParams["returnurl"] = $imgHost;
         $payReturnData = postPayParams($paymentData["pay_gateway"], $payParams);
         $payReturnData = json_decode($payReturnData, true);
-        var_dump($payReturnData);
+        
         if ($payReturnData["code"] == 200) {
             return $payReturnData;
         }
