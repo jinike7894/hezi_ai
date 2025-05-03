@@ -1,0 +1,3 @@
+[2025-04-30T15:03:32+08:00][error] [10501]SQLSTATE[HY000] [2002] 向一个无法连接的网络尝试了一个套接字操作。
+[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-orm\src\db\PDOConnection.php:796]
+[2025-04-30T16:02:17+08:00][error] [10501]SQLSTATE[42000]: Syntax error or access violation: 1305 FUNCTION hezi.REGEXP_REPLACE does not exist[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-orm\src\db\PDOConnection.php:796]

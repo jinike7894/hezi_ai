@@ -1,0 +1,6 @@
+[2023-12-02T00:08:45+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2023-12-02T00:08:48+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2023-12-02T13:45:27+08:00][error] [0]方法参数错误:id
+[2023-12-02T18:32:00+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2023-12-02T18:32:01+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-02T18:32:11+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections

@@ -1,0 +1,1 @@
+[2024-12-28T06:47:36+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '111-204-2024-12-28 06:30' for key 'pid'

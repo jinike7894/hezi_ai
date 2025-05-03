@@ -1,0 +1,2 @@
+[2023-12-11T21:37:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2023-12-11T21:37:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system

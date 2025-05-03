@@ -1,0 +1,13 @@
+[2025-04-04T00:00:16+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T00:10:02+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T00:20:02+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T00:30:02+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T00:40:01+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T00:50:02+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T01:00:01+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T01:10:01+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T01:20:01+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T01:30:01+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T01:40:01+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T01:50:01+08:00][error] [8]Trying to access array offset on value of type null
+[2025-04-04T23:30:45+08:00][error] [8]未定义数组索引: type

@@ -1,0 +1,7 @@
+[2024-11-28T15:32:15+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2024-11-28T15:32:21+08:00][error] [8]未定义数组下标: 1
+[2024-11-28T15:36:12+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2024-11-28T18:20:11+08:00][error] [0]方法参数错误:id
+[2024-11-28T20:43:13+08:00][error] [0]方法参数错误:id
+[2024-11-28T20:43:41+08:00][error] [0]方法参数错误:id
+[2024-11-28T20:50:35+08:00][error] [0]方法参数错误:id

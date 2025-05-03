@@ -1,0 +1,5 @@
+[2023-04-04T19:21:30+08:00][error] [2]Use of undefined constant i - assumed 'i' (this will throw an Error in a future version of PHP)[/www/wwwroot/daohang/app/gladmin/controller/data/Type.php:61]
+[2023-04-04T19:22:22+08:00][error] [2]Use of undefined constant i - assumed 'i' (this will throw an Error in a future version of PHP)[/www/wwwroot/daohang/app/gladmin/controller/data/Type.php:61]
+[2023-04-04T19:24:12+08:00][error] [0]模板文件不存在:/www/wwwroot/daohang/view/gladmin/data/type/getptype.html[/www/wwwroot/daohang/vendor/topthink/think-view/src/Think.php:146]
+[2023-04-04T19:32:52+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'pname' in 'field list'[/www/wwwroot/daohang/vendor/topthink/think-orm/src/db/PDOConnection.php:796]
+[2023-04-04T20:34:12+08:00][error] [0]strpos() expects parameter 1 to be string, null given[/www/wwwroot/daohang/vendor/topthink/think-orm/src/db/Builder.php:868]

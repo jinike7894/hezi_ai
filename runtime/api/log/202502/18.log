@@ -1,0 +1,2 @@
+[2025-02-18T03:13:19+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '299-243-2025-02-18' for key 'pid'
+[2025-02-18T18:32:59+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '378-211-2025-02-18 18:30' for key 'pid'

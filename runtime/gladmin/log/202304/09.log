@@ -1,0 +1,2 @@
+[2023-04-09T18:56:33+08:00][error] [10501]SQLSTATE[42S02]: Base table or view not found: 1146 Table 'daohang.dh_tongjiuid' doesn't exist[/www/wwwroot/daohang/vendor/topthink/think-orm/src/db/PDOConnection.php:796]
+[2023-04-09T19:37:36+08:00][error] [0]Class 'app\gladmin\controller\data\SystemConfig' not found[/www/wwwroot/daohang/app/gladmin/controller/data/Config.php:22]

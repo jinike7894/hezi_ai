@@ -1,0 +1,20 @@
+[2025-02-16T00:48:12+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '436-216-2025-02-16 00:30' for key 'pid'
+[2025-02-16T06:07:25+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:09:32+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:11:45+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:11:55+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:12:09+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:12:16+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:12:20+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:13:03+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:19:50+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:21:01+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:21:26+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:21:35+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:21:43+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:21:44+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:25:07+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:26:00+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:26:09+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:26:15+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1
+[2025-02-16T06:26:21+08:00][error] [10501]SQLSTATE[22003]: Numeric value out of range: 1264 Out of range value for column 'subid' at row 1

@@ -1,0 +1,5 @@
+[2023-12-07T14:36:02+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2023-12-07T14:36:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2023-12-07T14:36:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2023-12-07T14:36:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2023-12-07T14:36:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system

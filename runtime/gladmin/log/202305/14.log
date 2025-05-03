@@ -1,0 +1,1 @@
+[2023-05-14T16:40:51+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'channelCode' in 'where clause'

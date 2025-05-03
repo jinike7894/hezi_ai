@@ -1,0 +1,6 @@
+[2025-04-22T00:30:39+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-orm\src\db\PDOConnection.php:796]
+[2025-04-22T00:37:53+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'useranme' in 'field list'[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-orm\src\db\PDOConnection.php:796]
+[2025-04-22T00:40:38+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'useranme' in 'field list'[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-orm\src\db\PDOConnection.php:796]
+[2025-04-22T21:49:46+08:00][error] [8192]Non-static method app\common\model\AiOrder::availableTimes() should not be called statically[C:\phpstudy_pro\WWW\hezi_ai\app\api\controller\Ai.php:76]
+[2025-04-22T21:50:48+08:00][error] [8192]Non-static method app\common\model\AiOrder::availableTimes() should not be called statically[C:\phpstudy_pro\WWW\hezi_ai\app\api\controller\Ai.php:76]
+[2025-04-22T21:52:13+08:00][error] [8]Object of class app\common\model\AiUser could not be converted to int[C:\phpstudy_pro\WWW\hezi_ai\app\api\controller\Ai.php:37]

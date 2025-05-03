@@ -1,0 +1,8 @@
+[2024-10-12T00:58:10+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2024-10-12T00:58:12+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2024-10-12T00:58:13+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2024-10-12T00:58:18+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2024-10-12T00:58:42+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2024-10-12T00:58:51+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2024-10-12T00:59:16+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'
+[2024-10-12T01:07:21+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'date' in 'where clause'

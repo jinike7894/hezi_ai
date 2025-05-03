@@ -1,0 +1,2 @@
+[2025-03-14T00:44:45+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'zhuanhua' in 'where clause'
+[2025-03-14T00:44:46+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'zhuanhua' in 'where clause'

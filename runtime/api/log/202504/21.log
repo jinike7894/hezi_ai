@@ -1,0 +1,4 @@
+[2025-04-21T15:58:06+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'self.id' in 'field list'[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-orm\src\db\PDOConnection.php:796]
+[2025-04-21T16:00:55+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'self.id' in 'field list'[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-orm\src\db\PDOConnection.php:796]
+[2025-04-21T23:18:44+08:00][error] [0]Call to a member function toArray() on null[C:\phpstudy_pro\WWW\hezi_ai\app\api\controller\AiUserdata.php:25]
+[2025-04-21T23:19:23+08:00][error] [0]Call to a member function toArray() on null[C:\phpstudy_pro\WWW\hezi_ai\app\api\controller\AiUserdata.php:26]
