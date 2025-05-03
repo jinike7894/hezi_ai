@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="__STATIC__/gladmin/css/welcome.css?v={:time()}" media="all">
+<link rel="stylesheet" href="https://res.layui.dev/layui/v/2.11.0/css/layui.css">
+<script src="https://res.layui.dev/layui/v/2.11.0/layui.js"></script>
 <div class="layuimini-container">
     <div class="layuimini-main">
         <div class="layui-row layui-col-space15">
@@ -122,6 +124,175 @@
                         </div>
 
                     </div>
+
+
+
+                    <h4>普通卡片</h4>
+                    <div class="layui-tabs layui-tabs-card" lay-options="{index: 0}">
+                        <ul class="layui-tabs-header">
+                            <li>今日数据</li>
+                            <li>昨日数据</li>
+                            <li>本月数据</li>
+                            <li>上月数据</li>
+                        </ul>
+                        <div class="layui-tabs-body">
+                            <div class="layui-tabs-item">
+
+                                <div class="layui-row">
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$today_registeruser}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">注册人数</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$todayChargeUserCount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">充值人数</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$todayChargeAmount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">充值金额</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$today_total_settlement_amount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">结算金额</div>
+                                    </div>
+                                    <br>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$today_agent_income}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">代理收益</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$today_platformIncome}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">平台收益</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$today_goldUsed}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">金币消耗</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$today_cost}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">消耗支出</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="layui-tabs-item">
+                                <div class="layui-row">
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$yesterday_registeruser}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">注册人数</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$yesterdayChargeUserCount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">充值人数</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$yesterdayChargeAmount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">充值金额</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$yesterday_total_settlement_amount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">结算金额</div>
+                                    </div>
+                                    <br>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$yesterday_agent_income}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">代理收益</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$yesterday_platformIncome}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">平台收益</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$yesterday_goldUsed}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">金币消耗</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$yesterday_cost}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">消耗支出</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="layui-tabs-item">
+                                <div class="layui-row">
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$month_registeruser}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">注册人数</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$monthChargeUserCount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">充值人数</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$monthChargeAmount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">充值金额</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$month_total_settlement_amount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">结算金额</div>
+                                    </div>
+                                    <br>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$month_agent_income}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">代理收益</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$month_platformIncome}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">平台收益</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$month_goldUsed}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">金币消耗</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$month_cost}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">消耗支出</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="layui-tabs-item">
+                                <div class="layui-row">
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$last_month_registeruser}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">注册人数</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$last_monthChargeUserCount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">充值人数</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$last_monthChargeAmount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">充值金额</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$last_month_total_settlement_amount}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">结算金额</div>
+                                    </div>
+                                    <br>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$last_month_agent_income}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">代理收益</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$last_month_platformIncome}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">平台收益</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$last_month_goldUsed}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">金币消耗</div>
+                                    </div>
+                                    <div class="box" style="width: 150px; height: 100px; background-color: #ffffff; color: #333; text-align: center; margin: 10px; display: inline-block; border-radius: 5px; border: 1px solid #009688; line-height: 25px;">
+                                        <div class="count" style="font-size: 24px; line-height: 50px;">{$last_month_cost}</div>
+                                        <div class="label" style="font-size: 16px; font-weight: bold; color: #666;">消耗支出</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
                     <div class="layui-col-md12">
                         <div class="layui-card">
                             <div class="layui-card-header"><i class="fa fa-line-chart icon"></i>报表统计</div>
