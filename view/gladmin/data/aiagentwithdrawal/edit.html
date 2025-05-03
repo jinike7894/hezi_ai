@@ -2,12 +2,7 @@
 <div class="layuimini-container">
     <form id="app-form" class="layui-form layuimini-form">
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户名</label>
-            <div class="layui-input-block">
-                <input type="text" name="" readonly class="layui-input"   value="{$row.username|default=''}"  />
-            </div>
-        </div>
+
 
         <div class="layui-form-item">
             <label class="layui-form-label">渠道</label>
@@ -17,47 +12,45 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label required">提成比例</label>
+            <label class="layui-form-label">收款类型</label>
             <div class="layui-input-block">
-                <input type="text" name="commission" class="layui-input" lay-verify="required" value="{$row.commission|default=''}"  />
+                <input type="text" name="" readonly class="layui-input"   value="{$coin_wallet_type}"  />
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">收款类型</label>
-            <div class="layui-input-block">
-                <input type="text" name="coin_wallet_type" class="layui-input"  value="{$row.coin_wallet_type|default=''}"  />
-            </div>
-        </div>
 
 
         <div class="layui-form-item">
             <label class="layui-form-label">收款地址</label>
             <div class="layui-input-block">
-                <input type="text" name="coin_wallet_address" class="layui-input"   value="{$row.coin_wallet_address|default=''}"  />
+                <input type="text" name="" readonly class="layui-input"   value="{$row.coin_wallet_address|default=''}"  />
             </div>
         </div>
 
 
         <div class="layui-form-item">
-            <label class="layui-form-label required">可提余额</label>
+            <label class="layui-form-label">提款金额</label>
             <div class="layui-input-block">
-                <input type="text" name="balance" class="layui-input" readonly  value="{$row.balance|default=''}"  />
+                <input type="text" name="" readonly class="layui-input"   value="{$row.amount|default=''}"  />
             </div>
         </div>
 
+
         <div class="layui-form-item">
-            <label class="layui-form-label">余额调整</label>
+            <label class="layui-form-label">USDT</label>
             <div class="layui-input-block">
-                <input type="text" name="newbalance" class="layui-input"   value=""  />
+                <input type="text" name="" readonly class="layui-input"   value="{$usdt}"  />
             </div>
         </div>
 
+
         <div class="layui-form-item">
-            <label class="layui-form-label">调整类型</label>
+            <label class="layui-form-label">打款状态</label>
             <div class="layui-input-block">
-                <select>
-                    <option value="2" >其他</option>
+                <select name="status" id="status">
+                    <option value="0" {if $row.status eq 0}selected{/if}>未打款</option>
+                    <option value="1" {if $row.status eq 1}selected{/if}>已打款</option>
+                    <option value="2" {if $row.status eq 2}selected{/if}>拒绝</option>
                 </select>
             </div>
         </div>

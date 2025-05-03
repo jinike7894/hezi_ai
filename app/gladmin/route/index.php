@@ -127,4 +127,9 @@ Route::post('data.config/save','data.config/save');
     Route::get('data.aichannelreport/index','data.aichannelreport/index');
     Route::get('data.aiactclickrecord/index','data.aiactclickrecord/index');
 
+    Route::get('data.aiagentdata/index','data.aiagentdata/index');
+    Route::get('data.aiagentwithdrawal/index','data.aiagentwithdrawal/index');
+    Route::rule('data.aiagentwithdrawal/edit','data.aiagentwithdrawal/edit');
+    Route::rule('data.aiagentwithdrawal/qrcode','data.aiagentwithdrawal/qrcode');
+
 });

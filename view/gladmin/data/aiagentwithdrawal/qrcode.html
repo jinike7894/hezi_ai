@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css" href="/static/plugs/lay-module/xm-select/static/formSeletv4.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* 使页面高度为视口高度 */
+        margin: 0;
+    }
+    #qrcode {
+        margin-bottom: 20px;
+    }
+    .text {
+        font-size: 24px; /* 字体大小 */
+        text-align: center; /* 文本居中 */
+    }
+</style>
+<div id="qrcode"></div>
+<div class="text">{$usdt} U</div>
+<div class="text">{$row.coin_wallet_address|default=''}</div>
+
+<script>
+    $(document).ready(function() {
+        // 页面加载时生成二维码，内容为222
+        $('#qrcode').qrcode({ width: 300, height: 300, text: "{$row.coin_wallet_address|default=''}" });
+    });
+</script>

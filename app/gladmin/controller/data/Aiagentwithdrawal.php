@@ -1,8 +1,7 @@
 <?php
 namespace app\gladmin\controller\data;
-use app\common\model\AiBalanceBill;
 use app\common\model\User;
-use app\common\model\AiUser as  AiUserModel;
+use app\common\model\AiWithdrawalRecord as AiWithdrawalRecordModel;
 use app\gladmin\traits\Curd;
 use app\common\controller\AdminController;
 use EasyAdmin\annotation\ControllerAnnotation;
@@ -12,9 +11,9 @@ use think\App;
 /**
  * Class Goods
  * @package app\gladmin\controller\mall
- * @ControllerAnnotation(title="ai用户管理")
+ * @ControllerAnnotation(title="ai代理提款管理")
  */
-class Aiuser extends AdminController
+class Aiagentwithdrawal extends AdminController
 {
 
     use Curd;
@@ -24,7 +23,7 @@ class Aiuser extends AdminController
     public function __construct(App $app)
     {
         parent::__construct($app);
-        $this->model = new AiUserModel();
+        $this->model = new AiWithdrawalRecordModel();
     }
     /**
      * @NodeAnotation(title="列表")
@@ -38,9 +37,14 @@ class Aiuser extends AdminController
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
             $list = $this->model->where($where)->page($page, $limit)->select();
-            for($i=0;$i<count($list);$i++) {
-                $list[$i]['have_coin_wallet'] = !empty($list[$i]['coin_wallet_address']) ? "是" : "否";
-                $list[$i]['remaining_days'] =  ceil(($list[$i]['vip_expiration'] - time()) / (24 * 60 * 60)) < 0 ? 0 : ceil(($list[$i]['vip_expiration'] - time()) / (24 * 60 * 60));
+            $aiUser = new \app\common\model\AiUser();
+            $rate = sysconfig('site', 'usdt_exchange_rate');
+            for($i=0;$i<count($list);$i++){
+                $list[$i]['rate'] = $rate;
+                $list[$i]['usdt'] = round($list[$i]['amount']/$rate, 2) . ' U';
+                $list[$i]['amount'] = $list[$i]['amount'] ? $list[$i]['amount']. ' 元' : '0 元' ;
+                $list[$i]['coin_wallet_type'] = $aiUser->where(array('id'=>$list[$i]['uid']))->value('coin_wallet_type') ?: '';
+                $list[$i]['finish_time'] = $list[$i]['finish_time'] ? date('Y-m-d H:i:s', $list[$i]['finish_time']) : '';
             }
             $data = [
                 'code'  => 0,
@@ -52,6 +56,8 @@ class Aiuser extends AdminController
         }
         return $this->fetch();
     }
+
+
     /**
      * @NodeAnotation(title="新增")
      */
@@ -69,29 +75,19 @@ class Aiuser extends AdminController
     }
 
     /**
-     * @NodeAnotation(title="修改密码")
+     * @NodeAnotation(title="二维码")
      */
-    public function changepw($id)
+    public function qrcode($id)
     {
         $row = $this->model->find($id);
         empty($row) && $this->error('数据不存在');
-        if ($this->request->isPost()) {
-            $post = $this->request->post();
-            $rule = [];
-            $this->validate($post, $rule);
-            if($post['passwd']!=$post['repasswd']){
-                $this->error('两次密码不一致');
-            }
-            $post['plain_passwd'] = $post['passwd'];
-            $post['passwd'] = md5($post['passwd']);
-            try {
-                $save = $row->save($post);
-            } catch (\Exception $e) {
-                $this->error('保存失败');
-            }
-            $save ? $this->success('保存成功') : $this->error('保存失败');
-        }
         $this->assign('row', $row);
+        $rate = sysconfig('site', 'usdt_exchange_rate');
+        $usdt = round($row['amount']/$rate, 2);
+        $aiUser = new \app\common\model\AiUser();
+        $coin_wallet_type = $aiUser->where(array('id'=>$row['uid']))->value('coin_wallet_type') ?: '';
+        $this->assign('coin_wallet_type', $coin_wallet_type);
+        $this->assign('usdt', $usdt);
         return $this->fetch();
     }
 
@@ -106,19 +102,24 @@ class Aiuser extends AdminController
             $post = $this->request->post();
             $rule = [];
             $this->validate($post, $rule);
-            if(!empty($post['newbalance'])){
-                $post['balance'] = $post['newbalance'];
-                $userPidData= AiUserModel::where(["id" => $id])->field("id,username,points,pid,channelCode,commission,balance,create_time")->find();
-                AiBalanceBill::createBill($userPidData, $post['newbalance'], 0, 1);
-            }
             try {
+                if($post['status'] == 1){
+                    $post['finish_time'] = time();
+                }
                 $save = $row->save($post);
             } catch (\Exception $e) {
                 $this->error('保存失败');
             }
             $save ? $this->success('保存成功') : $this->error('保存失败');
         }
+
         $this->assign('row', $row);
+        $rate = sysconfig('site', 'usdt_exchange_rate');
+        $usdt = round($row['amount']/$rate, 2);
+        $aiUser = new \app\common\model\AiUser();
+        $coin_wallet_type = $aiUser->where(array('id'=>$row['uid']))->value('coin_wallet_type') ?: '';
+        $this->assign('coin_wallet_type', $coin_wallet_type);
+        $this->assign('usdt', $usdt);
         return $this->fetch();
     }
 
