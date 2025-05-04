@@ -48,7 +48,6 @@
             <label class="layui-form-label">打款状态</label>
             <div class="layui-input-block">
                 <select name="status" id="status">
-                    <option value="0" {if $row.status eq 0}selected{/if}>未打款</option>
                     <option value="1" {if $row.status eq 1}selected{/if}>已打款</option>
                     <option value="2" {if $row.status eq 2}selected{/if}>拒绝</option>
                 </select>

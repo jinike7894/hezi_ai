@@ -102,6 +102,9 @@ class Aiagentwithdrawal extends AdminController
             $post = $this->request->post();
             $rule = [];
             $this->validate($post, $rule);
+            if($row['status'] != 0){
+                $this->error('该提现申请已操作过');
+            }
             try {
                 if($post['status'] == 1){
                     $post['finish_time'] = time();
