@@ -71,10 +71,8 @@ class Aiorder extends AdminController
             if($row['pay_status'] == 1){
                 $this->error('不能操作已支付的订单');
             }
-            $post['pay_status'] = 1;
-            $post['pay_time'] = time();
             try {
-                $save = $row->save($post);
+                $save = AiOrderModel::notify($row['order_num']);
             } catch (\Exception $e) {
                 $this->error('保存失败');
             }
