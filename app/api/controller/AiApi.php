@@ -85,7 +85,7 @@ class AiApi
         $aiParams["taskIds"] = array_values(array_column($dataList, "task_id"));
         $apiResponse = $this->postParams($this->taskStatusHost, $aiParams);
         $apiResponseData = json_decode($apiResponse, true);
-        var_dump($apiResponseData);
+        
         if ($apiResponseData["data"]["list"]) {
             $useRecordParams = [];
             foreach ($apiResponseData["data"]["list"] as $apik => $apiv) {
