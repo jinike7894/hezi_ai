@@ -1,7 +1,7 @@
 <?php
 namespace app\gladmin\controller\data;
 use app\common\model\User;
-use app\common\model\AiOrder as  AiOrderModel;
+use app\common\model\AiWithdrawalRecord as AiWithdrawalRecordModel;
 use app\gladmin\traits\Curd;
 use app\common\controller\AdminController;
 use EasyAdmin\annotation\ControllerAnnotation;
@@ -11,9 +11,9 @@ use think\App;
 /**
  * Class Goods
  * @package app\gladmin\controller\mall
- * @ControllerAnnotation(title="ai订单管理")
+ * @ControllerAnnotation(title="ai代理提款管理")
  */
-class Aiorder extends AdminController
+class Aiagentdata extends AdminController
 {
 
     use Curd;
@@ -23,7 +23,7 @@ class Aiorder extends AdminController
     public function __construct(App $app)
     {
         parent::__construct($app);
-        $this->model = new AiOrderModel();
+        $this->model = new AiWithdrawalRecordModel();
     }
     /**
      * @NodeAnotation(title="列表")
@@ -38,13 +38,11 @@ class Aiorder extends AdminController
             $count = $this->model->where($where)->count();
             $list = $this->model->where($where)->page($page, $limit)->select();
             $aiUser = new \app\common\model\AiUser();
-            $aiPayment = new \app\common\model\AiPayment();
+            $aiImgTemplate = new \app\common\model\AiImgTemplate();
+            $aiVideoTemplate = new \app\common\model\AiVideoTemplate();
             for($i=0;$i<count($list);$i++){
                 $list[$i]['username'] = $aiUser->where(array('id'=>$list[$i]['uid']))->value('username') ?: '';
-                $list[$i]['pay_type_name'] = $aiPayment->where(array('id'=>$list[$i]['pay_type_id']))->value('name') ?: '';
-                $list[$i]['rate'] = $aiPayment->where(array('id'=>$list[$i]['pay_type_id']))->value('rate') ?: '';
-                $list[$i]['receipt'] = $list[$i]['price'] - $list[$i]['price']*($list[$i]['rate']/100);
-                $list[$i]['pay_time'] = $list[$i]['pay_time'] ?date('Y-m-d H:i:s',$list[$i]['pay_time']) : '';
+                $list[$i]['template_name'] = ($list[$i]['ai_type'] === 0) ? $aiVideoTemplate->where(array('id'=>$list[$i]['template_id']))->value('name') ?: '' : (($list[$i]['ai_type'] === 1) ? $aiImgTemplate->where(array('id'=>$list[$i]['template_id']))->value('name') ?: '' : '');
             }
             $data = [
                 'code'  => 0,
@@ -54,31 +52,6 @@ class Aiorder extends AdminController
             ];
             return json($data);
         }
-        return $this->fetch();
-    }
-
-    /**
-     * @NodeAnotation(title="冲正")
-     */
-    public function correct($id)
-    {
-        $row = $this->model->find($id);
-        empty($row) && $this->error('数据不存在');
-        if ($this->request->isPost()) {
-            $post = $this->request->post();
-            $rule = [];
-            $this->validate($post, $rule);
-            if($row['pay_status'] == 1){
-                $this->error('不能操作已支付的订单');
-            }
-            try {
-                $save = AiOrderModel::notify($row['order_num']);
-            } catch (\Exception $e) {
-                $this->error('保存失败');
-            }
-            $save ? $this->success('保存成功') : $this->error('保存失败');
-        }
-        $this->assign('row', $row);
         return $this->fetch();
     }
 

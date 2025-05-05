@@ -1,5 +1,6 @@
 <?php
 namespace app\gladmin\controller\data;
+use app\common\model\AiBalanceBill;
 use app\common\model\User;
 use app\common\model\AiUser as  AiUserModel;
 use app\gladmin\traits\Curd;
@@ -105,7 +106,11 @@ class Aiuser extends AdminController
             $post = $this->request->post();
             $rule = [];
             $this->validate($post, $rule);
-            $post['balance'] = $post['newbalance'];
+            if(!empty($post['newbalance'])){
+                $post['balance'] = $post['newbalance'];
+                $userPidData= AiUserModel::where(["id" => $id])->field("id,username,points,pid,channelCode,commission,balance,create_time")->find();
+                AiBalanceBill::createBill($userPidData, $post['newbalance'], 0, 1);
+            }
             try {
                 $save = $row->save($post);
             } catch (\Exception $e) {
