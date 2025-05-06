@@ -1,7 +1,7 @@
 <?php
 namespace app\gladmin\controller\data;
 use app\common\model\User;
-use app\common\model\AiWithdrawalRecord as AiWithdrawalRecordModel;
+use app\common\model\AiUser as AiUserModel;
 use app\gladmin\traits\Curd;
 use app\common\controller\AdminController;
 use EasyAdmin\annotation\ControllerAnnotation;
@@ -11,7 +11,7 @@ use think\App;
 /**
  * Class Goods
  * @package app\gladmin\controller\mall
- * @ControllerAnnotation(title="ai代理提款管理")
+ * @ControllerAnnotation(title="ai代理数据管理")
  */
 class Aiagentdata extends AdminController
 {
@@ -23,7 +23,7 @@ class Aiagentdata extends AdminController
     public function __construct(App $app)
     {
         parent::__construct($app);
-        $this->model = new AiWithdrawalRecordModel();
+        $this->model = new AiUserModel();
     }
     /**
      * @NodeAnotation(title="列表")
@@ -35,20 +35,72 @@ class Aiagentdata extends AdminController
                 return $this->selectList();
             }
             list($page, $limit, $where) = $this->buildTableParames();
-            $count = $this->model->where($where)->count();
-            $list = $this->model->where($where)->page($page, $limit)->select();
-            $aiUser = new \app\common\model\AiUser();
-            $aiImgTemplate = new \app\common\model\AiImgTemplate();
-            $aiVideoTemplate = new \app\common\model\AiVideoTemplate();
-            for($i=0;$i<count($list);$i++){
-                $list[$i]['username'] = $aiUser->where(array('id'=>$list[$i]['uid']))->value('username') ?: '';
-                $list[$i]['template_name'] = ($list[$i]['ai_type'] === 0) ? $aiVideoTemplate->where(array('id'=>$list[$i]['template_id']))->value('name') ?: '' : (($list[$i]['ai_type'] === 1) ? $aiImgTemplate->where(array('id'=>$list[$i]['template_id']))->value('name') ?: '' : '');
+
+            if(empty($where)){
+                $where = [
+                    [
+                        "create_time",
+                        ">=",
+                        time()
+                    ],
+                    [
+                        "create_time",
+                        "<=",
+                        time()
+                    ]
+                ];
+            }
+
+
+            $filteredConditions = array_filter($where, function($condition) {
+                return $condition[0] !== "create_time";
+            });
+            $updatedConditions = array_map(function($condition) {
+                $condition[0] = 'u1.' . $condition[0]; // 添加 u1.
+                return $condition;
+            }, $filteredConditions);
+
+            $map1 = array_filter($where, function($condition) {
+                return $condition[0] === "create_time";
+            });
+            $updatedMap = [];
+            $date2 = '';
+            foreach ($map1 as $condition) {
+                if ($condition[0] === "create_time" && $condition[1] == ">=") {
+                    // 获取日期
+                    $date = date('Y-m-d', $condition[2]);
+                    $date2 = $date;
+                    $startTimestamp = strtotime($date . ' 00:00:00'); // 凌晨时间
+                    $endTimestamp = strtotime($date . ' 23:59:59'); // 23:59:59时间
+
+                    // 更新条件
+                    $updatedMap[] = ["create_time", ">=", $startTimestamp];
+                    $updatedMap[] = ["create_time", "<=", $endTimestamp];
+                }
+            }
+
+            $list = $this->model::alias('u1')->field('u1.id AS agent_id, GROUP_CONCAT(u2.id) AS ids,u1.username,u1.channelCode,u1.create_time')->leftJoin('ai_user u2', 'u2.pid = u1.id')->group('u1.id')->where(['u1.pid' => 0])->where($updatedConditions)->select()->toArray();
+            $newList = [];
+            foreach ($list as $item) {
+                if(!empty($item['ids'])){
+                    $newList[] = $item;
+                }
+            }
+            $aiOrder = new \app\common\model\AiOrder();
+            $aiProClickRecord = new \app\common\model\AiProductClickRecord();
+            for($i=0;$i<count($newList);$i++){
+                $newList[$i]['sub'] = count(explode(",", $newList[$i]['ids']));
+                $newList[$i]['recharge_user'] = $aiOrder->wherein('id',$newList[$i]['ids'])->where(['pay_status' => '1'])->where($updatedMap)->distinct(true)->count('id') ?: 0;
+                $newList[$i]['recharge_amount'] = $aiOrder->wherein('id',$newList[$i]['ids'])->where(['pay_status' => '1'])->where($updatedMap)->sum('price') ?: 0;
+                $newList[$i]['user_click_count'] = $aiProClickRecord->wherein('id',$newList[$i]['ids'])->where($updatedMap)->distinct(true)->count('uid') ?: 0;
+                $newList[$i]['click'] = $aiProClickRecord->wherein('id',$newList[$i]['ids'])->where($updatedMap)->count('id') ?: 0;
+                $newList[$i]['date'] = $date2;
             }
             $data = [
                 'code'  => 0,
                 'msg'   => '',
-                'count' => $count,
-                'data'  => $list,
+                'count' => count($newList),
+                'data'  => $newList,
             ];
             return json($data);
         }
