@@ -157,6 +157,7 @@ class AiUserdata extends AiBase
             "ai_img_face" => 0,//图片换脸
             "ai_auto_face" => 0,//自动换脸
             "ai_manual_face" => 0,//手动换脸
+            "vip_level"=>0,
         ];
         //获取当前网址
         $system = new SystemConfig();
@@ -181,6 +182,7 @@ class AiUserdata extends AiBase
                     "ai_img_face" => $vipData["ai_img_face"],//图片换脸
                     "ai_auto_face" => $vipData["ai_auto_face"],//自动换脸
                     "ai_manual_face" => $vipData["ai_manual_face"],//手动换脸
+                    "vip_level"=>isset($vipData["vip_level"])?$vipData["vip_level"]:0,
                 ];
             }
         }

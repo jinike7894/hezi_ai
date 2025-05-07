@@ -60,6 +60,7 @@ class AiPay extends AiBase
             "is_first" => 0,
             "create_time" => time(),
             "update_time" => time(),
+            "vip_level"=>0,
 
         ];
         //生成订单号
