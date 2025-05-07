@@ -648,20 +648,20 @@ class Ai extends AiBase
                 if ($userData["points"] < $aiTypePoints) {
                     //第一次跳转 任务中心
                     if($ActivityRecordCount>1){
-                        return json_encode(["code" => 302, "msg" => "金币不足请充值", "data" => ""]);
+                        return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
                     }
                     //如果完成过金币任务跳转充值
-                    return json_encode(["code" => 301, "msg" => "金币不足请先赚取金币", "data" => ""]);
+                    return json_encode(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
                 }
             }
         } else {
             if ($userData["points"] < $aiTypePoints) {
               //第一次跳转 任务中心
               if($ActivityRecordCount>1){
-                return json_encode(["code" => 302, "msg" => "金币不足请充值", "data" => ""]);
+                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             //如果完成过金币任务跳转充值
-            return json_encode(["code" => 301, "msg" => "金币不足请先赚取金币", "data" => ""]);
+            return json_encode(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
             }
         }
         $file = request()->file('image'); // 获取上传的图片
