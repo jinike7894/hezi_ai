@@ -8,7 +8,7 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
     var init = {
         table_elem: '#currentTable',
         table_render_id: 'currentTableRenderId',
-        index_url: 'data.aiagentwithdrawal/index',
+        index_url: 'data.aiagentdata/index',
     };
 
     var Controller = {
@@ -18,17 +18,16 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                 init: init,
                 toolbar: ['refresh'],
                 cols: [[
-                    {field: 'id', minWidth: 80, title: 'ID', search: false},
+                    {field: 'agent_id', minWidth: 80, title: '代理ID', search: false},
                     {field: 'channelCode', minWidth: 0, title: '渠道'},
-                    {field: 'username', minWidth: 0, title: '用户名', search: false},
-                    {field: 'uid', minWidth: 0, title: '用户ID',hide:true,delete:true},
-                    {field: 'ai_type', minWidth: 0, title: '产品', search: 'select', selectList: {0: '视频换脸', 1: '图片换脸', 2: '自动换脸', 3: '手动换脸'}},
-                    {field: 'is_use_vip', minWidth: 0, title: '消耗方式', search: 'select', selectList: {0: '金币', 1: '次数'}},
-                    {field: 'template_name', minWidth: 0, title: '模版', search: false},
-                    {field: 'img', minWidth: 0, title: '用户图片', search: false, templet: ea.table.image},
-                    {field: 'create_time', Width: 0, title: '提交时间',search: 'range',sort:true},
-                    {field: 'ai_generate_source', minWidth: 0, title: '预览', templet: ea.table.image},
-                    {field: 'status', minWidth: 0, title: '状态', search: 'select', selectList: {0: '排队中', 1: '<span style="color:red">成功</span>', 2: '失败'}},
+                    {field: 'username', minWidth: 0, title: '用户名'},
+                    {field: 'sub', minWidth: 0, title: '注册用户', search: false},
+                    {field: 'recharge_user', minWidth: 0, title: '充值用户', search: false},
+                    {field: 'recharge_amount', minWidth: 0, title: '充值金额', search: false},
+                    {field: 'user_click_count', minWidth: 0, title: '广告点击用户', search: false},
+                    {field: 'click', minWidth: 0, title: '广告点击数', search: false},
+                    {field: 'create_time', Width: 0, title: '时间',hide:'true',search: 'range',sort:true},
+                    {field: 'date', Width: 0, title: '时间',search: false},
                 ]],
             });
             ea.listen();
