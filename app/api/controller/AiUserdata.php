@@ -9,6 +9,8 @@ use app\common\model\AiOrder;
 use app\gladmin\model\SystemConfig;
 use app\common\model\AiUseRecord;
 use app\common\model\AiPromotion;
+use app\common\model\AiBalanceBill;
+use app\common\model\AiActivityRecord;
 use think\facade\Db;
 class AiUserdata extends AiBase
 {
@@ -144,7 +146,11 @@ class AiUserdata extends AiBase
     {
         $uid = $this->uid;
         $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update,plain_passwd")->find()->toArray();
-        $userData["is_vip"] = 0;
+         //今日收益
+        $userData["today_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid])->whereTime("create_time", "today")->sum("amount");
+        //今日金币
+        $userData["today_points"]  = AiActivityRecord::getActivityPoints($uid);
+         $userData["is_vip"] = 0;
         $userData["vip_params"] = [
             "name" => "未开通vip",
             "ai_video_face" => 0,//视频换脸
@@ -159,6 +165,7 @@ class AiUserdata extends AiBase
             ->value("value");
         //落地页域名
         $userData["land_host"] = $land_host;
+        //
         //判断vip类型
         if ($userData["vip_expiration"] > time()) {
             $userData["is_vip"] = 1;
