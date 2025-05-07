@@ -617,6 +617,26 @@ class Ai extends AiBase
     //上传图片
     public function uploadFaceImg()
     {
+        if (input("post.type") == "") {
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $params = [
+            "type" => input("post.type"),
+        ];
+        $uid = $this->uid;
+        $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
+        //判断是否有金币
+        if ($userData["vip_expiration"] < time()) {
+            if (AiOrder::availableTimes($uid, $params["type"]) <= 0) {
+                if ($userData["points"] < $this->aiAutoPoints) {
+                    return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+                }
+            }
+        }else{
+            if ($userData["points"] < $this->aiAutoPoints) {
+                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+            }
+        }
         $file = request()->file('image'); // 获取上传的图片
 
         if ($file) {
