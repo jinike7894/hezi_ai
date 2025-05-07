@@ -148,7 +148,7 @@ class AiPay extends AiBase
         $payParams["currency"] = "cny";
         // $payParams["attach"]=$orderParams["order_num"];
         $payParams["notifyurl"] = $imgHost . "/api/ai/payNotify";
-        $payParams["returnurl"] = $imgHost;
+        $payParams["returnurl"] = "";
         $payReturnData = postPayParams($paymentData["pay_gateway"], $payParams);
         $payReturnData = json_decode($payReturnData, true);
         
