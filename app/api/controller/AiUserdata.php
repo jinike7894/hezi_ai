@@ -195,7 +195,6 @@ class AiUserdata extends AiBase
         $systemData = $system
             ->whereIn('name', ["ai_onlinekf_whatsapp", "ai_onlinekf_telegram"])
             ->column("value", "name");
-
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["whatsapp" => $systemData["ai_onlinekf_whatsapp"], "telegram" => $systemData["ai_onlinekf_telegram"]]]);
     }
     //获取充值记录
