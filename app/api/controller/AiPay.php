@@ -134,6 +134,7 @@ class AiPay extends AiBase
         $imgHost = $system
             ->where('name', "pic_url")
             ->value("value");
+       
         //查询支付网关和支付参数
         $paymentData = AiPayment::getPayMentFind($payId);
         $payParams = [

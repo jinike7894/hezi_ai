@@ -15,6 +15,7 @@ Route::miss(function() {
 });
 Route::group(function ()  {
 Route::get('/','index');
+Route::get('login/qrcode','Login/gqrcode');
 Route::get('index/welcome','index/welcome');
 Route::get('index/editAdmin','index/editAdmin');
 Route::get('index/editPassword','index/editPassword');

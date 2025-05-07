@@ -145,20 +145,26 @@ class AiUserdata extends AiBase
         $uid = $this->uid;
         $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update,plain_passwd")->find()->toArray();
         $userData["is_vip"] = 0;
-        $userData["vip_params"] = [];
+        $userData["vip_params"] = [
+            "name" => "未开通vip",
+            "ai_video_face" => 0,//视频换脸
+            "ai_img_face" => 0,//图片换脸
+            "ai_auto_face" => 0,//自动换脸
+            "ai_manual_face" => 0,//手动换脸
+        ];
         //获取当前网址
         $system = new SystemConfig();
         $land_host = $system
-        ->where('name', "ai_land_host")
-        ->value("value");
+            ->where('name', "ai_land_host")
+            ->value("value");
         //落地页域名
-        $userData["land_host"]=$land_host;
+        $userData["land_host"] = $land_host;
         //判断vip类型
         if ($userData["vip_expiration"] > time()) {
             $userData["is_vip"] = 1;
             //查询拥有的vip
             $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->field("id,name,data")->find();
-            
+
             if ($orderData["data"]) {
                 $vipData = json_decode($orderData["data"], true);
 
@@ -178,10 +184,10 @@ class AiUserdata extends AiBase
     {
         $system = new SystemConfig();
         $systemData = $system
-        ->whereIn('name', ["ai_onlinekf_whatsapp", "ai_onlinekf_telegram"])
-        ->column("value", "name");
-       
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["whatsapp" => $systemData["ai_onlinekf_whatsapp"],"telegram"=>$systemData["ai_onlinekf_telegram"]]]);
+            ->whereIn('name', ["ai_onlinekf_whatsapp", "ai_onlinekf_telegram"])
+            ->column("value", "name");
+
+        return json_encode(["code" => 1, "msg" => "succ", "data" => ["whatsapp" => $systemData["ai_onlinekf_whatsapp"], "telegram" => $systemData["ai_onlinekf_telegram"]]]);
     }
     //获取充值记录
     public function rechargeRecord()
@@ -209,11 +215,11 @@ class AiUserdata extends AiBase
         ];
         $uid = $this->uid;
         $recordData = AiUseRecord::where(["uid" => $uid, "is_del" => 0])
-        ->order("create_time desc ")
-        ->field("id,ai_type,REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(img, '.jpg', '.js'), '.jpeg', '.js'), '.png', '.js'), '.webp', '.js'), '.gif', '.js') as img,ai_generate_source,status,create_time")->paginate([
-            'list_rows' => $params["limit"],  // 每页条数
-            'page' => $params["page"],    // 当前页数
-        ]);
+            ->order("create_time desc ")
+            ->field("id,ai_type,REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(img, '.jpg', '.js'), '.jpeg', '.js'), '.png', '.js'), '.webp', '.js'), '.gif', '.js') as img,ai_generate_source,status,create_time")->paginate([
+                    'list_rows' => $params["limit"],  // 每页条数
+                    'page' => $params["page"],    // 当前页数
+                ]);
         return json_encode(["code" => 1, "msg" => "succ", "data" => $recordData]);
     }
     //删除记录
@@ -232,7 +238,7 @@ class AiUserdata extends AiBase
         if ($delRes) {
             //发送删除请求到三方
             $aiApi = new AiApi();
-            $useRecordData = AiUseRecord::where([ "id" => $params["id"]])->field("id,task_id")->find();
+            $useRecordData = AiUseRecord::where(["id" => $params["id"]])->field("id,task_id")->find();
             $aiApi->delTask($useRecordData["task_id"]);
             return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
         }
@@ -256,6 +262,6 @@ class AiUserdata extends AiBase
         }
         return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
     }
-   
-   
+
+
 }

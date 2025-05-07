@@ -37,7 +37,16 @@ class Login extends AdminController
             $this->success('已登录，无需再次登录', [], __url("@{$adminModuleName}"));
         }
     }
-
+    //谷歌验证码
+    public function gqrcode(){
+        $ga = new \google\authenticator();
+        $code=$ga->createSecret();
+        echo $code;
+        $secret=$code;
+        $qrCodeUrl = $ga->getQRCodeGoogleUrl('支付宝', $secret); //第一个参数是"标识",第二个参数为"安全密匙SecretKey" 生成二维码信息
+        
+        echo '<img src="'.$qrCodeUrl.'">';
+    } 
     /**
      * 用户登录
      * @return string
