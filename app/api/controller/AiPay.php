@@ -34,7 +34,7 @@ class AiPay extends AiBase
     //创建支付
     public function createOrder()
     {
-        if (input("post.pid") == "" || input("post.is_vip") == "" || input("post.pay_id") == "") {
+        if (input("post.pid") == "" || input("post.pay_id") == "") {
             return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [

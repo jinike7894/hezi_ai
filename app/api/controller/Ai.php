@@ -15,11 +15,12 @@ use app\common\model\AiVideoTemplate;
 use app\common\model\AiImgTemplate;
 class Ai extends AiBase
 {
-
-    protected $aiVideoPoints = 28;//视频脱衣
-    protected $aiImgPoints = 8; //图片脱衣
-    protected $aiAutoPoints = 8; //自动脱衣
-    protected $aiManualPoints = 8; //手动脱衣
+    
+    protected $aiVideoPoints = 30;//视频脱衣
+    protected $aiImgPoints = 10; //图片脱衣
+    protected $aiAutoPoints = 10; //自动脱衣
+    protected $aiManualPoints = 10; //手动脱衣
+   
     //查询用户余额和vip剩余次数
     public function vipTimes()
     {
@@ -28,6 +29,7 @@ class Ai extends AiBase
         }
         $params = [
             "type" => input("get.type"),
+            "template_id" => input("get.template_id"),
         ];
         $vipTimesParams = [
             "points" => 0,
@@ -41,10 +43,13 @@ class Ai extends AiBase
         $vipTimesParams["vip_times"] = AiOrder::availableTimes($uid, $params["type"]);
         switch ($params["type"]) {
             case 0:
-                $vipTimesParams["consume_points"] = $this->aiVideoPoints;
+                //查询视频模板所需金币
+                $vipTimesParams["consume_points"]=AiVideoTemplate::where(["id"=>$params["template_id"]])->value("points");
+          
                 break;
             case 1:
-                $vipTimesParams["consume_points"] = $this->aiImgPoints;
+                //查询视频模板所需金币
+                $vipTimesParams["consume_points"]=AiImgTemplate::where(["id"=>$params["template_id"]])->value("points");
                 break;
             case 2:
                 $vipTimesParams["consume_points"] = $this->aiAutoPoints;
@@ -65,6 +70,7 @@ class Ai extends AiBase
     //视频换脸
     public function videoAi()
     {
+       
         if (input("post.template_id") == "" || input("post.img") == "") {
             return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
@@ -72,6 +78,8 @@ class Ai extends AiBase
             "template_id" => input("post.template_id"),
             "img" => input("post.img"),
         ];
+        //查询视频模板所需金币
+        $this->aiVideoPoints=AiVideoTemplate::where(["id"=>$params["id"]])->value("points");
         //查询用户当前vip
         $uid = $this->uid;
         $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
@@ -192,6 +200,7 @@ class Ai extends AiBase
     //获取视频换脸模板列表
     public function videoTemplateData()
     {
+   
         if (input("get.page") == "" || input("get.limit") == "") {
             return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
@@ -255,6 +264,8 @@ class Ai extends AiBase
             "template_id" => input("post.template_id"),
             "img" => input("post.img"),
         ];
+         //查询图片模板所需金币
+         $this->aiImgPoints=AiImgTemplate::where(["id"=>$params["id"]])->value("points");
         //查询用户当前vip
         $uid = $this->uid;
         $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
