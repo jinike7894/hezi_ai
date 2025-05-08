@@ -79,7 +79,7 @@ class Ai extends AiBase
             "img" => input("post.img"),
         ];
         //查询视频模板所需金币
-        $this->aiVideoPoints=AiVideoTemplate::where(["id"=>$params["id"]])->value("points");
+        $this->aiVideoPoints=AiVideoTemplate::where(["id"=>$params["template_id"]])->value("points");
         //查询用户当前vip
         $uid = $this->uid;
         $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
@@ -265,7 +265,7 @@ class Ai extends AiBase
             "img" => input("post.img"),
         ];
          //查询图片模板所需金币
-         $this->aiImgPoints=AiImgTemplate::where(["id"=>$params["id"]])->value("points");
+         $this->aiImgPoints=AiImgTemplate::where(["id"=>$params["template_id"]])->value("points");
         //查询用户当前vip
         $uid = $this->uid;
         $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
