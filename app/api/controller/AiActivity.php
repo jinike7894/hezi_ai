@@ -41,7 +41,7 @@ class AiActivity extends AiBase
             "limit" => input("get.limit"),
         ];
         $uid = $this->uid;
-        $activityRecordData = AiActivityRecord::where(["uid" => $uid])->field("id,name,points,create_time")->paginate([
+        $activityRecordData = AiActivityRecord::where(["uid" => $uid])->order("create_time desc")->field("id,name,points,create_time")->paginate([
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
