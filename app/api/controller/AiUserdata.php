@@ -138,7 +138,8 @@ class AiUserdata extends AiBase
         if (!$userData) {
             return json_encode(["code" => 0, "msg" => "账号或者密码错误", "data" => ""]);
         }
-        $token = generateToken($userData);
+        
+        $token = generateToken($userData->toArray());
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["token" => $token]]);
     }
     //获取用户信息
