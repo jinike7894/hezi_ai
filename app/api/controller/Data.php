@@ -56,6 +56,7 @@ class Data extends BaseController
 		$arr['arelease']  = input('post.release','', 'htmlspecialchars');
 		$arr['sdk_int']  = input('post.sdk_int','', 'htmlspecialchars');
 		$arr['ua']  = input('post.ua','', 'htmlspecialchars');
+		dd($arr);
 		$sign = input('post.sign');
 		$res = [];
 		if ($sign == sha1('rinimei'.sha1('rinimei'.$arr['channelCode'].$arr['subid'])))
