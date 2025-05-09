@@ -134,7 +134,7 @@ class AiUserdata extends AiBase
         ];
 
         //查询用户
-        $userData = AiUser::where(["username" => $params["username"], "passwd" => md5($params["passwd"])])->field("id,username,unique_code")->find()->toArray();
+        $userData = AiUser::where(["username" => $params["username"], "passwd" => md5($params["passwd"])])->field("id,username,unique_code")->find();
         if (!$userData) {
             return json_encode(["code" => 0, "msg" => "账号或者密码错误", "data" => ""]);
         }
