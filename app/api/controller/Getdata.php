@@ -3,7 +3,7 @@ namespace app\api\controller;
 
 use app\BaseController;
 use app\gladmin\model\SystemConfig;
-
+use app\common\model\Products;
 class Getdata extends BaseController
 {
     public $pic_url = null;
@@ -132,6 +132,12 @@ class Getdata extends BaseController
 	{
 	    $this->Ptype = new \app\common\model\Ptype();
 	    $id=input('param.id');
+		$token = input("accessToken");
+        if (!$token) {
+			return json_encode(["code" => 401, "msg" => "请登录", "data" => ""]);
+        }
+		$uid = decodeToken($token)->id ?? null;
+
 	    $channel = intval(input('param.channel'));
 	    if($channel == 0){$channel = 1;}
 	    $list = $this->Products->field('id,img,name,slogan,androidurl,iosurl,is_apk,pid,is_browser,downnum,pics,content')->where(array('status'=>1,'id'=>$id))->cache(600)->find();
@@ -154,30 +160,17 @@ class Getdata extends BaseController
             if(!empty($list['pics'])){
                      $newPic=[];
                     foreach($list['pics'] as $pk=>$pv){
-                       
                           $newPic[]= str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$pv);
-                          
                     }
                   $list['pics']= $newPic; 
             }
 	        $arr['data']['list'] = $list;
-            $hotList = $this->Products->field('id,img,name')->where(array('status'=>1,'is_banner'=>0,'ad_position'=>0))->order('downnum desc')->limit(5)->select();
-	        foreach ($hotList as &$item) {
-                $item['name'] = str_replace('{city}', str_replace('市', '', $region), $item['name']);
-                 //图片后缀转js
-                $item['img'] = str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$item['img']);
-            }
-            $arr['data']['hot'] = $hotList;
-            $relatedList = $this->Products->field('id,cid,img,name')->where(array('status'=>1,'is_banner'=>0,'pid'=>$list['pid'],'ad_position'=>0))->order('sort asc')->limit(5)->cache(600)->select();
-            foreach ($relatedList as &$item) {
-                $item['name'] = str_replace('{city}', str_replace('市', '', $region), $item['name']);
-                 //图片后缀转js
-                $item['img'] = str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$item['img']);
-            }
-            $arr['data']['related'] = $relatedList;
+			$arr['data']['related'] = Products::getAiActivityData(2, $uid, 1, 2);
+			
 	    }else{
 	        $arr['status'] = 404;
 	    }
+		
         return jiami(json_encode($arr));
 	}
 	public function gettypeproducts()
