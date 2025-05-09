@@ -42,20 +42,20 @@ class Data extends BaseController
         $client_ip = trim($ip_array[0]);
         
 	    $arr['ip'] = $client_ip;
-		$arr['channelCode']  = input('post.channel');
+		$arr['channelCode']  = input('post.channel','', 'htmlspecialchars');
 		$arr['subid'] = intval(input('post.linkId'));
 		if (strlen((string)$arr['subid']) > 9) {
             $arr['subid']=0;
         }
 		$arr['uuid']  = md5($arr['ip']);
-		$arr['width']  = input('post.width');
-		$arr['height']  = input('post.height');
-		$arr['brand']  = input('post.brand');
-		$arr['model']  = input('post.model');
-		$arr['manufacturer']  = input('post.manufacturer');
-		$arr['arelease']  = input('post.release');
-		$arr['sdk_int']  = input('post.sdk_int');
-		$arr['ua']  = input('post.ua');
+		$arr['width']  = input('post.width','', 'htmlspecialchars');
+		$arr['height']  = input('post.height','', 'htmlspecialchars');
+		$arr['brand']  = input('post.brand','', 'htmlspecialchars');
+		$arr['model']  = input('post.model','', 'htmlspecialchars');
+		$arr['manufacturer']  = input('post.manufacturer','', 'htmlspecialchars');
+		$arr['arelease']  = input('post.release','', 'htmlspecialchars');
+		$arr['sdk_int']  = input('post.sdk_int','', 'htmlspecialchars');
+		$arr['ua']  = input('post.ua','', 'htmlspecialchars');
 		$sign = input('post.sign');
 		$res = [];
 		if ($sign == sha1('rinimei'.sha1('rinimei'.$arr['channelCode'].$arr['subid'])))
