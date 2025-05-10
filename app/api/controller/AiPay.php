@@ -203,7 +203,8 @@ class AiPay extends AiBase
         $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
         if (strtotime($userData["create_time"]) >= (time() - 12 * 3600) && $orderData == 0) {
             $is_first = 1;
-            $time =strtotime($userData["create_time"])-(time() - 12 * 3600);
+            $time =strtotime($userData["create_time"])-(time() - 120);
+            // $time =strtotime($userData["create_time"])-(time() - 12 * 3600);
         }
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["is_first" => $is_first,"time"=>$time]]);
     }
