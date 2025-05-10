@@ -146,7 +146,11 @@ class AiUserdata extends AiBase
     public function userInfo()
     {
         $uid = $this->uid;
-        $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update,plain_passwd")->find()->toArray();
+        $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update,plain_passwd")->find();
+        if(!$userData){
+            return json_encode(["code" => 0, "msg" => "用户信息错误", "data" => []]);
+        }
+        $userData= $userData->toArray();
          //今日收益
         $userData["today_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid])->whereTime("create_time", "today")->sum("amount");
         //今日金币

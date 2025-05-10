@@ -201,12 +201,10 @@ class AiPay extends AiBase
         $time = 0;
         $orderData = AiOrder::where(["uid" => $uid, "pay_status" => 1])->count();
         $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
-        if (strtotime($userData["create_time"]) >= (time() - 120) && $orderData == 0) {
+        if (strtotime($userData["create_time"]) >=  (time() - 120) && $orderData == 0) {
             $is_first = 1;
             $time =strtotime($userData["create_time"])-(time() - 120);
         }
-
-
         // if (strtotime($userData["create_time"]) >= (time() - 12 * 3600) && $orderData == 0) {
         //     $is_first = 1;
            
