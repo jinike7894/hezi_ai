@@ -27,7 +27,13 @@ class AiActivity extends AiBase
         //获取今日金币
         $points = AiActivityRecord::getActivityPoints($uid);
         //获取产品列表
-        $activityProductData = Products::getAiActivityData($params["type"], $uid, $params["page"], $params["limit"]);
+        $where=[];
+        if($params["type"]==1){
+            $where["product.ai_activity_pro_type"]=0;
+        }
+        $activityProductData = Products::getAiActivityData($params["type"], $uid, $params["page"], $params["limit"], $where);
+       
+        
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["points" => $points, "list" => $activityProductData]]);
     }
     //获取任务记录

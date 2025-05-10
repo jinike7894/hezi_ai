@@ -121,14 +121,15 @@ class Products extends \think\Model
         return $total;
 	}
 	//获取已加入ai任务中心的产品 is_over联合activity表查询
-	public static function getAiActivityData($type,$uid,$page,$limit){
+	public static function getAiActivityData($type,$uid,$page,$limit,$where=[]){
 		$productToAiActivityData=self::alias('product')
 		->where(['product.ai_activity_switch'=>1,"product.status"=>1])
+		->where($where)
 		->whereNull('product.delete_time')
 		->whereIn('product.ai_activity_show_type', [$type, 3])
 		->order("product.ai_activity_sort asc")
 		->leftJoin('ai_activity_record activity', 'activity.pid = product.id  and activity.uid='.$uid)
-		->field('product.id,product.name,product.is_apk,product.is_browser,product.img, product.androidurl,product.ai_activity_free_points,product.ai_activity_pro_type,IF(activity.id IS NOT NULL, 1, 0) as is_finish')
+		->field('product.id,product.name,product.is_apk,product.is_browser,product.img, product.androidurl,product.ai_activity_show_type,product.ai_activity_free_points,product.ai_activity_pro_type,IF(activity.id IS NOT NULL, 1, 0) as is_finish')
 		->paginate([
 			'list_rows' => $limit,
 			'page' => $page
