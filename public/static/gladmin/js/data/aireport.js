@@ -30,7 +30,7 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                     {field: 'total_settlement_amount', minWidth: 0, title: '结算金额', search: false},
                     {field: 'total_agent_amount', minWidth: 0, title: '代理收益', search: false},
                     {field: 'platform_profit', minWidth: 0, title: '平台收益', search: false},
-                    {field: 'total_coin_consumed', minWidth: 0, title: '金币消耗', search: false},
+                    {field: 'total_coin_consumed', minWidth: 0, title: '点数消耗', search: false},
                     {field: 'total_rate_cost', minWidth: 0, title: '消耗支出', search: false},
                 ]],
             });

@@ -3,6 +3,7 @@ namespace app\gladmin\controller\data;
 use app\common\model\AiBalanceBill as AiBalanceBillModel;
 use app\common\model\AiOrder as AiOrderModel;
 use app\common\model\AiPointsBill as AiPointsBillModel;
+use app\common\model\AiUseRecord as AiUseRecordModel;
 use app\common\model\User;
 use app\common\model\AiUser as  AiUserModel;
 use app\gladmin\traits\Curd;
@@ -49,6 +50,9 @@ class Aireport extends AdminController
 
 
 
+          $aiVideoUseCount =  AiUseRecordModel::field('DATE(FROM_UNIXTIME(create_time)) AS date, COUNT(id) AS video_usage_count')->where([['ai_type','=',0]])->group('DATE(FROM_UNIXTIME(create_time))')->order('date desc')->select()->toArray();
+
+            $aiOtherUseCount =  AiUseRecordModel::field('DATE(FROM_UNIXTIME(create_time)) AS date, COUNT(id) AS other_usage_count')->where([['ai_type','<>',0]])->group('DATE(FROM_UNIXTIME(create_time))')->order('date desc')->select()->toArray();
 
             $orderSettlement = AiOrderModel::alias('o')->field('DATE(FROM_UNIXTIME(o.create_time)) AS date, SUM(o.price - (o.price * (p.rate / 100))) AS total_settlement_amount')->leftJoin('ai_payment p', 'o.pay_type_id = p.id')->group('DATE(FROM_UNIXTIME(o.create_time))')->order('date desc')->select()->toArray();
 
@@ -56,23 +60,12 @@ class Aireport extends AdminController
     SUM(amount) AS total_agent_amount')->where(['bill_type' => '0'])->group('DATE(FROM_UNIXTIME(create_time))')->order('date desc')->select()->toArray();
 
 
-            $costRate = 8;
-            $costList = array_map(function($item) use ($costRate) {
-                return [
-                    "date" => $item["date"],
-                    "total_rate_cost" => $item["total_coin_consumed"] / $costRate
-                ];
-            }, $aipointslist);
-
-
-
-
-            $all_data = [$aiorderlist, $aiuserlist, $aipointslist,$orderSettlement,$agentIncome,$costList];
+            $all_data = [$aiorderlist, $aiuserlist, $aipointslist,$orderSettlement,$agentIncome,$aiVideoUseCount,$aiOtherUseCount];
             $merged_data = [];
             foreach (array_merge(...$all_data) as $data) {
                 $date = $data['date'];
                 $merged_data[$date] = array_merge(
-                    $merged_data[$date] ?? ['date' => $date, 'registered_users' => 0, 'first_charge_count' => 0, 'repeat_charge_count' => 0, 'total_charge_count' => 0, 'first_charge_amount' => 0, 'repeat_charge_amount' => 0, 'total_charge_amount' => 0, 'total_coin_consumed' => 0, 'total_settlement_amount' => 0, 'total_agent_amount' => 0, 'total_rate_cost' => 0],
+                    $merged_data[$date] ?? ['date' => $date, 'registered_users' => 0, 'first_charge_count' => 0, 'repeat_charge_count' => 0, 'total_charge_count' => 0, 'first_charge_amount' => 0, 'repeat_charge_amount' => 0, 'total_charge_amount' => 0, 'video_usage_count' => 0,'other_usage_count' => 0, 'total_settlement_amount' => 0, 'total_agent_amount' => 0],
                     $data
                 );
             }
@@ -80,8 +73,11 @@ class Aireport extends AdminController
             usort($merged_data, function ($a, $b) {
                 return strtotime($b['date']) - strtotime($a['date']);
             });
+            $costRate = sysconfig('site', 'ai_points_to_rmb_rate');
             // 计算平台收益并添加到数组
             foreach ($merged_data as &$item) {
+                $item['total_coin_consumed'] = $item['video_usage_count'] * 30 + $item['other_usage_count'] * 10;
+                $item["total_rate_cost"] = $item['total_coin_consumed'] / $costRate;
                 $item["platform_profit"] = (float)$item["total_settlement_amount"] -
                     (float)$item["total_rate_cost"] -
                     (float)$item["total_agent_amount"];
