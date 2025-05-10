@@ -128,7 +128,7 @@ class Products extends \think\Model
 		->whereIn('product.ai_activity_show_type', [$type, 3])
 		->order("product.ai_activity_sort asc")
 		->leftJoin('ai_activity_record activity', 'activity.pid = product.id  and activity.uid='.$uid)
-		->field('product.id,product.name,product.img, product.androidurl,product.ai_activity_free_points,product.ai_activity_pro_type,IF(activity.id IS NOT NULL, 1, 0) as is_finish')
+		->field('product.id,product.name,product.is_apk,product.is_browser,product.img, product.androidurl,product.ai_activity_free_points,product.ai_activity_pro_type,IF(activity.id IS NOT NULL, 1, 0) as is_finish')
 		->paginate([
 			'list_rows' => $limit,
 			'page' => $page
