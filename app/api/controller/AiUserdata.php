@@ -176,7 +176,6 @@ class AiUserdata extends AiBase
 
             if ($orderData["data"]) {
                 $vipData = json_decode($orderData["data"], true);
-
                 $userData["vip_params"] = [
                     "name" => $orderData["name"],
                     "ai_video_face" => ($vipData["ai_video_face"]- AiOrder::availableTimes($uid, 0)),//视频换脸
