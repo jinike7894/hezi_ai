@@ -166,42 +166,38 @@ class Index extends AdminController
 
 
         /**
-         * 金币消耗
+         * 点数消耗
          */
-        $today_use_points = AiUseRecordModel::where($today_map)->sum('points');
         $today_use_count = AiUseRecordModel::field('ai_type, COUNT(id) AS usage_count')->where($today_map)->group('ai_type')->select()->toArray();
-        $coefficients = [28, 8, 8, 8];
+        $coefficients = [30, 10, 10, 10];
         $todayTotal_sum = array_reduce($today_use_count, function($sum, $item) use ($coefficients) {
             return $sum + $item["usage_count"] * $coefficients[$item["ai_type"]];
         }, 0);
-        $today_goldUsed = $today_use_points + $todayTotal_sum;
+        $today_goldUsed = $todayTotal_sum;
 
 
-        $yesterday_use_points = AiUseRecordModel::where($yesterday_map)->sum('points');
         $yesterday_use_count = AiUseRecordModel::field('ai_type, COUNT(id) AS usage_count')->where($yesterday_map)->group('ai_type')->select()->toArray();
-        $coefficients = [28, 8, 8, 8];
+        $coefficients = [30, 10, 10, 10];
         $yesterdayTotal_sum = array_reduce($yesterday_use_count, function($sum, $item) use ($coefficients) {
             return $sum + $item["usage_count"] * $coefficients[$item["ai_type"]];
         }, 0);
-        $yesterday_goldUsed = $yesterday_use_points + $yesterdayTotal_sum;
+        $yesterday_goldUsed = $yesterdayTotal_sum;
 
 
-        $month_use_points = AiUseRecordModel::where($month_map)->sum('points');
         $month_use_count = AiUseRecordModel::field('ai_type, COUNT(id) AS usage_count')->where($month_map)->group('ai_type')->select()->toArray();
-        $coefficients = [28, 8, 8, 8];
+        $coefficients = [30, 10, 10, 10];
         $monthTotal_sum = array_reduce($month_use_count, function($sum, $item) use ($coefficients) {
             return $sum + $item["usage_count"] * $coefficients[$item["ai_type"]];
         }, 0);
-        $month_goldUsed = $month_use_points + $monthTotal_sum;
+        $month_goldUsed = $monthTotal_sum;
 
 
-        $last_month_use_points = AiUseRecordModel::where($last_month_map)->sum('points');
         $last_month_use_count = AiUseRecordModel::field('ai_type, COUNT(id) AS usage_count')->where($last_month_map)->group('ai_type')->select()->toArray();
-        $coefficients = [28, 8, 8, 8];
+        $coefficients = [30, 10, 10, 10];
         $last_monthTotal_sum = array_reduce($last_month_use_count, function($sum, $item) use ($coefficients) {
             return $sum + $item["usage_count"] * $coefficients[$item["ai_type"]];
         }, 0);
-        $last_month_goldUsed = $last_month_use_points + $last_monthTotal_sum;
+        $last_month_goldUsed = $last_monthTotal_sum;
         /**
          * 金币消耗END
          */
@@ -209,7 +205,7 @@ class Index extends AdminController
         /**
          * 消耗支出
          */
-        $costRate = 8;
+        $costRate = sysconfig('site', 'ai_points_to_rmb_rate');
         $today_cost = $today_goldUsed / $costRate;
         $yesterday_cost = $yesterday_goldUsed / $costRate;
         $month_cost = $month_goldUsed / $costRate;
