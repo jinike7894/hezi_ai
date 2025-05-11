@@ -55,6 +55,7 @@ class AiOrder extends \think\Model
         if ($orderData["pay_status"] == 1) {
             return true;
         }
+        $orderCount = AiOrder::where(["uid" => $orderData["uid"], "pay_status" => 1])->count();
         $userData = AiUser::where(["id" => $orderData["uid"]])->field("id,username,points,pid,channelCode,commission,balance,create_time")->find();
         $productData = json_decode($orderData["data"], true);
         if ($orderData) {
@@ -70,7 +71,7 @@ class AiOrder extends \think\Model
                         $totalDay = $productData["day"];
                     } else {
                         //判断是否满足新订单
-                        if (strtotime($userData["create_time"]) >=  (time() - 12 * 3600)) {
+                        if (strtotime($userData["create_time"]) >=  (time() - SystemConfig::getUserNewFlagTime())&&$orderCount==0) {
                             $totalDay = $productData["free_day"] + $productData["day"];
                         }
                     }
@@ -78,7 +79,7 @@ class AiOrder extends \think\Model
                     //修改用户vip等级
                     if (isset($productData["vip_level"])) {
                         AiUser::where(["id" => $orderData["uid"]])->update([
-                            "vip_level"=>$productData["vip_level"],
+                            "vip_level"=>"v".$productData["vip_level"],
                         ]);
                     }
                     $userExpirationTime = $totalDay * 86400;

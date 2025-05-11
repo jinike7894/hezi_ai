@@ -43,6 +43,7 @@ class AiPay extends AiBase
             "pay_id" => input("post.pay_id"),
         ];
         $uid = $this->uid;
+        $paymentData = AiPayment::where(["is_del" => 0,"id"=>$params["pay_id"]])->find();
         //初始化订单数据
         $orderParams = [
             "name" => "",
@@ -61,7 +62,7 @@ class AiPay extends AiBase
             "create_time" => time(),
             "update_time" => time(),
             "vip_level"=>0,
-
+            "current_rate"=>$paymentData["rate"],
         ];
         //生成订单号
         $orderParams["order_num"] = orderUniqueCode();
@@ -70,7 +71,7 @@ class AiPay extends AiBase
 
         $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
 
-        if (strtotime($userData["create_time"]) >= (time() - 12 * 3600) && $orderData == 0) {
+        if (strtotime($userData["create_time"]) >= (time() -SystemConfig::getUserNewFlagTime()) && $orderData == 0) {
             $orderParams["is_first"] = 1;
         }
 
@@ -201,9 +202,9 @@ class AiPay extends AiBase
         $time = 0;
         $orderData = AiOrder::where(["uid" => $uid, "pay_status" => 1])->count();
         $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
-        if (strtotime($userData["create_time"]) >=  (time() - 120) && $orderData == 0) {
+        if (strtotime($userData["create_time"]) >=  (time() - SystemConfig::getUserNewFlagTime()) && $orderData == 0) {
             $is_first = 1;
-            $time =strtotime($userData["create_time"])-(time() - 120);
+            $time =strtotime($userData["create_time"])-(time() - SystemConfig::getUserNewFlagTime());
         }
         // if (strtotime($userData["create_time"]) >= (time() - 12 * 3600) && $orderData == 0) {
         //     $is_first = 1;
