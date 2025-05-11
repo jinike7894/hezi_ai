@@ -38,6 +38,8 @@ class AiUserdata extends AiBase
 
         //新增用户
         $uniqueUserName = generateUniqueUserName();
+        $ip_array = explode(",", GetIP());
+        $client_ip = trim($ip_array[0]);
         $userAddData = [
             "username" => $uniqueUserName,
             "passwd" => md5($uniqueUserName),
@@ -50,10 +52,10 @@ class AiUserdata extends AiBase
             "is_update" => 0,
             "model" => $params["model"],
             "channelCode" => $params["channelCode"],
+            "ip"=>$client_ip,
         ];
         //判断携带推广参数
         //判断pid 是否存在
-
         if ($params["pid"] != "") {
             $userAddData["pid"] = $params["pid"];
             if (AiUser::where(['id' => $params["pid"]])->count() > 0) {

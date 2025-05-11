@@ -71,9 +71,16 @@ class AiOrder extends \think\Model
                     } else {
                         $totalDay = $productData["free_day"] + $productData["day"];
                     }
+                    //修改用户vip等级
+                    if (isset($orderData["vip_level"])) {
+                        AiUser::where(["id" => $orderData["uid"]])->update([
+                            "vip_level"=>$orderData["vip_level"],
+                        ]);
+                    }
                     $userExpirationTime = $totalDay * 86400;
                     //更改用户vip时间
                     AiUser::where(["id" => $orderData["uid"]])->inc('vip_expiration', $userExpirationTime)->update();
+
                 } else {
                     //点数订单
                     //获取赠送点数+产品点数
