@@ -194,7 +194,7 @@ class AiPay extends AiBase
         echo "SUCCESS";
     }
     //获取是否是新用户
-    public function getUserNew()
+    public function getUserNewFlag()
     {
         $uid = $this->uid;
         $is_first = 0;
