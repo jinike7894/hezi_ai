@@ -74,7 +74,8 @@ class Aiorder extends AdminController
             try {
                 $save = AiOrderModel::notify($row['order_num']);
             } catch (\Exception $e) {
-                $this->error('保存失败');
+                $this->error($e->getMessage());
+                // $this->error('保存失败');
             }
             $save ? $this->success('保存成功') : $this->error('保存失败');
         }
