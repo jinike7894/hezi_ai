@@ -69,7 +69,10 @@ class AiOrder extends \think\Model
                     if ($orderData["is_first"] == 0) {
                         $totalDay = $productData["day"];
                     } else {
-                        $totalDay = $productData["free_day"] + $productData["day"];
+                        //判断是否满足新订单
+                        if (strtotime($userData["create_time"]) >=  (time() - 12 * 3600)) {
+                            $totalDay = $productData["free_day"] + $productData["day"];
+                        }
                     }
                     //修改用户vip等级
                     if (isset($orderData["vip_level"])) {
