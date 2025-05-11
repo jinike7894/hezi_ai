@@ -11,6 +11,7 @@ use app\common\controller\AdminController;
 use EasyAdmin\annotation\ControllerAnnotation;
 use EasyAdmin\annotation\NodeAnotation;
 use think\App;
+use think\db\Where;
 
 /**
  * Class Goods
@@ -42,7 +43,7 @@ class Aireport extends AdminController
     COUNT(DISTINCT uid) AS total_charge_count,
     SUM(CASE WHEN is_first = 1 THEN price ELSE 0 END) AS first_charge_amount,
     SUM(CASE WHEN is_first = 0 THEN price ELSE 0 END) AS repeat_charge_amount,
-    SUM(price) AS total_charge_amount')->group('DATE(FROM_UNIXTIME(create_time))')->order('date desc')->select()->toArray();
+    SUM(price) AS total_charge_amount')->group('DATE(FROM_UNIXTIME(create_time))')->where(['pay_status' => 1])->order('date desc')->select()->toArray();
             $aiuserlist = AiUserModel::field('DATE(FROM_UNIXTIME(create_time)) AS date,
     COUNT(id) AS registered_users')->group('DATE(FROM_UNIXTIME(create_time))')->order('date desc')->select()->toArray();
             $aipointslist = AiPointsBillModel::field('DATE(FROM_UNIXTIME(create_time)) AS date,

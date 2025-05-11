@@ -36,7 +36,7 @@ class Aiorder extends AdminController
             }
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
-            $list = $this->model->where($where)->page($page, $limit)->select();
+            $list = $this->model->where($where)->page($page, $limit)->order('id desc')->select();
             $aiUser = new \app\common\model\AiUser();
             $aiPayment = new \app\common\model\AiPayment();
             for($i=0;$i<count($list);$i++){
