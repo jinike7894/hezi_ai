@@ -26,10 +26,10 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                     {field: 'balance', minWidth: 0, title: '余额'},
                     {field: 'have_coin_wallet', minWidth: 0, title: '绑定收款卡', search: false,},
                     {field: 'points', minWidth: 0, title: '剩余金币', search: false,},
-                    {field: 'points', minWidth: 0, title: 'Vip等级-待定', search: false,},
+                    {field: 'vip_level', minWidth: 0, title: 'Vip等级-待定', search: false,},
                     {field: 'remaining_days', Width: 80, title: '剩余天数', search: false,sort:true},
                     {field: 'create_time', minWidth: 0, title: '注册时间',search: 'range',},
-                    {field: 'create_time', minWidth: 0, title: '注册ip-待定', search: false,},
+                    {field: 'ip', minWidth: 0, title: '注册ip-待定', search: false,},
                     {
                         minWidth: 120,
                         title: '操作',
