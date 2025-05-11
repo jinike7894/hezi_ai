@@ -74,6 +74,7 @@ class AiOrder extends \think\Model
                             $totalDay = $productData["free_day"] + $productData["day"];
                         }
                     }
+                    
                     //修改用户vip等级
                     if (isset($orderData["vip_level"])) {
                         AiUser::where(["id" => $orderData["uid"]])->update([
