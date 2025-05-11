@@ -90,10 +90,14 @@ class Aiagentdata extends AdminController
             $aiProClickRecord = new \app\common\model\AiProductClickRecord();
             for($i=0;$i<count($newList);$i++){
                 $newList[$i]['sub'] = count(explode(",", $newList[$i]['ids']));
-                $newList[$i]['recharge_user'] = $aiOrder->wherein('id',$newList[$i]['ids'])->where(['pay_status' => '1'])->where($updatedMap)->distinct(true)->count('id') ?: 0;
-                $newList[$i]['recharge_amount'] = $aiOrder->wherein('id',$newList[$i]['ids'])->where(['pay_status' => '1'])->where($updatedMap)->sum('price') ?: 0;
-                $newList[$i]['user_click_count'] = $aiProClickRecord->wherein('id',$newList[$i]['ids'])->where($updatedMap)->distinct(true)->count('uid') ?: 0;
-                $newList[$i]['click'] = $aiProClickRecord->wherein('id',$newList[$i]['ids'])->where($updatedMap)->count('id') ?: 0;
+
+                $aiOrderRecharge = $aiOrder->field('COUNT(DISTINCT uid) AS recharge_user, SUM(price) AS recharge_amount')->wherein('uid',$newList[$i]['ids'])->where(['pay_status' => '1'])->where($updatedMap)->select()->toArray();
+                $newList[$i]['recharge_user'] = $aiOrderRecharge[0]['recharge_user'] ?? 0;
+                $newList[$i]['recharge_amount'] = $aiOrderRecharge[0]['recharge_amount'] ?? 0;
+
+                $aiProClick = $aiProClickRecord->field('COUNT(DISTINCT uid) AS user_click_count')->wherein('uid',$newList[$i]['ids'])->where($updatedMap)->select()->toArray();
+                $newList[$i]['user_click_count'] = $aiProClick[0]['user_click_count'] ?? 0;
+                $newList[$i]['click'] = $aiProClickRecord->wherein('uid',$newList[$i]['ids'])->where($updatedMap)->count('id') ?: 0;
                 $newList[$i]['date'] = $date2;
             }
             $data = [

@@ -36,7 +36,7 @@ class Aiuserecord extends AdminController
             }
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
-            $list = $this->model->where($where)->page($page, $limit)->select();
+            $list = $this->model->where($where)->page($page, $limit)->order('id desc')->select();
             $aiUser = new \app\common\model\AiUser();
             $aiImgTemplate = new \app\common\model\AiImgTemplate();
             $aiVideoTemplate = new \app\common\model\AiVideoTemplate();

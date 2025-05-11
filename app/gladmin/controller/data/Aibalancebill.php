@@ -36,7 +36,7 @@ class Aibalancebill extends AdminController
             }
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
-            $list = $this->model->where($where)->page($page, $limit)->select();
+            $list = $this->model->where($where)->order('id desc')->page($page, $limit)->select();
             $data = [
                 'code'  => 0,
                 'msg'   => '',

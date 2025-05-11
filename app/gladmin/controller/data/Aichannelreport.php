@@ -60,7 +60,7 @@ class Aichannelreport extends AdminController
             }
             $clicklist = AiProductClickRecord::field('count(id) as clicks,channelCode')->where($map1)->group('channelCode')->select()->toArray();
             $registerlist = AiUserModel::field('count(id) as register_user,channelCode')->where($map1)->group('channelCode')->select()->toArray();
-            $chargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount,channelCode')->where($map1)->group('channelCode')->select()->toArray();
+            $chargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount,channelCode')->where($map1)->where(['pay_status' => 1])->group('channelCode')->select()->toArray();
             $clickcountlist = AiProductClickRecord::field('COUNT(DISTINCT uid) as user_click_count,channelCode')->where($map1)->group('channelCode')->select()->toArray();
             $all_data = [$clicklist, $registerlist, $chargecountlist,$clickcountlist];
             $merged_data = [];

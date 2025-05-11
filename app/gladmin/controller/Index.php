@@ -108,22 +108,22 @@ class Index extends AdminController
         /**
          * 充值人数、充值金额
          */
-        $todayChargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount')->where($today_map)->select()->toArray();
+        $todayChargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount')->where($today_map)->where(['pay_status' => '1'])->select()->toArray();
         $todayChargeUserCount = $todayChargecountlist[0]['user_charge_count'] ?? 0;
         $todayChargeAmount = $todayChargecountlist[0]['total_charge_amount'] ?? 0;
 
 
-        $yesterdayChargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount')->where($yesterday_map)->select()->toArray();
+        $yesterdayChargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount')->where($yesterday_map)->where(['pay_status' => '1'])->select()->toArray();
         $yesterdayChargeUserCount = $yesterdayChargecountlist[0]['user_charge_count'] ?? 0;
         $yesterdayChargeAmount = $yesterdayChargecountlist[0]['total_charge_amount'] ?? 0;
 
 
-        $monthChargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount')->where($month_map)->select()->toArray();
+        $monthChargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount')->where($month_map)->where(['pay_status' => '1'])->select()->toArray();
         $monthChargeUserCount = $monthChargecountlist[0]['user_charge_count'] ?? 0;
         $monthChargeAmount = $monthChargecountlist[0]['total_charge_amount'] ?? 0;
 
 
-        $last_monthChargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount')->where($last_month_map)->select()->toArray();
+        $last_monthChargecountlist = AiOrderModel::field('COUNT(DISTINCT uid) AS user_charge_count, SUM(price) AS total_charge_amount')->where($last_month_map)->where(['pay_status' => '1'])->select()->toArray();
         $last_monthChargeUserCount = $last_monthChargecountlist['user_charge_count'] ?? 0;
         $last_monthChargeAmount = $last_monthChargecountlist['total_charge_amount'] ?? 0;
 
