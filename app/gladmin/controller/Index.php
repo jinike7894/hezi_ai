@@ -77,23 +77,6 @@ class Index extends AdminController
         $last_month_map[] = ['create_time','>=',strtotime('first day of last month midnight')];
         $last_month_map[] = ['create_time','<=',strtotime('last day of last month 23:59:59')];
 
-
-
-        $today__settlement_map[] = ['o.create_time','>=',strtotime(date('Y-m-d',time()).' 00:00:00')];
-        $today__settlement_map[] = ['o.create_time','<=',strtotime(date('Y-m-d',time()).' 23:59:59')];
-
-        $yesterday__settlement_map[] = ['o.create_time','>=',strtotime('yesterday midnight')];
-        $yesterday__settlement_map[] = ['o.create_time','<=',strtotime('yesterday 23:59:59')];
-
-        $month__settlement_map[] = ['o.create_time','>=',strtotime('first day of this month midnight')];
-        $month__settlement_map[] = ['o.create_time','<=',strtotime('last day of this month 23:59:59')];
-
-        $last_month_settlement_map[] = ['o.create_time','>=',strtotime('first day of last month midnight')];
-        $last_month_settlement_map[] = ['o.create_time','<=',strtotime('last day of last month 23:59:59')];
-
-
-
-
         /**
          * 注册人数
          */
@@ -134,19 +117,19 @@ class Index extends AdminController
         /**
          * 结算金额
          */
-        $todayOrderSettlement = AiOrderModel::alias('o')->field('SUM(o.price - (o.price * (p.rate / 100))) AS total_settlement_amount')->leftJoin('ai_payment p', 'o.pay_type_id = p.id')->where($today__settlement_map)->where(['pay_status' => 2])->select()->toArray();
+        $todayOrderSettlement = AiOrderModel::field('SUM(price - (price * (current_rate / 100))) AS total_settlement_amount')->where($today_map)->where(['pay_status' => 1])->select()->toArray();
         $today_total_settlement_amount = $todayOrderSettlement[0]['total_settlement_amount'] ?? 0;
 
 
-        $yesterdayOrderSettlement = AiOrderModel::alias('o')->field('SUM(o.price - (o.price * (p.rate / 100))) AS total_settlement_amount')->leftJoin('ai_payment p', 'o.pay_type_id = p.id')->where($yesterday__settlement_map)->where(['pay_status' => 2])->select()->toArray();
+        $yesterdayOrderSettlement = AiOrderModel::field('SUM(price - (price * (current_rate / 100))) AS total_settlement_amount')->where($yesterday_map)->where(['pay_status' => 1])->select()->toArray();
         $yesterday_total_settlement_amount = $yesterdayOrderSettlement[0]['total_settlement_amount'] ?? 0;
 
 
-        $monthOrderSettlement = AiOrderModel::alias('o')->field('SUM(o.price - (o.price * (p.rate / 100))) AS total_settlement_amount')->leftJoin('ai_payment p', 'o.pay_type_id = p.id')->where($month__settlement_map)->where(['pay_status' => 2])->select()->toArray();
+        $monthOrderSettlement = AiOrderModel::field('SUM(price - (price * (current_rate / 100))) AS total_settlement_amount')->where($month_map)->where(['pay_status' => 1])->select()->toArray();
         $month_total_settlement_amount = $monthOrderSettlement[0]['total_settlement_amount'] ?? 0;
 
 
-        $last_monthOrderSettlement = AiOrderModel::alias('o')->field('SUM(o.price - (o.price * (p.rate / 100))) AS total_settlement_amount')->leftJoin('ai_payment p', 'o.pay_type_id = p.id')->where($last_month_settlement_map)->where(['pay_status' => 2])->select()->toArray();
+        $last_monthOrderSettlement = AiOrderModel::field('SUM(price - (price * (current_rate / 100))) AS total_settlement_amount')->where($last_month_map)->where(['pay_status' => 1])->select()->toArray();
         $last_month_total_settlement_amount = $last_monthOrderSettlement[0]['total_settlement_amount'] ?? 0;
         /**
          * 结算金额END

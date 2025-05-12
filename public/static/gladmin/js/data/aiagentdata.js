@@ -19,8 +19,8 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                 toolbar: ['refresh'],
                 cols: [[
                     {field: 'agent_id', minWidth: 80, title: '代理ID', search: false},
-                    {field: 'channelCode', minWidth: 0, title: '渠道'},
-                    {field: 'username', minWidth: 0, title: '用户名'},
+                    {field: 'channelCode', minWidth: 0, title: '渠道',search: false,searchOp: '='},
+                    {field: 'username', minWidth: 0, title: '用户名',search: false},
                     {field: 'sub', minWidth: 0, title: '注册用户', search: false},
                     {field: 'recharge_user', minWidth: 0, title: '充值用户', search: false},
                     {field: 'recharge_amount', minWidth: 0, title: '充值金额', search: false},

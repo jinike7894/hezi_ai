@@ -42,7 +42,7 @@ class Aiorder extends AdminController
             for($i=0;$i<count($list);$i++){
                 $list[$i]['username'] = $aiUser->where(array('id'=>$list[$i]['uid']))->value('username') ?: '';
                 $list[$i]['pay_type_name'] = $aiPayment->where(array('id'=>$list[$i]['pay_type_id']))->value('name') ?: '';
-                $list[$i]['rate'] = $aiPayment->where(array('id'=>$list[$i]['pay_type_id']))->value('rate') ?: '';
+                $list[$i]['rate'] = $list[$i]['current_rate'];
                 $list[$i]['receipt'] = $list[$i]['price'] - $list[$i]['price']*($list[$i]['rate']/100);
                 $list[$i]['pay_time'] = $list[$i]['pay_time'] ?date('Y-m-d H:i:s',$list[$i]['pay_time']) : '';
             }
