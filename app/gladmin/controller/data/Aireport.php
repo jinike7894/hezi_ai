@@ -55,7 +55,7 @@ class Aireport extends AdminController
 
             $aiOtherUseCount =  AiUseRecordModel::field('DATE(FROM_UNIXTIME(create_time)) AS date, COUNT(id) AS other_usage_count')->where([['ai_type','<>',0]])->group('DATE(FROM_UNIXTIME(create_time))')->order('date desc')->select()->toArray();
 
-            $orderSettlement = AiOrderModel::alias('o')->field('DATE(FROM_UNIXTIME(o.create_time)) AS date, SUM(o.price - (o.price * (p.rate / 100))) AS total_settlement_amount')->leftJoin('ai_payment p', 'o.pay_type_id = p.id')->group('DATE(FROM_UNIXTIME(o.create_time))')->order('date desc')->select()->toArray();
+            $orderSettlement = AiOrderModel::field('DATE(FROM_UNIXTIME(create_time)) AS date, SUM(price - (price * (current_rate / 100))) AS total_settlement_amount')->group('DATE(FROM_UNIXTIME(create_time))')->where(['pay_status' => 1])->order('date desc')->select()->toArray();
 
             $agentIncome = AiBalanceBillModel::field('DATE(FROM_UNIXTIME(create_time)) AS date,
     SUM(amount) AS total_agent_amount')->where(['bill_type' => '0'])->group('DATE(FROM_UNIXTIME(create_time))')->order('date desc')->select()->toArray();
