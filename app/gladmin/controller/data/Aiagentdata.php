@@ -89,8 +89,7 @@ class Aiagentdata extends AdminController
             $aiOrder = new \app\common\model\AiOrder();
             $aiProClickRecord = new \app\common\model\AiProductClickRecord();
             for($i=0;$i<count($newList);$i++){
-                $newList[$i]['sub'] = count(explode(",", $newList[$i]['ids']));
-
+                $newList[$i]['sub'] = $this->model::where(['pid' => $newList[$i]['agent_id']])->where($updatedMap)->count('id');
                 $aiOrderRecharge = $aiOrder->field('COUNT(DISTINCT uid) AS recharge_user, SUM(price) AS recharge_amount')->wherein('uid',$newList[$i]['ids'])->where(['pay_status' => '1'])->where($updatedMap)->select()->toArray();
                 $newList[$i]['recharge_user'] = $aiOrderRecharge[0]['recharge_user'] ?? 0;
                 $newList[$i]['recharge_amount'] = $aiOrderRecharge[0]['recharge_amount'] ?? 0;
