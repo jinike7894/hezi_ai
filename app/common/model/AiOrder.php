@@ -76,6 +76,7 @@ class AiOrder extends \think\Model
                         }else{
                             $totalDay = $productData["day"];
                         }
+                        
                     }
 
                     //修改用户vip等级
