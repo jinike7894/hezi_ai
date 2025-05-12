@@ -36,7 +36,7 @@ class Aiagentwithdrawal extends AdminController
             }
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
-            $list = $this->model->where($where)->page($page, $limit)->select();
+            $list = $this->model->where($where)->order("create_time desc")->page($page, $limit)->select();
             $aiUser = new \app\common\model\AiUser();
             $rate = sysconfig('site', 'usdt_exchange_rate');
             for($i=0;$i<count($list);$i++){
