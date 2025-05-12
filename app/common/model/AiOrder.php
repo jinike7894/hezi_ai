@@ -73,6 +73,8 @@ class AiOrder extends \think\Model
                         //判断是否满足新订单
                         if (strtotime($userData["create_time"]) >=  (time() - SystemConfig::getUserNewFlagTime())&&$orderCount==0) {
                             $totalDay = $productData["free_day"] + $productData["day"];
+                        }else{
+                            $totalDay = $productData["day"];
                         }
                     }
 
