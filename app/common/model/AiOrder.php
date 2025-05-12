@@ -76,7 +76,7 @@ class AiOrder extends \think\Model
                         }else{
                             $totalDay = $productData["day"];
                         }
-                        
+
                     }
 
                     //修改用户vip等级
@@ -95,7 +95,13 @@ class AiOrder extends \think\Model
                     if ($orderData["is_first"] == 0) {
                         $totalPoints = $productData["points"];
                     } else {
-                        $totalPoints = $productData["free_points"] + $productData["points"];
+                         //判断是否满足新订单
+                         if (strtotime($userData["create_time"]) >=  (time() - SystemConfig::getUserNewFlagTime())&&$orderCount==0) {
+                            $totalPoints = $productData["free_points"] + $productData["points"];
+                        }else{
+                            $totalPoints = $productData["points"];
+                        }
+                      
                     }
                     //修改用户表 points
                     AiUser::where(["id" => $orderData["uid"]])->inc('points', $totalPoints)->update();
