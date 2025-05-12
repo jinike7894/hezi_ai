@@ -6,7 +6,10 @@ use app\gladmin\traits\Curd;
 use app\common\controller\AdminController;
 use EasyAdmin\annotation\ControllerAnnotation;
 use EasyAdmin\annotation\NodeAnotation;
+use app\common\model\AiBalanceBill;
+use app\common\model\AiUser;
 use think\App;
+use think\facade\Db;
 
 /**
  * Class Goods
@@ -39,18 +42,18 @@ class Aiagentwithdrawal extends AdminController
             $list = $this->model->where($where)->order("create_time desc")->page($page, $limit)->select();
             $aiUser = new \app\common\model\AiUser();
             $rate = sysconfig('site', 'usdt_exchange_rate');
-            for($i=0;$i<count($list);$i++){
+            for ($i = 0; $i < count($list); $i++) {
                 $list[$i]['rate'] = $rate;
-                $list[$i]['usdt'] = round($list[$i]['amount']/$rate, 2) . ' U';
-                $list[$i]['amount'] = $list[$i]['amount'] ? $list[$i]['amount']. ' 元' : '0 元' ;
-                $list[$i]['coin_wallet_type'] = $aiUser->where(array('id'=>$list[$i]['uid']))->value('coin_wallet_type') ?: '';
+                $list[$i]['usdt'] = round($list[$i]['amount'] / $rate, 2) . ' U';
+                $list[$i]['amount'] = $list[$i]['amount'] ? $list[$i]['amount'] . ' 元' : '0 元';
+                $list[$i]['coin_wallet_type'] = $aiUser->where(array('id' => $list[$i]['uid']))->value('coin_wallet_type') ?: '';
                 $list[$i]['finish_time'] = $list[$i]['finish_time'] ? date('Y-m-d H:i:s', $list[$i]['finish_time']) : '';
             }
             $data = [
-                'code'  => 0,
-                'msg'   => '',
+                'code' => 0,
+                'msg' => '',
                 'count' => $count,
-                'data'  => $list,
+                'data' => $list,
             ];
             return json($data);
         }
@@ -83,9 +86,9 @@ class Aiagentwithdrawal extends AdminController
         empty($row) && $this->error('数据不存在');
         $this->assign('row', $row);
         $rate = sysconfig('site', 'usdt_exchange_rate');
-        $usdt = round($row['amount']/$rate, 2);
+        $usdt = round($row['amount'] / $rate, 2);
         $aiUser = new \app\common\model\AiUser();
-        $coin_wallet_type = $aiUser->where(array('id'=>$row['uid']))->value('coin_wallet_type') ?: '';
+        $coin_wallet_type = $aiUser->where(array('id' => $row['uid']))->value('coin_wallet_type') ?: '';
         $this->assign('coin_wallet_type', $coin_wallet_type);
         $this->assign('usdt', $usdt);
         return $this->fetch();
@@ -100,27 +103,44 @@ class Aiagentwithdrawal extends AdminController
         empty($row) && $this->error('数据不存在');
         if ($this->request->isPost()) {
             $post = $this->request->post();
+
             $rule = [];
             $this->validate($post, $rule);
-            if($row['status'] != 0){
+            if ($row['status'] != 0) {
                 $this->error('该提现申请已操作过');
             }
+            $userData = AiUser::where(["id" => $row["uid"]])->find();
             try {
-                if($post['status'] == 1){
+
+
+                if ($post['status'] == 1) {
                     $post['finish_time'] = time();
                 }
+             
+                Db::startTrans();
+                if ($post["status"] == 2) {
+                    //dh_ai_balance_bill 表增加记录
+                     AiBalanceBill::createBill($userData,$row["amount"],2,1);
+                    //dh_ai_user表增加余额
+                    AiUser::where(["id"=>$row["uid"]])->inc('balance',$row["amount"])->update();
+                }
+
+                //dh_ai_withdrawal_record表更改状态
                 $save = $row->save($post);
+
+                Db::commit();
             } catch (\Exception $e) {
-                $this->error('保存失败');
+                Db::rollback();
+                $this->error('保存失败'.$e->getMessage());
             }
             $save ? $this->success('保存成功') : $this->error('保存失败');
         }
 
         $this->assign('row', $row);
         $rate = sysconfig('site', 'usdt_exchange_rate');
-        $usdt = round($row['amount']/$rate, 2);
+        $usdt = round($row['amount'] / $rate, 2);
         $aiUser = new \app\common\model\AiUser();
-        $coin_wallet_type = $aiUser->where(array('id'=>$row['uid']))->value('coin_wallet_type') ?: '';
+        $coin_wallet_type = $aiUser->where(array('id' => $row['uid']))->value('coin_wallet_type') ?: '';
         $this->assign('coin_wallet_type', $coin_wallet_type);
         $this->assign('usdt', $usdt);
         return $this->fetch();
