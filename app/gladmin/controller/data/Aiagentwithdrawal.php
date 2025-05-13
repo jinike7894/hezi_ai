@@ -120,7 +120,7 @@ class Aiagentwithdrawal extends AdminController
                 Db::startTrans();
                 if ($post["status"] == 2) {
                     //dh_ai_balance_bill 表增加记录
-                     AiBalanceBill::createBill($userData,$row["amount"],1,1);
+                     AiBalanceBill::createBill($userData,$row["amount"],4,1);
                     //dh_ai_user表增加余额
                     AiUser::where(["id"=>$row["uid"]])->inc('balance',$row["amount"])->update();
                 }
