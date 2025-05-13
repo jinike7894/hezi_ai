@@ -153,6 +153,7 @@ class AiOrder extends \think\Model
         if(!$orderData){
                 return 0;
         }
+        
         //获取当前vip 每天几次 
         $aiProductParams = json_decode($orderData["data"], true);
         $aiTimes = 0;
@@ -178,14 +179,18 @@ class AiOrder extends \think\Model
                 break;
 
         }
+       
         //查询今日使用次数
         $usedAiRecord = AiUseRecord::where(["is_use_vip" => 1, "ai_type" => $aiType])
             ->whereIn("status", [0, 1])
             ->whereTime('create_time', 'today')
             ->count();
+           
         if ($aiTimes < $usedAiRecord) {
+          
             return 0;
         }
+   
         return $aiTimes - $usedAiRecord;
     }
 }

@@ -184,10 +184,10 @@ class AiUserdata extends AiBase
                 $vipData = json_decode($orderData["data"], true);
                 $userData["vip_params"] = [
                     "name" => $orderData["name"],
-                    "ai_video_face" => ($vipData["ai_video_face"]- AiOrder::availableTimes($uid, 0)),//视频换脸
-                    "ai_img_face" => ($vipData["ai_img_face"]- AiOrder::availableTimes($uid, 1)),//图片换脸
-                    "ai_auto_face" => ($vipData["ai_auto_face"]- AiOrder::availableTimes($uid, 2)),//自动换脸
-                    "ai_manual_face" =>($vipData["ai_manual_face"]- AiOrder::availableTimes($uid, 3)),//手动换脸
+                    "ai_video_face" => AiOrder::availableTimes($uid, 0),//视频换脸
+                    "ai_img_face" =>AiOrder::availableTimes($uid, 1),//图片换脸
+                    "ai_auto_face" =>AiOrder::availableTimes($uid, 2),//自动换脸
+                    "ai_manual_face" => AiOrder::availableTimes($uid, 3),//手动换脸
                     "vip_level"=>isset($vipData["vip_level"])?$vipData["vip_level"]:0,
                 ];
             }
