@@ -63,6 +63,7 @@ class AiPay extends AiBase
             "update_time" => time(),
             "vip_level"=>0,
             "current_rate"=>$paymentData["rate"],
+            "is_activity"=>0,
         ];
         //生成订单号
         $orderParams["order_num"] = orderUniqueCode();
@@ -72,7 +73,7 @@ class AiPay extends AiBase
         $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
 
         if (strtotime($userData["create_time"]) >= (time() -SystemConfig::getUserNewFlagTime()) && $orderData == 0) {
-            $orderParams["is_first"] = 1;
+            $orderParams["is_activity"] = 1;
         }
 
         //设置产品渠道
@@ -96,7 +97,7 @@ class AiPay extends AiBase
             //设置订单价格
             $orderParams["original_price"] = $vipProduct["price"];
             //获取vip总天数  产品天数+赠送天数
-            if ($orderParams["is_first"] == 0) {
+            if ($orderParams["is_activity"] == 0) {
                 $total_day = $vipProduct["day"];
             } else {
                 $total_day = $vipProduct["free_day"] + $vipProduct["day"];

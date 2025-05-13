@@ -56,6 +56,7 @@ class AiOrder extends \think\Model
             return true;
         }
         $orderCount = AiOrder::where(["uid" => $orderData["uid"], "pay_status" => 1])->count();
+
         $userData = AiUser::where(["id" => $orderData["uid"]])->field("id,username,points,pid,channelCode,commission,balance,create_time")->find();
         $productData = json_decode($orderData["data"], true);
         if ($orderData) {
@@ -63,11 +64,12 @@ class AiOrder extends \think\Model
             self::startTrans();
             try {
                 if ($orderData["is_vip"]) {
-
+                  
+                    
                     //vip订单
                     //获取赠送天数+产品天数
                     //修改用户表过期时间
-                    if ($orderData["is_first"] == 0) {
+                    if ($orderData["is_activity"] == 0) {
                         $totalDay = $productData["day"];
                     } else {
                         //判断是否满足新订单
@@ -92,7 +94,7 @@ class AiOrder extends \think\Model
                 } else {
                     //点数订单
                     //获取赠送点数+产品点数
-                    if ($orderData["is_first"] == 0) {
+                    if ($orderData["is_activity"] == 0) {
                         $totalPoints = $productData["points"];
                     } else {
                          //判断是否满足新订单
@@ -121,11 +123,16 @@ class AiOrder extends \think\Model
                     ];
                     AiPointsBill::create($pointsBillParams);
                 }
-                //修改pay_status状态 pay_time
-                self::where(["order_num" => $ordernum])->update([
+                $orderUpdateParams=[
                     "pay_time" => time(),
                     "pay_status" => 1,
-                ]);
+                ];
+                //打上首单标识
+                if($orderCount==0){
+                    $orderUpdateParams["is_first"]=1;
+                }
+                //修改pay_status状态 pay_time
+                self::where(["order_num" => $ordernum])->update($orderUpdateParams);
                 if ($userData["pid"] != 0) {
                     //佣金账单设置
                     $balanceBillAmount = $orderData["price"] * ($userData["commission"] / 100);
