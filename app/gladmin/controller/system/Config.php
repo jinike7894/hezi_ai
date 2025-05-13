@@ -64,7 +64,7 @@ class Config extends AdminController
                 // $this->error('保存失败');
             }
         } catch (\Exception $e) {
-            $this->error('保存失败');
+            $this->error('保存失败'.$e->getMessage());
         }
         $this->success('保存成功');
     }
