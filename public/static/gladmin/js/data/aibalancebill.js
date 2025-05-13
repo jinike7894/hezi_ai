@@ -24,7 +24,7 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                     {field: 'original_amount', minWidth: 0, title: '账变前余额', search: false},
                     {field: 'amount', minWidth: 0, title: '账变金额', search: false},
                     {field: 'after_amount', minWidth: 0, title: '账变后余额', search: false},
-                    {field: 'bill_type', minWidth: 0, title: '账变类型', search: 'select', selectList: {0: '佣金', 1: '提款', 2: '其他', 3: '后台提款',3: '提款拒绝'}},
+                    {field: 'bill_type', minWidth: 0, title: '账变类型', search: 'select', selectList: {0: '佣金', 1: '提款', 2: '其他', 3: '后台提款',4: '提款拒绝'}},
                     {field: 'create_time', minWidth: 0, title: '账变时间', search: 'range'},
                     {field: 'operator', minWidth: 0, title: '操作账号', search: false},
                     {field: 'remark', minWidth: 0, title: '备注', search: false},
