@@ -51,7 +51,7 @@ class AiOrder extends \think\Model
     //订单回调
     public static function notify($ordernum)
     {
-        $orderData = self::where(["order_num" => $ordernum])->field("id,name,order_num,pid,uid,is_vip,data,pay_status,is_first,price")->find();
+        $orderData = self::where(["order_num" => $ordernum])->field("id,name,order_num,pid,uid,is_vip,data,pay_status,is_first,is_activity,price")->find();
         if ($orderData["pay_status"] == 1) {
             return true;
         }
