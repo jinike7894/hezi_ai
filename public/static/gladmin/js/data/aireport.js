@@ -30,7 +30,7 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                     {
                         field: 'total_settlement_amount',
                         minWidth: 0,
-                        title: '复充金额',
+                        title: '结算金额',
                         search: false,
                         templet: function (row) {
                             return parseFloat(row.total_settlement_amount).toFixed(2);
