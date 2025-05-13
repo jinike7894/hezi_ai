@@ -25,7 +25,7 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                     {field: 'username', minWidth: 0, title: '用户名',search: false,},
                     {field: 'name', minWidth: 0, title: '购买产品'},
                     {field: 'is_first', minWidth: 0, title: '是否首单', search: 'select', selectList: {0: '否', 1: '<span style="color:green">首单</span>'}},
-                    {field: 'is_first', minWidth: 0, title: '是否活动订单', search: 'select', selectList: {0: '否', 1: '<span style="color:green">活动单</span>'}},
+                    {field: 'is_activity', minWidth: 0, title: '是否活动订单', search: 'select', selectList: {0: '否', 1: '<span style="color:green">活动单</span>'}},
                     {field: 'price', Width: 0, title: '金额',sort:true},
                     {field: 'rate', minWidth: 0, title: '费率', search: false,},
                     {field: 'receipt', minWidth: 0, title: '到账', search: false,},
