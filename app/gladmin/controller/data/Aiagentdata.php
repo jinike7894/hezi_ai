@@ -50,16 +50,6 @@ class Aiagentdata extends AdminController
                     ]
                 ];
             }
-
-
-            $filteredConditions = array_filter($where, function($condition) {
-                return $condition[0] !== "create_time";
-            });
-            $updatedConditions = array_map(function($condition) {
-                $condition[0] = 'u1.' . $condition[0]; // 添加 u1.
-                return $condition;
-            }, $filteredConditions);
-
             $map1 = array_filter($where, function($condition) {
                 return $condition[0] === "create_time";
             });
@@ -78,32 +68,30 @@ class Aiagentdata extends AdminController
                     $updatedMap[] = ["create_time", "<=", $endTimestamp];
                 }
             }
+            $aiPromotion = new \app\common\model\AiPromotion();
+            $list = $aiPromotion::field('DISTINCT pid AS agent_id')->order('agent_id desc')->select()->toArray();
 
-            $list = $this->model::alias('u1')->field('u1.id AS agent_id, GROUP_CONCAT(u2.id) AS ids,u1.username,u1.channelCode,u1.create_time')->leftJoin('ai_user u2', 'u2.pid = u1.id')->group('u1.id')->where(['u1.pid' => 0])->where($updatedConditions)->select()->toArray();
-            $newList = [];
-            foreach ($list as $item) {
-                if(!empty($item['ids'])){
-                    $newList[] = $item;
-                }
-            }
             $aiOrder = new \app\common\model\AiOrder();
             $aiProClickRecord = new \app\common\model\AiProductClickRecord();
-            for($i=0;$i<count($newList);$i++){
-                $newList[$i]['sub'] = $this->model::where(['pid' => $newList[$i]['agent_id']])->where($updatedMap)->count('id');
-                $aiOrderRecharge = $aiOrder->field('COUNT(DISTINCT uid) AS recharge_user, SUM(price) AS recharge_amount')->wherein('uid',$newList[$i]['ids'])->where(['pay_status' => '1'])->where($updatedMap)->select()->toArray();
-                $newList[$i]['recharge_user'] = $aiOrderRecharge[0]['recharge_user'] ?? 0;
-                $newList[$i]['recharge_amount'] = $aiOrderRecharge[0]['recharge_amount'] ?? 0;
-
-                $aiProClick = $aiProClickRecord->field('COUNT(DISTINCT uid) AS user_click_count')->wherein('uid',$newList[$i]['ids'])->where($updatedMap)->select()->toArray();
-                $newList[$i]['user_click_count'] = $aiProClick[0]['user_click_count'] ?? 0;
-                $newList[$i]['click'] = $aiProClickRecord->wherein('uid',$newList[$i]['ids'])->where($updatedMap)->count('id') ?: 0;
-                $newList[$i]['date'] = $date2;
+            for($i=0;$i<count($list);$i++){
+                $list[$i]['username'] = $this->model::where(['id' => $list[$i]['agent_id']])->value('username') ?: '';
+                $list[$i]['channelCode'] = $this->model::where(['id' => $list[$i]['agent_id']])->value('channelCode') ?: '';
+                $ids = $aiPromotion::where(['pid'=>$list[$i]['agent_id']])->column('uid');
+                $list[$i]['ids'] = implode(',',$ids);
+                $list[$i]['sub'] = $this->model::where(['pid' => $list[$i]['agent_id']])->where($updatedMap)->count('id');
+                $aiOrderRecharge = $aiOrder->field('COUNT(DISTINCT uid) AS recharge_user, SUM(price) AS recharge_amount')->wherein('uid',$list[$i]['ids'])->where(['pay_status' => '1'])->where($updatedMap)->select()->toArray();
+                $list[$i]['recharge_user'] = $aiOrderRecharge[0]['recharge_user'] ?? 0;
+                $list[$i]['recharge_amount'] = $aiOrderRecharge[0]['recharge_amount'] ?? 0;
+                $aiProClick = $aiProClickRecord->field('COUNT(DISTINCT uid) AS user_click_count')->wherein('uid',$list[$i]['ids'])->where($updatedMap)->select()->toArray();
+                $list[$i]['user_click_count'] = $aiProClick[0]['user_click_count'] ?? 0;
+                $list[$i]['click'] = $aiProClickRecord->wherein('uid',$list[$i]['ids'])->where($updatedMap)->count('id') ?: 0;
+                $list[$i]['date'] = $date2;
             }
             $data = [
                 'code'  => 0,
                 'msg'   => '',
-                'count' => count($newList),
-                'data'  => $newList,
+                'count' => count($list),
+                'data'  => $list,
             ];
             return json($data);
         }
