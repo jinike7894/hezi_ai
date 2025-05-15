@@ -38,10 +38,11 @@ class AiPay extends AiBase
         }else{
             $price= AiPointsProduct::where(["id"=>$params["pid"]])->value("price");  
         }
+      
         //查询价格
         $paymentData = AiPayment::where(["is_del" => 0])
-        ->where("min", ">=", $price)
-        ->where("max", "<=", $price)
+        ->where("min", ">=", $price*100)
+        ->where("max", "<=", $price*100)
         ->field("id,name,pay_icon,discount,show_tips,sort,pay_type")
         ->order("sort desc")
         ->select();
