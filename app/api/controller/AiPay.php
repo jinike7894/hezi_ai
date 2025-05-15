@@ -28,7 +28,23 @@ class AiPay extends AiBase
     //选择支付通道
     public function getPayment()
     {
-        $paymentData = AiPayment::where(["is_del" => 0])->field("id,name,pay_icon,discount,show_tips,sort,pay_type")->order("sort desc")->select();
+        $params = [
+            "is_vip" => input("get.is_vip"),
+            "pid" => input("get.pid"),
+        ];
+        $price=3000;
+        if($params["is_vip"]){
+            $price= AiVipProduct::where(["id"=>$params["pid"]])->value("price");  
+        }else{
+            $price= AiPointsProduct::where(["id"=>$params["pid"]])->value("price");  
+        }
+        //查询价格
+        $paymentData = AiPayment::where(["is_del" => 0])
+        ->where("min", ">=", $price)
+        ->where("max", "<=", $price)
+        ->field("id,name,pay_icon,discount,show_tips,sort,pay_type")
+        ->order("sort desc")
+        ->select();
         return json_encode(["code" => 1, "msg" => "succ", "data" => $paymentData]);
     }
     //创建支付
