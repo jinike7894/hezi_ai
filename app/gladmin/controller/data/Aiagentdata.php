@@ -87,11 +87,17 @@ class Aiagentdata extends AdminController
                 $list[$i]['click'] = $aiProClickRecord->wherein('uid',$list[$i]['ids'])->where($updatedMap)->count('id') ?: 0;
                 $list[$i]['date'] = $date2;
             }
+            $newlist = [];
+            for($i=0;$i<count($list);$i++){
+                if($list[$i]['sub'] != 0 || $list[$i]['recharge_user'] != 0 || $list[$i]['recharge_amount'] != 0 || $list[$i]['user_click_count'] || $list[$i]['click'] != 0){
+                    $newlist[] = $list[$i];
+                }
+            }
             $data = [
                 'code'  => 0,
                 'msg'   => '',
-                'count' => count($list),
-                'data'  => $list,
+                'count' => count($newlist),
+                'data'  => $newlist,
             ];
             return json($data);
         }
