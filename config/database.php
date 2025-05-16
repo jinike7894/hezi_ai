@@ -28,11 +28,11 @@ return [
            // 服务器地址
             'hostname'        => env('database.hostname', '150.109.101.156'),
             // 数据库名
-            'database'        => env('database.database', 'hezi'),
+            'database'        => env('database.database', 'hezi_video'),
             // 用户名
-            'username'        => env('database.username', 'hezi'),
+            'username'        => env('database.username', 'hezi_video'),
             // 密码
-            'password'        => env('database.password', 'hezi'),
+            'password'        => env('database.password', 'hezi_video'),
             // 端口
             'hostport'        => env('database.hostport', '5400'),
             // 数据库连接参数
