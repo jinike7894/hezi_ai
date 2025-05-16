@@ -107,4 +107,6 @@ Route::get('ai/withdrawalInfo','AiPromotion/getWithdrawalInfo');
 Route::post('ai/withdrawal','AiPromotion/withdrawal');
 //获取任务状态接口
 Route::get('ai/taskStatus','Ai/getTaskStatus');
+//获取三方支付通道
+Route::get('ai/otherPayType','AiPay/getPaymentlist');
 })->allowCrossDomain();
