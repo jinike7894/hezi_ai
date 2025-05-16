@@ -281,16 +281,16 @@ class AiPay extends AiBase
                     ];
                     switch ($pv["paytype"]) {
                         case "alipay":
-                            $arr["pay_icon"] = "/static/img/pay/zfb.png";
+                            $arr["pay_icon"] = "/upload/otherimg/pay/zfb.png";
                             break;
                         case "wxpay":
-                            $arr["pay_icon"] = "/static/img/pay/wx.png";
+                            $arr["pay_icon"] = "/upload/otherimg/pay/wx.png";
                             break;
                         case "unionpay":
-                            $arr["pay_icon"] = "/static/img/pay/unionpay.png";
+                            $arr["pay_icon"] = "/upload/otherimg/pay/unionpay.png";
                             break;
                         case "usdt":
-                            $arr["pay_icon"] = "/static/img/pay/usdt.png";
+                            $arr["pay_icon"] = "/upload/otherimg/pay/usdt.png";
                             break;
                     }
                     $createPayArray[]=$arr;
