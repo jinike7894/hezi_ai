@@ -45,8 +45,8 @@ class AiPay extends AiBase
 
         //查询价格
         $paymentData = AiPayment::where(["is_del" => 0])
-            ->where("min", ">=", $price * 100)
-            ->where("max", "<=", $price * 100)
+            ->where("min", "<=", $price * 100)
+            ->where("max", ">=", $price * 100)
             ->field("id,name,pay_icon,discount,show_tips,sort,pay_type")
             ->order("sort desc")
             ->select();
@@ -247,12 +247,12 @@ class AiPay extends AiBase
         $payTypeParams = json_decode($payTypeParams, true);
         if ($payTypeParams["code"] == 200) {
             $params = $payTypeParams["list"];
-         
+
             $pidArray = array_column($params, 'pid');
             AiPayment::whereNotIn('pid', $pidArray)->update(['is_del' => 1]);
             $createPayArray = [];
             foreach ($params as $pk => $pv) {
-               
+
                 $currPay = AiPayment::where(["pid" => $pv["pid"]])->find();
                 if ($currPay) {
                     AiPayment::where(["pid" => $pv["pid"]])->update([
@@ -293,11 +293,11 @@ class AiPay extends AiBase
                             $arr["pay_icon"] = "/upload/otherimg/pay/usdt.png";
                             break;
                     }
-                    $createPayArray[]=$arr;
-                 
+                    $createPayArray[] = $arr;
+
                 }
             }
-            if(count($createPayArray)>0){
+            if (count($createPayArray) > 0) {
                 AiPayment::insertAll($createPayArray);
             }
         }
