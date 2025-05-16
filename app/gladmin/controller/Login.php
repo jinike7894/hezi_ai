@@ -43,7 +43,7 @@ class Login extends AdminController
         $code=$ga->createSecret();
         echo $code;
         $secret=$code;
-        $qrCodeUrl = $ga->getQRCodeGoogleUrl('支付宝', $secret); //第一个参数是"标识",第二个参数为"安全密匙SecretKey" 生成二维码信息
+        $qrCodeUrl = $ga->getQRCodeGoogleUrl('authcode', $secret); //第一个参数是"标识",第二个参数为"安全密匙SecretKey" 生成二维码信息
         
         echo '<img src="'.$qrCodeUrl.'">';
     } 

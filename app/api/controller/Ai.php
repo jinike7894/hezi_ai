@@ -692,7 +692,7 @@ class Ai extends AiBase
             // 生成唯一文件名
             $filename = 'img_' . date('Ymd_His') . '_' . uniqid() . '.' . $extension;
             // 指定存储目录（以日期分类存储）
-            $directory = 'ai/img/' . date('Ymd');
+            $directory = 'upload/aiimg/' . date('Ymd');
             //获取文件生成js格式
 
             // 存储文件到指定目录

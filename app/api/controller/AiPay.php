@@ -11,7 +11,11 @@ use think\facade\Db;
 use app\gladmin\model\SystemConfig;
 class AiPay extends AiBase
 {
-
+    //获取支付通道用
+    public $mchno = 2;
+    public $currency = "cny";
+    public $language = "zh-cn";
+    public $payGateWay = "https://pay.dabaipay.com:82/api/trade/gateway";
     //获取vip产品
     public function getVipProduct()
     {
@@ -28,7 +32,24 @@ class AiPay extends AiBase
     //选择支付通道
     public function getPayment()
     {
-        $paymentData = AiPayment::where(["is_del" => 0])->field("id,name,pay_icon,discount,show_tips,sort,pay_type")->order("sort desc")->select();
+        $params = [
+            "is_vip" => input("get.is_vip"),
+            "pid" => input("get.pid"),
+        ];
+        $price = 3000;
+        if ($params["is_vip"]) {
+            $price = AiVipProduct::where(["id" => $params["pid"]])->value("price");
+        } else {
+            $price = AiPointsProduct::where(["id" => $params["pid"]])->value("price");
+        }
+
+        //查询价格
+        $paymentData = AiPayment::where(["is_del" => 0])
+            ->where("min", "<=", $price * 100)
+            ->where("max", ">=", $price * 100)
+            ->field("id,name,pay_icon,discount,show_tips,sort,pay_type")
+            ->order("sort desc")
+            ->select();
         return json_encode(["code" => 1, "msg" => "succ", "data" => $paymentData]);
     }
     //创建支付
@@ -43,7 +64,7 @@ class AiPay extends AiBase
             "pay_id" => input("post.pay_id"),
         ];
         $uid = $this->uid;
-        $paymentData = AiPayment::where(["is_del" => 0,"id"=>$params["pay_id"]])->find();
+        $paymentData = AiPayment::where(["is_del" => 0, "id" => $params["pay_id"]])->find();
         //初始化订单数据
         $orderParams = [
             "name" => "",
@@ -61,9 +82,9 @@ class AiPay extends AiBase
             "is_first" => 0,
             "create_time" => time(),
             "update_time" => time(),
-            "vip_level"=>0,
-            "current_rate"=>$paymentData["rate"],
-            "is_activity"=>0,
+            "vip_level" => 0,
+            "current_rate" => $paymentData["rate"],
+            "is_activity" => 0,
         ];
         //生成订单号
         $orderParams["order_num"] = orderUniqueCode();
@@ -72,7 +93,7 @@ class AiPay extends AiBase
 
         $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
 
-        if (strtotime($userData["create_time"]) >= (time() -SystemConfig::getUserNewFlagTime()) && $orderData == 0) {
+        if (strtotime($userData["create_time"]) >= (time() - SystemConfig::getUserNewFlagTime()) && $orderData == 0) {
             $orderParams["is_activity"] = 1;
         }
 
@@ -123,8 +144,8 @@ class AiPay extends AiBase
         }
         //请求三方支付 或者支付链接
         $payReturnData = $this->doPay($orderParams, $params["pay_id"]);
-        if ($payReturnData["code"]!=200) {
-            return json_encode(["code" => 0, "msg" =>$payReturnData["message"], "data" => []]);
+        if ($payReturnData["code"] != 200) {
+            return json_encode(["code" => 0, "msg" => $payReturnData["message"], "data" => []]);
         }
 
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["pay_url" => $payReturnData["url"]]]);
@@ -137,7 +158,7 @@ class AiPay extends AiBase
         $imgHost = $system
             ->where('name', "pic_url")
             ->value("value");
-       
+
         //查询支付网关和支付参数
         $paymentData = AiPayment::getPayMentFind($payId);
         $payParams = [
@@ -154,7 +175,7 @@ class AiPay extends AiBase
         $payParams["returnurl"] = "";
         $payReturnData = postPayParams($paymentData["pay_gateway"], $payParams);
         $payReturnData = json_decode($payReturnData, true);
-        
+
         // if ($payReturnData["code"] == 200) {
         //     return $payReturnData;
         // }
@@ -181,7 +202,7 @@ class AiPay extends AiBase
             echo "fail";
             return;
         }
-        
+
         $params = [
             "ordernum" => $notifyParams["orderno"],
         ];
@@ -203,16 +224,84 @@ class AiPay extends AiBase
         $time = 0;
         $orderData = AiOrder::where(["uid" => $uid, "pay_status" => 1])->count();
         $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
-        if (strtotime($userData["create_time"]) >=  (time() - SystemConfig::getUserNewFlagTime()) && $orderData == 0) {
+        if (strtotime($userData["create_time"]) >= (time() - SystemConfig::getUserNewFlagTime()) && $orderData == 0) {
             $is_first = 1;
-            $time =strtotime($userData["create_time"])-(time() - SystemConfig::getUserNewFlagTime());
+            $time = strtotime($userData["create_time"]) - (time() - SystemConfig::getUserNewFlagTime());
         }
         // if (strtotime($userData["create_time"]) >= (time() - 12 * 3600) && $orderData == 0) {
         //     $is_first = 1;
-           
+
         //     $time =strtotime($userData["create_time"])-(time() - 12 * 3600);
         // }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["is_first" => $is_first,"time"=>$time]]);
+        return json_encode(["code" => 1, "msg" => "succ", "data" => ["is_first" => $is_first, "time" => $time]]);
     }
-    
+    //获取三方支付列表
+    public function getPaymentlist()
+    {
+        $payGateway = "https://pay.dabaipay.com:82/api/trade/getpaytype";
+        $payTypeParams = postPayParams($payGateway, [
+            "mchno" => $this->mchno,
+            "currency" => $this->currency,
+            "language" => $this->language
+        ]);
+        $payTypeParams = json_decode($payTypeParams, true);
+        if ($payTypeParams["code"] == 200) {
+            $params = $payTypeParams["list"];
+
+            $pidArray = array_column($params, 'pid');
+            AiPayment::whereNotIn('pid', $pidArray)->update(['is_del' => 1]);
+            $createPayArray = [];
+            foreach ($params as $pk => $pv) {
+
+                $currPay = AiPayment::where(["pid" => $pv["pid"]])->find();
+                if ($currPay) {
+                    AiPayment::where(["pid" => $pv["pid"]])->update([
+                        "is_del" => 0,
+                        "min" => $pv["data"]["min"],
+                        "max" => $pv["data"]["max"],
+                    ]);
+                } else {
+                    $arr = [
+                        "name" => $pv["nickname"],
+                        // "pay_icon"=>"",
+                        "show_tips" => "123",
+                        "discount" => "0",
+                        "appid" => "2",
+                        "secret" => "ZnTPBpsMB8ztPpTA",
+                        "sort" => "10",
+                        "rate" => "2",
+                        "create_time" => time(),
+                        "update_time" => time(),
+                        "is_del" => 0,
+                        "pay_gateway" => $this->payGateWay,
+                        "pay_type" => $pv["paytype"],
+                        "pid" => $pv["pid"],
+                        "min" => $pv["data"]["min"],
+                        "max" => $pv["data"]["max"],
+                    ];
+                    switch ($pv["paytype"]) {
+                        case "alipay":
+                            $arr["pay_icon"] = "/upload/otherimg/pay/zfb.png";
+                            break;
+                        case "wxpay":
+                            $arr["pay_icon"] = "/upload/otherimg/pay/wx.png";
+                            break;
+                        case "unionpay":
+                            $arr["pay_icon"] = "/upload/otherimg/pay/unionpay.png";
+                            break;
+                        case "usdt":
+                            $arr["pay_icon"] = "/upload/otherimg/pay/usdt.png";
+                            break;
+                    }
+                    $createPayArray[] = $arr;
+
+                }
+            }
+            if (count($createPayArray) > 0) {
+                AiPayment::insertAll($createPayArray);
+            }
+        }
+
+
+    }
 }
