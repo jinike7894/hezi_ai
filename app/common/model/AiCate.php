@@ -9,19 +9,6 @@ use app\common\model\AiPointsBill;
 class AiCate extends \think\Model
 {
     //获取首页推荐列表
-    public static function getRecommendVideoData($cid,$limit){
-        $recommendVideoData = self::alias('cate')
-            ->where(['cate.is_recommend'=>1,"cate.status"=>1,"cate.id"=>$cid])
-            ->order("cate.sort desc")
-            ->leftJoin('ai_video video', 'video.cate_id = cate.id')
-            ->field('video.id as vid,video.points as points,video.title as vod_name,video.enpic as enpic')
-            ->limit($limit)
-            ->select()
-            ->toArray();
-        return $recommendVideoData;
-    }
-
-    //获取首页推荐列表
     public static function getVideoDataByCid($cid,$limit){
         $videoData = self::alias('cate')
             ->where(["cate.status"=>1,"cate.id"=>$cid])

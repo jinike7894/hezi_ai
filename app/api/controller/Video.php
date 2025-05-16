@@ -23,9 +23,15 @@ class Video extends AiBase
 
        $cateParentList = AiCate::where(['pid' => 0])->field("id as cate_pid,title")->order("sort desc")->select();
         for ($i = 0; $i < count($cate); $i++) {
-            $cate[$i]['videoList'] = AiCate::getRecommendVideoData($cate[$i]['id'],5);
+            $cate[$i]['videoList'] = AiCate::getVideoDataByCid($cate[$i]['id'],5);
         }
         $list['cateParentList'] = $cateParentList;
+        $list['areaList'] = [
+            ['area' => 'china','name' => '华语'],['area' => 'japan','name' => '日本'],['area' => 'omei','name' => '欧美'],['area' => 'cartoon','name' => '动漫'],['area' => 'korea','name' => '韩国']
+        ];
+       $list['companyList'] = [
+           ['cid' => 17,'name' => '麻豆传媒'], ['cid' => 19,'name' => '爱豆传媒'], ['cid' => 20,'name' => '七度空间'], ['cid' => 21,'name' => 'Love6'], ['cid' => 22,'name' => '大象传媒'], ['cid' => 23,'name' => '蜜桃传媒'], ['cid' => 24,'name' => '天美传媒'], ['cid' => 25,'name' => '星空传媒'],
+       ];
         $list['cateVideo'] = $cate;
        return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
    }
@@ -92,7 +98,7 @@ class Video extends AiBase
            "pid" => input("get.cate_pid"),
        ];
 
-       $cate = AiCate::where(['pid' => $params['pid']])->field("id,title")->order("sort desc")->select();
+       $cate = AiCate::where(['pid' => $params['pid'],"is_recommend" => 0])->field("id,title")->order("sort desc")->select();
        for ($i = 0; $i < count($cate); $i++) {
            $cate[$i]['videoList'] = AiCate::getVideoDataByCid($cate[$i]['id'],5);
        }
@@ -102,6 +108,41 @@ class Video extends AiBase
    //获取筛选分类视频列表
    public function filter(){
 
+       if (input("get.page") == "" || input("get.limit") == "") {
+           return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+       }
+
+       $params = [
+           "page" => input("get.page"),
+           "limit" => input("get.limit"),
+           "area" => input("get.area"),
+           "cid" => input("get.cid"),
+           "sort" => input("get.sort"),
+       ];
+       $where = [];
+       if($params['area'] != ""){
+           $where[] = ['area', '=', $params['area']];
+       }
+       if($params['cid'] != ""){
+           $where[] = ['id', '=', $params['cid']];
+       }
+       $order = '';
+       if($params['sort'] == "new"){
+           $order = "id desc";
+       }
+       if($params['sort'] == "hot"){
+           $order = "eyes desc";
+       }
+
+       $cateIdArray = AiCate::where($where)->field("id")->select()->toArray();
+
+       $ids = array_column($cateIdArray, 'id');
+
+       $videoList = AiVideo::wherein('cate_id',$ids)->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->order($order)->paginate([
+           'list_rows' => $params["limit"],
+           'page' => $params["page"],
+       ]);
+       return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
    }
 
    //获取视频详情
@@ -113,7 +154,7 @@ class Video extends AiBase
            "id" => input("get.vid"),
        ];
 
-       $video = AiVideo::where(['id' => $params['id']])->field('id as vid,cate_id,points,title as vod_name,enpic,video as play_url')->find();
+       $video = AiVideo::where(['id' => $params['id']])->field('id as vid,cate_id,points,title as vod_name,enpic,video as play_url,eyes')->find();
 
        // Todo 喜欢和收藏 联合查询
        $video->is_favorite = AiFavorite::where(['vid' => $params['id'],'uid' => $this->uid])->count() ? 1 : 0;
@@ -126,6 +167,8 @@ class Video extends AiBase
            ->orderRaw('rand()') // 随机排序
            ->limit(6) // 限制数量
            ->select();
+       $video->eyes += 1;
+       $video->save();
        $list['video'] = $video;
        $list['relatedVideoList'] = $relatedVideos;
        return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
