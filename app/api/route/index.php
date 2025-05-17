@@ -136,4 +136,6 @@ Route::get('video/collect','Video/collect');
 Route::post('video/addFavorite','Video/addFavorite');
 //用户收藏视频
 Route::post('video/addCollect','Video/addCollect');
+//发现页获取所有标签
+Route::get('video/tagList','Video/tagList');
 })->allowCrossDomain();

@@ -6,7 +6,7 @@ use app\api\controller\AiApi;
 use app\common\model\Products;
 
 use think\facade\Db;
-use app\common\model\AiActivityRecord;
+use app\common\model\AiTag;
 use app\common\model\AiVideoHistory;
 use app\common\model\AiCollect;
 use app\common\model\AiFavorite;
@@ -308,6 +308,18 @@ class Video extends AiBase
             $checkEmpty->delete();
         }
         return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
+    }
+
+    //发现页获取所有标签
+    public function tagList()
+    {
+        $tag = AiTag::where(['pid' => 0])->field("id,title")->order("sort desc")->select();
+        for ($i = 0; $i < count($tag); $i++) {
+            $tag[$i]['tagList'] = AiTag::getTagByPid($tag[$i]['id']);
+        }
+        $list['tag'] = $tag;
+        $list['searchTag'] = AiTag::getSearchTag();
+        return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
     }
 
 }
