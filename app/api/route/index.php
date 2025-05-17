@@ -126,5 +126,14 @@ Route::get('video/filter','Video/filter');
 Route::get('video/detail','Video/detail');
 //视频搜索
 Route::post('video/search','Video/search');
-
+//获取视频历史记录-足迹
+Route::get('video/history','Video/history');
+//获取用户喜欢视频列表
+Route::get('video/favorite','Video/favorite');
+//获取用户收藏视频列表
+Route::get('video/collect','Video/collect');
+//用户喜欢视频
+Route::post('video/addFavorite','Video/addFavorite');
+//用户收藏视频
+Route::post('video/addCollect','Video/addCollect');
 })->allowCrossDomain();

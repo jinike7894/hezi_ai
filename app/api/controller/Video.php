@@ -7,7 +7,7 @@ use app\common\model\Products;
 
 use think\facade\Db;
 use app\common\model\AiActivityRecord;
-use app\common\model\AiUser;
+use app\common\model\AiVideoHistory;
 use app\common\model\AiCollect;
 use app\common\model\AiFavorite;
 use app\common\model\AiCate;
@@ -58,14 +58,19 @@ class Video extends AiBase
    //查看更多
    public function videoByCid()
    {
-       if (input("get.cid") == "") {
+       if (input("get.cid") == "" || input("get.page") == "" || input("get.limit") == "") {
            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
        }
        $params = [
            "cid" => input("get.cid"),
+           "page" => input("get.page"),
+           "limit" => input("get.limit"),
        ];
        $cate = AiCate::where("id",$params["cid"])->field("id,title")->find();
-       $videoList = AiVideo::where(["cate_id" => $params['cid'], "status" => 1])->field('id as vid, points,title as vod_name, enpic')->select()->toArray();
+       $videoList = AiVideo::where(["cate_id" => $params['cid'], "status" => 1])->field('id as vid, points,title as vod_name, enpic')->paginate([
+           'list_rows' => $params["limit"],
+           'page' => $params["page"],
+       ]);
        $list['title'] = $cate->title;
        $list['videoList'] = $videoList;
        return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
@@ -169,6 +174,13 @@ class Video extends AiBase
            ->select();
        $video->eyes += 1;
        $video->save();
+       $checkEmpty = AiVideoHistory::where(['uid' => $this->uid, 'vid' => $params['id']])->find();
+       if(!$checkEmpty){
+           $videoHistory = new AiVideoHistory();
+           $videoHistory->uid = $this->uid;
+           $videoHistory->vid = $params['id'];
+           $videoHistory->save();
+       }
        $list['video'] = $video;
        $list['relatedVideoList'] = $relatedVideos;
        return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
@@ -177,16 +189,125 @@ class Video extends AiBase
    //视频搜索
    public function search(){
 
-       if (input("get.keyword") == "") {
+       if (input("get.keyword") == "" || input("get.page") == "" || input("get.limit") == "") {
            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
        }
        $params = [
            "title" => input("get.keyword"),
+           "page" => input("get.page"),
+           "limit" => input("get.limit"),
        ];
        $videoList = AiVideo::where('title', 'LIKE', '%' . $params['title'] . '%')
            ->field('id as vid,points,title as vod_name,enpic')
-           ->select();
+           ->paginate([
+               'list_rows' => $params["limit"],
+               'page' => $params["page"],
+           ]);
        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
    }
+
+    //获取视频历史记录-足迹
+    public function history(){
+        if (input("get.page") == "" || input("get.limit") == "") {
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+
+        $params = [
+            "page" => input("get.page"),
+            "limit" => input("get.limit"),
+        ];
+        $historyArray = AiVideoHistory::where(['uid' => $this->uid])->field("vid")->select()->toArray();
+        $videoList = [];
+        if($historyArray){
+            $vids = array_column($historyArray, 'vid');
+            $videoList = AiVideo::wherein('id',$vids)->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->paginate([
+                'list_rows' => $params["limit"],
+                'page' => $params["page"],
+            ]);
+        }
+        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+    }
+    //获取用户喜欢视频列表
+    public function favorite(){
+        if (input("get.page") == "" || input("get.limit") == "") {
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+
+        $params = [
+            "page" => input("get.page"),
+            "limit" => input("get.limit"),
+        ];
+        $favoriteArray = AiFavorite::where(['uid' => $this->uid])->field("vid")->select()->toArray();
+        $videoList = [];
+        if($favoriteArray){
+            $vids = array_column($favoriteArray, 'vid');
+            $videoList = AiVideo::wherein('id',$vids)->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->paginate([
+                'list_rows' => $params["limit"],
+                'page' => $params["page"],
+            ]);
+        }
+        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+    }
+    //获取用户收藏视频列表
+    public function collect(){
+        if (input("get.page") == "" || input("get.limit") == "") {
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+
+        $params = [
+            "page" => input("get.page"),
+            "limit" => input("get.limit"),
+        ];
+        $collectArray = AiCollect::where(['uid' => $this->uid])->field("vid")->select()->toArray();
+        $videoList = [];
+        if($collectArray){
+            $vids = array_column($collectArray, 'vid');
+            $videoList = AiVideo::wherein('id',$vids)->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->paginate([
+                'list_rows' => $params["limit"],
+                'page' => $params["page"],
+            ]);
+        }
+        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+    }
+
+    //用户喜欢视频
+    public function addFavorite()
+    {
+        if (input("get.vid") == "") {
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $params = [
+            "id" => input("get.vid"),
+        ];
+        $checkEmpty = AiFavorite::where(['uid' => $this->uid, 'vid' => $params['id']])->find();
+        if(!$checkEmpty){
+            $result = new AiFavorite();
+            $result->uid = $this->uid;
+            $result->vid = $params['id'];
+            $result->save();
+        }else{
+            $checkEmpty->delete();
+        }
+        return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
+    }
+    //用户收藏视频
+    public function addCollect(){
+        if (input("get.vid") == "") {
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $params = [
+            "id" => input("get.vid"),
+        ];
+        $checkEmpty = AiCollect::where(['uid' => $this->uid, 'vid' => $params['id']])->find();
+        if(!$checkEmpty){
+            $result = new AiCollect();
+            $result->uid = $this->uid;
+            $result->vid = $params['id'];
+            $result->save();
+        }else{
+            $checkEmpty->delete();
+        }
+        return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
+    }
 
 }
