@@ -189,13 +189,13 @@ class Video extends AiBase
    //视频搜索
    public function search(){
 
-       if (input("get.keyword") == "" || input("get.page") == "" || input("get.limit") == "") {
+       if (input("post.keyword") == "" || input("post.page") == "" || input("post.limit") == "") {
            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
        }
        $params = [
-           "title" => input("get.keyword"),
-           "page" => input("get.page"),
-           "limit" => input("get.limit"),
+           "title" => input("post.keyword"),
+           "page" => input("post.page"),
+           "limit" => input("post.limit"),
        ];
        $videoList = AiVideo::where('title', 'LIKE', '%' . $params['title'] . '%')
            ->field('id as vid,points,title as vod_name,enpic')
@@ -273,11 +273,11 @@ class Video extends AiBase
     //用户喜欢视频
     public function addFavorite()
     {
-        if (input("get.vid") == "") {
+        if (input("post.vid") == "") {
             return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
-            "id" => input("get.vid"),
+            "id" => input("post.vid"),
         ];
         $checkEmpty = AiFavorite::where(['uid' => $this->uid, 'vid' => $params['id']])->find();
         if(!$checkEmpty){
@@ -292,11 +292,11 @@ class Video extends AiBase
     }
     //用户收藏视频
     public function addCollect(){
-        if (input("get.vid") == "") {
+        if (input("post.vid") == "") {
             return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
-            "id" => input("get.vid"),
+            "id" => input("post.vid"),
         ];
         $checkEmpty = AiCollect::where(['uid' => $this->uid, 'vid' => $params['id']])->find();
         if(!$checkEmpty){
