@@ -1,0 +1,4 @@
+[2025-02-08T00:38:28+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '205-88816-2025-02-08 00:30' for key 'pid'
+[2025-02-08T04:01:50+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '93-206-2025-02-08 04:00' for key 'pid'
+[2025-02-08T05:01:23+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '334-204-2025-02-08 05:00' for key 'pid'
+[2025-02-08T23:34:09+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '142-204-2025-02-08 23:30' for key 'pid'

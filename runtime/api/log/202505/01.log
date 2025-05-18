@@ -1,0 +1,2 @@
+[2025-05-01T22:00:45+08:00][error] [8]未定义数组索引: ai_onlinekf_whatsapp[C:\phpstudy_pro\WWW\hezi_ai\app\api\controller\AiUserdata.php:177]
+[2025-05-01T22:01:54+08:00][error] [8]未定义数组索引: ai_onlinekf_whatsapp[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-helper\src\Collection.php:592]

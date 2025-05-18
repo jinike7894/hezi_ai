@@ -1,0 +1,949 @@
+[2024-08-22T14:23:14+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:14+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:15+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:15+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:15+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:15+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:15+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:15+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:15+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:15+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:16+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/response/Html.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:16+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:16+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:17+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:18+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:18+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:19+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:19+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:20+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:20+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:20+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:20+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:20+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:20+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:20+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:20+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:20+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:20+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:20+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:21+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:21+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:21+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:22+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:22+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:23+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:23+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/tpl/think_exception.tpl): failed to open stream: Too many open files in system
+[2024-08-22T14:23:23+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:24+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:24+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:24+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:24+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:25+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:25+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:25+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:25+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:25+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:26+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:26+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:26+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:28+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:29+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:29+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:30+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:30+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:30+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/tpl/think_exception.tpl): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:34+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:37+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:38+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:38+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:38+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:38+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:39+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:40+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:41+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:41+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:41+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:43+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:43+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:45+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:47+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:47+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:48+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:48+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:49+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:49+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:49+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:49+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:49+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:50+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:50+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:50+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:51+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:51+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:51+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:51+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:51+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:51+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/response/Html.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:52+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:52+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:52+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:53+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:53+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:54+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:54+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:55+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:55+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:56+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:23:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:23:59+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:01+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:03+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:05+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:06+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:07+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:07+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:09+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:09+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:10+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:10+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:10+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:11+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:13+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:15+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:15+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:16+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/response/Html.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/tpl/think_exception.tpl): failed to open stream: Too many open files in system
+[2024-08-22T14:24:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:20+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:21+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:26+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:27+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:27+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:27+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:27+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:27+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Cookie.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:30+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:32+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:32+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:33+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:33+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:34+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/facade/App.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:35+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:36+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:38+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:38+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:39+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:39+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:39+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:40+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/tpl/think_exception.tpl): failed to open stream: Too many open files in system
+[2024-08-22T14:24:40+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/facade/App.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Cookie.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:41+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:41+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:42+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:43+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:44+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:45+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:45+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:45+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:47+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:47+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:48+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:49+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:50+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:50+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:50+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:50+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:50+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:50+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:50+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:51+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:51+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:51+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:51+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:51+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:52+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:54+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:54+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:55+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:55+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:55+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:56+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:24:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Cookie.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:57+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:59+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:24:59+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:00+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:25:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:00+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:25:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:00+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:25:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:00+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:25:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:01+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:25:01+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:25:01+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:25:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:02+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:02+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:25:02+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:25:02+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:25:02+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:03+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:08+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:08+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:25:08+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:08+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:09+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:09+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:09+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:09+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:10+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:10+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:10+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:10+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:11+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:11+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:11+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/tpl/think_exception.tpl): failed to open stream: Too many open files in system
+[2024-08-22T14:26:13+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:13+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:13+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:13+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:13+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:13+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:15+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:15+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:16+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:17+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:17+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:17+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:17+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:18+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:19+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:19+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:21+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:21+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:21+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:21+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:21+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:21+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:21+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:21+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:21+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:22+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:22+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:23+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:23+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:23+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:23+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:24+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:24+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:25+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:25+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:25+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:25+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:25+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:26+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:26+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:27+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:27+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:27+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:27+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:28+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:28+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:28+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:28+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:29+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:29+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:30+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:30+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:30+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:30+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:31+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:31+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:32+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:32+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:33+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:33+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:33+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:33+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:33+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:33+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:34+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:34+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:34+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:35+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:35+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:36+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:36+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:36+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:36+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/facade/App.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:36+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:37+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/exception/Handle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:37+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:38+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:38+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:38+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:39+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:39+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:39+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:40+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:40+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:40+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:40+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:41+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:41+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:42+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:42+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:42+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:43+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:44+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:45+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:46+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:47+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:48+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:48+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:48+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:48+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:49+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:49+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:49+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:49+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:50+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:52+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:53+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:53+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:54+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:54+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:55+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/ExceptionHandle.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:55+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:56+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:56+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:56+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:57+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:57+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:57+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:57+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:57+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:57+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:57+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:58+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:26:59+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:59+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:59+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:59+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:59+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:26:59+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:27:00+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:27:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Response.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:00+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/think-multi-app/src/MultiApp.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:01+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:02+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Pipeline.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:02+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:02+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:27:02+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:02+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:27:02+08:00][error] [0]Class 'think\exception\ErrorException' not found
+[2024-08-22T14:27:03+08:00][error] [2]include(/www/wwwroot/532rzp.com/app/middleware.php): failed to open stream: Too many open files in system
+[2024-08-22T14:27:04+08:00][error] [2]include(/www/wwwroot/532rzp.com/vendor/topthink/framework/src/think/Middleware.php): failed to open stream: Too many open files in system

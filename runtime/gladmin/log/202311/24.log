@@ -1,0 +1,5 @@
+[2023-11-24T15:03:41+08:00][error] [0]方法参数错误:id
+[2023-11-24T15:38:11+08:00][error] [8]未定义变量: list
+[2023-11-24T15:38:28+08:00][error] [8]未定义变量: list
+[2023-11-24T15:38:35+08:00][error] [8]未定义变量: list
+[2023-11-24T16:03:00+08:00][error] [8]Trying to access array offset on value of type null

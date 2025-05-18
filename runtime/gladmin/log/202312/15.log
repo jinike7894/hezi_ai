@@ -1,0 +1,8 @@
+[2023-12-15T01:54:34+08:00][error] [0]方法参数错误:id
+[2023-12-15T13:34:16+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2023-12-15T13:34:21+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-15T13:34:23+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-15T13:34:25+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-15T23:34:29+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2023-12-15T23:34:29+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-15T23:34:31+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections

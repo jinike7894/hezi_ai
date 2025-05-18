@@ -43,6 +43,7 @@ class Products extends \think\Model
 		"ai_activity_pro_type"=>"int",
 		"ai_activity_sort"=>"int",
 		"ai_activity_update_switch"=>"int",
+
     ];
 	
 	public function search($page=1,$limit=10,$wd)
@@ -129,9 +130,11 @@ class Products extends \think\Model
 		->where($where)
 		->whereNull('product.delete_time')
 		->whereIn('product.ai_activity_show_type', [$type, 3])
+
 		->order("product.sort asc")
 // 		->leftJoin('ai_activity_record activity', 'activity.pid = product.id  and activity.uid='.$uid)
 		->field('product.id,product.name,product.is_apk,product.is_browser,product.img, product.androidurl,product.ai_activity_show_type,product.ai_activity_free_points,product.ai_activity_pro_type,product.ai_activity_update_switch')
+
 		->paginate([
 			'list_rows' => $limit,
 			'page' => $page
@@ -165,6 +168,7 @@ class Products extends \think\Model
 		}
 		
 	
+
 		return $productToAiActivityData;
 	}
 }

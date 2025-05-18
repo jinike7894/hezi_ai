@@ -1,0 +1,4 @@
+[2023-08-03T20:50:13+08:00][error] [0]模板文件不存在:/www/wwwroot/redlight/view/gladmin/data/channel/report.html
+[2023-08-03T20:59:53+08:00][error] [0]模板文件不存在:/www/wwwroot/redlight/view/gladmin/data/channel/report.html
+[2023-08-03T21:50:02+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'num' in 'field list'
+[2023-08-03T21:50:29+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'num' in 'field list'

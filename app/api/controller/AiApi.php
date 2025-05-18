@@ -16,10 +16,11 @@ use app\gladmin\model\SystemConfig;
 
 class AiApi
 {
-    public $token = "prod_6088c1847599e54502bf7c979f6";
-    public $taskHost = "https://www.aifacehy.com/openApi/submitTask"; //视频/图片/自动/手动 换脸
-    public $taskStatusHost = "https://www.aifacehy.com/openApi/batchGetTaskDetail"; //批量获取任务
-    public $delTaskHost = "https://www.aifacehy.com/openApi/removeTask"; //批量获取任务
+
+    public $token = "7e9b31fa6a2141d5a2981aa9f3e14110";
+    public $taskHost = "https://test.aifacetools.com/openApi/submitTask"; //视频/图片/自动/手动 换脸
+    public $taskStatusHost = "https://test.aifacetools.com/openApi/batchGetTaskDetail"; //批量获取任务
+    public $delTaskHost = "https://test.aifacetools.com/openApi/removeTask"; //批量获取任务
 
     //发送任务至ai三方
     public function dataToAi($taskType, $imgPath, $templateId, $recordId, $maskUrl = "")
@@ -85,7 +86,7 @@ class AiApi
         $aiParams["taskIds"] = array_values(array_column($dataList, "task_id"));
         $apiResponse = $this->postParams($this->taskStatusHost, $aiParams);
         $apiResponseData = json_decode($apiResponse, true);
-        var_dump($apiResponseData);
+
         if ($apiResponseData["data"]["list"]) {
             $useRecordParams = [];
             foreach ($apiResponseData["data"]["list"] as $apik => $apiv) {

@@ -199,12 +199,14 @@ class AiUserdata extends AiBase
     {
         $system = new SystemConfig();
         $systemData = $system
+
             // ->whereIn('name', ["ai_onlinekf_whatsapp", "ai_onlinekf_telegram"])
             ->whereIn('name', ["ai_onlinekf_email"])
             ->column("value", "name");
       
         // return json_encode(["code" => 1, "msg" => "succ", "data" => ["email" => $systemData["ai_onlinekf_email"], "telegram" => $systemData["ai_onlinekf_telegram"]]]);
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["email" => $systemData["ai_onlinekf_email"]]]);
+
     }
     //获取充值记录
     public function rechargeRecord()

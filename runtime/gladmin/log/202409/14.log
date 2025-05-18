@@ -1,0 +1,7 @@
+[2024-09-14T23:14:53+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2024-09-14T23:14:53+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2024-09-14T23:15:06+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2024-09-14T23:15:29+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2024-09-14T23:16:12+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2024-09-14T23:22:29+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2024-09-14T23:44:39+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections

@@ -1,0 +1,5 @@
+[2025-04-26T15:21:37+08:00][error] [2]array_column() expects parameter 1 to be array, object given[C:\phpstudy_pro\WWW\hezi_ai\app\api\controller\AiApi.php:84]
+[2025-04-26T18:28:16+08:00][error] [2]array_column() expects parameter 1 to be array, object given[C:\phpstudy_pro\WWW\hezi_ai\app\api\controller\AiApi.php:83]
+[2025-04-26T18:59:08+08:00][error] [10501]SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-orm\src\db\PDOConnection.php:796]
+[2025-04-26T18:59:23+08:00][error] [10501]SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-orm\src\db\PDOConnection.php:796]
+[2025-04-26T23:13:13+08:00][error] [0]Call to undefined method think\file\UploadedFile::validate()[C:\phpstudy_pro\WWW\hezi_ai\app\api\controller\Ai.php:583]

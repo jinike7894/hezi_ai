@@ -1,0 +1,12 @@
+[2023-12-25T00:35:47+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-25T00:35:55+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2023-12-25T00:35:59+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-25T13:57:36+08:00][error] [0]方法参数错误:id
+[2023-12-25T15:35:46+08:00][error] [10501]SQLSTATE[08S01]: Communication link failure: 1053 Server shutdown in progress
+[2023-12-25T15:35:49+08:00][error] [10501]SQLSTATE[HY000] [2002] Connection refused
+[2023-12-25T15:35:49+08:00][error] [10501]SQLSTATE[HY000] [2002] Connection refused
+[2023-12-25T20:36:02+08:00][error] [1040]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-25T20:36:05+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2023-12-25T20:36:07+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-25T20:36:10+08:00][error] [1040]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-25T22:36:13+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections

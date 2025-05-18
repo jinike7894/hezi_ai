@@ -36,7 +36,9 @@ class Aipayment extends AdminController
             }
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
+
             $list = $this->model->where($where)->where(["is_del"=>0])->page($page, $limit)->select();
+
             $data = [
                 'code'  => 0,
                 'msg'   => '',
@@ -86,6 +88,7 @@ class Aipayment extends AdminController
         $this->assign('hours', $hours);
         return $this->fetch();
     }
+
      public function delete($id)
     {
         $row = $this->model->find($id);
@@ -106,5 +109,6 @@ class Aipayment extends AdminController
         $this->assign('hours', $hours);
         return $this->fetch();
     }
+
 
 }

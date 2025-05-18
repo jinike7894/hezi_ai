@@ -1,0 +1,4 @@
+[2025-03-15T00:00:00+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '120-120-2025-03-15' for key 'channelCode'
+[2025-03-15T11:56:58+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '429-116-2025-03-15 11:30' for key 'pid'
+[2025-03-15T13:36:47+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '377-1-2025-03-15 13:30' for key 'pid'
+[2025-03-15T22:02:58+08:00][error] [10501]SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '393-125-2025-03-15 22:00' for key 'pid'

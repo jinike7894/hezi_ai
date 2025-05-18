@@ -133,7 +133,9 @@ class Aiagentdata extends AdminController
             $rule = [];
             $this->validate($post, $rule);
             try {
+
                 // $post["ai_activity_sort"]=$post["sort"];
+
                 $save = $row->save($post);
             } catch (\Exception $e) {
                 $this->error('保存失败');

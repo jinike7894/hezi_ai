@@ -1,0 +1,5 @@
+[2024-12-05T22:32:20+08:00][error] [0]Class 'think\faced\Db' not found
+[2024-12-05T23:49:32+08:00][error] [8]Trying to access array offset on value of type null
+[2024-12-05T23:49:54+08:00][error] [8]Trying to access array offset on value of type null
+[2024-12-05T23:50:11+08:00][error] [0]Call to a member function toArray() on null
+[2024-12-05T23:50:54+08:00][error] [8]Trying to access array offset on value of type null

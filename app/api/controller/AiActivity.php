@@ -84,6 +84,7 @@ class AiActivity extends AiBase
             //查询记录已经存在 则不提交
             $recordData = AiActivityRecord::where(["pid" => $params["pid"], "uid" => $uid])->find();
         }
+
         if ($recordData) {
             return json_encode(["code" => 0, "msg" => "任务已完成", "data" => ""]);
         }

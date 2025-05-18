@@ -1,0 +1,12 @@
+[2023-12-03T00:08:22+08:00][error] [8]未定义变量: results
+[2023-12-03T17:31:58+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2023-12-03T17:31:59+08:00][error] [10501]SQLSTATE[08004] [1040] Too many connections
+[2023-12-03T17:32:06+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-03T17:32:06+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-03T17:32:10+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-03T17:32:11+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-03T17:32:20+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-03T17:32:20+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-03T17:32:21+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-03T17:32:24+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections
+[2023-12-03T17:32:28+08:00][error] [10501]SQLSTATE[HY000] [1040] Too many connections

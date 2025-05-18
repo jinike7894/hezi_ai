@@ -11,7 +11,7 @@ use think\facade\Db;
 use app\gladmin\model\SystemConfig;
 class AiPay extends AiBase
 {
-     //获取支付通道用
+    //获取支付通道用
     public $mchno = 2;
     public $currency = "cny";
     public $language = "zh-cn";
@@ -42,7 +42,7 @@ class AiPay extends AiBase
         } else {
             $price = AiPointsProduct::where(["id" => $params["pid"]])->value("price");
         }
-      
+        //查询价格
         $paymentData = AiPayment::where(["is_del" => 0])
             ->where("min", "<=", $price * 100)
             ->where("max", ">=", $price * 100)
@@ -63,7 +63,8 @@ class AiPay extends AiBase
             "pay_id" => input("post.pay_id"),
         ];
         $uid = $this->uid;
-        $paymentData = AiPayment::where(["is_del" => 0,"id"=>$params["pay_id"]])->find();
+
+        $paymentData = AiPayment::where(["is_del" => 0, "id" => $params["pay_id"]])->find();
         //初始化订单数据
         $orderParams = [
             "name" => "",
@@ -81,9 +82,9 @@ class AiPay extends AiBase
             "is_first" => 0,
             "create_time" => time(),
             "update_time" => time(),
-            "vip_level"=>0,
-            "current_rate"=>$paymentData["rate"],
-            "is_activity"=>0,
+            "vip_level" => 0,
+            "current_rate" => $paymentData["rate"],
+            "is_activity" => 0,
         ];
         //生成订单号
         $orderParams["order_num"] = orderUniqueCode();
@@ -92,7 +93,9 @@ class AiPay extends AiBase
 
         $userData = AiUser::where(["id" => $uid])->field("id,channelCode,create_time")->find();
 
-        if (strtotime($userData["create_time"]) >= (time() -SystemConfig::getUserNewFlagTime()) && $orderData == 0) {
+
+        if (strtotime($userData["create_time"]) >= (time() - SystemConfig::getUserNewFlagTime()) && $orderData == 0) {
+
             $orderParams["is_activity"] = 1;
         }
 
@@ -145,6 +148,7 @@ class AiPay extends AiBase
         $payReturnData = $this->doPay($orderParams, $params["pay_id"]);
         if ($payReturnData["code"]!=200) {
             return json_encode(["code" => 0, "msg" =>$payReturnData["message"], "data" => []]);
+
         }
 
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["pay_url" => $payReturnData["url"]]]);
@@ -157,7 +161,6 @@ class AiPay extends AiBase
         $imgHost = $system
             ->where('name', "pic_url")
             ->value("value");
-       
         //查询支付网关和支付参数
         $paymentData = AiPayment::getPayMentFind($payId);
         $payParams = [
@@ -174,7 +177,6 @@ class AiPay extends AiBase
         $payParams["returnurl"] = "";
         $payReturnData = postPayParams($paymentData["pay_gateway"], $payParams);
         $payReturnData = json_decode($payReturnData, true);
-        
         // if ($payReturnData["code"] == 200) {
         //     return $payReturnData;
         // }
@@ -201,7 +203,7 @@ class AiPay extends AiBase
             echo "fail";
             return;
         }
-        
+
         $params = [
             "ordernum" => $notifyParams["orderno"],
         ];
@@ -235,6 +237,7 @@ class AiPay extends AiBase
         return json_encode(["code" => 1, "msg" => "succ", "data" => ["is_first" => $is_first,"time"=>$time]]);
     }
      //获取三方支付列表
+
     public function getPaymentlist()
     {
         $payGateway = "https://pay.dabaipay.com:82/api/trade/getpaytype";
@@ -246,12 +249,12 @@ class AiPay extends AiBase
         $payTypeParams = json_decode($payTypeParams, true);
         if ($payTypeParams["code"] == 200) {
             $params = $payTypeParams["list"];
-         
+
             $pidArray = array_column($params, 'pid');
             AiPayment::whereNotIn('pid', $pidArray)->update(['is_del' => 1]);
             $createPayArray = [];
             foreach ($params as $pk => $pv) {
-               
+
                 $currPay = AiPayment::where(["pid" => $pv["pid"]])->find();
                 if ($currPay) {
                     AiPayment::where(["pid" => $pv["pid"]])->update([
@@ -292,6 +295,7 @@ class AiPay extends AiBase
                             $arr["pay_icon"] = "/upload/otherimg/pay/usdt.png";
                             break;
                     }
+
                     $createPayArray[]=$arr;
                  
                 }
@@ -304,4 +308,5 @@ class AiPay extends AiBase
 
     }
     
+
 }

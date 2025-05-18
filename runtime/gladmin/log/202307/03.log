@@ -1,0 +1,2 @@
+[2023-07-03T15:57:25+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'uid' in 'field list'
+[2023-07-03T16:55:24+08:00][error] [0]方法参数错误:id

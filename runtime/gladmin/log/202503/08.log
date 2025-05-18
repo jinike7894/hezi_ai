@@ -1,0 +1,2 @@
+[2025-03-08T00:49:18+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sum' in 'where clause'
+[2025-03-08T00:49:18+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sum' in 'where clause'

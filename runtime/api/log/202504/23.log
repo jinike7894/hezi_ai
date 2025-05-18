@@ -1,0 +1,1 @@
+[2025-04-23T17:15:29+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list'[C:\phpstudy_pro\WWW\hezi_ai\vendor\topthink\think-orm\src\db\PDOConnection.php:796]

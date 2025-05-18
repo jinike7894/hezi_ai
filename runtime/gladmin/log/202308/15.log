@@ -1,0 +1,6 @@
+[2023-08-15T14:07:18+08:00][error] [0]方法参数错误:id
+[2023-08-15T16:18:17+08:00][error] [8]未定义数组索引: shows
+[2023-08-15T16:18:24+08:00][error] [8]未定义数组索引: shows
+[2023-08-15T16:19:00+08:00][error] [8]未定义数组索引: shows
+[2023-08-15T19:15:03+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cate_title' in 'where clause'
+[2023-08-15T19:15:07+08:00][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'cate_title' in 'where clause'

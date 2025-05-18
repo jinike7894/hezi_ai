@@ -49,6 +49,7 @@ class Index extends BaseController
 	public function syncQd(){
 	    $channelData=Db::name("channelcode")->where(["status"=>1])->select()->toArray();
 	    $postData=["platform"=> "ty"];
+
 	    if(!empty($channelData)){
 	        $channelPostData=[];
 	        foreach($channelData as $k=>$v){

@@ -65,6 +65,7 @@ class Product extends AdminController
         }
         return $this->fetch();
     }
+
     //   public function edit($id)
     // {
     //     $row = $this->model->find($id);
@@ -88,12 +89,13 @@ class Product extends AdminController
     //     $this->assign('hours', $hours);
     //     return $this->fetch();
     // }
+
     /**
      * @NodeAnotation(title="批量修改")
      */
     public function batchEdit($id)
     {
-       
+
         if ($this->request->isPost()) {
             $data = [];
             if ($k_name = input('post.k_name')) {
@@ -112,7 +114,7 @@ class Product extends AdminController
             $save = '';
             if ($data) {
                 try {
-                  
+
                     $save = $this->model->whereIn('id', $id)->update($data);
                 } catch (\Exception $e) {
                     $this->error('保存失败:'.$e->getMessage());

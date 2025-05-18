@@ -1,0 +1,6 @@
+[2023-06-01T21:25:38+08:00][error] [0]Call to undefined method think\Db::query()
+[2023-06-01T21:25:59+08:00][error] [0]Call to undefined method think\Db::query()
+[2023-06-01T21:27:06+08:00][error] [0]Call to undefined method think\Db::query()
+[2023-06-01T21:27:11+08:00][error] [0]Call to undefined method think\Db::query()
+[2023-06-01T21:35:00+08:00][error] [0]Call to undefined method think\Db::query()
+[2023-06-01T21:35:35+08:00][error] [0]Call to undefined method think\Db::query()

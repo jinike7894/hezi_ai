@@ -1,0 +1,1 @@
+[2023-06-09T16:15:45+08:00][error] [10501]SQLSTATE[42S02]: Base table or view not found: 1146 Table 'daohang.dh_channels' doesn't exist
