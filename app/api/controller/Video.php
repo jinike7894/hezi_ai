@@ -322,4 +322,23 @@ class Video extends AiBase
         return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
     }
 
+    //通过标签获取视频列表
+    public function tagVideoList()
+    {
+        if (input("get.tag_id") == "" || input("get.page") == "" || input("get.limit") == "") {
+            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $params = [
+            "tag_id" => input("get.tag_id"),
+            "page" => input("get.page"),
+            "limit" => input("get.limit"),
+        ];
+
+        $videoList = AiVideo::where('FIND_IN_SET(?, tags)', [$params['tag_id']])->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->paginate([
+            'list_rows' => $params["limit"],
+            'page' => $params["page"],
+        ]);
+        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+    }
+
 }
