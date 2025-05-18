@@ -16,6 +16,7 @@ use app\gladmin\model\SystemConfig;
 
 class AiApi
 {
+
     public $token = "7e9b31fa6a2141d5a2981aa9f3e14110";
     public $taskHost = "https://test.aifacetools.com/openApi/submitTask"; //视频/图片/自动/手动 换脸
     public $taskStatusHost = "https://test.aifacetools.com/openApi/batchGetTaskDetail"; //批量获取任务
@@ -85,7 +86,7 @@ class AiApi
         $aiParams["taskIds"] = array_values(array_column($dataList, "task_id"));
         $apiResponse = $this->postParams($this->taskStatusHost, $aiParams);
         $apiResponseData = json_decode($apiResponse, true);
-        
+
         if ($apiResponseData["data"]["list"]) {
             $useRecordParams = [];
             foreach ($apiResponseData["data"]["list"] as $apik => $apiv) {

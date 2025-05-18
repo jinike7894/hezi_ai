@@ -116,6 +116,8 @@ Route::post('data.config/save','data.config/save');
     Route::get('data.aipayment/index','data.aipayment/index');
     Route::rule('data.aipayment/edit','data.aipayment/edit');
 
+    Route::rule('data.aipayment/delete','data.aipayment/delete');
+
 
     Route::get('data.aiuserecord/index','data.aiuserecord/index');
 
@@ -133,4 +135,6 @@ Route::post('data.config/save','data.config/save');
     Route::rule('data.aiagentwithdrawal/edit','data.aiagentwithdrawal/edit');
     Route::rule('data.aiagentwithdrawal/qrcode','data.aiagentwithdrawal/qrcode');
 
+
 });
+

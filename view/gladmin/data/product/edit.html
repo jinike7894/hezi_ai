@@ -127,6 +127,16 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label">是否开启更新开关</label>
+            <div class="layui-input-block">
+                <select name="ai_activity_update_switch" id="ai_activity_update_switch">
+                    <option value="0" {if $row.ai_activity_update_switch eq 0}selected{/if}>关闭</option>
+                    <option value="1" {if $row.ai_activity_update_switch eq 1}selected{/if}>开启</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
             <label class="layui-form-label">ai任务中心手机区分</label>
             <div class="layui-input-block">
                 <select name="ai_activity_show_type" id="ai_activity_show_type">
@@ -155,12 +165,14 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">ai任务中心的排序</label>
-            <div class="layui-input-block">
-                <input type="number" name="ai_activity_sort" class="layui-input"  value="{$row.ai_activity_sort|default='1'}">
-            </div>
-        </div>
+
+        <!--<div class="layui-form-item">-->
+        <!--    <label class="layui-form-label">ai任务中心的排序</label>-->
+        <!--    <div class="layui-input-block">-->
+        <!--        <input type="number" name="ai_activity_sort" class="layui-input"  value="{$row.ai_activity_sort|default='1'}">-->
+        <!--    </div>-->
+        <!--</div>-->
+
 
         
         <div class="layui-form-item">

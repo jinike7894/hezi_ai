@@ -26,7 +26,9 @@ return [
             // 数据库类型
             'type'            => env('database.type', 'mysql'),
            // 服务器地址
+
             'hostname'        => env('database.hostname', '150.109.101.156'),
+
             // 数据库名
             'database'        => env('database.database', 'hezi_video'),
             // 用户名

@@ -22,6 +22,8 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                 toolbar: ['refresh'],
                 cols: [[
                     {field: 'id', minWidth: 80, title: 'ID'},
+                     {field: 'pid', minWidth: 0, title: '支付pid'},
+
                     {field: 'name', minWidth: 0, title: '名称'},
                     {field: 'discount', Width: 80, title: '优惠金额',search: false, sort:true},
                     {field: 'appid', Width: 80, title: '商户id', search: false,sort:true},

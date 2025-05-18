@@ -41,6 +41,9 @@ class Products extends \think\Model
 		"ai_activity_show_type"=>"int",
 		"ai_activity_free_points"=>"int",
 		"ai_activity_pro_type"=>"int",
+		"ai_activity_sort"=>"int",
+		"ai_activity_update_switch"=>"int",
+
     ];
 	
 	public function search($page=1,$limit=10,$wd)
@@ -127,13 +130,45 @@ class Products extends \think\Model
 		->where($where)
 		->whereNull('product.delete_time')
 		->whereIn('product.ai_activity_show_type', [$type, 3])
-		->order("product.ai_activity_sort asc")
-		->leftJoin('ai_activity_record activity', 'activity.pid = product.id  and activity.uid='.$uid)
-		->field('product.id,product.name,product.is_apk,product.is_browser,product.img, product.androidurl,product.ai_activity_show_type,product.ai_activity_free_points,product.ai_activity_pro_type,IF(activity.id IS NOT NULL, 1, 0) as is_finish')
+
+		->order("product.sort asc")
+// 		->leftJoin('ai_activity_record activity', 'activity.pid = product.id  and activity.uid='.$uid)
+		->field('product.id,product.name,product.is_apk,product.is_browser,product.img, product.androidurl,product.ai_activity_show_type,product.ai_activity_free_points,product.ai_activity_pro_type,product.ai_activity_update_switch')
+
 		->paginate([
 			'list_rows' => $limit,
 			'page' => $page
 		]);
+		if($productToAiActivityData){
+		    $productToAiActivityData=$productToAiActivityData->toArray();
+		    foreach($productToAiActivityData["data"] as $pk=>$pv){
+		        $productToAiActivityData["data"][$pk]["is_finish"]=0;
+		             if($pv["ai_activity_update_switch"]==1){
+		                   $todayStart = strtotime(date('Y-m-d 00:00:00')); // 获取当天零点时间戳
+                           $todayEnd = strtotime(date('Y-m-d 23:59:59'));  // 获取当天最后一秒时间戳
+                           $recordData = AiActivityRecord::where([
+                                         "pid" =>$pv["id"],
+                                         "uid" => $uid
+                                          ])->where("create_time", ">", $todayStart)
+                                          ->where("create_time", "<=", $todayEnd)
+                                          ->find();
+                           if($recordData){
+                               $productToAiActivityData["data"][$pk]["is_finish"]=1;
+                           }
+		             }else{
+		                  $recordData = AiActivityRecord::where([
+                                         "pid" => $pv["id"],
+                                         "uid" => $uid
+                                          ])->find();
+                            if($recordData){
+                               $productToAiActivityData["data"][$pk]["is_finish"]=1;
+                           }
+		             }
+		    }
+		}
+		
+	
+
 		return $productToAiActivityData;
 	}
 }

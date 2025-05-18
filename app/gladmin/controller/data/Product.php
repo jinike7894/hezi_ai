@@ -66,11 +66,36 @@ class Product extends AdminController
         return $this->fetch();
     }
 
+    //   public function edit($id)
+    // {
+    //     $row = $this->model->find($id);
+        
+    //     empty($row) && $this->error('数据不存在');
+    //     if ($this->request->isPost()) {
+    //         $post = $this->request->post();
+          
+    //         $rule = [];
+    //         $this->validate($post, $rule);
+    //         try {
+    //             dd($post);
+    //             $save = $row->save($post);
+    //         } catch (\Exception $e) {
+    //             $this->error('保存失败');
+    //         }
+    //         $save ? $this->success('保存成功') : $this->error('保存失败');
+    //     }
+    //     $hours = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
+    //     $this->assign('row', $row);
+    //     $this->assign('hours', $hours);
+    //     return $this->fetch();
+    // }
+
     /**
      * @NodeAnotation(title="批量修改")
      */
     public function batchEdit($id)
     {
+
         if ($this->request->isPost()) {
             $data = [];
             if ($k_name = input('post.k_name')) {
@@ -89,6 +114,7 @@ class Product extends AdminController
             $save = '';
             if ($data) {
                 try {
+
                     $save = $this->model->whereIn('id', $id)->update($data);
                 } catch (\Exception $e) {
                     $this->error('保存失败:'.$e->getMessage());

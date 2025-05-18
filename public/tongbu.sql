@@ -14,7 +14,11 @@ CREATE TABLE `dh_user` (
   `update_time` int(11) DEFAULT NULL,
   `delete_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
+<<<<<<< HEAD
+  UNIQUE KEY `username` (`username`) USING BTREE
+=======
   UNIQUE KEY `username` (`username`)
+>>>>>>> 005bd6ff3092db198642ebf01b7b713a24a69bda
 ) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
@@ -43,9 +47,15 @@ CREATE TABLE `dh_channelcode` (
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   `delete_time` int(11) DEFAULT NULL,
+<<<<<<< HEAD
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `channelCode` (`channelCode`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=177 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+=======
   PRIMARY KEY (`id`),
   UNIQUE KEY `channelCode` (`channelCode`)
 ) ENGINE=MyISAM AUTO_INCREMENT=176 DEFAULT CHARSET=utf8;
+>>>>>>> 005bd6ff3092db198642ebf01b7b713a24a69bda
 
 -- ----------------------------
 -- Table structure for `dh_qdtongji`
@@ -61,9 +71,15 @@ CREATE TABLE `dh_qdtongji` (
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   `delete_time` int(11) DEFAULT NULL,
+<<<<<<< HEAD
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `channelCode` (`channelCode`,`date`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+=======
   PRIMARY KEY (`id`),
   UNIQUE KEY `channelCode` (`channelCode`,`date`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+>>>>>>> 005bd6ff3092db198642ebf01b7b713a24a69bda
 
 -- ----------------------------
 -- Records for `dh_user`
@@ -73,10 +89,24 @@ INSERT INTO `dh_user` VALUES ('1', '内部渠道', 'ed696eb5bba1f7460585cc6975e6
 -- Records for `dh_channelcode`
 -- ----------------------------
 INSERT INTO `dh_channelcode` VALUES ('1', '1', '1', '1', '1', '', '0.62', '3', '0', '1', '1', '', '111', '111', '111', '', '', '', '1736930626', '1736930626', null);
+<<<<<<< HEAD
+INSERT INTO `dh_channelcode` VALUES ('176', '0', '232', '0', '0', '', '0.62', '3', '0', '1', '1', null, '', null, null, '', '', '', '1746876277', '1746876277', null);
+=======
+>>>>>>> 005bd6ff3092db198642ebf01b7b713a24a69bda
 -- ----------------------------
 -- Records for `dh_qdtongji`
 -- ----------------------------
 INSERT INTO `dh_qdtongji` VALUES ('1', '1', '2', '2', '2025-04-16', '0', '1744817389', '1744817389', null);
 INSERT INTO `dh_qdtongji` VALUES ('2', '1', '1', '1', '2025-04-17', '0', '1744822517', '1744822517', null);
+<<<<<<< HEAD
+INSERT INTO `dh_qdtongji` VALUES ('3', '1', '1', '1', '2025-04-30', '0', '1745946981', '1745946981', null);
+INSERT INTO `dh_qdtongji` VALUES ('4', '1', '1', '1', '2025-05-02', '0', '1746180970', '1746180970', null);
+INSERT INTO `dh_qdtongji` VALUES ('5', '1', '1', '1', '2025-05-05', '0', '1746443636', '1746443636', null);
+INSERT INTO `dh_qdtongji` VALUES ('6', '1', '1', '1', '2025-05-09', '0', '1746783652', '1746783652', null);
+INSERT INTO `dh_qdtongji` VALUES ('7', '1', '2', '2', '2025-05-10', '0', '1746874664', '1746874664', null);
+INSERT INTO `dh_qdtongji` VALUES ('8', '232', '1', '1', '2025-05-10', '0', '1746876277', '1746876277', null);
+INSERT INTO `dh_qdtongji` VALUES ('9', '1', '2', '2', '2025-05-15', '0', '1747293521', '1747293521', null);
+=======
+>>>>>>> 005bd6ff3092db198642ebf01b7b713a24a69bda
 -- over---------------------
 

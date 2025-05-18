@@ -62,13 +62,29 @@ class AiActivity extends AiBase
         $params = [
             "pid" => input("post.pid"),
         ];
-        $productData = Products::where(["id" => $params["pid"]])->field("id,name,ai_activity_switch,ai_activity_free_points")->find();
+         $productData = Products::where(["id" => $params["pid"]])->field("id,name,ai_activity_switch,ai_activity_free_points,ai_activity_update_switch")->find();
         if ($productData["ai_activity_switch"] != 1 || !$productData) {
             return json_encode(["code" => 0, "msg" => "产品错误", "data" => ""]);
         }
+
         $uid = $this->uid;
-        //查询记录已经存在 则不提交
-        $recordData = AiActivityRecord::where(["pid" => $params["pid"], "uid" => $uid])->find();
+
+        //判断ai_activity_update_switch是否有开关
+        if ($productData["ai_activity_update_switch"] == 1) {
+            //判断今天是否做过一次
+            $todayStart = strtotime(date('Y-m-d 00:00:00')); // 获取当天零点时间戳
+            $todayEnd = strtotime(date('Y-m-d 23:59:59'));  // 获取当天最后一秒时间戳
+            $recordData = AiActivityRecord::where([
+                "pid" => $params["pid"],
+                "uid" => $uid
+            ])->where("create_time", ">", $todayStart)
+                ->where("create_time", "<=", $todayEnd)
+                ->find();
+        } else {
+            //查询记录已经存在 则不提交
+            $recordData = AiActivityRecord::where(["pid" => $params["pid"], "uid" => $uid])->find();
+        }
+
         if ($recordData) {
             return json_encode(["code" => 0, "msg" => "任务已完成", "data" => ""]);
         }

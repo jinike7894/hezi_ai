@@ -1,21 +1,23 @@
 <form id="app-form" class="layui-form layuimini-form">
 
-    <div class="layui-form-item">
-        <label class="layui-form-label required">存储方式</label>
-        <div class="layui-input-block">
-            {foreach ['local'=>'本地存储','alioss'=>'阿里云oss','qnoss'=>'七牛云oss','txcos'=>'腾讯云cos'] as $key=>$val}
-            <input type="radio" v-model="upload_type" name="upload_type" lay-filter="upload_type" value="{$key}" title="{$val}" {if $key==sysconfig('upload','upload_type')}checked=""{/if}>
-            {/foreach}
-        </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label required">允许类型</label>
-        <div class="layui-input-block">
-            <input type="text" name="upload_allow_ext" class="layui-input" lay-verify="required" lay-reqtext="请输入允许类型" placeholder="请输入允许类型" value="{:sysconfig('upload','upload_allow_ext')}">
-            <tip>英文逗号做分隔符。</tip>
-        </div>
-    </div>
+    <!--<div class="layui-form-item">-->
+    <!--    <label class="layui-form-label required">存储方式</label>-->
+    <!--    <div class="layui-input-block">-->
+    <!--        {foreach ['local'=>'本地存储','alioss'=>'阿里云oss','qnoss'=>'七牛云oss','txcos'=>'腾讯云cos'] as $key=>$val}-->
+    <!--        <input type="radio" v-model="upload_type" name="upload_type" lay-filter="upload_type" value="{$key}" title="{$val}" {if $key==sysconfig('upload','upload_type')}checked=""{/if}>-->
+    <!--        {/foreach}-->
+    <!--    </div>-->
+    <!--</div>-->
+
+    <!--<div class="layui-form-item">-->
+    <!--    <label class="layui-form-label required">允许类型</label>-->
+    <!--    <div class="layui-input-block">-->
+    <!--        <input type="text" name="upload_allow_ext" class="layui-input" lay-verify="required" lay-reqtext="请输入允许类型" placeholder="请输入允许类型" value="{:sysconfig('upload','upload_allow_ext')}">-->
+    <!--        <tip>英文逗号做分隔符。</tip>-->
+    <!--    </div>-->
+    <!--</div>-->
+
 
     <div class="layui-form-item">
         <label class="layui-form-label required">允许大小</label>

@@ -36,7 +36,9 @@ class Aipayment extends AdminController
             }
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
-            $list = $this->model->where($where)->page($page, $limit)->select();
+
+            $list = $this->model->where($where)->where(["is_del"=>0])->page($page, $limit)->select();
+
             $data = [
                 'code'  => 0,
                 'msg'   => '',
@@ -86,5 +88,27 @@ class Aipayment extends AdminController
         $this->assign('hours', $hours);
         return $this->fetch();
     }
+
+     public function delete($id)
+    {
+        $row = $this->model->find($id);
+        empty($row) && $this->error('数据不存在');
+        if ($this->request->isPost()) {
+            $post = $this->request->post();
+            $rule = [];
+            $this->validate($post, $rule);
+            try {
+                $save = $row->where(["id"=>$id])->update(["is_del"=>1]);
+            } catch (\Exception $e) {
+                $this->error('保存失败');
+            }
+            $save ? $this->success('保存成功') : $this->error('保存失败');
+        }
+        $hours = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
+        $this->assign('row', $row);
+        $this->assign('hours', $hours);
+        return $this->fetch();
+    }
+
 
 }
