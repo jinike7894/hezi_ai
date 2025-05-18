@@ -332,9 +332,17 @@ class Video extends AiBase
             "tag_id" => input("get.tag_id"),
             "page" => input("get.page"),
             "limit" => input("get.limit"),
+            "sort" => input("get.sort",'new'),
         ];
+        $order = '';
+        if($params['sort'] == "new"){
+            $order = "id desc";
+        }
+        if($params['sort'] == "hot"){
+            $order = "eyes desc";
+        }
 
-        $videoList = AiVideo::where('FIND_IN_SET(?, tags)', [$params['tag_id']])->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->paginate([
+        $videoList = AiVideo::where('FIND_IN_SET(?, tags)', [$params['tag_id']])->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->order($order)->paginate([
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
