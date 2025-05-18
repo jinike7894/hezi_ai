@@ -1,0 +1,258 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><link rel="shortcut icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>&#65;&#80;&#80;&#22823;&#20840;</title><link rel="stylesheet" href="__CSS__/swiper.min.css"><script type="module" crossorigin src="__JS__/index.1963b10d.js"></script><link rel="stylesheet" href="__CSS__/index.f15ab42c.css"></head><body><div id="app"></div><script src="__JS__/swiper.min.js"></script><script src="__JS__/jquery.min.js"></script>
+<script>
+(function () {
+//顶部广告配置
+    const topBanner = {
+        //顶部图片
+        img: "{$adst['img']|remoteimg=$cdn_url,###}", //href:"{$adst['url']|cjqd=$channelCode,###}", 
+        alt: "{$adst['id']}"
+        //点击后的调用，如果没有可以为空
+       /* clickHandle() {
+            _hmt.push(['_trackEvent', 'JS', 'down', 'android', 1]);
+        }*/
+    }
+//swiper 广告配置
+    const swiperBanner = {
+        pagination: true, list: [
+            {volist name="adsalist" id="adsa"}
+            {
+                href: "{$adsa['url']|cjqd=$channelCode,###}",
+                img: "{$adsa['img']|remoteimg=$cdn_url,###}",
+                alt: "{$adsa['id']}"
+            },
+            {/volist}
+        ]
+    }
+
+//导航tab
+    /* {
+            tab:"热门",
+            list:[
+                {name:"xxx",img:"",url:"",alt:"xxx"}
+            ]
+            todo 新增 alt属性，自行添加
+        }*/
+    const navTabs = [
+        {
+            "tab": "\u70ED\u95E8",
+            "list": [
+                {volist name="adsb1list" id="adsb1"}
+                {
+                    "name": "{$adsb1.name|UnicodeEncode|raw}",
+                    "img": "{$adsb1.img|remoteimg=$cdn_url,###}",
+                    "url": "{$adsb1.url|cjqd=$channelCode,###}",
+                    "alt": "{$adsb1.id}"
+                },
+                {/volist}
+            ]
+        },
+        {
+            "tab": "\u89C6\u9891",
+            "list": [
+                {volist name="adsb2list" id="adsb2"}
+                {
+                    "name": "{$adsb2.name|UnicodeEncode|raw}",
+                    "img": "{$adsb2.img|remoteimg=$cdn_url,###}",
+                    "url": "{$adsb2.url|cjqd=$channelCode,###}",
+                    "alt": "{$adsb2.id}"
+                },
+                {/volist}
+            ]
+        },
+        {
+            "tab": "\u76F4\u64AD",
+            "list": [
+                {volist name="adsb3list" id="adsb3"}
+                {
+                    "name": "{$adsb3.name|UnicodeEncode|raw}",
+                    "img": "{$adsb3.img|remoteimg=$cdn_url,###}",
+                    "url": "{$adsb3.url|cjqd=$channelCode,###}",
+                    "alt": "{$adsb3.id}"
+                },
+                {/volist}
+            ]
+        },
+        {
+            "tab": "\u6E38\u620F",
+            "list": [
+                {volist name="adsb4list" id="adsb4"}
+                {
+                    "name": "{$adsb4.name|UnicodeEncode|raw}",
+                    "img": "{$adsb4.img|remoteimg=$cdn_url,###}",
+                    "url": "{$adsb4.url|cjqd=$channelCode,###}",
+                    "alt": "{$adsb4.id}"
+                },
+                {/volist}
+            ]
+        }
+    ]
+
+
+    /*
+        {
+            //图片、名字、调用_hmt中一个差异参数
+            img: "", name: "xxxx", desc: "描述", url: "", alt: "1", count: 111
+        },
+    */
+    const navList = [
+        {volist name="adsclist" id="adsc"}
+        {
+            "img": "{$adsc.img|remoteimg=$cdn_url,###}",
+            "name": "{$adsc.name|UnicodeEncode|raw}",
+            "url": "{$adsc.url|cjqd=$channelCode,###}",
+            "alt": "{$adsc.id}",
+            "count": "{$adsc.downtime}",
+            "desc": "{$adsc.slogan|UnicodeEncode|raw}"
+        },
+        {/volist}
+    ]
+
+    /*
+    *
+    *  url: "", list: [{
+    *        img: "",
+            title: "标题",
+            tags: "分类|分类2|分类3",
+            info: "xx|xxx|xxx",
+            area: "xxx"
+    *
+    * }
+    * ]
+    * */
+    const navDate = {
+        //展示开关
+        {if !empty($adsf)}
+        isShow: true,
+        //统一跳转的地址
+        url: "{$adsf.url|cjqd=$channelCode,###}",
+        alt: "{$adsf.id}",
+        list: [
+            {
+                "img": "{$cdn_url}/static/img/file/a1.js",
+                "title": "\u5b98\u65b9\u8ba4\u8bc1",
+                "tags": "\u5728\u6821\u5B66\u751F|\u5BFB\u6C42\u523A\u6FC0|\u6F6E\u5439\u55B7\u6C34",
+                "info": "19\u5C81|163cm|B\u7F69\u676F",
+                "area": " \u5168\u533A"
+            },
+            {
+                "img": "{$cdn_url}/static/img/file/a2.js",
+                "title": "\u5b98\u65b9\u8ba4\u8bc1",
+                "tags": "\u6E05\u7EAF\u59B9\u59B9|\u53EF\u76D0\u53EF\u751C|\u4E56\u5DE7\u53EF\u7231",
+                "info": "24\u5C81|168cm|C\u7F69\u676F",
+                "area": " \u5168\u533A"
+            },
+            {
+                "img": "{$cdn_url}/static/img/file/a3.js",
+                "title": "\u5b98\u65b9\u8ba4\u8bc1",
+                "tags": "\u516C\u53F8\u79D8\u4E66|\u91CE\u6027\u653E\u8361|\u53CD\u5DEE\u7F8E\u5973",
+                "info": "24\u5C81|172cm|D\u7F69\u676F",
+                "area": " \u5168\u533A"
+            },
+            {
+                "img": "{$cdn_url}/static/img/file/a4.js",
+                "title": "\u5b98\u65b9\u8ba4\u8bc1",
+                "tags": "\u8D85\u7EA7\u8FA3\u5988|\u8001\u516C\u4E0D\u5728|\u5BB6\u91CC\u53EF\u7EA6",
+                "info": "25\u5C81|163cm|C\u7F69\u676F",
+                "area": " \u5168\u533A"
+            },
+            {
+                "img": "{$cdn_url}/static/img/file/a5.js",
+                "title": "\u5b98\u65b9\u8ba4\u8bc1",
+                "tags": "\u6781\u54C1\u5FA1\u59D0|\u7C89\u5AE9\u65E0\u6BDB|\u9152\u5E97\u53EF\u7EA6",
+                "info": "27\u5C81|174cm|F\u7F69\u676F",
+                "area": " \u5168\u533A"
+            },
+            {
+                "img": "{$cdn_url}/static/img/file/a6.js",
+                "title": "\u5b98\u65b9\u8ba4\u8bc1",
+                "tags": "\u517C\u804C\u7EA6\u556A|\u5728\u6821\u5B66\u751F|\u4EA4\u53CB\u7EBF\u4E0B",
+                "info": "19\u5C81|167cm|B\u7F69\u676F",
+                "area": " \u5168\u533A"
+            },
+            {
+                "img": "{$cdn_url}/static/img/file/a7.js",
+                "title": "\u5b98\u65b9\u8ba4\u8bc1",
+                "tags": "\u59D0\u59B9\u82B1\u2740|\u6027\u611F\u53CC\u98DE|\u968F\u65F6\u53EF\u7EA6",
+                "info": "18\u5C81|170cm|B\u7F69\u676F",
+                "area": " \u5168\u533A"
+            }
+        ]
+        {/if}
+    }
+    //底部广告
+    const bottomBanner = {
+        //展示开关
+        {if !empty($adse)}
+        "isShow": true,
+        "img": "{$adse.img|remoteimg=$cdn_url,###}",
+        "text":"{$adse.name|UnicodeEncode|raw}",
+        "wenan":"{$adse.slogan|UnicodeEncode|raw}",
+        "btnText":"&#31435;&#21363;&#19979;&#36733;",
+        "alt":"{$adse.id}"
+        {/if}
+    }
+    window.$$data = {
+        topBanner, swiperBanner, navTabs, navList, navDate,bottomBanner
+    }
+})();
+
+window.$$mounted = function(){
+    //todo
+    $("#app a").click(function(){
+        changeToOpen($(this));
+        return true;
+    })
+}
+function changeToOpen(a) {
+    var jdata = {
+        'url': a.attr('alt'),
+		'domain': window.location.host,
+		'channelCode':{$channelCode},
+    };
+    $.ajax({
+        type: "post",
+        url: '/index/api/tongji',
+        async: true,
+        data: jdata,
+        dataType: 'json',
+        success: function(data) {
+	    console.log("成功上报点击");
+        }
+    });
+}
+function getUrlParam(name) {
+   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+   var r = window.location.search.substr(1).match(reg); //匹配目标参数
+   if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+function setHistory() {
+	history.pushState(null, null, document.URL);
+	setTimeout(function() {
+		window.addEventListener('popstate', function() {
+			history.pushState(null, null, document.URL);
+		});
+	}, 0);
+}
+$(function(){
+    {if condition="$noback.noback eq '1'"}setHistory();{/if}
+    /*var downua = navigator.userAgent.toLowerCase();
+    if(downua.indexOf('baidu') > 0){
+        $(".h-content").css("position","relative");
+    }*/
+});
+if(self!=top){
+      top.location.href=self.location.href;
+}
+</script>
+<div style="display:none;">{$qdtongji|raw}</div>
+<script>
+var _hmt = _hmt || [];
+(function () {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f32b40a34436b5c83039a47fd2a10d86";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

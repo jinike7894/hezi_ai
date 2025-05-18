@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="./style.css">
+    <meta charset="utf-8">
+    <title>Ai脱衣</title>
+    <link>
+</head>
+
+<body>
+    <div class="content" id="android">
+        <img src="./img/bg.js" class="bg" onclick="handleTopBtnAndroid()"></img>
+        <video autoplay muted width="100%" loop="false" class="video">
+            <source src="./img/people.webm" height="100%" type="video/webm">
+        </video>
+        <div class="btnBox">
+            <img src="./img/btn_b.png" class="btn_b" onclick="handleBottomBtnAndroid()" />
+        </div>
+    </div>
+    <div class="content" id="ios">
+        <img src="./img/bg.js" class="bg" onclick="handleTopBtnIos()"></img>
+         <video autoplay muted width="100%" loop="false" class="video">
+            <source src="./img/people.webm" height="100%" type="video/webm">
+        </video>
+        <div class="btnBox">
+            <img src="./img/btn_b.png" class="btn_b" onclick="handleBottomBtnIos()" />
+        </div>
+
+
+    </div>
+    <script>
+        function getDeviceType() {
+            const ua = navigator.userAgent.toLowerCase();
+            if (/iphone|ipad|ipod/.test(ua)) {
+                return "iOS"; // 苹果设备
+            } else if (/android/.test(ua)) {
+                return "Android"; // 安卓设备
+            } else {
+                return "Other"; // 其他设备
+            }
+        }
+
+        function showDeviceSpecificContent() {
+            const deviceType = getDeviceType();
+
+            if (deviceType === "iOS") {
+                document.getElementById("ios").style.display = "block";
+                document.getElementById("android").style.display = "none";
+            } else {
+                document.getElementById("ios").style.display = "none";
+                document.getElementById("android").style.display = "block";
+            }
+        }
+
+        // 页面加载时执行
+        window.onload = showDeviceSpecificContent;
+        // 安卓上面按钮
+        function handleTopBtnAndroid() {
+            alert("an按钮被点击了！"); // 示例：弹出提示框
+        }
+        // 安卓下面按钮
+        function handleBottomBtnAndroid() {
+            alert("an按钮被点击了！"); // 示例：弹出提示框
+        }
+        // 苹果上面按钮
+        function handleTopBtnIos() {
+            alert("ios按钮被点击了！"); // 示例：弹出提示框
+        }
+        // 苹果下面按钮
+        function handleBottomBtnIos() {
+            alert("ios按钮被点击了！"); // 示例：弹出提示框
+        }
+
+
+
+
+    </script>
+</body>
+
+
+</html>

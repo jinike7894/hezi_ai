@@ -1,0 +1,77 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">区域</label>
+            <div class="layui-input-block">
+                <select name="type" lay-verify="required">
+				  <option value="A">顶部大图区域</option>
+				  <option value="B1">中部推荐</option>
+				  <option value="B2">中部视频</option>
+				  <option value="B3">中部直播</option>
+				  <option value="B4">中部游戏</option>
+				  <option value="C">底部列表</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">位置(越小越靠前)</label>
+            <div class="layui-input-block">
+                <input type="number" name="weizhi" class="layui-input" lay-verify="required" placeholder="请输入产品所在位置" value="1">
+            </div>
+        </div>
+		
+		<div class="layui-form-item">
+            <label class="layui-form-label">产品名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" class="layui-input" lay-verify="required" placeholder="请输入产品名称" value="">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">产品图片</label>
+            <div class="layui-input-block layuimini-upload">
+                <input name="img" class="layui-input layui-col-xs6" lay-verify="required" placeholder="请上传产品图片" value="">
+                <div class="layuimini-upload-btn">
+                    <span><a class="layui-btn" data-upload="img" data-upload-number="one" data-upload-exts="png|jpg|ico|jpeg|gif" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_logo" data-upload-select="img" data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">产品链接</label>
+            <div class="layui-input-block">
+                <input type="text" name="url" class="layui-input" lay-verify="required" placeholder="请输入产品链接" value="">
+            </div>
+        </div>
+		
+        <div class="layui-form-item">
+            <label class="layui-form-label">下载次数</label>
+            <div class="layui-input-block">
+                <input type="number" name="downtime" class="layui-input" placeholder="请输入产品下载次数" value="<?php echo mt_rand(1000000,99999999);?>">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">产品简介</label>
+            <div class="layui-input-block">
+                <input type="text" name="slogan" class="layui-input" placeholder="请输入产品简介" value="">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注信息</label>
+            <div class="layui-input-block">
+                <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息"></textarea>
+            </div>
+        </div>
+
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>

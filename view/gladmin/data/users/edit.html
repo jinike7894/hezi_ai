@@ -1,0 +1,54 @@
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">用户名</label>
+            <div class="layui-input-block">
+                <!--<input type="text" name="username" class="layui-input" lay-verify="required" placeholder="请输入用户名" value="{$row.username}" readonly="readonly" />-->
+                <input type="text" name="username" class="layui-input" lay-verify="required" placeholder="请输入用户名" value="{$row.username}"  />
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">密 码</label>
+            <div class="layui-input-block">
+                <input type="password" name="password" class="layui-input" placeholder="请输入密码" value="">
+                <tip>不修改请留空。</tip>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">确认密码</label>
+            <div class="layui-input-block">
+                <input type="password" name="rpassword" class="layui-input" lay-verify="confirmPass" placeholder="请再次输入密码" value="" />
+            </div>
+        </div>
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label required">昵称</label>
+            <div class="layui-input-block">
+                <input type="text" name="nickname" class="layui-input" lay-verify="required" placeholder="请输入昵称" value="{$row.nickname}">
+            </div>
+        </div>
+
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>
+<script>
+layui.use('form',function(){
+    var form = layui.form;
+    form.on('submit(*)',function(data){
+        return false;
+    })
+    form.verify({
+    confirmPass : function(value) {
+        if ($('input[name=password]').val() !== value)
+        return '两次密码输入不一致！';
+    }
+    });
+});
+</script>

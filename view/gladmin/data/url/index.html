@@ -1,0 +1,12 @@
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <table id="currentTable" class="layui-table layui-hide"
+               data-auth-refreshurl="{:auth('data.url/refresh')}"
+               lay-filter="currentTable">
+        </table>
+    </div>
+</div>
+<script type="text/html" id="toolbar">
+    <button class="layui-btn layui-btn-sm layuimini-btn-primary" data-treetable-refresh><i class="fa fa-refresh"></i> </button>
+    <button class="layui-btn layui-btn-sm layui-btn-danger {if !auth('data.url/refresh')}layui-hide{/if}" data-url="data.url/refresh" data-treetable-refreshurl="currentTableRenderId"><i class="fa fa-trash-o"></i> 刷新链接</button>
+</script>
