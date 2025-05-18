@@ -5,24 +5,10 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-<<<<<<< HEAD
+
 		<string>该安装证书已通过苹果官方认证，安全可靠</string>
 	</dict>
-=======
-		<string>请点击右上角『下一步』按钮↗↗
 
-为了避免大家无法观影，请安装iOS轻量版，保障您的观影权益！该安装证书已通过苹果官方认证，安全可靠。
-
-安装平台入口是能让您更便捷的登陆，该安装仅仅是在您的手机桌面增加一个平台入口，完全不会修改设置，请放心安装。
-
-如果手机设至了锁屏密码，需要输入密码后才能继续安装。
-
-
-</string>
-	</dict>
-	<key>HasRemovalPasscode</key>
-	<false/>
->>>>>>> 005bd6ff3092db198642ebf01b7b713a24a69bda
 	<key>PayloadContent</key>
 	<array>
 		<dict>
