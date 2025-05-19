@@ -13,6 +13,7 @@ class AiTag extends \think\Model
         $tagData = self::where(["status"=>1,"pid"=>$pid])
             ->order("id asc")
             ->field("id as tag_id,title,img")
+            ->cache(3600)
             ->select()
             ->toArray();
         return $tagData;
@@ -26,6 +27,7 @@ class AiTag extends \think\Model
             ->where('img','<>',null)
             ->order("sort desc")
             ->field("id as tag_id,title,img")
+            ->cache(3600)
             ->select()
             ->toArray();
         return $searchTagData;

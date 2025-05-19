@@ -16,6 +16,7 @@ class AiCate extends \think\Model
             ->leftJoin('ai_video video', 'video.cate_id = cate.id')
             ->field('video.id as vid,video.points as points,video.title as vod_name,video.enpic as enpic')
             ->limit($limit)
+            ->cache(3600)
             ->select()
             ->toArray();
         return $videoData;
