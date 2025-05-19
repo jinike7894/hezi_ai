@@ -136,5 +136,19 @@ Route::post('data.config/save','data.config/save');
     Route::rule('data.aiagentwithdrawal/qrcode','data.aiagentwithdrawal/qrcode');
 
 
+    Route::get('data.aivideo/index','data.aivideo/index');
+    Route::rule('data.aivideo/edit','data.aivideo/edit');
+    Route::post('data.aivideo/modify','data.aivideo/modify');
+
+    Route::get('data.aicate/index','data.aicate/index');
+    Route::rule('data.aicate/edit','data.aicate/edit');
+    Route::post('data.aicate/modify','data.aicate/modify');
+
+
+    Route::get('data.aitag/index','data.aitag/index');
+    Route::rule('data.aitag/edit','data.aitag/edit');
+    Route::post('data.aitag/modify','data.aitag/modify');
+
+
 });
 

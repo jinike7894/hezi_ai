@@ -1,0 +1,78 @@
+<link rel="stylesheet" type="text/css" href="/static/plugs/lay-module/xm-select/static/formSeletv4.css"/>
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">视频标题</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" class="layui-input" lay-verify="required" placeholder="请输入视频标题" value="{$row.title|default=''}"  />
+            </div>
+        </div>
+        
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">钻石</label>
+            <div class="layui-input-block">
+                <input type="text" name="points" class="layui-input" lay-verify="required"  value="{$row.points|default=''}"  />
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否需要VIP权限</label>
+            <div class="layui-input-block">
+                <select name="isvip" id="isvip">
+                    <option value="0" {if $row.isvip eq 0}selected{/if}>否</option>
+                    <option value="1" {if $row.isvip eq 1}selected{/if}>是</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">排序</label>
+            <div class="layui-input-block">
+                <input type="text" name="sort" class="layui-input" lay-verify="required"  value="{$row.sort|default=''}"  />
+            </div>
+        </div>
+
+        
+        
+
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>
+<script type="text/javascript">
+layui.use(['form', 'layer','laydate'], function () {
+        // 操作对象
+        var form = layui.form
+                , layer = layui.layer
+                ,laydate = layui.laydate
+                , $ = layui.jquery;
+
+    //   console.log(formSelects);
+       laydate.render({
+            elem: '#time_range',
+            range: '~',
+            type: 'time',
+            //format: 'HH:mm:00' //可任意组合
+            done: function(value, date, endDate){
+                if(date.hours > endDate.hours){
+                    $('#time_range').val("");
+                    parent.layer.msg("起始时间不能大于截止时间");
+                    throw '起始时间不能大于截止时间';
+                } else if (date.hours == endDate.hours && date.minutes > endDate.minutes) {
+                    $('#time_range').val("");
+                    parent.layer.msg("起始时间不能大于截止时间");
+                    throw '起始时间不能大于截止时间';
+                }
+            }
+        });
+
+    });
+
+</script>

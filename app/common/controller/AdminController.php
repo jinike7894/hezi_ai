@@ -54,6 +54,7 @@ class AdminController extends BaseController
     protected $allowModifyFields = [
         'status',
         'backjumpstatus',
+        'is_recommend',
         'sort',
         'remark',
         'is_delete',
