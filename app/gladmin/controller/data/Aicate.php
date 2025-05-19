@@ -13,7 +13,7 @@ use think\App;
  * @package app\gladmin\controller\mall
  * @ControllerAnnotation(title="ai分类管理")
  */
-class AiCate extends AdminController
+class Aicate extends AdminController
 {
 
     use Curd;

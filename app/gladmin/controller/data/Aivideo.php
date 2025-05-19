@@ -13,7 +13,7 @@ use think\App;
  * @package app\gladmin\controller\mall
  * @ControllerAnnotation(title="ai视频管理")
  */
-class AiVideo extends AdminController
+class Aivideo extends AdminController
 {
 
     use Curd;

@@ -13,7 +13,7 @@ use think\App;
  * @package app\gladmin\controller\mall
  * @ControllerAnnotation(title="ai标签管理")
  */
-class AiTag extends AdminController
+class Aitag extends AdminController
 {
 
     use Curd;
