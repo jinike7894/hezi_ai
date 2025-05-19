@@ -48,7 +48,7 @@ class Video extends AiBase
        ];
        $limit = 5;
 
-       $videoList = AiVideo::where(["cate_id" => $params['cid'], "status" => 1])->field('id as vid, points,title as vod_name, enpic')->paginate([
+       $videoList = AiVideo::where(["cate_id" => $params['cid'], "status" => 1])->field('id as vid, points,title as vod_name, enpic')->cache(3600)->paginate([
            'list_rows' => $limit,
            'page' => $params["page"],
        ]);
@@ -67,7 +67,7 @@ class Video extends AiBase
            "limit" => input("get.limit"),
        ];
        $cate = AiCate::where("id",$params["cid"])->field("id,title")->find();
-       $videoList = AiVideo::where(["cate_id" => $params['cid'], "status" => 1])->field('id as vid, points,title as vod_name, enpic')->paginate([
+       $videoList = AiVideo::where(["cate_id" => $params['cid'], "status" => 1])->field('id as vid, points,title as vod_name, enpic')->cache(3600)->paginate([
            'list_rows' => $params["limit"],
            'page' => $params["page"],
        ]);
@@ -86,7 +86,7 @@ class Video extends AiBase
            "page" => input("get.page"),
            "limit" => input("get.limit"),
        ];
-       $videoList = AiVideo::where(["status" => 1])->field('id as vid, points,title as vod_name, enpic')->order('id desc')->paginate([
+       $videoList = AiVideo::where(["status" => 1])->field('id as vid, points,title as vod_name, enpic')->order('id desc')->cache(3600)->paginate([
            'list_rows' => $params["limit"],
            'page' => $params["page"],
        ]);
@@ -143,7 +143,7 @@ class Video extends AiBase
 
        $ids = array_column($cateIdArray, 'id');
 
-       $videoList = AiVideo::wherein('cate_id',$ids)->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->order($order)->paginate([
+       $videoList = AiVideo::wherein('cate_id',$ids)->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->order($order)->cache(3600)->paginate([
            'list_rows' => $params["limit"],
            'page' => $params["page"],
        ]);
@@ -199,6 +199,7 @@ class Video extends AiBase
        ];
        $videoList = AiVideo::where('title', 'LIKE', '%' . $params['title'] . '%')
            ->field('id as vid,points,title as vod_name,enpic')
+           ->cache(3600)
            ->paginate([
                'list_rows' => $params["limit"],
                'page' => $params["page"],
@@ -220,10 +221,7 @@ class Video extends AiBase
         $videoList = [];
         if($historyArray){
             $vids = array_column($historyArray, 'vid');
-            $videoList = AiVideo::wherein('id',$vids)->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->paginate([
-                'list_rows' => $params["limit"],
-                'page' => $params["page"],
-            ]);
+            $videoList = AiVideoHistory::getJoinVideoData($vids,$params['limit'],$params['page']);
         }
         return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
     }
@@ -241,10 +239,7 @@ class Video extends AiBase
         $videoList = [];
         if($favoriteArray){
             $vids = array_column($favoriteArray, 'vid');
-            $videoList = AiVideo::wherein('id',$vids)->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->paginate([
-                'list_rows' => $params["limit"],
-                'page' => $params["page"],
-            ]);
+            $videoList = AiFavorite::getJoinVideoData($vids,$params['limit'],$params['page']);
         }
         return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
     }
@@ -262,10 +257,7 @@ class Video extends AiBase
         $videoList = [];
         if($collectArray){
             $vids = array_column($collectArray, 'vid');
-            $videoList = AiVideo::wherein('id',$vids)->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->paginate([
-                'list_rows' => $params["limit"],
-                'page' => $params["page"],
-            ]);
+            $videoList = AiCollect::getJoinVideoData($vids,$params['limit'],$params['page']);
         }
         return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
     }
@@ -342,7 +334,7 @@ class Video extends AiBase
             $order = "eyes desc";
         }
 
-        $videoList = AiVideo::where('FIND_IN_SET(?, tags)', [$params['tag_id']])->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->order($order)->paginate([
+        $videoList = AiVideo::where('FIND_IN_SET(?, tags)', [$params['tag_id']])->field('id as vid,cate_id, points,title as vod_name, enpic ,eyes')->order($order)->cache(3600)->paginate([
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
