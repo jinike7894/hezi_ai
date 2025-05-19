@@ -139,6 +139,7 @@ Route::post('data.config/save','data.config/save');
     Route::get('data.aivideo/index','data.aivideo/index');
     Route::rule('data.aivideo/edit','data.aivideo/edit');
     Route::post('data.aivideo/modify','data.aivideo/modify');
+    Route::rule('data.aivideo/batchEdit','data.aivideo/batchEdit');
 
     Route::get('data.aicate/index','data.aicate/index');
     Route::rule('data.aicate/edit','data.aicate/edit');

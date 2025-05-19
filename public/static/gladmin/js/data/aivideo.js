@@ -12,6 +12,7 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
         delete_url: 'data.aivideo/delete',
         edit_url: 'data.aivideo/edit',
         modify_url: 'data.aivideo/modify',
+        batchedit_url: 'data.aivideo/batchEdit',
     };
 
     var Controller = {
@@ -19,8 +20,17 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
         index: function () {
             ea.table.render({
                 init: init,
-                toolbar: ['refresh'],
+                toolbar: ['refresh',[{
+                    text: '批量修改影片vip权限',
+                    url: init.batchedit_url,
+                    method: 'open',
+                    auth: 'batchedit',
+                    checkbox: true,
+                    class: 'layui-btn layui-btn-normal layui-btn-sm',
+                    //extend: 'data-full="true"',
+                }]],
                 cols: [[
+                    {type: "checkbox"},
                     {field: 'id', minWidth: 80, title: 'ID'},
                     {field: 'title', minWidth: 0, title: '视频标题'},
                     {field: 'points', Width: 80, title: '需要钻石数量',search: false, sort:true},
@@ -44,7 +54,10 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
         },
         edit: function () {
             ea.listen();
-        }
+        },
+        batchEdit: function () {
+            ea.listen();
+        },
     };
     return Controller;
 });

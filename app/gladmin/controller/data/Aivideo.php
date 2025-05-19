@@ -83,4 +83,37 @@ class Aivideo extends AdminController
         return $this->fetch();
     }
 
+    /**
+     * @NodeAnotation(title="批量修改")
+     */
+    public function batchEdit($id)
+    {
+
+        if ($this->request->isPost()) {
+            $data = [];
+
+            $isvip = input('post.isvip');
+            if (!empty($isvip) && $isvip == 1 ) {
+                $data['isvip'] = 1;
+                $data['points'] = rand(5,20);
+            }else{
+                $data['isvip'] = 0;
+                $data['points'] = 0;
+            }
+
+            $save = '';
+            if ($data) {
+                try {
+
+                    $save = $this->model->whereIn('id', $id)->update($data);
+                } catch (\Exception $e) {
+                    $this->error('保存失败:'.$e->getMessage());
+                }
+            }
+
+            $save ? $this->success('保存成功') : $this->error('保存失败');
+        }
+        return $this->fetch();
+    }
+
 }
