@@ -20,14 +20,13 @@ class AiPay extends AiBase
     public function getVipProduct()
     {
         $productData = AiVipProduct::where(["is_del" => 0])->field("id,name,day,free_day,price,show_tip,ai_video_face,ai_img_face,ai_auto_face,ai_manual_face")->order("sort desc")->select();
-
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $productData]);
+         return responseParams(["code" => 1, "msg" => "succ", "data" => $productData]);
     }
     //获取点数产品
     public function getPointsProduct()
     {
         $productData = AiPointsProduct::where(["is_del" => 0])->field("id,name,points,free_points,price,show_tips")->order("sort desc")->select();
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $productData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $productData]);
     }
     //选择支付通道
     public function getPayment()
@@ -49,13 +48,13 @@ class AiPay extends AiBase
             ->field("id,name,pay_icon,discount,show_tips,sort,pay_type")
             ->order("sort desc")
             ->select();
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $paymentData]);
+              return responseParams(["code" => 1, "msg" => "succ", "data" => $paymentData]);
     }
     //创建支付
     public function createOrder()
     {
         if (input("post.pid") == "" || input("post.pay_id") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "pid" => input("post.pid"),
@@ -105,7 +104,7 @@ class AiPay extends AiBase
         //判断支付通道优惠金额
         $paymentData = AiPayment::getPayMentFind($params["pay_id"]);
         if (!$paymentData) {
-            return json_encode(["code" => 0, "msg" => "选择支付错误", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "选择支付错误", "data" => ""]);
         }
         $discount = $paymentData["discount"];
         //判断是否vip订单
@@ -142,16 +141,14 @@ class AiPay extends AiBase
         //生成订单数据
         $orderRes = AiOrder::create($orderParams);
         if (!$orderRes) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
+             return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => []]);
         }
         //请求三方支付 或者支付链接
         $payReturnData = $this->doPay($orderParams, $params["pay_id"]);
         if ($payReturnData["code"]!=200) {
-            return json_encode(["code" => 0, "msg" =>$payReturnData["message"], "data" => []]);
-
+             return responseParams(["code" => 0, "msg" => $payReturnData["message"], "data" => []]);
         }
-
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["pay_url" => $payReturnData["url"]]]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => ["pay_url" => $payReturnData["url"]]]);
     }
     //创建支付请求
     public function doPay($orderParams, $payId)
@@ -234,7 +231,7 @@ class AiPay extends AiBase
            
         //     $time =strtotime($userData["create_time"])-(time() - 12 * 3600);
         // }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["is_first" => $is_first,"time"=>$time]]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => ["is_first" => $is_first,"time"=>$time]]);
     }
      //获取三方支付列表
 

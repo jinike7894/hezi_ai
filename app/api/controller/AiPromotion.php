@@ -33,13 +33,13 @@ class AiPromotion extends AiBase
         ->value("value");
         //推广链接
         $responseParams["promotion_host"]=$land_host."?pid=".$uid."&channelCode=".$userData["channelCode"];
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $responseParams]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $responseParams]);
     }
     //获取推广记录
     public function getPromotionRecord()
     {
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "page" => input("get.page"),
@@ -47,14 +47,14 @@ class AiPromotion extends AiBase
         ];
         $uid = $this->uid;
         $promotionData = AiPromotionModel::promotionRecord($uid, $params["limit"], $params["page"]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $promotionData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $promotionData]);
 
     }
     //获取账户记录
     public function getUserBalanceRecord()
     {
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "page" => input("get.page"),
@@ -68,7 +68,7 @@ class AiPromotion extends AiBase
                 'list_rows' => $params["limit"],
                 'page' => $params["page"],
             ]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $balanceBillData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $balanceBillData]);
     }
     //用户提现信息
     public function getWithdrawalInfo()
@@ -86,14 +86,14 @@ class AiPromotion extends AiBase
             "rate" => $rate,
             "usdt" => number_format($userData["balance"] / $rate, 2)
         ];
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $response]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $response]);
 
     }
     //获取提现记录
     public function getWithdrawalRecord()
     {
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "page" => input("get.page"),
@@ -107,14 +107,14 @@ class AiPromotion extends AiBase
                 'list_rows' => $params["limit"],
                 'page' => $params["page"],
             ]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $withdrawalRecordData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $withdrawalRecordData]);
     }
     //提现
     public function withdrawal()
     {
         $uid = $this->uid;
         if (input("post.amount") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "amount" => input("post.amount"),
@@ -154,8 +154,8 @@ class AiPromotion extends AiBase
                 }
             });
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
+            return responseParams(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
         }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
     }
 }

@@ -25,7 +25,7 @@ class Ai extends AiBase
     public function vipTimes()
     {
         if (input("get.type") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "type" => input("get.type"),
@@ -60,19 +60,19 @@ class Ai extends AiBase
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
         $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->order("create_time asc")->limit(1)->field("id,name,data")->find();
         if (!$orderData) {
-            return json_encode(["code" => 1, "msg" => "succ", "data" => $vipTimesParams]);
+             return responseParams(["code" => 1, "msg" => "succ", "data" => $vipTimesParams]);
         }
         //获取当前vip剩余次数
         $vipTimesParams["vip_times"] = AiOrder::availableTimes($uid, $params["type"]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $vipTimesParams]);
 
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $vipTimesParams]);
     }
     //视频换脸
     public function videoAi()
     {
        
         if (input("post.template_id") == "" || input("post.img") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+              return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "template_id" => input("post.template_id"),
@@ -88,7 +88,7 @@ class Ai extends AiBase
 
         if ($userData["vip_expiration"] < time()) {
             if ($userData["points"] < $this->aiVideoPoints) {
-                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+                 return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
                 $instance = $this;
@@ -122,10 +122,9 @@ class Ai extends AiBase
                         throw new \Exception("ai请求失败");
                     }
                 });
-
-                return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+                  return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
             } catch (\Exception $e) {
-                return json_encode(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
+                 return responseParams(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
             }
         }
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
@@ -152,11 +151,11 @@ class Ai extends AiBase
             //发送请求到三方ai
             $aiApi = new AiApi();
             $aiApi->dataToAi(0, $params["img"], $params["template_id"], $useRecordRes->id);
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+             return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
         }
         //vip已使用完扣减余额
         if ($userData["points"] < $this->aiVideoPoints) {
-            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+              return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
         }
         try {
             $instance = $this;
@@ -192,9 +191,10 @@ class Ai extends AiBase
                     throw new \Exception("ai请求失败");
                 }
             });
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
+             return responseParams(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
+          
         }
     }
     //获取视频换脸模板列表
@@ -202,7 +202,7 @@ class Ai extends AiBase
     {
    
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "page" => input("get.page"),
@@ -212,25 +212,26 @@ class Ai extends AiBase
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $templateData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $templateData]);
     }
     //获取单个视频模板
     public function videoTemplateFindData()
     {
         if (input("get.id") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
+  
         }
         $params = [
             "id" => input("get.id"),
         ];
         $templateFindData = AiVideoTemplate::where(["id" => $params["id"]])->find();
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $templateFindData]);
+          return responseParams(["code" => 1, "msg" => "succ", "data" => $templateFindData]);
     }
     //获取图片模板列表
     public function imgTemplateData()
     {
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "page" => input("get.page"),
@@ -240,25 +241,26 @@ class Ai extends AiBase
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $templateData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $templateData]);
     }
     //获取单个图片模板列表
     public function imgTemplateFindData()
     {
         if (input("get.id") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "id" => input("get.id"),
         ];
         $templateFindData = AiImgTemplate::where(["id" => $params["id"]])->find();
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $templateFindData]);
+         return responseParams(["code" => 1, "msg" => "succ", "data" => $templateFindData]);
     }
     //图片换脸
     public function imgAi()
     {
         if (input("post.template_id") == "" || input("post.img") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
+          
         }
         $params = [
             "template_id" => input("post.template_id"),
@@ -272,7 +274,7 @@ class Ai extends AiBase
         $useRecordParams = AiUseRecord::$useRecordParams;
         if ($userData["vip_expiration"] < time()) {
             if ($userData["points"] < $this->aiImgPoints) {
-                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+                return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
                 $instance = $this;
@@ -306,10 +308,11 @@ class Ai extends AiBase
                         throw new \Exception("ai请求失败");
                     }
                 });
-
-                return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+                 return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+                
             } catch (\Exception $e) {
-                return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+                return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+          
             }
         }
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
@@ -333,11 +336,13 @@ class Ai extends AiBase
             //发送请求到三方ai
             $aiApi = new AiApi();
             $aiApi->dataToAi(1, $params["img"], $params["template_id"], $useRecordRes->id);
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+              return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+         
         }
         //vip已使用完扣减余额
         if ($userData["points"] < $this->aiImgPoints) {
-            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+            return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+           
         }
         try {
             $instance = $this;
@@ -371,16 +376,17 @@ class Ai extends AiBase
                     throw new \Exception("ai请求失败");
                 }
             });
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+           
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
         }
     }
     //自动脱衣
     public function imgAutoAi()
     {
         if (input("post.img") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "img" => input("post.img"),
@@ -391,7 +397,8 @@ class Ai extends AiBase
         $useRecordParams = AiUseRecord::$useRecordParams;
         if ($userData["vip_expiration"] < time()) {
             if ($userData["points"] < $this->aiAutoPoints) {
-                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+                 return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+   
             }
             try {
                 $instance = $this;
@@ -425,9 +432,11 @@ class Ai extends AiBase
                         throw new \Exception("ai请求失败");
                     }
                 });
-                return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+                  return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+             
             } catch (\Exception $e) {
-                return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+                 return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+              
             }
         }
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
@@ -451,11 +460,13 @@ class Ai extends AiBase
             //发送请求到三方ai
             $aiApi = new AiApi();
             $aiApi->dataToAi(2, $params["img"], 0, $useRecordRes->id);
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+             return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+           
         }
         //vip已使用完扣减余额
         if ($userData["points"] < $this->aiAutoPoints) {
-            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+              return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+           
         }
         try {
             $instance = $this;
@@ -489,16 +500,19 @@ class Ai extends AiBase
                     throw new \Exception("ai请求失败");
                 }
             });
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+             return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+    
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+         
         }
     }
     //手动脱衣
     public function imgManualAi()
     {
         if (input("post.img") == "" || input("post.img_layers") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+               return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
+         
         }
         $params = [
             "img" => input("post.img"),
@@ -510,7 +524,7 @@ class Ai extends AiBase
         $useRecordParams = AiUseRecord::$useRecordParams;
         if ($userData["vip_expiration"] < time()) {
             if ($userData["points"] < $this->aiManualPoints) {
-                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+                return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
                 $instance = $this;
@@ -544,9 +558,11 @@ class Ai extends AiBase
                         throw new \Exception("ai请求失败");
                     }
                 });
-                return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+                 return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+   
             } catch (\Exception $e) {
-                return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+                 return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+           
             }
         }
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
@@ -570,12 +586,13 @@ class Ai extends AiBase
             //发送请求到三方ai
             $aiApi = new AiApi();
             $aiApi->dataToAi(3, $params["img"], 0, $useRecordRes->id, $params["img_layers"]);
-
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+            
         }
         //vip已使用完扣减余额
         if ($userData["points"] < $this->aiManualPoints) {
-            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+             return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+        
         }
         try {
             $instance = $this;
@@ -609,9 +626,9 @@ class Ai extends AiBase
                     throw new \Exception("ai请求失败");
                 }
             });
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+                 return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
         }
     }
     //批量获取任务
@@ -659,20 +676,23 @@ class Ai extends AiBase
                 if ($userData["points"] < $aiTypePoints) {
                     //第一次跳转 任务中心
                     if($ActivityRecordCount>1){
-                        return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+                        return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+                
                     }
                     //如果完成过金币任务跳转充值
-                    return json_encode(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
+                       return responseParams(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
+                
                 }
             }
         } else {
             if ($userData["points"] < $aiTypePoints) {
               //第一次跳转 任务中心
               if($ActivityRecordCount>1){
-                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+                  return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             //如果完成过金币任务跳转充值
-            return json_encode(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
+              return responseParams(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
+
             }
         }
         $file = request()->file('image'); // 获取上传的图片
@@ -685,7 +705,8 @@ class Ai extends AiBase
 
             // 进行文件验证
             if (!$validate->check(['image' => $file])) {
-                return json_encode(["code" => 0, "msg" => "图片类型或者大小不符合要求", "data" => ""]);
+                return responseParams(["code" => 0, "msg" => "图片类型或者大小不符合要求", "data" => ""]);
+           
             }
             // 获取文件扩展名
             $extension = $file->getOriginalExtension();
@@ -702,9 +723,9 @@ class Ai extends AiBase
             $newPath = "./" . $directory . "/" . $fileBaseName . ".js";
             $filData = file_get_contents($imgPath);
             file_put_contents($newPath, $filData);
-            return json_encode(["code" => 1, "msg" => "上传成功", "data" => "/" . $directory . '/' . $filename]);
+            return responseParams(["code" => 1, "msg" => "上传成功", "data" => "/" . $directory . '/' . $filename]);
         } else {
-            return json_encode(["code" => 0, "msg" => "未选择文件", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "未选择文件", "data" => ""]);
         }
 
     }

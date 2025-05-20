@@ -14,11 +14,11 @@ class AiBase extends BaseController
         // $token = Request::header("AccessToken");
         $token = input("accessToken");
         if (!$token) {
-            abort(Response::create(["code" => 401, "msg" => "请登录", "data" => ""],"json"));
+            abort(responseParams(["code" => 401, "msg" => "请登录", "data" => ""]));
         }
          $this->uid = decodeToken($token)->id ?? null;
          if(!$this->uid){
-            abort(Response::create(["code" => 401, "msg" => "已过期请登录", "data" => ""],"json"));
+             abort(responseParams(["code" => 401, "msg" => "已过期请登录", "data" => ""]));
          }
         }
           

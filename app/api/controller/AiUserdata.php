@@ -18,7 +18,7 @@ class AiUserdata extends AiBase
     public function registerUser()
     {
         if (input("post.unique_code") == "" || input("post.model") == "" || input("post.channelCode") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "model" => input("post.model"),
@@ -33,7 +33,7 @@ class AiUserdata extends AiBase
         //已注册
         if ($userData) {
             $token = generateToken($userData);
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ["token" => $token]]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ["token" => $token]]);
         }
 
         //新增用户
@@ -73,7 +73,7 @@ class AiUserdata extends AiBase
                         }
                     });
                 } catch (\Exception $e) {
-                    return json_encode(["code" => 0, "msg" => $e->getMessage(), "data" => []]);
+                    return responseParams(["code" => 0, "msg" => $e->getMessage(), "data" => []]);
                 }
             } else {
                 AiUser::create($userAddData);
@@ -87,10 +87,10 @@ class AiUserdata extends AiBase
 
         $data = AiUser::where(['unique_code' => $userAddData['unique_code']])->field("id,username,unique_code")->find()->toArray();
         if (empty($data)) {
-            return json_encode(["code" => 0, "msg" => "请刷新页面重试", "data" => []]);
+            return responseParams(["code" => 0, "msg" => "请刷新页面重试", "data" => []]);
         }
         $token = generateToken($data);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["token" => $token]]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => ["token" => $token]]);
 
         // return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
 
@@ -99,7 +99,7 @@ class AiUserdata extends AiBase
     public function updateUserData()
     {
         if (!input("post.username") || !input("post.passwd")) {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "username" => input("post.username"),
@@ -113,22 +113,22 @@ class AiUserdata extends AiBase
             //只修改密码
             $updateRes = AiUser::where(['id' => $uid])->update(["passwd" => md5($params["passwd"]), "plain_passwd" => $params["passwd"]]);
             if ($updateRes) {
-                return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+                return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
             }
-            return json_encode(["code" => 0, "msg" => "不能设置原密码", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "不能设置原密码", "data" => ""]);
         }
         //修改用户名和密码
         $updateRes = AiUser::where(['id' => $uid])->update(["username" => $params["username"], "passwd" => md5($params["passwd"]), "plain_passwd" => $params["passwd"], "is_update" => 1, "update_time" => time()]);
         if ($updateRes) {
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
         }
-        return json_encode(["code" => 0, "msg" => "不能设置原密码", "data" => ""]);
+        return responseParams(["code" => 0, "msg" => "不能设置原密码", "data" => ""]);
     }
     //账号密码登录
     public function loginByPasswd()
     {
         if (!input("post.username") || !input("post.passwd")) {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "username" => input("post.username"),
@@ -138,11 +138,11 @@ class AiUserdata extends AiBase
         //查询用户
         $userData = AiUser::where(["username" => $params["username"], "passwd" => md5($params["passwd"])])->field("id,username,unique_code")->find();
         if (!$userData) {
-            return json_encode(["code" => 0, "msg" => "账号或者密码错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "账号或者密码错误", "data" => ""]);
         }
         
         $token = generateToken($userData->toArray());
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["token" => $token]]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => ["token" => $token]]);
     }
     //获取用户信息
     public function userInfo()
@@ -150,7 +150,7 @@ class AiUserdata extends AiBase
         $uid = $this->uid;
         $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update,plain_passwd")->find();
         if(!$userData){
-            return json_encode(["code" => 0, "msg" => "用户信息错误", "data" => []]);
+            return responseParams(["code" => 0, "msg" => "用户信息错误", "data" => []]);
         }
         $userData= $userData->toArray();
          //今日收益
@@ -192,7 +192,7 @@ class AiUserdata extends AiBase
                 ];
             }
         }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $userData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $userData]);
     }
     //获取客服信息
     public function customerService()
@@ -205,14 +205,14 @@ class AiUserdata extends AiBase
             ->column("value", "name");
       
         // return json_encode(["code" => 1, "msg" => "succ", "data" => ["email" => $systemData["ai_onlinekf_email"], "telegram" => $systemData["ai_onlinekf_telegram"]]]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["email" => $systemData["ai_onlinekf_email"]]]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => ["email" => $systemData["ai_onlinekf_email"]]]);
 
     }
     //获取充值记录
     public function rechargeRecord()
     {
         if (!input("get.page") || !input("get.limit")) {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "page" => input("get.page"),
@@ -220,13 +220,13 @@ class AiUserdata extends AiBase
         ];
         $uid = $this->uid;
         $orderData = AiOrder::getOrderData($uid, $params["limit"], $params["page"]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $orderData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $orderData]);
     }
     //获取ai使用记录
     public function aiUseRecord()
     {
         if (!input("get.page") || !input("get.limit")) {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "page" => input("get.page"),
@@ -239,7 +239,7 @@ class AiUserdata extends AiBase
                     'list_rows' => $params["limit"],  // 每页条数
                     'page' => $params["page"],    // 当前页数
                 ]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $recordData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $recordData]);
     }
     //删除记录
     public function delUseRecord()
@@ -261,13 +261,13 @@ class AiUserdata extends AiBase
             $aiApi->delTask($useRecordData["task_id"]);
             return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
         }
-        return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
+        return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => []]);
     }
     //设置钱包地址
     public function setWallet()
     {
         if (!input("post.wallet")) {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "wallet" => input("post.wallet"),
@@ -277,9 +277,9 @@ class AiUserdata extends AiBase
             "coin_wallet_address" => $params["wallet"],
         ]);
         if ($userRes) {
-            return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => []]);
         }
-        return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => []]);
+        return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => []]);
     }
 
 
