@@ -208,7 +208,7 @@ class Ai extends AiBase
             "page" => input("get.page"),
             "limit" => input("get.limit"),
         ];
-        $templateData = AiVideoTemplate::paginate([
+        $templateData = AiVideoTemplate::cache(3600)->paginate([
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
@@ -237,7 +237,7 @@ class Ai extends AiBase
             "page" => input("get.page"),
             "limit" => input("get.limit"),
         ];
-        $templateData = AiImgTemplate::paginate([
+        $templateData = AiImgTemplate::cache(3600)->paginate([
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
