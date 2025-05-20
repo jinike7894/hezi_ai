@@ -114,6 +114,22 @@
         </div>
     </div>
 
+    <div class="layui-form-item">
+        <label class="layui-form-label">视频封面域名</label>
+        <div class="layui-input-block">
+            <input type="text" name="video_img_cdn" class="layui-input"  placeholder="请输入视频封面域名" value="{:sysconfig('site','video_img_cdn')}">
+            <tip>填写视频封面域名。</tip>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">视频播放域名</label>
+        <div class="layui-input-block">
+            <input type="text" name="video_play_cdn" class="layui-input"  placeholder="请输入视频播放域名" value="{:sysconfig('site','video_play_cdn')}">
+            <tip>填写视频播放域名。</tip>
+        </div>
+    </div>
+
     <div class="hr-line"></div>
     <div class="layui-form-item text-center">
         <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="system.config/save" data-refresh="false">确认</button>

@@ -52,6 +52,9 @@ class Video extends AiBase
            'list_rows' => $limit,
            'page' => $params["page"],
        ]);
+       for ($i = 0; $i < count($videoList); $i++) {
+           $videoList[$i]['enpic'] = replaceVideoCdn($videoList[$i]['enpic'],'video_img_cdn');
+       }
        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
    }
 
@@ -71,6 +74,9 @@ class Video extends AiBase
            'list_rows' => $params["limit"],
            'page' => $params["page"],
        ]);
+       for ($i = 0; $i < count($videoList); $i++) {
+           $videoList[$i]['enpic'] = replaceVideoCdn($videoList[$i]['enpic'],'video_img_cdn');
+       }
        $list['title'] = $cate->title;
        $list['videoList'] = $videoList;
        return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
@@ -90,6 +96,9 @@ class Video extends AiBase
            'list_rows' => $params["limit"],
            'page' => $params["page"],
        ]);
+       for ($i = 0; $i < count($videoList); $i++) {
+           $videoList[$i]['enpic'] = replaceVideoCdn($videoList[$i]['enpic'],'video_img_cdn');
+       }
        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
    }
 
@@ -147,6 +156,9 @@ class Video extends AiBase
            'list_rows' => $params["limit"],
            'page' => $params["page"],
        ]);
+       for ($i = 0; $i < count($videoList); $i++) {
+           $videoList[$i]['enpic'] = replaceVideoCdn($videoList[$i]['enpic'],'video_img_cdn');
+       }
        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
    }
 
@@ -171,7 +183,13 @@ class Video extends AiBase
            ->field('id as vid,points,title as vod_name,enpic')
            ->orderRaw('rand()') // 随机排序
            ->limit(6) // 限制数量
-           ->select();
+           ->select()
+           ->toArray();
+       for ($i = 0; $i < count($relatedVideos); $i++) {
+           $relatedVideos[$i]['enpic'] = replaceVideoCdn($relatedVideos[$i]['enpic'],'video_img_cdn');
+       }
+       $video->enpic = replaceVideoCdn($video->enpic,'video_img_cdn');
+       $video->play_url = replaceVideoCdn($video->play_url,'video_play_cdn');
        $video->eyes += 1;
        $video->save();
        $checkEmpty = AiVideoHistory::where(['uid' => $this->uid, 'vid' => $params['id']])->find();
@@ -204,6 +222,9 @@ class Video extends AiBase
                'list_rows' => $params["limit"],
                'page' => $params["page"],
            ]);
+       for ($i = 0; $i < count($videoList); $i++) {
+           $videoList[$i]['enpic'] = replaceVideoCdn($videoList[$i]['enpic'],'video_img_cdn');
+       }
        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
    }
 

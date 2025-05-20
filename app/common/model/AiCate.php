@@ -19,6 +19,9 @@ class AiCate extends \think\Model
             ->cache(3600)
             ->select()
             ->toArray();
+        for ($i = 0; $i < count($videoData); $i++) {
+            $videoData[$i]['enpic'] = replaceVideoCdn($videoData[$i]['enpic'],'video_img_cdn');
+        }
         return $videoData;
     }
 }

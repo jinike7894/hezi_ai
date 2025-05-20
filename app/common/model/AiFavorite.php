@@ -20,6 +20,9 @@ class AiFavorite extends \think\Model
                 'list_rows' => $limit,
                 'page' => $page
             ]);
+        for ($i = 0; $i < count($data); $i++) {
+            $data[$i]['enpic'] = replaceVideoCdn($data[$i]['enpic'],'video_img_cdn');
+        }
 
         return $data;
     }

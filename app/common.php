@@ -371,6 +371,15 @@ if (!function_exists('qsj')) {
         }
     }
 }
+
+if (!function_exists('replaceVideoCdn')) {
+    function replaceVideoCdn($oldPath,$configName): string
+    {
+        $url_parts = parse_url($oldPath);
+        $path = isset($url_parts['path']) ? $url_parts['path'] : '';
+        return sysconfig('site', $configName) . $path ;
+    }
+}
 function calculateAverage($arr)
 {
     // 计算数组元素的总和 
