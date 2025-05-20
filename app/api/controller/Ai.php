@@ -646,7 +646,7 @@ class Ai extends AiBase
     public function uploadFaceImg()
     {
         if (input("post.type") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "type" => input("post.type"),

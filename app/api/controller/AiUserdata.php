@@ -245,7 +245,7 @@ class AiUserdata extends AiBase
     public function delUseRecord()
     {
         if (!input("post.id")) {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "id" => input("post.id"),
@@ -259,7 +259,7 @@ class AiUserdata extends AiBase
             $aiApi = new AiApi();
             $useRecordData = AiUseRecord::where(["id" => $params["id"]])->field("id,task_id")->find();
             $aiApi->delTask($useRecordData["task_id"]);
-            return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => []]);
         }
         return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => []]);
     }

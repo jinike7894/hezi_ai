@@ -34,7 +34,7 @@ class AiActivity extends AiBase
         $activityProductData = Products::getAiActivityData($params["type"], $uid, $params["page"], $params["limit"], $where);
        
         
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["points" => $points, "list" => $activityProductData]]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => ["points" => $points, "list" => $activityProductData]]);
     }
     //获取任务记录
     public function getActivityRecord()
