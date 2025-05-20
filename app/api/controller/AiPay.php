@@ -48,7 +48,9 @@ class AiPay extends AiBase
             ->field("id,name,pay_icon,discount,show_tips,sort,pay_type")
             ->order("sort desc")
             ->select();
-              return responseParams(["code" => 1, "msg" => "succ", "data" => $paymentData]);
+            $string=responseParams(["code" => 1, "msg" => "succ", "data" => $paymentData]);
+            echo jiemi($string);
+         return responseParams(["code" => 1, "msg" => "succ", "data" => $paymentData]);
     }
     //创建支付
     public function createOrder()
