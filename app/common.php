@@ -511,3 +511,7 @@ function postPayParams($url,$data)
         return $response;
     }
 }
+//response 返回信息
+function responseParams($arr){
+    return jiami(json_encode($arr));
+}

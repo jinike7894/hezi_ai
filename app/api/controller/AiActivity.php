@@ -16,7 +16,7 @@ class AiActivity extends AiBase
     public function getActivityData()
     {
         if (input("get.type") == "" || input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "type" => input("get.type"),
@@ -34,13 +34,13 @@ class AiActivity extends AiBase
         $activityProductData = Products::getAiActivityData($params["type"], $uid, $params["page"], $params["limit"], $where);
        
         
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ["points" => $points, "list" => $activityProductData]]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => ["points" => $points, "list" => $activityProductData]]);
     }
     //获取任务记录
     public function getActivityRecord()
     {
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+              return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "page" => input("get.page"),
@@ -51,20 +51,20 @@ class AiActivity extends AiBase
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $activityRecordData]);
+          return responseParams(["code" => 1, "msg" => "succ", "data" => $activityRecordData]);
     }
     //任务中心回调
     public function activityNotify()
     {
         if (input("post.pid") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "pid" => input("post.pid"),
         ];
          $productData = Products::where(["id" => $params["pid"]])->field("id,name,ai_activity_switch,ai_activity_free_points,ai_activity_update_switch")->find();
         if ($productData["ai_activity_switch"] != 1 || !$productData) {
-            return json_encode(["code" => 0, "msg" => "产品错误", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "产品错误", "data" => ""]);
         }
 
         $uid = $this->uid;
@@ -86,7 +86,7 @@ class AiActivity extends AiBase
         }
 
         if ($recordData) {
-            return json_encode(["code" => 0, "msg" => "任务已完成", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "任务已完成", "data" => ""]);
         }
         $userData = AiUser::where(['id' => $uid])->field("id,username,points,channelCode")->find();
         try {
@@ -96,7 +96,7 @@ class AiActivity extends AiBase
                     ->inc("points", $productData["ai_activity_free_points"])
                     ->update();
                 if (!$userRes) {
-                    return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+                    return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
                 }
                 //生成points账单变记录
                 $pointsBillParams = [
@@ -125,19 +125,18 @@ class AiActivity extends AiBase
                 ];
                 $recordRes = AiActivityRecord::create($activityRecord);
                 if (!$recordRes) {
-                    return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+                      return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
                 }
             });
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
         }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
-
+         return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
     }
     public function clickRecord()
     {
         if (input("post.pid") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+             return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "pid" => input("post.pid"),
@@ -153,9 +152,9 @@ class AiActivity extends AiBase
         ];
         $clickRecordRes = AiProductClickRecord::create($clickParams);
         if (!$clickRecordRes) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+              return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
         }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+         return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
     }
 
   
