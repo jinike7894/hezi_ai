@@ -4,7 +4,7 @@ namespace app\api\controller;
 use app\BaseController;
 use think\facade\Log;
 use think\facade\Cache;
-
+use app\common\model\Products;
 class Data extends BaseController
 {
 	public function initialize()
@@ -101,6 +101,31 @@ class Data extends BaseController
     		}
     		$redis->set($key, $count+1, strtotime(date('Y-m-d 00:00:00', strtotime('+1 day'))) - time());
 		}
+		//盒子用
+		//查询产品是否属于直播
+		$uniqueCode = input('post.uniqueCode');
+		if($uniqueCode!=""){
+			$productPid=Products::where(["id"=>$id])->value("pid");
+			if($productPid==28){
+				$key = "uniqueCode_tongji_".date("y-m-d");
+				$redis = Cache::store('redis');
+				// 判断 Key 是否存在
+				if (!$redis->exists($key)) {
+					// 不存在则创建 Set，并设置过期时间到当天 24 点
+					$redis->sAdd($key, $uniqueCode);
+					$redis->expireAt($key, strtotime('tomorrow') - 1);
+				} else {
+						// 如果存在则判断 uniqueCode 是否已经存在于 Set 中
+						if ($redis->sIsMember($key, $uniqueCode)) {
+							// 存在则直接返回
+							return json_encode(['status' => 200, 'msg' => '!ok',"tips"=>"already tongji"]);
+						}
+					// 存在则直接添加 uniqueCode 到 Set
+					$redis->sAdd($key, $uniqueCode);
+				}
+			}
+		}
+		
 // 		if ($type == 'downfinish') { // 下载记1次
 //     		$key = "ip_{$ip}_proid_{$id}_downfinish";
 //     		$redis = Cache::store('redis');
