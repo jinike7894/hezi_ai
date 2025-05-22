@@ -148,7 +148,7 @@ class AiUserdata extends AiBase
     public function userInfo()
     {
         $uid = $this->uid;
-        $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,points,is_update,plain_passwd")->find();
+        $userData = AiUser::where(["id" => $uid])->field("id,username,unique_code,vip_expiration,free_points,points,is_update,plain_passwd")->find();
         if(!$userData){
             return responseParams(["code" => 0, "msg" => "用户信息错误", "data" => []]);
         }

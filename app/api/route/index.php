@@ -71,6 +71,10 @@ Route::post('ai/clickRecord','AiActivity/clickRecord');
 Route::post('ai/activityNotify','AiActivity/activityNotify');
 //任务记录列表
 Route::get('ai/activityRecord','AiActivity/getActivityRecord');
+//获取待完成/已完成记录
+Route::get('ai/activityList','AiActivity/getActivityList');
+//设置待完成审核图片
+Route::post('ai/setActivityImg','AiActivity/setActivityImg');
 //视频脱衣
 Route::post('ai/videoAi','Ai/videoAi');
 //获取视频模板列表
@@ -91,6 +95,8 @@ Route::post('ai/imgManualAi','Ai/imgManualAi');
 Route::post('ai/uploadFaceImg','Ai/uploadFaceImg');
 //获取vip次数
 Route::get('ai/vipTimes','Ai/vipTimes');
+//获取用户总可用金币和达限条件
+Route::get('ai/aiUserHint','Ai/getAiUserHint');
 //获取用户推广信息
 Route::get('ai/promotion','AiPromotion/getPromotionData');
 //获取用户推广信息
