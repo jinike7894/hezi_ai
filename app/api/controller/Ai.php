@@ -13,6 +13,7 @@ use app\common\model\AiPointsBill;
 use app\common\model\AiUseRecord;
 use app\common\model\AiVideoTemplate;
 use app\common\model\AiImgTemplate;
+use app\common\model\AiActivityRecord as ActivityRecord;
 class Ai extends AiBase
 {
 
@@ -579,5 +580,14 @@ class Ai extends AiBase
         return responseParams(["code" => 1, "msg" => "succ", "data" => ["available_points"=>$availablePoints,"is_free_consume_points_limit"=>$isFreeConsumePointsLimit,"free_consume_points_limit"=>$FreeConsumePointsLimit]]);
     }
     //超过2分钟的任务未审核自动审核成功
-    
+    public function autoCheckTask()
+    {
+        $recordData = AiUseRecord::where(["status" => 0])->where("apply_time", "<", time() - 120)->field("id,activity_order_num")->select();
+        $recordData = $recordData->toArray() ? $recordData->toArray() : [];
+        if ($recordData) {
+            foreach ($recordData as $key => $value) {
+                ActivityRecord::activityFinishNotify($value['activity_order_num']);
+            }
+        }
+    }
 }
