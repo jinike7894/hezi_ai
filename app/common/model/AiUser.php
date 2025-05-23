@@ -40,7 +40,8 @@ class AiUser extends \think\Model
                 ->whereBetween("create_time", [$todayStart, $todayEnd])
                 ->sum("free_points");
             //如果还达到消费上限
-            if ($freePointsLimit - $freePointsNum > 0) {
+            if (($freePointsLimit - $freePointsNum) > 0) {
+                //获取可用赠送金币数量
                 $freeLimit =$freePointsLimit -$freePointsNum;
             }
         }

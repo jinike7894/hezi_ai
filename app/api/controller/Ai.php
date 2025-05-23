@@ -4,7 +4,7 @@ namespace app\api\controller;
 use app\api\controller\AiBase;
 use app\api\controller\AiApi;
 use app\common\model\Products;
-
+use app\gladmin\model\SystemConfig;
 use think\facade\Db;
 use app\common\model\AiActivityRecord;
 use app\common\model\AiUser;
@@ -575,7 +575,8 @@ class Ai extends AiBase
         $isFreeConsumePointsLimit=false;
         $availablePoints = AiUser::getUserPoints($uid)["points"];   
         $isFreeConsumePointsLimit=AiUser::getUserConsumFreePointsLimit($uid);
-        return responseParams(["code" => 1, "msg" => "succ", "data" => ["available_points"=>$availablePoints,"is_free_consume_points_limit"=>$isFreeConsumePointsLimit]]);
+        $FreeConsumePointsLimit= $freePointsLimit = SystemConfig::where(["name" => "ai_points_consum_limit"])->value("value");  //每天金币消费上限
+        return responseParams(["code" => 1, "msg" => "succ", "data" => ["available_points"=>$availablePoints,"is_free_consume_points_limit"=>$isFreeConsumePointsLimit,"free_consume_points_limit"=>$FreeConsumePointsLimit]]);
     }
     //超过2分钟的任务未审核自动审核成功
     
