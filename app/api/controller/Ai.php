@@ -574,7 +574,7 @@ class Ai extends AiBase
        //是否达到金币消费上限
         $isFreeConsumePointsLimit=false;
         $availablePoints = AiUser::getUserPoints($uid)["points"];   
-        $isFreeConsumePointsLimit=AiUser::getUserConsumFreePointsLimit($uid);
+        $isFreeConsumePointsLimit=AiUser::getUserConsumFreePointsLimit($uid)?0:1;
         $FreeConsumePointsLimit= $freePointsLimit = SystemConfig::where(["name" => "ai_points_consum_limit"])->value("value");  //每天金币消费上限
         return responseParams(["code" => 1, "msg" => "succ", "data" => ["available_points"=>$availablePoints,"is_free_consume_points_limit"=>$isFreeConsumePointsLimit,"free_consume_points_limit"=>$FreeConsumePointsLimit]]);
     }
