@@ -192,6 +192,7 @@ class AiActivity extends AiBase
                                     "activity_img"=>$params["img"],
                                     "status"=>1,
                                     "update_time"=>time(),
+                                    "apply_time"=>time(),
                           ]);
         if(!$activityResult){
             return responseParams(["code" => 0, "msg" => "设置失败", "data" => ""]);

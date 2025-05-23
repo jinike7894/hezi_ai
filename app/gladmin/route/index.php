@@ -135,6 +135,6 @@ Route::group(function () {
     Route::rule('data.aiagentwithdrawal/edit', 'data.aiagentwithdrawal/edit');
     Route::rule('data.aiagentwithdrawal/qrcode', 'data.aiagentwithdrawal/qrcode');
     Route::rule('data.aiactivityrecord/index', 'data.aiactivityrecord/index');
-
+    Route::rule('data.aiactivityrecord/edit', 'data.aiactivityrecord/edit');
 });
 

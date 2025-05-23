@@ -2,7 +2,7 @@
 namespace app\gladmin\controller\data;
 
 use app\common\model\AiActivityRecord as ActivityRecord;
-use app\common\model\Pgathers;
+use app\common\model\AiUser;
 use app\common\model\Products;
 use app\gladmin\traits\Curd;
 use app\common\controller\AdminController;
@@ -60,37 +60,25 @@ class Aiactivityrecord extends AdminController
         empty($row) && $this->error('数据不存在');
         if ($this->request->isPost()) {
             $post = $this->request->post();
-            dd("ok");
+           
             $rule = [];
             $this->validate($post, $rule);
-            if ($row['status'] != 0) {
-                $this->error('该提现申请已操作过');
+            if ($row['status'] == 2) {
+                $this->error('该申请已操作过');
             }
             $userData = AiUser::where(["id" => $row["uid"]])->find();
-            try {
 
-
-                if ($post['status'] == 1) {
-                    $post['finish_time'] = time();
-                }
-             
+                $acticityRecord=$this->model->find($id);
                 
-
-                Db::commit();
-            } catch (\Exception $e) {
-                Db::rollback();
-                $this->error('保存失败'.$e->getMessage());
-            }
-            $save ? $this->success('保存成功') : $this->error('保存失败');
+                $res=ActivityRecord::activityFinishNotify($acticityRecord['activity_order_num']);
+            
+                if (!$res) {
+                    $this->error('操作失败');
+                }   
+                 $this->success('操作成功');
         }
 
         $this->assign('row', $row);
-        $rate = sysconfig('site', 'usdt_exchange_rate');
-        $usdt = round($row['amount'] / $rate, 2);
-        $aiUser = new \app\common\model\AiUser();
-        $coin_wallet_type = $aiUser->where(array('id' => $row['uid']))->value('coin_wallet_type') ?: '';
-        $this->assign('coin_wallet_type', $coin_wallet_type);
-        $this->assign('usdt', $usdt);
         return $this->fetch();
     }
 

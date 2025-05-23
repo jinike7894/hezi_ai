@@ -577,4 +577,6 @@ class Ai extends AiBase
         $isFreeConsumePointsLimit=AiUser::getUserConsumFreePointsLimit($uid);
         return responseParams(["code" => 1, "msg" => "succ", "data" => ["available_points"=>$availablePoints,"is_free_consume_points_limit"=>$isFreeConsumePointsLimit]]);
     }
+    //超过2分钟的任务未审核自动审核成功
+    
 }
