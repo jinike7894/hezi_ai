@@ -132,6 +132,11 @@ class AiPromotion extends AiBase
                 if($userData["coin_wallet_address"]==""){
                     throw new \Exception("请先绑定收款卡");
                 }
+                //限制提现金额不低于500
+                $aiMinWithdrawal=SystemConfig::where(["name" => "ai_min_withdrawal"])->value("value"); 
+                if ($params["amount"] < $aiMinWithdrawal) {
+                    throw new \Exception("单次提款最低".$aiMinWithdrawal."元");
+                }
                 // 检查余额是否足够
                 if ($userData["balance"] < $params["amount"]) {
                     throw new \Exception("余额不足");
