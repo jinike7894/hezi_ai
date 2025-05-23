@@ -172,7 +172,7 @@ class AiActivity extends AiBase
                 break;
         }
         $uid = $this->uid;
-        $activityRecordData = AiActivityRecord::where(["uid"=>$uid])->where($where)->field("id,name,points,create_time,activity_order_num,status")->find();
+        $activityRecordData = AiActivityRecord::where(["uid"=>$uid])->where($where)->field("id,name,points,create_time,activity_order_num,status")->select();
         return responseParams(["code" => 1, "msg" => "succ", "data" => $activityRecordData]);
     }
     //设置待完成审核图片
