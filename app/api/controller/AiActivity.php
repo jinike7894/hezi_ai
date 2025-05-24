@@ -85,7 +85,7 @@ class AiActivity extends AiBase
                 ->sum("points");
         $pointsReceiveLimit=SystemConfig::getConfig("ai_points_receive_limit");       
         if( $activityPoints>=$pointsReceiveLimit){
-            return responseParams(["code" => 301, "msg" => "今日获取金币已达上线", "data" => ""]);
+            return responseParams(["code" => 301, "msg" => "今日获取金币已达上限", "data" => ""]);
         } 
 
         //判断ai_activity_update_switch是否有开关
@@ -126,7 +126,7 @@ class AiActivity extends AiBase
         } catch (\Exception $e) {
             return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
         }
-         return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+         return responseParams(["code" => 1, "msg" => "succ", "data" => $recordRes]);
     }
     public function clickRecord()
     {
