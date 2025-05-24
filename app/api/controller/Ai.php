@@ -237,7 +237,7 @@ class Ai extends AiBase
             }
             try {
                 // 扣减用户 points
-                $useRecordRes = AiUser::pointsDec($userData, $this->aiVideoPoints, $params, 1);
+                $useRecordRes = AiUser::pointsDec($userData, $this->aiImgPoints, $params, 1);
                 if (!$useRecordRes) {
                     throw new \Exception("扣减用户点数失败");
                 }
@@ -285,7 +285,7 @@ class Ai extends AiBase
         }
         try {
             // 扣减用户 points
-            $useRecordRes = AiUser::pointsDec($userData, $this->aiVideoPoints, $params, 1);
+            $useRecordRes = AiUser::pointsDec($userData, $this->aiImgPoints, $params, 1);
             if (!$useRecordRes) {
                 throw new \Exception("扣减用户点数失败");
             }
@@ -320,7 +320,7 @@ class Ai extends AiBase
             }
             try {
                 // 扣减用户 points
-                $useRecordRes = AiUser::pointsDec($userData, $this->aiVideoPoints, $params, 2);
+                $useRecordRes = AiUser::pointsDec($userData, $this->aiAutoPoints, $params, 2);
                 if (!$useRecordRes) {
                     throw new \Exception("扣减用户点数失败");
                 }
@@ -334,7 +334,7 @@ class Ai extends AiBase
                 return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
 
             } catch (\Exception $e) {
-                return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+                return responseParams(["code" => 0, "msg" => "请稍后重试".$e->getMessage(), "data" => ""]);
 
             }
         }
@@ -368,7 +368,7 @@ class Ai extends AiBase
         }
         try {
             // 扣减用户 points
-            $useRecordRes = AiUser::pointsDec($userData, $this->aiVideoPoints, $params, 2);
+            $useRecordRes = AiUser::pointsDec($userData, $this->aiAutoPoints, $params, 2);
             if (!$useRecordRes) {
                 throw new \Exception("扣减用户点数失败");
             }
@@ -381,7 +381,7 @@ class Ai extends AiBase
             return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
 
         } catch (\Exception $e) {
-            return responseParams(["code" => 0, "msg" => "请稍后重试".$e->getMessage(), "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "请稍后重试1".$e->getMessage(), "data" => ""]);
 
         }
     }
@@ -404,7 +404,7 @@ class Ai extends AiBase
             }
             try {
                 // 扣减用户 points
-                $useRecordRes = AiUser::pointsDec($userData, $this->aiVideoPoints, $params, 3);
+                $useRecordRes = AiUser::pointsDec($userData, $this->aiManualPoints, $params, 3);
                 if (!$useRecordRes) {
                     throw new \Exception("扣减用户点数失败");
                 }
@@ -452,7 +452,7 @@ class Ai extends AiBase
         }
         try {
             // 扣减用户 points
-            $useRecordRes = AiUser::pointsDec($userData, $this->aiVideoPoints, $params, 3);
+            $useRecordRes = AiUser::pointsDec($userData, $this->aiManualPoints, $params, 3);
             if (!$useRecordRes) {
                 throw new \Exception("扣减用户点数失败");
             }

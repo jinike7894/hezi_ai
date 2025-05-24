@@ -513,6 +513,6 @@ function postPayParams($url,$data)
 }
 //response 返回信息
 function responseParams($arr){
-    // return json_encode($arr);
+     return json_encode($arr);
     return jiami(json_encode($arr));
 }

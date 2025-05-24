@@ -91,18 +91,20 @@ class AiUser extends \think\Model
     public static function pointsDec($userData, $points, $params, $aiType)
     {
         try {
-            $useRecordRes = false;
-            Db::transaction(function () use ($userData, $points, $params, $aiType, $useRecordRes) {
+      
+            $useRecordRes=Db::transaction(function () use ($userData, $points, $params, $aiType) {
                 $uid = $userData["id"];
                 $freePoints = 0;  // 即将使用的赠送金币
                 $rechargePoints = 0; // 即将使用的充值金币
-                $userPoints = AiUser::getUserPoints($uid); // 获取充值+赠送 可用总金币
+                //$userPoints = self::getUserPoints($uid)["points"]; // 获取充值+赠送 可用总金币
 
                 // 计算赠送金币和充值金币的使用情况
                 //赠送金币不够了
-                if (($points - AiUser::getUserPoints($uid)) > 0) {
-                    $rechargePoints = $points - AiUser::getUserFreePointsLimit($uid); // 需要使用的充值金币
+                if ((self::getUserPoints($uid)["points"]-$points) > 0) {
+                    $rechargePoints = $points - self::getUserFreePointsLimit($uid); // 需要使用的充值金币
                     $freePoints = $points - $rechargePoints; // 需要使用的赠送金币
+                    // var_dump("使用充值金币".$rechargePoints);
+                    // var_dump("使用赠送金币".$freePoints);
                 }else{
                       throw new \Exception("金币不足");
                 }
@@ -146,7 +148,6 @@ class AiUser extends \think\Model
                 $useRecordParams = [
                     "uid" => $uid,
                     "ai_type" => $aiType,
-                    "template_id" => $params["template_id"],
                     "img" => $params["img"],
                     "img_layers" => "",
                     "ai_generate_source" => "",
@@ -157,6 +158,9 @@ class AiUser extends \think\Model
                     "create_time" => time(),
                     "update_time" => time(),
                 ];
+                if(isset($params["template_id"])){
+                     $useRecordParams["template_id"]=$params["template_id"];
+                }
                 if(isset($params["img_layers"])){
                      $useRecordParams["img_layers"]=$params["img_layers"];
                 }
@@ -164,11 +168,13 @@ class AiUser extends \think\Model
                 if (!$useRecordRes) {
                     throw new \Exception("使用记录创建失败");
                 }
+                return $useRecordRes;
             });
 
             return $useRecordRes;
 
         } catch (\Exception $e) {
+         
             return false;
         }
     }
