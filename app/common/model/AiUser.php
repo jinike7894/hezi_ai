@@ -102,7 +102,15 @@ class AiUser extends \think\Model
                 // 计算赠送金币和充值金币的使用情况
                 //赠送金币不够了
                 if ((self::getUserPoints($uid)["points"]-$points) > 0) {
-                    $rechargePoints = $points - self::getUserFreePointsLimit($uid); // 需要使用的充值金币
+                    $usePoints=0;
+                    if($userData["free_points"] > self::getUserFreePointsLimit($uid)){
+                        //获取即将使用得赠送金币
+                        $usePoints=self::getUserFreePointsLimit($uid);
+                    }else{
+                         //获取即将使用得赠送金币
+                        $usePoints=$userData["free_points"];
+                    }
+                    $rechargePoints = $points - $usePoints; // 需要使用的充值金币
                     $freePoints = $points - $rechargePoints; // 需要使用的赠送金币
                     // var_dump("使用充值金币".$rechargePoints);
                     // var_dump("使用赠送金币".$freePoints);
