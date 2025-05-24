@@ -81,7 +81,7 @@ class AiUser extends \think\Model
             $freePointsNum = AiUseRecord::where(["uid" => $uid])
                 ->whereBetween("create_time", [$todayStart, $todayEnd])
                 ->sum("free_points");//已经使用赠送金币
-            if ($freePointsLimit - $freePointsNum > 0) {
+            if (($freePointsLimit - $freePointsNum) > 0) {
                 $freeLimit = $freePointsLimit - ($freePointsNum);
             }
         }
