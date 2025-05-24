@@ -115,4 +115,6 @@ Route::post('ai/withdrawal','AiPromotion/withdrawal');
 Route::get('ai/taskStatus','Ai/getTaskStatus');
 //获取三方支付通道
 Route::get('ai/otherPayType','AiPay/getPaymentlist');
+//定时审核任务
+Route::get('ai/autoCheckTask','Ai/autoCheckTask');
 })->allowCrossDomain();
