@@ -378,11 +378,10 @@ class Ai extends AiBase
             if (!$aiRes) {
                 throw new \Exception("ai请求失败");
             }
-
             return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
 
         } catch (\Exception $e) {
-            return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "请稍后重试".$e->getMessage(), "data" => ""]);
 
         }
     }
