@@ -10,7 +10,7 @@ class AiActivityRecord extends \think\Model
 {
     //获取用户今日金币数
     public static function getActivityPoints($uid){
-        $pointsData=self::where(["uid"=>$uid,,"status"=>2])->whereTime('create_time', 'today')->sum("points");
+        $pointsData=self::where(["uid"=>$uid,"status"=>2])->whereTime('create_time', 'today')->sum("points");
         return $pointsData;
     }
     //任务完成回调
