@@ -154,7 +154,7 @@ class AiUserdata extends AiBase
         }
         $userData= $userData->toArray();
          //今日收益
-        $userData["today_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid])->whereTime("create_time", "today")->sum("amount");
+        $userData["today_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid,"status"=>"2"])->whereTime("create_time", "today")->sum("amount");
         //今日金币
         $userData["today_points"]  = AiActivityRecord::getActivityPoints($uid);
          $userData["is_vip"] = 0;
