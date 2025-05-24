@@ -88,7 +88,7 @@ class Ai extends AiBase
         $this->aiVideoPoints = AiVideoTemplate::where(["id" => $params["template_id"]])->value("points");
         //查询用户当前vip
         $uid = $this->uid;
-        $userData = AiUser::getUserPointsLimit($uid);
+        $userData = AiUser::getUserPoints($uid);
         if ($userData["vip_expiration"] < time()) {
             if (($userData["points"] + $userData["free_points"]) < $this->aiVideoPoints) {
                 return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
@@ -229,7 +229,7 @@ class Ai extends AiBase
         $this->aiImgPoints = AiImgTemplate::where(["id" => $params["template_id"]])->value("points");
         //查询用户当前vip
         $uid = $this->uid;
-        $userData =AiUser::getUserPointsLimit($uid);
+        $userData =AiUser::getUserPoints($uid);
 
         if ($userData["vip_expiration"] < time()) {
             if (($userData["points"] + $userData["free_points"]) < $this->aiImgPoints) {
@@ -313,7 +313,7 @@ class Ai extends AiBase
         ];
         //查询用户当前vip
         $uid = $this->uid;
-        $userData = AiUser::getUserPointsLimit($uid);
+        $userData = AiUser::getUserPoints($uid);
         if ($userData["vip_expiration"] < time()) {
             if (($userData["points"] + $userData["free_points"]) < $this->aiAutoPoints) {
                 return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
@@ -398,7 +398,7 @@ class Ai extends AiBase
         ];
         //查询用户当前vip
         $uid = $this->uid;
-        $userData = AiUser::getUserPointsLimit($uid);
+        $userData = AiUser::getUserPoints($uid);
         if ($userData["vip_expiration"] < time()) {
             if (($userData["points"] + $userData["free_points"]) < $this->aiManualPoints) {
                 return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
