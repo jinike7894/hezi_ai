@@ -85,6 +85,7 @@ class AiUser extends \think\Model
                 $freeLimit = $freePointsLimit - ($freePointsNum);
             }
         }
+
         return $freeLimit;
     }
     //扣减points 生成账变记录 生成使用记录
@@ -151,6 +152,7 @@ class AiUser extends \think\Model
                     "img" => $params["img"],
                     "img_layers" => "",
                     "ai_generate_source" => "",
+                    "free_points" => $freePoints,
                     "is_use_vip" => 0,
                     "points" => $points,
                     "status" => 0,
