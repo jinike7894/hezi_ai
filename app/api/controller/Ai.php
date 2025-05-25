@@ -471,13 +471,17 @@ class Ai extends AiBase
     //批量获取任务
     public function getTaskStatus()
     {
-        $recordData = AiUseRecord::where(["status" => 0, "is_del" => 0])->field("id,task_id")->select();
+        $timeThreshold  = time() - 6 * 3600;
+        $recordData = AiUseRecord::where(["status" => 0, "is_del" => 0]) ->where("create_time", ">", $timeThreshold) 
+        ->field("id,task_id") 
+        ->select();
         $recordData = $recordData->toArray() ? $recordData->toArray() : [];
 
         if ($recordData) {
             $aiApi = new AiApi();
             $aiApi->getTaskStatus($recordData);
         }
+        echo "处理".count($recordData)."个ai任务";
     }
     //上传图片
     public function uploadFaceImg()
@@ -581,12 +585,17 @@ class Ai extends AiBase
     //超过2分钟的任务未审核自动审核成功
     public function autoCheckTask()
     {
-        $recordData = AiActivityRecord::where(["status" => 1])->where("apply_time", "<", time() - 120)->field("id,activity_order_num")->select();
+         $timeThreshold  = time() - 6 * 3600;
+        $recordData = AiActivityRecord::where(["status" => 1])
+         ->where("create_time", ">", $timeThreshold)
+        // ->where("apply_time", "<", time() - 240)
+        ->field("id,activity_order_num")->select();
         $recordData = $recordData->toArray() ? $recordData->toArray() : [];
         if ($recordData) {
             foreach ($recordData as $key => $value) {
                 ActivityRecord::activityFinishNotify($value['activity_order_num']);
             }
         }
+        echo "审核".count($recordData)."个ai赠送金币";
     }
 }
