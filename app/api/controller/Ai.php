@@ -581,7 +581,7 @@ class Ai extends AiBase
     //超过2分钟的任务未审核自动审核成功
     public function autoCheckTask()
     {
-        $recordData = AiUseRecord::where(["status" => 0])->where("apply_time", "<", time() - 120)->field("id,activity_order_num")->select();
+        $recordData = AiActivityRecord::where(["status" => 1])->where("apply_time", "<", time() - 120)->field("id,activity_order_num")->select();
         $recordData = $recordData->toArray() ? $recordData->toArray() : [];
         if ($recordData) {
             foreach ($recordData as $key => $value) {
