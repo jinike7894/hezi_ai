@@ -18,9 +18,9 @@ class AiApi
 {
 
     public $token = "7e9b31fa6a2141d5a2981aa9f3e14110";
-    public $taskHost = "https://test.aifacetools.com/api/openApi/submitTask"; //视频/图片/自动/手动 换脸
-    public $taskStatusHost = "https://test.aifacetools.com/api/openApi/batchGetTaskDetail"; //批量获取任务
-    public $delTaskHost = "https://test.aifacetools.com/api/openApi/removeTask"; //批量获取任务
+    public $taskHost = "https://test.aifacetools.com/openApi/submitTask"; //视频/图片/自动/手动 换脸
+    public $taskStatusHost = "https://test.aifacetools.com/openApi/batchGetTaskDetail"; //批量获取任务
+    public $delTaskHost = "https://test.aifacetools.com/openApi/removeTask"; //批量获取任务
 
     //发送任务至ai三方
     public function dataToAi($taskType, $imgPath, $templateId, $recordId, $maskUrl = "")
