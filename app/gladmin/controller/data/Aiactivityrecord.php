@@ -32,23 +32,23 @@ class Aiactivityrecord extends AdminController
      */
     public function index()
     {
-         if ($this->request->isAjax()) {
+        if ($this->request->isAjax()) {
             if (input('selectFields')) {
                 return $this->selectList();
             }
             list($page, $limit, $where) = $this->buildTableParames();
-            $count = $this->model->where($where)->count();
-            $list = $this->model->where($where)->where(["status"=>1])->page($page, $limit)->order('id desc')->select();
+            $count = $this->model->where($where)->whereIn("status", [1, 2, 3])->count();
+            $list = $this->model->where($where)->whereIn("status", [1, 2, 3])->page($page, $limit)->order('status asc,id desc')->select();
             $aiUser = new \app\common\model\AiUser();
             $aiPayment = new \app\common\model\AiPayment();
-            for($i=0;$i<count($list);$i++){
-                $list[$i]['uid'] = $aiUser->where(array('id'=>$list[$i]['uid']))->value('username') ?: '';
+            for ($i = 0; $i < count($list); $i++) {
+                $list[$i]['uid'] = $aiUser->where(array('id' => $list[$i]['uid']))->value('username') ?: '';
             }
             $data = [
-                'code'  => 0,
-                'msg'   => '',
+                'code' => 0,
+                'msg' => '',
                 'count' => $count,
-                'data'  => $list,
+                'data' => $list,
             ];
             return json($data);
         }
@@ -60,22 +60,26 @@ class Aiactivityrecord extends AdminController
         empty($row) && $this->error('数据不存在');
         if ($this->request->isPost()) {
             $post = $this->request->post();
-           
+
             $rule = [];
             $this->validate($post, $rule);
-            if ($row['status'] == 2) {
+            if ($row['status'] == 2 || $row['status'] == 3) {
                 $this->error('该申请已操作过');
             }
             $userData = AiUser::where(["id" => $row["uid"]])->find();
-
-                $acticityRecord=$this->model->find($id);
-                
-                $res=ActivityRecord::activityFinishNotify($acticityRecord['activity_order_num']);
+            $acticityRecord = $this->model->find($id);
+            if($row['status']==2){
+                $res = ActivityRecord::activityFinishNotify($acticityRecord['activity_order_num']);
+            }else{
+                $res = ActivityRecord::where(["activity_order_num"=>$acticityRecord['activity_order_num']])->update([
+                    "status" => $post['status'],
+                ]);
+            }
             
-                if (!$res) {
-                    $this->error('操作失败');
-                }   
-                 $this->success('操作成功');
+            if (!$res) {
+                $this->error('操作失败');
+            }
+            $this->success('操作成功');
         }
 
         $this->assign('row', $row);

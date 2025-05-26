@@ -45,7 +45,7 @@ class AiActivityRecord extends \think\Model
                  if (!$pointsBillRes) {
                    throw new \Exception("创建账单失败");
                 }
-                $activityRes=self::where(["activity_order_num"=>$activityData["activity_order_num"]])->update(["status"=>2,"update_time"=>time()]);
+                $activityRes=self::where(["activity_order_num"=>$activityData["activity_order_num"]])->update(["status"=>2,"update_time"=>time(),"apply_time"=>time()]);
                if (!$activityRes) {
                    throw new \Exception("更改活动失败");
                 }

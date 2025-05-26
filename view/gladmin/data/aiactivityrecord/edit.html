@@ -9,7 +9,7 @@
                 <select name="status" id="status">
                     <option value="0" >请选择</option>
                     <option value="1" {if $row.status eq 2}selected{/if}>通过</option>
-                    
+                    <option value="1" {if $row.status eq 3}selected{/if}>拒绝</option>
                 </select>
             </div>
         </div>

@@ -20,11 +20,11 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                 toolbar: ['refresh'],
                 cols: [[
                     {field: 'id', minWidth: 10, title: 'ID',search: false},
-                    {field: 'name', minWidth: 10, title: '产品名称',search: false},
-                    {field: 'uid', minWidth: 80, title: '用户',search: false},
+                    {field: 'name', minWidth: 10, title: '产品名称',search: true},
+                    {field: 'uid', minWidth: 80, title: '用户',search: true},
                     {field: 'points', minWidth: 80, title: '金币',search: false},
                     {field: 'activity_order_num', minWidth: 80, title: '任务单号',search: true},
-                    // {field: 'status', width: 80, title: '状态',search: true,selectList: {1: '否', 1: '<span style="color:green">首单</span>'}},
+                    {field: 'status', width: 80, title: '状态',search: true,selectList: {1: '<span style="color:red">待审核</span>', 2: '<span style="color:green">已完成</span>', 3: '已拒绝'}},
                     {field: 'activity_img', minWidth: 80, title: '截图',search: false,templet: ea.table.image},
                     {field: 'create_time', minWidth: 80, title: '创建时间',search: false},
                     {
