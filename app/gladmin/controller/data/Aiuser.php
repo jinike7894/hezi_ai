@@ -46,7 +46,7 @@ class Aiuser extends AdminController
                     $list[$i]['points'] = "";
                 }
                 if($list[$i]['free_points']!=0){
-                    $list[$i]['points'].= $list[$i]['free_points']." (赠)";
+                    $list[$i]['points'].= "+".$list[$i]['free_points']." (赠)";
                 }
                 if($list[$i]['points']==0&&$list[$i]['free_points']==0){
                     $list[$i]['points'] = "0";
