@@ -24,7 +24,7 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                     {field: 'uid', minWidth: 80, title: '用户',search: true},
                     {field: 'points', minWidth: 80, title: '金币',search: false},
                     {field: 'activity_order_num', minWidth: 80, title: '任务单号',search: true},
-                    {field: 'status', width: 80, title: '状态',search: true,selectList: {1: '<span style="color:red">待审核</span>', 2: '<span style="color:green">已完成</span>', 3: '已拒绝'}},
+                    {field: 'status', width: 80, title: '状态',search: true,selectList: {1: '<span style="color:red">待审核</span>', 2: '<span style="color:green">已完成</span>', 3: '未通过'}},
                     {field: 'activity_img', minWidth: 80, title: '截图',search: false,templet: ea.table.image},
                     {field: 'apply_time', minWidth: 80, title: '领取时间',search: false},
                     {field: 'create_time', minWidth: 80, title: '创建时间',search: false},
