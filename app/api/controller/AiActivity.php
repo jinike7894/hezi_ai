@@ -39,8 +39,8 @@ class AiActivity extends AiBase
         }
         $activityProductData = Products::getAiActivityData($params["type"], $uid, $params["page"], $params["limit"], $where);
         $acticityNumParams["wait_collection_activity_num"]  = $activityProductData["total"];//待领取
-        $acticityNumParams["wait_complet_activity_num"]  = AiActivityRecord::where(["uid"=>$uid])->where('status', 'IN', [0, 1])->count();//待完成
-        $acticityNumParams["finish_activity_num"]  = AiActivityRecord::where(["uid"=>$uid])->where('status', 2)->count();//已完成
+        $acticityNumParams["wait_complet_activity_num"]  = AiActivityRecord::where(["uid"=>$uid])->where('status', 'IN', [0, 1])->where(["version"=>1])->count();//待完成
+        $acticityNumParams["finish_activity_num"]  = AiActivityRecord::where(["uid"=>$uid])->where('status', 2)->where(["version"=>1])->count();//已完成
         return responseParams(["code" => 1, "msg" => "succ", "data" => ["points" => $points, "list" => $activityProductData,'activity_params_count'=>$acticityNumParams]]);
     }
     //获取任务记录
