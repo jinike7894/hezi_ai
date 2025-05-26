@@ -169,7 +169,7 @@ class AiActivity extends AiBase
                  $where[] = ['status', 'IN', [0, 1]];
                 break;
             case 2:
-                $where["status"]=['status', 'IN', [2, 3]];
+                $where[]=['status', 'IN', [2, 3]];
                 break;
         }
         $uid = $this->uid;
