@@ -37,12 +37,16 @@ class Aiactivityrecord extends AdminController
                 return $this->selectList();
             }
             list($page, $limit, $where) = $this->buildTableParames();
-            $count = $this->model->where($where)->whereIn("status", [1, 2, 3])->count();
-            $list = $this->model->where($where)->whereIn("status", [1, 2, 3])->page($page, $limit)->order('status asc,id desc')->select();
+            $count = $this->model->where($where)->whereIn("status", [1, 2, 3])->where(["version"=>1])->count();
+            $list = $this->model->where($where)->whereIn("status", [1, 2, 3])->where(["version"=>1])->page($page, $limit)->order('status asc,id desc')->select();
             $aiUser = new \app\common\model\AiUser();
             $aiPayment = new \app\common\model\AiPayment();
             for ($i = 0; $i < count($list); $i++) {
                 $list[$i]['uid'] = $aiUser->where(array('id' => $list[$i]['uid']))->value('username') ?: '';
+                if($list[$i]['apply_time']!=0){
+                    $list[$i]['apply_time'] =date("Y-m-d H:i:s", $list[$i]['apply_time']); ;
+                }
+               
             }
             $data = [
                 'code' => 0,
@@ -60,7 +64,7 @@ class Aiactivityrecord extends AdminController
         empty($row) && $this->error('数据不存在');
         if ($this->request->isPost()) {
             $post = $this->request->post();
-
+      
             $rule = [];
             $this->validate($post, $rule);
             if ($row['status'] == 2 || $row['status'] == 3) {
@@ -68,7 +72,7 @@ class Aiactivityrecord extends AdminController
             }
             $userData = AiUser::where(["id" => $row["uid"]])->find();
             $acticityRecord = $this->model->find($id);
-            if($row['status']==2){
+            if($post['status']==2){
                 $res = ActivityRecord::activityFinishNotify($acticityRecord['activity_order_num']);
             }else{
                 $res = ActivityRecord::where(["activity_order_num"=>$acticityRecord['activity_order_num']])->update([
