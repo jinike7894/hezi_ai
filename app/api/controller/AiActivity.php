@@ -175,6 +175,7 @@ class AiActivity extends AiBase
         $uid = $this->uid;
         $activityRecordData = AiActivityRecord::where(["uid"=>$uid])->where($where)->where(["version"=>1])->field("id,name,points,create_time,activity_order_num,status")->select();
         if(!empty($activityRecordData)){
+            $activityRecordData =$activityRecordData->toArray();
             foreach($activityRecordData as $k=>$v){
                  if($v["status"]==3){
                     $activityRecordData[$k]["points"]="0";
