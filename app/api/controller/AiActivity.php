@@ -117,6 +117,7 @@ class AiActivity extends AiBase
                     "update_time" => time(),
                     "activity_order_num"=>orderUniqueCode(),
                     "status"=>0,
+                    "version"=>1,
                     "activity_img"=>"",
                 ];
                 $recordRes = AiActivityRecord::create($activityRecord);
@@ -172,7 +173,7 @@ class AiActivity extends AiBase
                 break;
         }
         $uid = $this->uid;
-        $activityRecordData = AiActivityRecord::where(["uid"=>$uid])->where($where)->field("id,name,points,create_time,activity_order_num,status")->select();
+        $activityRecordData = AiActivityRecord::where(["uid"=>$uid])->where($where)->where(["version"=>1])->field("id,name,points,create_time,activity_order_num,status")->select();
         if($activityRecordData){
             foreach($activityRecordData as $k=>$v){
                  if($v["status"]==3){
