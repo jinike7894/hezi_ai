@@ -168,11 +168,18 @@ class AiActivity extends AiBase
                  $where[] = ['status', 'IN', [0, 1]];
                 break;
             case 2:
-                $where["status"]=2;
+                $where["status"]=['status', 'IN', [2, 3]];
                 break;
         }
         $uid = $this->uid;
         $activityRecordData = AiActivityRecord::where(["uid"=>$uid])->where($where)->field("id,name,points,create_time,activity_order_num,status")->select();
+        if($activityRecordData){
+            foreach($activityRecordData as $k=>$v){
+                 if($v["status"]==3){
+                    $activityRecordData[$k]["points"]="0";
+                 }
+            }
+        }
         return responseParams(["code" => 1, "msg" => "succ", "data" => $activityRecordData]);
     }
     //设置待完成审核图片
