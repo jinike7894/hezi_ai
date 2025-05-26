@@ -113,7 +113,27 @@
             <tip>填写落地页域名。</tip>
         </div>
     </div>
-
+     <div class="layui-form-item">
+        <label class="layui-form-label">金币领取上限</label>
+        <div class="layui-input-block">
+            <input type="text" name="ai_points_receive_limit" class="layui-input"  placeholder="金币领取上限" value="{:sysconfig('site','ai_points_receive_limit')}">
+            <tip>填写金币领取上限。</tip>
+        </div>
+    </div>
+     <div class="layui-form-item">
+        <label class="layui-form-label">金币消耗上限</label>
+        <div class="layui-input-block">
+            <input type="text" name="ai_points_consum_limit" class="layui-input"  placeholder="金币消耗上限" value="{:sysconfig('site','ai_points_consum_limit')}">
+            <tip>填写金币消耗上限。</tip>
+        </div>
+    </div>
+     <div class="layui-form-item">
+        <label class="layui-form-label">最低提现</label>
+        <div class="layui-input-block">
+            <input type="text" name="ai_min_withdrawal" class="layui-input"  placeholder="最低提现" value="{:sysconfig('site','ai_min_withdrawal')}">
+            <tip>填写最低提现。</tip>
+        </div>
+    </div>
     <div class="hr-line"></div>
     <div class="layui-form-item text-center">
         <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="system.config/save" data-refresh="false">确认</button>
