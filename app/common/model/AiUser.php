@@ -94,7 +94,7 @@ class AiUser extends \think\Model
     public static function pointsDec($userData, $points, $params, $aiType)
     {
         try {
-      
+            //$userData= self::where(["id" => $userData["id"]])->field("id,username,points,free_points,vip_expiration,channelCode")->find();
             $useRecordRes=Db::transaction(function () use ($userData, $points, $params, $aiType) {
                 $uid = $userData["id"];
                 $freePoints = 0;  // 即将使用的赠送金币
