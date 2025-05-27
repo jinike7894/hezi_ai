@@ -173,7 +173,7 @@ class AiActivity extends AiBase
                 break;
         }
         $uid = $this->uid;
-        $activityRecordData = AiActivityRecord::where(["uid"=>$uid])->where($where)->where(["version"=>1])->field("id,name,points,create_time,activity_order_num,status")->select();
+        $activityRecordData = AiActivityRecord::where(["uid"=>$uid])->where($where)->where(["version"=>1])->order("id desc")->field("id,name,points,create_time,activity_order_num,status")->select();
         if(!empty($activityRecordData)){
             $activityRecordData =$activityRecordData->toArray();
             foreach($activityRecordData as $k=>$v){
