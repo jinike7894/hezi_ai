@@ -181,7 +181,7 @@ class AiActivity extends AiBase
                     $activityRecordData[$k]["points"]="0";
                  }
                  if($v["status"]==3||$v["status"]==2){
-                    $activityRecordData[$k]["create_time"]=$activityRecordData[$k]["apply_time"];
+                    $activityRecordData[$k]["create_time"]=date("Y-m-d H:i:s",$activityRecordData[$k]["apply_time"]);
                  }
             }
 
