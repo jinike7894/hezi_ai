@@ -173,14 +173,18 @@ class AiActivity extends AiBase
                 break;
         }
         $uid = $this->uid;
-        $activityRecordData = AiActivityRecord::where(["uid"=>$uid])->where($where)->where(["version"=>1])->order("id desc")->field("id,name,points,create_time,activity_order_num,status")->select();
+        $activityRecordData = AiActivityRecord::where(["uid"=>$uid])->where($where)->where(["version"=>1])->order("id desc")->field("id,name,points,create_time,apply_time,activity_order_num,status")->select();
         if(!empty($activityRecordData)){
             $activityRecordData =$activityRecordData->toArray();
             foreach($activityRecordData as $k=>$v){
                  if($v["status"]==3){
                     $activityRecordData[$k]["points"]="0";
                  }
+                 if($v["status"]==3||$v["status"]==2){
+                    $activityRecordData[$k]["create_time"]=$activityRecordData[$k]["apply_time"];
+                 }
             }
+
         }
         return responseParams(["code" => 1, "msg" => "succ", "data" => $activityRecordData]);
     }

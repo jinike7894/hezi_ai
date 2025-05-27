@@ -77,6 +77,7 @@ class Aiactivityrecord extends AdminController
             }else{
                 $res = ActivityRecord::where(["activity_order_num"=>$acticityRecord['activity_order_num']])->update([
                     "status" => $post['status'],
+                    "apply_time" => time(),
                 ]);
             }
             
