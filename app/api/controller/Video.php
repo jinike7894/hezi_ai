@@ -33,14 +33,14 @@ class Video extends AiBase
            ['cid' => 17,'name' => '麻豆传媒'], ['cid' => 19,'name' => '爱豆传媒'], ['cid' => 20,'name' => '七度空间'], ['cid' => 21,'name' => 'Love6'], ['cid' => 22,'name' => '大象传媒'], ['cid' => 23,'name' => '蜜桃传媒'], ['cid' => 24,'name' => '天美传媒'], ['cid' => 25,'name' => '星空传媒'],
        ];
         $list['cateVideo'] = $cate;
-       return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
+       return responseParams(["code" => 1, "msg" => "succ", "data" => $list]);
    }
 
    //换一批
    public function loadNewBatch()
    {
        if (input("get.cid") == "" || input("get.page") == "") {
-           return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+           return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
        }
        $params = [
            "cid" => input("get.cid"),
@@ -55,14 +55,14 @@ class Video extends AiBase
        for ($i = 0; $i < count($videoList); $i++) {
            $videoList[$i]['enpic'] = replaceVideoCdn($videoList[$i]['enpic'],'video_img_cdn');
        }
-       return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+       return responseParams(["code" => 1, "msg" => "succ", "data" => $videoList]);
    }
 
    //查看更多
    public function videoByCid()
    {
        if (input("get.cid") == "" || input("get.page") == "" || input("get.limit") == "") {
-           return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+           return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
        }
        $params = [
            "cid" => input("get.cid"),
@@ -79,14 +79,14 @@ class Video extends AiBase
        }
        $list['title'] = $cate->title;
        $list['videoList'] = $videoList;
-       return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
+       return responseParams(["code" => 1, "msg" => "succ", "data" => $list]);
    }
 
    //新货
    public function newVideoList()
    {
        if (input("get.page") == "" || input("get.limit") == "") {
-           return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+           return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
        }
        $params = [
            "page" => input("get.page"),
@@ -99,14 +99,14 @@ class Video extends AiBase
        for ($i = 0; $i < count($videoList); $i++) {
            $videoList[$i]['enpic'] = replaceVideoCdn($videoList[$i]['enpic'],'video_img_cdn');
        }
-       return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+       return responseParams(["code" => 1, "msg" => "succ", "data" => $videoList]);
    }
 
    //获取分类视频列表
    public function cateVideoList()
    {
        if (input("get.cate_pid") == "") {
-           return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+           return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
        }
        $params = [
            "pid" => input("get.cate_pid"),
@@ -116,14 +116,14 @@ class Video extends AiBase
        for ($i = 0; $i < count($cate); $i++) {
            $cate[$i]['videoList'] = AiCate::getVideoDataByCid($cate[$i]['id'],5);
        }
-       return json_encode(["code" => 1, "msg" => "succ", "data" => $cate]);
+       return responseParams(["code" => 1, "msg" => "succ", "data" => $cate]);
    }
 
    //获取筛选分类视频列表
    public function filter(){
 
        if (input("get.page") == "" || input("get.limit") == "") {
-           return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+           return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
        }
 
        $params = [
@@ -159,13 +159,13 @@ class Video extends AiBase
        for ($i = 0; $i < count($videoList); $i++) {
            $videoList[$i]['enpic'] = replaceVideoCdn($videoList[$i]['enpic'],'video_img_cdn');
        }
-       return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+       return responseParams(["code" => 1, "msg" => "succ", "data" => $videoList]);
    }
 
    //获取视频详情
    public function detail(){
        if (input("get.vid") == "") {
-           return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+           return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
        }
        $params = [
            "id" => input("get.vid"),
@@ -201,14 +201,14 @@ class Video extends AiBase
        }
        $list['video'] = $video;
        $list['relatedVideoList'] = $relatedVideos;
-       return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
+       return responseParams(["code" => 1, "msg" => "succ", "data" => $list]);
    }
 
    //视频搜索
    public function search(){
 
        if (input("post.keyword") == "" || input("post.page") == "" || input("post.limit") == "") {
-           return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+           return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
        }
        $params = [
            "title" => input("post.keyword"),
@@ -225,13 +225,13 @@ class Video extends AiBase
        for ($i = 0; $i < count($videoList); $i++) {
            $videoList[$i]['enpic'] = replaceVideoCdn($videoList[$i]['enpic'],'video_img_cdn');
        }
-       return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+       return responseParams(["code" => 1, "msg" => "succ", "data" => $videoList]);
    }
 
     //获取视频历史记录-足迹
     public function history(){
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
 
         $params = [
@@ -244,12 +244,12 @@ class Video extends AiBase
             $vids = array_column($historyArray, 'vid');
             $videoList = AiVideoHistory::getJoinVideoData($vids,$params['limit'],$params['page']);
         }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $videoList]);
     }
     //获取用户喜欢视频列表
     public function favorite(){
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
 
         $params = [
@@ -262,12 +262,12 @@ class Video extends AiBase
             $vids = array_column($favoriteArray, 'vid');
             $videoList = AiFavorite::getJoinVideoData($vids,$params['limit'],$params['page']);
         }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $videoList]);
     }
     //获取用户收藏视频列表
     public function collect(){
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
 
         $params = [
@@ -280,14 +280,14 @@ class Video extends AiBase
             $vids = array_column($collectArray, 'vid');
             $videoList = AiCollect::getJoinVideoData($vids,$params['limit'],$params['page']);
         }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $videoList]);
     }
 
     //用户喜欢视频
     public function addFavorite()
     {
         if (input("post.vid") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "id" => input("post.vid"),
@@ -301,12 +301,12 @@ class Video extends AiBase
         }else{
             $checkEmpty->delete();
         }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => []]);
     }
     //用户收藏视频
     public function addCollect(){
         if (input("post.vid") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "id" => input("post.vid"),
@@ -320,7 +320,7 @@ class Video extends AiBase
         }else{
             $checkEmpty->delete();
         }
-        return json_encode(["code" => 1, "msg" => "succ", "data" => []]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => []]);
     }
 
     //发现页获取所有标签
@@ -332,14 +332,14 @@ class Video extends AiBase
         }
         $list['tag'] = $tag;
         $list['searchTag'] = AiTag::getSearchTag();
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $list]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $list]);
     }
 
     //通过标签获取视频列表
     public function tagVideoList()
     {
         if (input("get.tag_id") == "" || input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "tag_id" => input("get.tag_id"),
@@ -359,7 +359,7 @@ class Video extends AiBase
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $videoList]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $videoList]);
     }
 
 }
