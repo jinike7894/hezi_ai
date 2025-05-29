@@ -38,7 +38,11 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                     },
 
                     {field: 'total_agent_amount', minWidth: 0, title: '代理收益', search: false},
-                    {field: 'platform_profit', minWidth: 0, title: '平台收益', search: false},
+                    {field: 'platform_profit', minWidth: 0, title: '平台收益', search: false,
+                        templet: function (row) {
+                            return parseFloat(row.platform_profit).toFixed(2);
+                        }
+                    },
                     {field: 'total_coin_consumed', minWidth: 0, title: '点数消耗', search: false},
                     {field: 'total_rate_cost', minWidth: 0, title: '消耗支出', search: false},
                 ]],

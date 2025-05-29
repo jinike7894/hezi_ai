@@ -9,16 +9,17 @@ class AiBase extends BaseController
     public $uid;
     public function initialize(){
         $action = request()->action();
-        if ($action != 'registerUser'&&$action != "loginByPasswd"&&$action != "customerService"&&$action != "payNotify"&&$action != "getTaskStatus"&&$action != "videoTemplateData"&&$action != "videoTemplateFindData"&&$action != "getPaymentlist") {
+        if ($action != 'registerUser'&&$action != "loginByPasswd"&&$action != "customerService"&&$action != "payNotify"&&$action != "getTaskStatus"&&$action != "videoTemplateData"&&$action != "videoTemplateFindData"&&$action != "getPaymentlist"&&$action != "autoCheckTask") {
            // 获取请求头中的 token
         // $token = Request::header("AccessToken");
         $token = input("accessToken");
         if (!$token) {
-            abort(Response::create(["code" => 401, "msg" => "请登录", "data" => ""],"json"));
+            abort(Response::create(responseParams(["code" => 401, "msg" => "请登录", "data" => ""])));
         }
          $this->uid = decodeToken($token)->id ?? null;
          if(!$this->uid){
-            abort(Response::create(["code" => 401, "msg" => "已过期请登录", "data" => ""],"json"));
+             abort(Response::create(responseParams(["code" => 401, "msg" => "已过期请登录", "data" => ""])));
+   
          }
         }
           

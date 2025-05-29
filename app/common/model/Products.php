@@ -152,7 +152,7 @@ class Products extends \think\Model
                                           ])->where("create_time", ">", $todayStart)
                                           ->where("create_time", "<=", $todayEnd)
                                           ->find();
-                           if($recordData){
+                           if($recordData&&$recordData["status"]==2){
                                $productToAiActivityData["data"][$pk]["is_finish"]=1;
                            }
 		             }else{
@@ -160,7 +160,7 @@ class Products extends \think\Model
                                          "pid" => $pv["id"],
                                          "uid" => $uid
                                           ])->find();
-                            if($recordData){
+                            if($recordData&&$recordData["status"]==2){
                                $productToAiActivityData["data"][$pk]["is_finish"]=1;
                            }
 		             }
@@ -171,6 +171,7 @@ class Products extends \think\Model
 
 		return $productToAiActivityData;
 	}
+	
 }
 
 ?>

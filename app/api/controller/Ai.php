@@ -4,7 +4,7 @@ namespace app\api\controller;
 use app\api\controller\AiBase;
 use app\api\controller\AiApi;
 use app\common\model\Products;
-
+use app\gladmin\model\SystemConfig;
 use think\facade\Db;
 use app\common\model\AiActivityRecord;
 use app\common\model\AiUser;
@@ -13,43 +13,48 @@ use app\common\model\AiPointsBill;
 use app\common\model\AiUseRecord;
 use app\common\model\AiVideoTemplate;
 use app\common\model\AiImgTemplate;
+use app\common\model\AiActivityRecord as ActivityRecord;
 class Ai extends AiBase
 {
-    
+
     protected $aiVideoPoints = 30;//视频脱衣
     protected $aiImgPoints = 10; //图片脱衣
     protected $aiAutoPoints = 10; //自动脱衣
     protected $aiManualPoints = 10; //手动脱衣
-   
+
     //查询用户余额和vip剩余次数
     public function vipTimes()
     {
         if (input("get.type") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "type" => input("get.type"),
             "template_id" => input("get.template_id"),
         ];
         $vipTimesParams = [
-            "points" => 0,
+            "total_points" => 0,
             "vip_times" => 0,
             "consume_points" => 0,
         ];
 
         $uid = $this->uid;
+        $userData = AiUser::where(["id" => $uid])->field("free_points,points")->find();
+        if (!$userData) {
+            return responseParams(["code" => 0, "msg" => "用户不存在", "data" => ""]);
+        }
         //查询points
-        $vipTimesParams["points"] = AiUser::where(["id" => $uid])->value("points");
+        $vipTimesParams["total_points"] = $userData["free_points"] + $userData["points"];
         $vipTimesParams["vip_times"] = AiOrder::availableTimes($uid, $params["type"]);
         switch ($params["type"]) {
             case 0:
                 //查询视频模板所需金币
-                $vipTimesParams["consume_points"]=AiVideoTemplate::where(["id"=>$params["template_id"]])->value("points");
-          
+                $vipTimesParams["consume_points"] = AiVideoTemplate::where(["id" => $params["template_id"]])->value("points");
+
                 break;
             case 1:
                 //查询视频模板所需金币
-                $vipTimesParams["consume_points"]=AiImgTemplate::where(["id"=>$params["template_id"]])->value("points");
+                $vipTimesParams["consume_points"] = AiImgTemplate::where(["id" => $params["template_id"]])->value("points");
                 break;
             case 2:
                 $vipTimesParams["consume_points"] = $this->aiAutoPoints;
@@ -60,72 +65,50 @@ class Ai extends AiBase
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
         $orderData = AiOrder::where(["uid" => $uid, "is_vip" => 1, "pay_status" => 1])->where('vip_expired_time', '>', time())->order("create_time asc")->limit(1)->field("id,name,data")->find();
         if (!$orderData) {
-            return json_encode(["code" => 1, "msg" => "succ", "data" => $vipTimesParams]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => $vipTimesParams]);
         }
         //获取当前vip剩余次数
         $vipTimesParams["vip_times"] = AiOrder::availableTimes($uid, $params["type"]);
 
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $vipTimesParams]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $vipTimesParams]);
+
     }
     //视频换脸
     public function videoAi()
     {
-       
+
         if (input("post.template_id") == "" || input("post.img") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "template_id" => input("post.template_id"),
             "img" => input("post.img"),
         ];
         //查询视频模板所需金币
-        $this->aiVideoPoints=AiVideoTemplate::where(["id"=>$params["template_id"]])->value("points");
+        $this->aiVideoPoints = AiVideoTemplate::where(["id" => $params["template_id"]])->value("points");
         //查询用户当前vip
         $uid = $this->uid;
-        $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
-
-        $useRecordParams = AiUseRecord::$useRecordParams;
-
+        $userData = AiUser::where(["id"=>$uid])->find();
         if ($userData["vip_expiration"] < time()) {
-            if ($userData["points"] < $this->aiVideoPoints) {
-                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+            if (($userData["points"] + $userData["free_points"]) < $this->aiVideoPoints) {
+                return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
-                $instance = $this;
-                Db::transaction(function () use ($uid, $userData, $params, $instance, $useRecordParams) {
-                    // 扣减用户 points
-                    $userRes = AiUser::pointsDec($userData, $instance->aiVideoPoints);
-                    if (!$userRes) {
-                        throw new \Exception("扣减用户点数失败");
-                    }
-                    // 生成使用记录
-                    $useRecordParams["uid"] = $uid;
-                    $useRecordParams["ai_type"] = 0;
-                    $useRecordParams["template_id"] = $params["template_id"];
-                    $useRecordParams["img"] = $params["img"];
-                    $useRecordParams["img_layers"] = "";
-                    $useRecordParams["ai_generate_source"] = "";
-                    $useRecordParams["is_use_vip"] = 0;
-                    $useRecordParams["points"] = $instance->aiVideoPoints;
-                    $useRecordParams["status"] = 0;
-                    $useRecordParams["channelCode"] = $userData["channelCode"];
-                    $useRecordParams["create_time"] = time();
-                    $useRecordParams["update_time"] = time();
-                    $useRecordRes = AiUseRecord::create($useRecordParams);
-                    if (!$useRecordRes) {
-                        throw new \Exception("生成使用记录失败");
-                    }
-                    //发送请求到三方ai
-                    $aiApi = new AiApi();
-                    $aiRes = $aiApi->dataToAi(0, $params["img"], $params["template_id"], $useRecordRes->id);
-                    if (!$aiRes) {
-                        throw new \Exception("ai请求失败");
-                    }
-                });
+                // 扣减用户 points
+                $useRecordRes = AiUser::pointsDec($userData, $this->aiVideoPoints, $params, 0);
+                if (!$useRecordRes) {
+                    throw new \Exception("扣减用户点数失败");
+                }
+                //发送请求到三方ai
+                $aiApi = new AiApi();
+                $aiRes = $aiApi->dataToAi(0, $params["img"], $params["template_id"], $useRecordRes->id);
+                if (!$aiRes) {
+                    throw new \Exception("ai请求失败");
+                }
 
-                return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+                return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
             } catch (\Exception $e) {
-                return json_encode(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
+                return responseParams(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
             }
         }
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
@@ -139,7 +122,6 @@ class Ai extends AiBase
             $useRecordParams["img"] = $params["img"];
             $useRecordParams["img_layers"] = "";
             $useRecordParams["ai_generate_source"] = "";
-
             $useRecordParams["is_use_vip"] = 1;
             $useRecordParams["points"] = 0;
             $useRecordParams["status"] = 0;
@@ -148,168 +130,128 @@ class Ai extends AiBase
             $useRecordParams["update_time"] = time();
             $useRecordRes = AiUseRecord::create($useRecordParams);
             //发送请求到三方ai
-            //发送请求到三方ai
-            //发送请求到三方ai
             $aiApi = new AiApi();
             $aiApi->dataToAi(0, $params["img"], $params["template_id"], $useRecordRes->id);
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
         }
         //vip已使用完扣减余额
-        if ($userData["points"] < $this->aiVideoPoints) {
-            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+        if (($userData["points"] + $userData["free_points"]) < $this->aiVideoPoints) {
+            return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
         }
         try {
-            $instance = $this;
-            Db::transaction(function () use ($uid, $userData, $params, $instance, $useRecordParams) {
-                // 扣减用户 points
-                $userRes = AiUser::pointsDec($userData, $instance->aiVideoPoints);
-                if (!$userRes) {
-                    throw new \Exception("扣减用户点数失败");
-                }
-                // 生成使用记录
-                $useRecordParams["uid"] = $uid;
-                $useRecordParams["ai_type"] = 0;
-                $useRecordParams["template_id"] = $params["template_id"];
-                $useRecordParams["img"] = $params["img"];
-                $useRecordParams["img_layers"] = "";
-                $useRecordParams["ai_generate_source"] = "";
-                $useRecordParams["is_use_vip"] = 0;
-                $useRecordParams["points"] = $instance->aiVideoPoints;
-                $useRecordParams["status"] = 0;
-                $useRecordParams["channelCode"] = $userData["channelCode"];
-                $useRecordParams["create_time"] = time();
-                $useRecordParams["update_time"] = time();
-                //任务id
-                $useRecordParams["task_id"] = time() . rand(00000, 99999);
-                $useRecordRes = AiUseRecord::create($useRecordParams);
-                if (!$useRecordRes) {
-                    throw new \Exception("生成使用记录失败");
-                }
-                //发送请求到三方ai
-                $aiApi = new AiApi();
-                $aiRes = $aiApi->dataToAi(0, $params["img"], $params["template_id"], $useRecordRes->id);
-                if (!$aiRes) {
-                    throw new \Exception("ai请求失败");
-                }
-            });
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            $useRecordRes = AiUser::pointsDec($userData, $this->aiVideoPoints, $params, 0);
+            if (!$useRecordRes) {
+                throw new \Exception("扣减用户点数失败");
+            }
+            //发送请求到三方ai
+            $aiApi = new AiApi();
+            $aiRes = $aiApi->dataToAi(0, $params["img"], $params["template_id"], $useRecordRes->id);
+            if (!$aiRes) {
+                throw new \Exception("ai请求失败");
+            }
+
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
+            return responseParams(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
+
         }
     }
     //获取视频换脸模板列表
     public function videoTemplateData()
     {
-   
+
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "page" => input("get.page"),
             "limit" => input("get.limit"),
         ];
-        $templateData = AiVideoTemplate::paginate([
+        $templateData = AiVideoTemplate::cache(3600)->paginate([
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $templateData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $templateData]);
     }
     //获取单个视频模板
     public function videoTemplateFindData()
     {
         if (input("get.id") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
+
         }
         $params = [
             "id" => input("get.id"),
         ];
         $templateFindData = AiVideoTemplate::where(["id" => $params["id"]])->find();
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $templateFindData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $templateFindData]);
     }
     //获取图片模板列表
     public function imgTemplateData()
     {
         if (input("get.page") == "" || input("get.limit") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "page" => input("get.page"),
             "limit" => input("get.limit"),
         ];
-        $templateData = AiImgTemplate::paginate([
+        $templateData = AiImgTemplate::cache(3600)->paginate([
             'list_rows' => $params["limit"],
             'page' => $params["page"],
         ]);
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $templateData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $templateData]);
     }
     //获取单个图片模板列表
     public function imgTemplateFindData()
     {
         if (input("get.id") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "id" => input("get.id"),
         ];
         $templateFindData = AiImgTemplate::where(["id" => $params["id"]])->find();
-        return json_encode(["code" => 1, "msg" => "succ", "data" => $templateFindData]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $templateFindData]);
     }
     //图片换脸
     public function imgAi()
     {
         if (input("post.template_id") == "" || input("post.img") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
+
         }
         $params = [
             "template_id" => input("post.template_id"),
             "img" => input("post.img"),
         ];
-         //查询图片模板所需金币
-         $this->aiImgPoints=AiImgTemplate::where(["id"=>$params["template_id"]])->value("points");
+        //查询图片模板所需金币
+        $this->aiImgPoints = AiImgTemplate::where(["id" => $params["template_id"]])->value("points");
         //查询用户当前vip
         $uid = $this->uid;
-        $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
-        $useRecordParams = AiUseRecord::$useRecordParams;
+        $userData =AiUser::where(["id"=>$uid])->find();
+
         if ($userData["vip_expiration"] < time()) {
-            if ($userData["points"] < $this->aiImgPoints) {
-                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+            if (($userData["points"] + $userData["free_points"]) < $this->aiImgPoints) {
+                return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
-                $instance = $this;
-                Db::transaction(function () use ($uid, $userData, $params, $instance, $useRecordParams) {
-                    // 扣减用户 points
-                    $userRes = AiUser::pointsDec($userData, $instance->aiImgPoints);
-                    if (!$userRes) {
-                        throw new \Exception("扣减用户点数失败");
-                    }
-                    // 生成使用记录
-                    $useRecordParams["uid"] = $uid;
-                    $useRecordParams["ai_type"] = 1;
-                    $useRecordParams["template_id"] = $params["template_id"];
-                    $useRecordParams["img"] = $params["img"];
-                    $useRecordParams["img_layers"] = "";
-                    $useRecordParams["ai_generate_source"] = "";
-                    $useRecordParams["is_use_vip"] = 0;
-                    $useRecordParams["points"] = $instance->aiImgPoints;
-                    $useRecordParams["status"] = 0;
-                    $useRecordParams["channelCode"] = $userData["channelCode"];
-                    $useRecordParams["create_time"] = time();
-                    $useRecordParams["update_time"] = time();
-                    $useRecordRes = AiUseRecord::create($useRecordParams);
-                    if (!$useRecordRes) {
-                        throw new \Exception("生成使用记录失败");
-                    }
-                    //发送请求到三方ai
-                    $aiApi = new AiApi();
-                    $aiRes = $aiApi->dataToAi(1, $params["img"], $params["template_id"], $useRecordRes->id);
-                    if (!$aiRes) {
-                        throw new \Exception("ai请求失败");
-                    }
-                });
+                // 扣减用户 points
+                $useRecordRes = AiUser::pointsDec($userData, $this->aiImgPoints, $params, 1);
+                if (!$useRecordRes) {
+                    throw new \Exception("扣减用户点数失败");
+                }
+                //发送请求到三方ai
+                $aiApi = new AiApi();
+                $aiRes = $aiApi->dataToAi(1, $params["img"], $params["template_id"], $useRecordRes->id);
+                if (!$aiRes) {
+                    throw new \Exception("ai请求失败");
+                }
+                return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
 
-                return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
             } catch (\Exception $e) {
-                return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+                return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+
             }
         }
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
@@ -333,101 +275,67 @@ class Ai extends AiBase
             //发送请求到三方ai
             $aiApi = new AiApi();
             $aiApi->dataToAi(1, $params["img"], $params["template_id"], $useRecordRes->id);
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+
         }
         //vip已使用完扣减余额
-        if ($userData["points"] < $this->aiImgPoints) {
-            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+        if (($userData["points"] + $userData["free_points"]) < $this->aiImgPoints) {
+            return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+
         }
         try {
-            $instance = $this;
-            Db::transaction(function () use ($uid, $userData, $params, $instance, $useRecordParams) {
-                // 扣减用户 points
-                $userRes = AiUser::pointsDec($userData, $instance->aiImgPoints);
-                if (!$userRes) {
-                    throw new \Exception("扣减用户点数失败");
-                }
-                // 生成使用记录
-                $useRecordParams["uid"] = $uid;
-                $useRecordParams["ai_type"] = 1;
-                $useRecordParams["template_id"] = $params["template_id"];
-                $useRecordParams["img"] = $params["img"];
-                $useRecordParams["img_layers"] = "";
-                $useRecordParams["ai_generate_source"] = "";
-                $useRecordParams["is_use_vip"] = 0;
-                $useRecordParams["points"] = $instance->aiImgPoints;
-                $useRecordParams["status"] = 0;
-                $useRecordParams["channelCode"] = $userData["channelCode"];
-                $useRecordParams["create_time"] = time();
-                $useRecordParams["update_time"] = time();
-                $useRecordRes = AiUseRecord::create($useRecordParams);
-                if (!$useRecordRes) {
-                    throw new \Exception("生成使用记录失败");
-                }
-                //发送请求到三方ai
-                $aiApi = new AiApi();
-                $aiRes = $aiApi->dataToAi(1, $params["img"], $params["template_id"], $useRecordRes->id);
-                if (!$aiRes) {
-                    throw new \Exception("ai请求失败");
-                }
-            });
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            // 扣减用户 points
+            $useRecordRes = AiUser::pointsDec($userData, $this->aiImgPoints, $params, 1);
+            if (!$useRecordRes) {
+                throw new \Exception("扣减用户点数失败");
+            }
+            //发送请求到三方ai
+            $aiApi = new AiApi();
+            $aiRes = $aiApi->dataToAi(1, $params["img"], $params["template_id"], $useRecordRes->id);
+            if (!$aiRes) {
+                throw new \Exception("ai请求失败");
+            }
+
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
         }
     }
     //自动脱衣
     public function imgAutoAi()
     {
         if (input("post.img") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "img" => input("post.img"),
         ];
         //查询用户当前vip
         $uid = $this->uid;
-        $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
-        $useRecordParams = AiUseRecord::$useRecordParams;
+        $userData = AiUser::where(["id"=>$uid])->find();
         if ($userData["vip_expiration"] < time()) {
-            if ($userData["points"] < $this->aiAutoPoints) {
-                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+            if (($userData["points"] + $userData["free_points"]) < $this->aiAutoPoints) {
+                return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
-                $instance = $this;
-                Db::transaction(function () use ($uid, $userData, $params, $instance, $useRecordParams) {
-                    // 扣减用户 points
-                    $userRes = AiUser::pointsDec($userData, $instance->aiAutoPoints);
-                    if (!$userRes) {
-                        throw new \Exception("扣减用户点数失败");
-                    }
-                    // 生成使用记录
-                    $useRecordParams["uid"] = $uid;
-                    $useRecordParams["ai_type"] = 2;
-                    $useRecordParams["template_id"] = 0;
-                    $useRecordParams["img"] = $params["img"];
-                    $useRecordParams["img_layers"] = "";
-                    $useRecordParams["ai_generate_source"] = "";
-                    $useRecordParams["is_use_vip"] = 0;
-                    $useRecordParams["points"] = $instance->aiAutoPoints;
-                    $useRecordParams["status"] = 0;
-                    $useRecordParams["channelCode"] = $userData["channelCode"];
-                    $useRecordParams["create_time"] = time();
-                    $useRecordParams["update_time"] = time();
-                    $useRecordRes = AiUseRecord::create($useRecordParams);
-                    if (!$useRecordRes) {
-                        throw new \Exception("生成使用记录失败");
-                    }
-                    //发送请求到三方ai
-                    $aiApi = new AiApi();
-                    $aiRes = $aiApi->dataToAi(2, $params["img"], 0, $useRecordRes->id);
-                    if (!$aiRes) {
-                        throw new \Exception("ai请求失败");
-                    }
-                });
-                return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+                // 扣减用户 points
+                $useRecordRes = AiUser::pointsDec($userData, $this->aiAutoPoints, $params, 2);
+                if (!$useRecordRes) {
+                    throw new \Exception("扣减用户点数失败");
+                }
+                //发送请求到三方ai
+                $aiApi = new AiApi();
+                $aiRes = $aiApi->dataToAi(2, $params["img"], 0, $useRecordRes->id);
+                if (!$aiRes) {
+                    throw new \Exception("ai请求失败");
+                }
+
+                return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+
             } catch (\Exception $e) {
-                return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+                return responseParams(["code" => 0, "msg" => "请稍后重试".$e->getMessage(), "data" => ""]);
+
             }
         }
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
@@ -451,54 +359,37 @@ class Ai extends AiBase
             //发送请求到三方ai
             $aiApi = new AiApi();
             $aiApi->dataToAi(2, $params["img"], 0, $useRecordRes->id);
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+
         }
         //vip已使用完扣减余额
-        if ($userData["points"] < $this->aiAutoPoints) {
-            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+        if (($userData["points"] + $userData["free_points"]) < $this->aiAutoPoints) {
+            return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
         }
         try {
-            $instance = $this;
-            Db::transaction(function () use ($uid, $userData, $params, $instance, $useRecordParams) {
-                // 扣减用户 points
-                $userRes = AiUser::pointsDec($userData, $instance->aiAutoPoints);
-                if (!$userRes) {
-                    throw new \Exception("扣减用户点数失败");
-                }
-                // 生成使用记录
-                $useRecordParams["uid"] = $uid;
-                $useRecordParams["ai_type"] = 2;
-                $useRecordParams["template_id"] = 0;
-                $useRecordParams["img"] = $params["img"];
-                $useRecordParams["img_layers"] = "";
-                $useRecordParams["ai_generate_source"] = "";
-                $useRecordParams["is_use_vip"] = 0;
-                $useRecordParams["points"] = $instance->aiAutoPoints;
-                $useRecordParams["status"] = 0;
-                $useRecordParams["channelCode"] = $userData["channelCode"];
-                $useRecordParams["create_time"] = time();
-                $useRecordParams["update_time"] = time();
-                $useRecordRes = AiUseRecord::create($useRecordParams);
-                if (!$useRecordRes) {
-                    throw new \Exception("生成使用记录失败");
-                }
-                //发送请求到三方ai
-                $aiApi = new AiApi();
-                $aiRes = $aiApi->dataToAi(2, $params["img"], 0, $useRecordRes->id);
-                if (!$aiRes) {
-                    throw new \Exception("ai请求失败");
-                }
-            });
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            // 扣减用户 points
+            $useRecordRes = AiUser::pointsDec($userData, $this->aiAutoPoints, $params, 2);
+            if (!$useRecordRes) {
+                throw new \Exception("扣减用户点数失败");
+            }
+            //发送请求到三方ai
+            $aiApi = new AiApi();
+            $aiRes = $aiApi->dataToAi(2, $params["img"], 0, $useRecordRes->id);
+            if (!$aiRes) {
+                throw new \Exception("ai请求失败");
+            }
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "请稍后重试1".$e->getMessage(), "data" => ""]);
+
         }
     }
     //手动脱衣
     public function imgManualAi()
     {
         if (input("post.img") == "" || input("post.img_layers") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
             "img" => input("post.img"),
@@ -506,47 +397,29 @@ class Ai extends AiBase
         ];
         //查询用户当前vip
         $uid = $this->uid;
-        $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
-        $useRecordParams = AiUseRecord::$useRecordParams;
+        $userData =AiUser::where(["id"=>$uid])->find();
         if ($userData["vip_expiration"] < time()) {
-            if ($userData["points"] < $this->aiManualPoints) {
-                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+            if (($userData["points"] + $userData["free_points"]) < $this->aiManualPoints) {
+                return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
             }
             try {
-                $instance = $this;
-                Db::transaction(function () use ($uid, $userData, $params, $instance, $useRecordParams) {
-                    // 扣减用户 points
-                    $userRes = AiUser::pointsDec($userData, $instance->aiImgPoints);
-                    if (!$userRes) {
-                        throw new \Exception("扣减用户点数失败");
-                    }
-                    // 生成使用记录
-                    $useRecordParams["uid"] = $uid;
-                    $useRecordParams["ai_type"] = 3;
-                    $useRecordParams["template_id"] = 0;
-                    $useRecordParams["img"] = $params["img"];
-                    $useRecordParams["img_layers"] = $params["img_layers"];
-                    $useRecordParams["ai_generate_source"] = "";
-                    $useRecordParams["is_use_vip"] = 0;
-                    $useRecordParams["points"] = $instance->aiManualPoints;
-                    $useRecordParams["status"] = 0;
-                    $useRecordParams["channelCode"] = $userData["channelCode"];
-                    $useRecordParams["create_time"] = time();
-                    $useRecordParams["update_time"] = time();
-                    $useRecordRes = AiUseRecord::create($useRecordParams);
-                    if (!$useRecordRes) {
-                        throw new \Exception("生成使用记录失败");
-                    }
-                    //发送请求到三方ai
-                    $aiApi = new AiApi();
-                    $aiRes = $aiApi->dataToAi(3, $params["img"], 0, $useRecordRes->id, $params["img_layers"]);
-                    if (!$aiRes) {
-                        throw new \Exception("ai请求失败");
-                    }
-                });
-                return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+                // 扣减用户 points
+                $useRecordRes = AiUser::pointsDec($userData, $this->aiManualPoints, $params, 3);
+                if (!$useRecordRes) {
+                    throw new \Exception("扣减用户点数失败");
+                }
+                //发送请求到三方ai
+                $aiApi = new AiApi();
+                $aiRes = $aiApi->dataToAi(3, $params["img"], 0, $useRecordRes->id, $params["img_layers"]);
+                if (!$aiRes) {
+                    throw new \Exception("ai请求失败");
+                }
+
+                return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+
             } catch (\Exception $e) {
-                return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+                return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+
             }
         }
         //如果是vip判断是否剩余次数  如果次数不够扣减次数
@@ -570,111 +443,99 @@ class Ai extends AiBase
             //发送请求到三方ai
             $aiApi = new AiApi();
             $aiApi->dataToAi(3, $params["img"], 0, $useRecordRes->id, $params["img_layers"]);
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
 
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
         }
         //vip已使用完扣减余额
         if ($userData["points"] < $this->aiManualPoints) {
-            return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+            return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
         }
         try {
-            $instance = $this;
-            Db::transaction(function () use ($uid, $userData, $params, $instance, $useRecordParams) {
-                // 扣减用户 points
-                $userRes = AiUser::pointsDec($userData, $instance->aiManualPoints);
-                if (!$userRes) {
-                    throw new \Exception("扣减用户点数失败");
-                }
-                // 生成使用记录
-                $useRecordParams["uid"] = $uid;
-                $useRecordParams["ai_type"] = 3;
-                $useRecordParams["template_id"] = 0;
-                $useRecordParams["img"] = $params["img"];
-                $useRecordParams["img_layers"] = $params["img_layers"];
-                $useRecordParams["ai_generate_source"] = "";
-                $useRecordParams["is_use_vip"] = 0;
-                $useRecordParams["points"] = $instance->aiManualPoints;
-                $useRecordParams["status"] = 0;
-                $useRecordParams["channelCode"] = $userData["channelCode"];
-                $useRecordParams["create_time"] = time();
-                $useRecordParams["update_time"] = time();
-                $useRecordRes = AiUseRecord::create($useRecordParams);
-                if (!$useRecordRes) {
-                    throw new \Exception("生成使用记录失败");
-                }
-                //发送请求到三方ai
-                $aiApi = new AiApi();
-                $aiRes = $aiApi->dataToAi(3, $params["img"], 0, $useRecordRes->id, $params["img_layers"]);
-                if (!$aiRes) {
-                    throw new \Exception("ai请求失败");
-                }
-            });
-            return json_encode(["code" => 1, "msg" => "succ", "data" => ""]);
+            // 扣减用户 points
+            $useRecordRes = AiUser::pointsDec($userData, $this->aiManualPoints, $params, 3);
+            if (!$useRecordRes) {
+                throw new \Exception("扣减用户点数失败");
+            }
+            //发送请求到三方ai
+            $aiApi = new AiApi();
+            $aiRes = $aiApi->dataToAi(3, $params["img"], 0, $useRecordRes->id, $params["img_layers"]);
+            if (!$aiRes) {
+                throw new \Exception("ai请求失败");
+            }
+
+            return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
         } catch (\Exception $e) {
-            return json_encode(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "请稍后重试", "data" => ""]);
         }
     }
     //批量获取任务
     public function getTaskStatus()
     {
-        $recordData = AiUseRecord::where(["status" => 0, "is_del" => 0])->field("id,task_id")->select();
+        $timeThreshold  = time() - 6 * 3600;
+        $recordData = AiUseRecord::where(["status" => 0, "is_del" => 0]) ->where("create_time", ">", $timeThreshold) 
+        ->field("id,task_id") 
+        ->select();
         $recordData = $recordData->toArray() ? $recordData->toArray() : [];
 
         if ($recordData) {
             $aiApi = new AiApi();
             $aiApi->getTaskStatus($recordData);
         }
+        echo "处理".count($recordData)."个ai任务";
     }
     //上传图片
     public function uploadFaceImg()
     {
-        if (input("post.type") == "") {
-            return json_encode(["code" => 0, "msg" => "参数错误", "data" => ""]);
-        }
-        $params = [
-            "type" => input("post.type"),
-        ];
-        $aiTypePoints = $this->aiVideoPoints;
-        switch ($params["type"]) {
-            case 0:
-                $aiTypePoints = $this->aiVideoPoints;
-                break;
-            case 1:
-                $aiTypePoints = $this->aiImgPoints;
-                break;
-            case 2:
-                $aiTypePoints = $this->aiAutoPoints;
-                break;
-            case 3:
-                $aiTypePoints = $this->aiManualPoints;
-                break;
+        // if (input("post.type") == "") {
+        //     return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        // }
+        // $params = [
+        //     "type" => input("post.type"),
+        // ];
+        // $aiTypePoints = $this->aiVideoPoints;
+        // switch ($params["type"]) {
+        //     case 0:
+        //         $aiTypePoints = $this->aiVideoPoints;
+        //         break;
+        //     case 1:
+        //         $aiTypePoints = $this->aiImgPoints;
+        //         break;
+        //     case 2:
+        //         $aiTypePoints = $this->aiAutoPoints;
+        //         break;
+        //     case 3:
+        //         $aiTypePoints = $this->aiManualPoints;
+        //         break;
 
-        }
-        $uid = $this->uid;
-        $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
-        $ActivityRecordCount=AiActivityRecord::where(["uid" => $uid])->count();
-        //判断是否有金币
-        if ($userData["vip_expiration"] < time()) {
-            if (AiOrder::availableTimes($uid, $params["type"]) <= 0) {
-                if ($userData["points"] < $aiTypePoints) {
-                    //第一次跳转 任务中心
-                    if($ActivityRecordCount>1){
-                        return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
-                    }
-                    //如果完成过金币任务跳转充值
-                    return json_encode(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
-                }
-            }
-        } else {
-            if ($userData["points"] < $aiTypePoints) {
-              //第一次跳转 任务中心
-              if($ActivityRecordCount>1){
-                return json_encode(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
-            }
-            //如果完成过金币任务跳转充值
-            return json_encode(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
-            }
-        }
+        // }
+        // $uid = $this->uid;
+        // $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
+        // $ActivityRecordCount=AiActivityRecord::where(["uid" => $uid])->count();
+        // //判断是否有金币
+        // if ($userData["vip_expiration"] < time()) {
+        //     if (AiOrder::availableTimes($uid, $params["type"]) <= 0) {
+        //         if ($userData["points"] < $aiTypePoints) {
+        //             //第一次跳转 任务中心
+        //             if($ActivityRecordCount>1){
+        //                 return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+
+        //             }
+        //             //如果完成过金币任务跳转充值
+        //                return responseParams(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
+
+        //         }
+        //     }
+        // } else {
+        //     if ($userData["points"] < $aiTypePoints) {
+        //       //第一次跳转 任务中心
+        //       if($ActivityRecordCount>1){
+        //           return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
+        //     }
+        //     //如果完成过金币任务跳转充值
+        //       return responseParams(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
+
+        //     }
+        // }
         $file = request()->file('image'); // 获取上传的图片
 
         if ($file) {
@@ -685,7 +546,8 @@ class Ai extends AiBase
 
             // 进行文件验证
             if (!$validate->check(['image' => $file])) {
-                return json_encode(["code" => 0, "msg" => "图片类型或者大小不符合要求", "data" => ""]);
+                return responseParams(["code" => 0, "msg" => "图片类型或者大小不符合要求", "data" => ""]);
+
             }
             // 获取文件扩展名
             $extension = $file->getOriginalExtension();
@@ -702,11 +564,38 @@ class Ai extends AiBase
             $newPath = "./" . $directory . "/" . $fileBaseName . ".js";
             $filData = file_get_contents($imgPath);
             file_put_contents($newPath, $filData);
-            return json_encode(["code" => 1, "msg" => "上传成功", "data" => "/" . $directory . '/' . $filename]);
+            return responseParams(["code" => 1, "msg" => "上传成功", "data" => "/" . $directory . '/' . $filename]);
         } else {
-            return json_encode(["code" => 0, "msg" => "未选择文件", "data" => ""]);
+            return responseParams(["code" => 0, "msg" => "未选择文件", "data" => ""]);
         }
 
     }
-
+    //获取用户满足条件
+    public function getAiUserHint(){
+        $uid = $this->uid;
+         //可用总金币(赠送+充值) 
+        $availablePoints=0;
+       //是否达到金币消费上限
+        $isFreeConsumePointsLimit=false;
+        $availablePoints = AiUser::getUserPoints($uid)["points"];   
+        $isFreeConsumePointsLimit=AiUser::getUserConsumFreePointsLimit($uid)?0:1;
+        $FreeConsumePointsLimit=SystemConfig::where(["name" => "ai_points_consum_limit"])->value("value");  //每天金币消费上限
+        return responseParams(["code" => 1, "msg" => "succ", "data" => ["available_points"=>$availablePoints,"is_free_consume_points_limit"=>$isFreeConsumePointsLimit,"free_consume_points_limit"=>$FreeConsumePointsLimit]]);
+    }
+    //超过2分钟的任务未审核自动审核成功
+    public function autoCheckTask()
+    {
+         $timeThreshold  = time() - 6 * 3600;
+        $recordData = AiActivityRecord::where(["status" => 1])
+         ->where("create_time", ">", $timeThreshold)
+        // ->where("apply_time", "<", time() - 240)
+        ->field("id,activity_order_num")->select();
+        $recordData = $recordData->toArray() ? $recordData->toArray() : [];
+        if ($recordData) {
+            foreach ($recordData as $key => $value) {
+                ActivityRecord::activityFinishNotify($value['activity_order_num']);
+            }
+        }
+        echo "审核".count($recordData)."个ai赠送金币";
+    }
 }

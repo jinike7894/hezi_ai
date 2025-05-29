@@ -114,6 +114,28 @@
         </div>
     </div>
 
+     <div class="layui-form-item">
+        <label class="layui-form-label">赠送金币领取上限</label>
+        <div class="layui-input-block">
+            <input type="text" name="ai_points_receive_limit" class="layui-input"  placeholder="金币领取上限" value="{:sysconfig('site','ai_points_receive_limit')}">
+            <tip>填写金币领取上限。</tip>
+        </div>
+    </div>
+     <div class="layui-form-item">
+        <label class="layui-form-label">赠送金币消耗上限</label>
+        <div class="layui-input-block">
+            <input type="text" name="ai_points_consum_limit" class="layui-input"  placeholder="金币消耗上限" value="{:sysconfig('site','ai_points_consum_limit')}">
+            <tip>填写金币消耗上限。</tip>
+        </div>
+    </div>
+     <div class="layui-form-item">
+        <label class="layui-form-label">最低提现</label>
+        <div class="layui-input-block">
+            <input type="text" name="ai_min_withdrawal" class="layui-input"  placeholder="最低提现" value="{:sysconfig('site','ai_min_withdrawal')}">
+            <tip>填写最低提现。</tip>
+        </div>
+    </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label">视频封面域名</label>
         <div class="layui-input-block">
