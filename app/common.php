@@ -516,3 +516,22 @@ function responseParams($arr){
     //return json_encode($arr);
     return jiami(json_encode($arr));
 }
+//图片压缩
+function compressImage($source, $destination, $quality = 75) {
+    $info = getimagesize($source);
+
+    if ($info['mime'] == 'image/jpeg') {
+        $image = imagecreatefromjpeg($source);
+        imagejpeg($image, $destination, $quality);
+    } elseif ($info['mime'] == 'image/png') {
+        $image = imagecreatefrompng($source);
+        imagepng($image, $destination, round($quality / 10));
+    } elseif ($info['mime'] == 'image/webp') {
+        $image = imagecreatefromwebp($source);
+        imagewebp($image, $destination, $quality);
+    } else {
+        return false; // 其他格式不处理
+    }
+    imagedestroy($image);
+    return true;
+}

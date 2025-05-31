@@ -486,56 +486,7 @@ class Ai extends AiBase
     //上传图片
     public function uploadFaceImg()
     {
-        // if (input("post.type") == "") {
-        //     return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
-        // }
-        // $params = [
-        //     "type" => input("post.type"),
-        // ];
-        // $aiTypePoints = $this->aiVideoPoints;
-        // switch ($params["type"]) {
-        //     case 0:
-        //         $aiTypePoints = $this->aiVideoPoints;
-        //         break;
-        //     case 1:
-        //         $aiTypePoints = $this->aiImgPoints;
-        //         break;
-        //     case 2:
-        //         $aiTypePoints = $this->aiAutoPoints;
-        //         break;
-        //     case 3:
-        //         $aiTypePoints = $this->aiManualPoints;
-        //         break;
-
-        // }
-        // $uid = $this->uid;
-        // $userData = AiUser::where(["id" => $uid])->field("id,username,points,vip_expiration,channelCode")->find();
-        // $ActivityRecordCount=AiActivityRecord::where(["uid" => $uid])->count();
-        // //判断是否有金币
-        // if ($userData["vip_expiration"] < time()) {
-        //     if (AiOrder::availableTimes($uid, $params["type"]) <= 0) {
-        //         if ($userData["points"] < $aiTypePoints) {
-        //             //第一次跳转 任务中心
-        //             if($ActivityRecordCount>1){
-        //                 return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
-
-        //             }
-        //             //如果完成过金币任务跳转充值
-        //                return responseParams(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
-
-        //         }
-        //     }
-        // } else {
-        //     if ($userData["points"] < $aiTypePoints) {
-        //       //第一次跳转 任务中心
-        //       if($ActivityRecordCount>1){
-        //           return responseParams(["code" => 301, "msg" => "金币不足请充值", "data" => ""]);
-        //     }
-        //     //如果完成过金币任务跳转充值
-        //       return responseParams(["code" => 302, "msg" => "金币不足请先赚取金币", "data" => ""]);
-
-        //     }
-        // }
+      
         $file = request()->file('image'); // 获取上传的图片
 
         if ($file) {
@@ -559,7 +510,10 @@ class Ai extends AiBase
 
             // 存储文件到指定目录
             \think\facade\Filesystem::disk('public')->putFileAs($directory, $file, $filename);
+
             $imgPath = "./" . $directory . "/" . $filename;
+            // **调用图片压缩**
+            compressImage($imgPath, $imgPath, 75);
             $fileBaseName = pathinfo($imgPath, PATHINFO_FILENAME);
             $newPath = "./" . $directory . "/" . $fileBaseName . ".js";
             $filData = file_get_contents($imgPath);
@@ -587,7 +541,7 @@ class Ai extends AiBase
     {
          $timeThreshold  = time() - 6 * 3600;
         $recordData = AiActivityRecord::where(["status" => 1])
-         ->where("create_time", ">", $timeThreshold)
+        // ->where("create_time", ">", $timeThreshold)
         // ->where("apply_time", "<", time() - 240)
         ->field("id,activity_order_num")->select();
         $recordData = $recordData->toArray() ? $recordData->toArray() : [];
