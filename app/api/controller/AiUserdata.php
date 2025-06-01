@@ -102,8 +102,8 @@ class AiUserdata extends AiBase
             return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
-            "username" => input("post.username"),
-            "passwd" => input("post.passwd"),
+            "username" => htmlspecialchars(input("post.username")),
+            "passwd" => htmlspecialchars(input("post.passwd")),
         ];
         $uid = $this->uid;
 
