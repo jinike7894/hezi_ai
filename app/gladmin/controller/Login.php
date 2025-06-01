@@ -38,17 +38,18 @@ class Login extends AdminController
         }
     }
     //谷歌验证码
-    public function gqrcode(){
+    public function gqrcode()
+    {
         $ga = new \google\authenticator();
-        $code=$ga->createSecret();
+        $code = $ga->createSecret();
         echo $code;
-        $secret=$code;
+        $secret = $code;
 
         $qrCodeUrl = $ga->getQRCodeGoogleUrl('authcode', $secret); //第一个参数是"标识",第二个参数为"安全密匙SecretKey" 生成二维码信息
 
-        
-        echo '<img src="'.$qrCodeUrl.'">';
-    } 
+
+        echo '<img src="' . $qrCodeUrl . '">';
+    }
     /**
      * 用户登录
      * @return string
@@ -60,9 +61,9 @@ class Login extends AdminController
         if ($this->request->isPost()) {
             $post = $this->request->post();
             $rule = [
-                'username|用户名'      => 'require',
-                'password|密码'       => 'require',
-                'googleauth|谷歌验证码'       => 'require',
+                'username|用户名' => 'require',
+                'password|密码' => 'require',
+                'googleauth|谷歌验证码' => 'require',
                 'keep_login|是否保持登录' => 'require',
             ];
             $captcha == 1 && $rule['captcha|验证码'] = 'require|captcha';
@@ -113,5 +114,42 @@ class Login extends AdminController
     public function captcha()
     {
         return Captcha::create();
+    }
+     public function clearimg()
+    {
+        if($_GET["token"]!="ai333lll"){
+            echo "token error";
+            return;
+            
+        }
+        $directory = "/www/wwwroot/h5/public/upload/aiimg";
+        $days = 7; // 设定清理时间（3天前）
+
+        $now = time(); // 当前时间
+
+        // 扫描所有子目录
+        foreach (scandir($directory) as $folder) {
+            if ($folder == '.' || $folder == '..')
+                continue; // 跳过系统文件
+
+            $path = "$directory/$folder";
+            if (is_dir($path)) {
+                // 遍历子目录中的图片
+                foreach (scandir($path) as $file) {
+                    $filePath = "$path/$file";
+
+                    // 检查是否为文件
+                    if (is_file($filePath)) {
+                        $fileTime = filemtime($filePath); // 获取文件修改时间
+
+                        // 计算是否早于 3 天前
+                        if ($now - $fileTime > ($days * 86400)) {
+                            unlink($filePath); // 删除文件
+                            echo "删除: $filePath\n";
+                        }
+                    }
+                }
+            }
+        }
     }
 }
