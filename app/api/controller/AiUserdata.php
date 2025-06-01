@@ -23,8 +23,8 @@ class AiUserdata extends AiBase
         $params = [
             "model" => input("post.model"),
             "unique_code" => input("post.unique_code"),
-            "channelCode" => input("post.channelCode"),
-            "pid" => input("post.pid"),
+            "channelCode" => intval(input("post.channelCode")),
+            "pid" => intval(input("post.pid")),
         ];
         $token = "";
         //查询unique 
@@ -131,8 +131,8 @@ class AiUserdata extends AiBase
             return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
         }
         $params = [
-            "username" => input("post.username"),
-            "passwd" => input("post.passwd"),
+            "username" => htmlspecialchars(input("post.username"), ENT_QUOTES, 'UTF-8'),
+            "passwd" => htmlspecialchars(input("post.passwd"), ENT_QUOTES, 'UTF-8'),
         ];
 
         //查询用户
