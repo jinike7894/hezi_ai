@@ -37,6 +37,11 @@ class Aicate extends AdminController
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
             $list = $this->model->where($where)->page($page, $limit)->select();
+
+            for($i=0;$i<count($list);$i++)
+            {
+                $list[$i]['pid'] = $this->model->where(array('id'=>$list[$i]['pid']))->value('title') ?: '一级分类';
+            }
             $data = [
                 'code'  => 0,
                 'msg'   => '',

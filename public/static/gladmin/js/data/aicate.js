@@ -22,6 +22,7 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                 toolbar: ['refresh'],
                 cols: [[
                     {field: 'id', minWidth: 80, title: 'ID'},
+                    {field: 'pid', minWidth: 80, title: '分类层级'},
                     {field: 'title', minWidth: 0, title: '视频分类标题'},
                     {field: 'sort', minWidth: 0, title: '排序', search: false},
                     {field: 'is_recommend', minWidth: 150, title: '是否推荐', search: 'select', selectList: {0: '否', 1: '是'}, templet: ea.table.switch},
