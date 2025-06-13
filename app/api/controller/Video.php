@@ -19,9 +19,9 @@ class Video extends AiBase
 
    //获取视频首页列表
    public function index(){
-       $cate = AiCate::where(["is_recommend" => 1])->where('pid','>',0)->field("id,title")->order("sort desc")->select();
+       $cate = AiCate::where(["is_recommend" => 1])->where('pid','>',0)->field("id,k_title as title")->order("sort desc")->select();
 
-       $cateParentList = AiCate::where(['pid' => 0])->field("id as cate_pid,title")->order("sort desc")->select();
+       $cateParentList = AiCate::where(['pid' => 0])->field("id as cate_pid,k_title as title")->order("sort desc")->select();
         for ($i = 0; $i < count($cate); $i++) {
             $cate[$i]['videoList'] = AiCate::getVideoDataByCid($cate[$i]['id'],5);
         }
@@ -69,7 +69,7 @@ class Video extends AiBase
            "page" => input("get.page"),
            "limit" => input("get.limit"),
        ];
-       $cate = AiCate::where("id",$params["cid"])->field("id,title")->find();
+       $cate = AiCate::where("id",$params["cid"])->field("id,k_title as title")->find();
        $videoList = AiVideo::where(["cate_id" => $params['cid'], "status" => 1])->field('id as vid, points,title as vod_name, enpic')->cache(3600)->paginate([
            'list_rows' => $params["limit"],
            'page' => $params["page"],
@@ -112,7 +112,7 @@ class Video extends AiBase
            "pid" => input("get.cate_pid"),
        ];
 
-       $cate = AiCate::where(['pid' => $params['pid'],"is_recommend" => 0])->field("id,title")->order("sort desc")->select();
+       $cate = AiCate::where(['pid' => $params['pid'],"is_recommend" => 0])->field("id,k_title as title")->order("sort desc")->select();
        for ($i = 0; $i < count($cate); $i++) {
            $cate[$i]['videoList'] = AiCate::getVideoDataByCid($cate[$i]['id'],5);
        }
@@ -192,8 +192,8 @@ class Video extends AiBase
        $video->play_url = replaceVideoCdn($video->play_url,'video_play_cdn');
        $video->eyes += 1;
        $video->save();
-       $checkEmpty = AiVideoHistory::where(['uid' => $this->uid, 'vid' => $params['id']])->find();
-       if(!$checkEmpty){
+       $checkEmpty = AiVideoHistory::where(['uid' => $this->uid, 'vid' => $params['id']])->count();
+       if($checkEmpty == 0){
            $videoHistory = new AiVideoHistory();
            $videoHistory->uid = $this->uid;
            $videoHistory->vid = $params['id'];

@@ -144,6 +144,7 @@ Route::group(function () {
 
     Route::get('data.aicate/index','data.aicate/index');
     Route::rule('data.aicate/edit','data.aicate/edit');
+    Route::rule('data.aicate/add','data.aicate/add');
     Route::post('data.aicate/modify','data.aicate/modify');
 
 

@@ -34,14 +34,8 @@ class Aicate extends AdminController
             if (input('selectFields')) {
                 return $this->selectList();
             }
-            list($page, $limit, $where) = $this->buildTableParames();
-            $count = $this->model->where($where)->count();
-            $list = $this->model->where($where)->page($page, $limit)->select();
-
-            for($i=0;$i<count($list);$i++)
-            {
-                $list[$i]['pid'] = $this->model->where(array('id'=>$list[$i]['pid']))->value('title') ?: '一级分类';
-            }
+            $count = $this->model->count();
+            $list = $this->model->order($this->sort)->select();
             $data = [
                 'code'  => 0,
                 'msg'   => '',
@@ -55,15 +49,29 @@ class Aicate extends AdminController
     /**
      * @NodeAnotation(title="新增")
      */
-    public function add()
+    public function add($id = null)
     {
         if ($this->request->isPost()) {
             $post = $this->request->post();
-            $rule = [];
+            $rule = [
+                'pid|上级菜单'   => 'require',
+                'title|菜单名称' => 'require',
+            ];
             $this->validate($post, $rule);
-            $save ? $this->success('保存成功') : $this->error('保存失败');
+            try {
+                $save = $this->model->save($post);
+            } catch (\Exception $e) {
+                $this->error('保存失败');
+            }
+            if ($save) {
+                $this->success('保存成功');
+            } else {
+                $this->error('保存失败');
+            }
         }
-
+        $pidMenuList = $this->model->getPidMenuList();
+        $this->assign('id', $id);
+        $this->assign('pidMenuList', $pidMenuList);
         return $this->fetch();
     }
 
