@@ -33,6 +33,8 @@ define(["jquery", "easy-admin"], function ($, ea,Vue) {
                     {type: "checkbox"},
                     {field: 'id', minWidth: 80, title: 'ID'},
                     {field: 'title', minWidth: 0, title: '视频标题'},
+                    {field: 'cate_title', minWidth: 0, title: '视频分类标题'},
+                    {field: 'cate_k_title', minWidth: 0, title: '视频外显分类标题'},
                     {field: 'points', Width: 80, title: '需要钻石数量',search: false, sort:true},
                     {field: 'pic', minWidth: 0, title: '视频封面', search: false, templet: ea.table.image},
                     {field: 'duration', Width: 80, title: '时长', search: false,sort:true},

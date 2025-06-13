@@ -37,6 +37,11 @@ class Aivideo extends AdminController
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model->where($where)->count();
             $list = $this->model->where($where)->page($page, $limit)->select();
+            $aiUser = new \app\common\model\AiCate();
+            for($i=0;$i<count($list);$i++){
+                $list[$i]['cate_title'] = $aiUser->where(array('id'=>$list[$i]['cate_id']))->value('title') ?: '';
+                $list[$i]['cate_k_title'] = $aiUser->where(array('id'=>$list[$i]['cate_id']))->value('k_title') ?: '';
+            }
             $data = [
                 'code'  => 0,
                 'msg'   => '',
