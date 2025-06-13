@@ -15,8 +15,8 @@ class AiCate extends \think\Model
             ->order("cate.sort desc")
             ->leftJoin('ai_video video', 'video.cate_id = cate.id')
             ->field('video.id as vid,video.points as points,video.title as vod_name,video.enpic as enpic')
+            ->orderRaw('rand()') // 随机排序
             ->limit($limit)
-            ->cache(3600)
             ->select()
             ->toArray();
         for ($i = 0; $i < count($videoData); $i++) {

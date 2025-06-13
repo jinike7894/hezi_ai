@@ -21,9 +21,9 @@ class Video extends AiBase
    public function index(){
        $cate = AiCate::where(["is_recommend" => 1])->where('pid','>',0)->field("id,k_title as title")->order("sort desc")->select();
 
-       $cateParentList = AiCate::where(['pid' => 0])->field("id as cate_pid,k_title as title")->order("sort desc")->select();
+       $cateParentList = AiCate::where(['pid' => 0,"is_recommend" => 1])->field("id as cate_pid,k_title as title")->order("sort desc")->select();
         for ($i = 0; $i < count($cate); $i++) {
-            $cate[$i]['videoList'] = AiCate::getVideoDataByCid($cate[$i]['id'],5);
+            $cate[$i]['videoList'] = AiCate::getVideoDataByCid($cate[$i]['id'],12);
         }
         $list['cateParentList'] = $cateParentList;
         $list['areaList'] = [
@@ -114,7 +114,7 @@ class Video extends AiBase
 
        $cate = AiCate::where(['pid' => $params['pid'],"is_recommend" => 0])->field("id,k_title as title")->order("sort desc")->select();
        for ($i = 0; $i < count($cate); $i++) {
-           $cate[$i]['videoList'] = AiCate::getVideoDataByCid($cate[$i]['id'],5);
+           $cate[$i]['videoList'] = AiCate::getVideoDataByCid($cate[$i]['id'],12);
        }
        return responseParams(["code" => 1, "msg" => "succ", "data" => $cate]);
    }
