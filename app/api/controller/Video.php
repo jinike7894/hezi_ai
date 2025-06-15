@@ -190,8 +190,7 @@ class Video extends AiBase
        }
        $video->enpic = replaceVideoCdn($video->enpic,'video_img_cdn');
        $video->play_url = replaceVideoCdn($video->play_url,'video_play_cdn');
-       $video->eyes += 1;
-       $video->save();
+       $video->eyes = $video->eyes."万";
        $checkEmpty = AiVideoHistory::where(['uid' => $this->uid, 'vid' => $params['id']])->count();
        if($checkEmpty == 0){
            $videoHistory = new AiVideoHistory();
