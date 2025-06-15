@@ -46,7 +46,7 @@ class Video extends AiBase
            "cid" => input("get.cid"),
            "page" => input("get.page"),
        ];
-       $limit = 5;
+       $limit = 12;
 
        $videoList = AiVideo::where(["cate_id" => $params['cid'], "status" => 1])->field('id as vid, points,title as vod_name, enpic')->cache(3600)->paginate([
            'list_rows' => $limit,
