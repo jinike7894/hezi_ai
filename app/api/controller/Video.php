@@ -92,7 +92,7 @@ class Video extends AiBase
            "page" => input("get.page"),
            "limit" => input("get.limit"),
        ];
-       $videoList = AiVideo::where(["status" => 1])->field('id as vid, points,title as vod_name, enpic')->order('id desc')->cache(3600)->paginate([
+       $videoList = AiVideo::where(["status" => 1])->field('id as vid, points,title as vod_name, enpic')->orderRaw('rand()')->paginate([
            'list_rows' => $params["limit"],
            'page' => $params["page"],
        ]);
@@ -171,7 +171,7 @@ class Video extends AiBase
            "id" => input("get.vid"),
        ];
 
-       $video = AiVideo::where(['id' => $params['id']])->field('id as vid,cate_id,points,title as vod_name,enpic,video as play_url,eyes')->find();
+       $video = AiVideo::where(['id' => $params['id']])->field('id as vid,cate_id,points,title as vod_name,enpic,video as play_url,eyes,update_time')->find();
 
        // Todo 喜欢和收藏 联合查询
        $video->is_favorite = AiFavorite::where(['vid' => $params['id'],'uid' => $this->uid])->count() ? 1 : 0;
