@@ -156,11 +156,11 @@ class Getdata extends BaseController
 	        $list['androidurl'] = cjqd($channel,$list['androidurl']);
 	        $list['iosurl'] = cjqd($channel,$list['iosurl']);
 	         //图片后缀转js
-            $list['img'] = str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$list['img']);
+            $list['img'] = str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$list['img']);
             if(!empty($list['pics'])){
                      $newPic=[];
                     foreach($list['pics'] as $pk=>$pv){
-                          $newPic[]= str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$pv);
+                          $newPic[]= str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$pv);
                     }
                   $list['pics']= $newPic; 
             }
@@ -182,10 +182,10 @@ class Getdata extends BaseController
 	     //图片后缀转js
 	    if(!empty($list)){
 	        foreach($list as $lk=>&$lv){
-	            $lv["img"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$lv['img']);
-	            $lv["pics"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$lv['pics']);
-	            $lv["glory"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$lv['glory']);
-	            $lv["fav"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$lv['fav']);
+	            $lv["img"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$lv['img']);
+	            $lv["pics"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$lv['pics']);
+	            $lv["glory"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$lv['glory']);
+	            $lv["fav"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$lv['fav']);
 	        }
 	    }
 	     //图片后缀转js
@@ -202,10 +202,10 @@ class Getdata extends BaseController
         //图片后缀转js
 	    if(!empty($topList)){
 	        foreach($topList as $tk=>&$tv){
-	            $tv["img"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$tv['img']);
-	            $tv["pics"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$tv['pics']);
-	            $tv["glory"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$tv['glory']);
-	            $tv["fav"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$tv['fav']);
+	            $tv["img"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$tv['img']);
+	            $tv["pics"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$tv['pics']);
+	            $tv["glory"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$tv['glory']);
+	            $tv["fav"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$tv['fav']);
 	        }
 	    }
 	     //图片后缀转js
@@ -218,10 +218,10 @@ class Getdata extends BaseController
          //图片后缀转js
 	    if(!empty($bottomList)){
 	        foreach($bottomList as $bk=>&$bv){
-	            $bv["img"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$bv['img']);
-	            $bv["pics"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$bv['pics']);
-	            $bv["glory"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$bv['glory']);
-	            $bv["fav"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp'],'.js',$bv['fav']);
+	            $bv["img"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$bv['img']);
+	            $bv["pics"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$bv['pics']);
+	            $bv["glory"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$bv['glory']);
+	            $bv["fav"]=str_ireplace(['.png','.jpg','.gif','.jpeg','.webp','.js'],'_file.js',$bv['fav']);
 	        }
 	    }
 	     //图片后缀转js
