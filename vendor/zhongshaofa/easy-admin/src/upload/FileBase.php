@@ -110,6 +110,36 @@ class FileBase
     public function save()
     {
         $this->completeFilePath = Filesystem::disk('public')->putFile('upload', $this->file);
+
+        //加密图片
+        $encompleteFilePath = null;
+        $encompleteJSFilePath = null;
+        if(stripos($this->completeFilePath,'.jpg')!==false){
+            $encompleteFilePath = str_replace('.jpg','_file.jpg',$this->completeFilePath);
+            $encompleteJSFilePath = str_replace('.jpg','_file.js',$this->completeFilePath);
+        }else if(stripos($this->completeFilePath,'.gif')!==false){
+            $encompleteFilePath = str_replace('.gif','_file.gif',$this->completeFilePath);
+            $encompleteJSFilePath = str_replace('.gif','_file.js',$this->completeFilePath);
+        }else if(stripos($this->completeFilePath,'.png')!==false){
+            $encompleteFilePath = str_replace('.png','_file.png',$this->completeFilePath);
+            $encompleteJSFilePath = str_replace('.png','_file.js',$this->completeFilePath);
+        }else if(stripos($this->completeFilePath,'.webp')!==false){
+            $encompleteFilePath = str_replace('.webp','_file.webp',$this->completeFilePath);
+            $encompleteJSFilePath = str_replace('.webp','_file.js',$this->completeFilePath);
+        }else if(stripos($this->completeFilePath,'.jpeg')!==false){
+            $encompleteFilePath = str_replace('.jpeg','_file.jpeg',$this->completeFilePath);
+            $encompleteJSFilePath = str_replace('.jpeg','_file.js',$this->completeFilePath);
+        }
+        $pdata = file_get_contents($this->completeFilePath);
+        $parr = str_split($pdata);
+        $decArr = [];
+        foreach ($parr as $value) {
+            $decArr[] = hexdec(bin2hex($value)) ^ 136;
+        }
+        file_put_contents($encompleteFilePath, pack('C*', ...$decArr));
+        file_put_contents($encompleteJSFilePath, pack('C*', ...$decArr));
+        //加密图片结束
+
         //$this->completeFileUrl = request()->domain() . '/' . str_replace(DIRECTORY_SEPARATOR, '/', $this->completeFilePath);
 		$this->completeFileUrl =  '/' . str_replace(DIRECTORY_SEPARATOR, '/', $this->completeFilePath);
     }
