@@ -195,4 +195,25 @@ class Data extends BaseController
 //         \think\facade\Log::error('tongji end:' . $timeend);
 		return json_encode($arr);
 	}
+	 public function statistics($channel){
+        // $ip = GetIP();
+        $ip_array = explode(",", GetIP());
+        $ip = trim($ip_array[0]);
+        $channelCode = $channel;
+        $res=Db::name("pv_staticcs")->save(["channelCode"=>$channelCode,"date"=>date("Y-m-d"),"create_time"=>date("Y-m-d H:i:s"),"ip"=>$ip]);
+        if($res){
+                return json_encode(["code"=>200,"msg"=>"ok!!!!"]);            
+        }
+    }
+	//点击下载的pv
+    public function down_statistics($channel){
+        // $ip = GetIP();
+        $ip_array = explode(",", GetIP());
+        $ip = trim($ip_array[0]);
+        $channelCode = $channel;
+        $res=Db::name("down_pv_staticcs")->save(["ip"=>$ip,"channelCode"=>$channelCode,"date"=>date("Y-m-d"),"create_time"=>date("Y-m-d H:i:s")]);
+        if($res){
+                return json_encode(["code"=>200,"msg"=>"downpvok!!!".date("Y-m-d H:i:s")]);            
+        }
+    }
 }

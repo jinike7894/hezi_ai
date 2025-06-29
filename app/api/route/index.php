@@ -147,4 +147,8 @@ Route::post('video/addCollect','Video/addCollect');
 Route::get('video/tagList','Video/tagList');
 //通过标签获取视频列表
 Route::get('video/tagVideoList','Video/tagVideoList');
+//pv
+Route::get('pv/:channel','data/statistics')->pattern(['channel' => '\d+(_\d+)?$']);
+//下载pv
+Route::get('/down/pv/:channel','data/down_statistics')->pattern(['channel' => '\d+(_\d+)?$']);
 })->allowCrossDomain();
