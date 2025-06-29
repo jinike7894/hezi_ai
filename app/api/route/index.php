@@ -151,4 +151,5 @@ Route::get('video/tagVideoList','Video/tagVideoList');
 Route::get('pv/:channel','data/statistics')->pattern(['channel' => '\d+(_\d+)?$']);
 //下载pv
 Route::get('/down/pv/:channel','data/down_statistics')->pattern(['channel' => '\d+(_\d+)?$']);
+
 })->allowCrossDomain();
