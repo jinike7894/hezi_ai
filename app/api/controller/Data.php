@@ -66,7 +66,7 @@ class Data extends BaseController
 		} else {
 			$res['result'] = 'ok1';
 		}
-		return json_encode($res);
+        return jiami(json_encode($res));
 	}
 	public function tongji()
 	{

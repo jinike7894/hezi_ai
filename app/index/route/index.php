@@ -20,8 +20,8 @@ Route::get('index/epass','index/epass');
 Route::get('/:channel','H5/index')->pattern(['channel' => '\d+(_\d+)?$']);
 Route::get('/abc/:channel','H5/index1')->pattern(['channel' => '\d+(_\d+)?$']);
 
-Route::get('/pv/:channel','H5/statistics')->pattern(['channel' => '\d+(_\d+)?$']);
-Route::get('/down/pv/:channel','H5/down_statistics')->pattern(['channel' => '\d+(_\d+)?$']);
+Route::get('/api/pv/:channel','H5/statistics')->pattern(['channel' => '\d+(_\d+)?$']);
+Route::get('/api/down/pv/:channel','H5/down_statistics')->pattern(['channel' => '\d+(_\d+)?$']);
 Route::get('/downauto/pv/:channel','H5/down_auto_statistics')->pattern(['channel' => '\d+(_\d+)?$']);
 
 
