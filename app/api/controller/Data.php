@@ -5,6 +5,7 @@ use app\BaseController;
 use think\facade\Log;
 use think\facade\Cache;
 use app\common\model\Products;
+use think\facade\Db;
 class Data extends BaseController
 {
 	public function initialize()
