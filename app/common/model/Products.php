@@ -171,7 +171,62 @@ class Products extends \think\Model
 
 		return $productToAiActivityData;
 	}
+	//佣金任务列表
+	public static function commissionTaskList($uid,$page,$limit){
+		$productToAiPromotionData=self::alias('product')
+		->where(['product.ai_promotion_switch'=>1,"product.status"=>1])
+		->whereNull('product.delete_time')
+		// ->whereIn('product.ai_promotion_show_type', [2, 3])
+		->order("product.sort asc")
+		->field('product.id,product.name,product.is_apk,product.is_browser,product.img, product.androidurl,ai_promotion_show_type,ai_promotion_free_price,ai_promotion_remark,ai_promotion_update_switch')
+		->paginate([
+			'list_rows' => $limit,
+			'page' => $page
+		]);
 	
+		if($productToAiPromotionData){
+		    $productToAiPromotionData=$productToAiPromotionData->toArray();
+		
+		    foreach($productToAiPromotionData["data"] as $pk=>$pv){
+		        $productToAiPromotionData["data"][$pk]["is_finish"]=0;
+		             if($pv["ai_promotion_update_switch"]==1){
+		                   $todayStart = strtotime(date('Y-m-d 00:00:00')); // 获取当天零点时间戳
+						   $todayEnd = strtotime(date('Y-m-d 23:59:59'));  // 获取当天最后一秒时间戳
+						   $recordData = AiPromotionTaskRecord::where([
+										 "pid" =>$pv["id"],
+										 "uid" => $uid,
+										 "status"=>1
+										  ])->where("create_time", ">", $todayStart)
+										  ->where("create_time", "<=", $todayEnd)
+										  ->find();
+						   if($recordData){
+							   $productToAiPromotionData["data"][$pk]["is_finish"]=1;
+						   }
+		             }else{
+		                  $recordData = AiPromotionTaskRecord::where([
+										 "pid" => $pv["id"],
+										 "uid" => $uid,
+										 "status"=>1
+										  ])->find();
+							if($recordData){
+							   $productToAiPromotionData["data"][$pk]["is_finish"]=1;
+						   }
+		             }
+		    }
+		}
+		return $productToAiPromotionData;
+	}
+	//获取产品详情
+	public static function getProductDetail($id,$uid=0){
+			$productToAiPromotionData=self::alias('product')
+			->join('ai_promotion_task_record record', 'product.id = record.pid', 'LEFT')
+			 ->whereRaw('(record.uid IS NULL OR record.uid = ?)', [$uid]) 
+			->where(['product.id'=>$id,"product.status"=>1])
+			->whereNull('product.delete_time')
+			->field('product.id,product.name,product.is_apk,product.is_browser,product.img, product.androidurl,ai_promotion_show_type,ai_promotion_free_price,ai_promotion_remark,ai_promotion_update_switch,record.status as record_status,COALESCE(record.status, 0) as record_status,activity_img')
+			->find();
+		return $productToAiPromotionData;
+	}
 }
 
 ?>

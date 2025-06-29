@@ -117,4 +117,12 @@ Route::get('ai/taskStatus','Ai/getTaskStatus');
 Route::get('ai/otherPayType','AiPay/getPaymentlist');
 //定时审核任务
 Route::get('ai/autoCheckTask','Ai/autoCheckTask');
+//佣金中心-获取推广任务列表
+Route::get('ai/getPromotionTaskList','AiPromotion/getPromotionTaskList');
+//佣金中心-获取推广任务详情
+Route::get('ai/getPromotionTaskDetail','AiPromotion/getPromotionTaskDetail');
+//佣金中心-设置安装介于
+Route::post('ai/setPromotionActivityImg','AiPromotion/setActivityImg');
+//佣金中心-获取任务收益记录
+Route::get('ai/getPromotionTaskRecord','AiPromotion/getPromotionTaskRecord');
 })->allowCrossDomain();

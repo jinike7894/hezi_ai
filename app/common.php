@@ -513,8 +513,8 @@ function postPayParams($url,$data)
 }
 //response 返回信息
 function responseParams($arr){
-    //return json_encode($arr);
-    return jiami(json_encode($arr));
+    return json_encode($arr);
+    //return jiami(json_encode($arr));
 }
 //图片压缩
 function compressImage($source, $destination, $quality = 75) {

@@ -9,6 +9,7 @@ use app\common\model\AiUser;
 use app\common\model\AiBalanceBill;
 use app\common\model\AiWithdrawalRecord;
 use app\common\model\AiPromotion as AiPromotionModel;
+use app\common\model\AiPromotionTaskRecord as AiPromotionTaskRecord;
 use app\gladmin\model\SystemConfig;
 class AiPromotion extends AiBase
 {
@@ -18,12 +19,20 @@ class AiPromotion extends AiBase
         $uid = $this->uid;
         $responseParams = [];
         $userData = AiUser::where(["id" => $uid])->field("id,username,commission,balance,channelCode")->find();
+        //充值佣金比例
         $responseParams["commission"] = $userData["commission"];
+        //分享佣金比例
+        $commissionShare = SystemConfig::where(["name" => "ai_promotion_rate"])->value("value");
+        $responseParams["commission_share"] =$commissionShare;
+
+        
         $responseParams["balance"] = $userData["balance"];
-        //今日收益
-        $responseParams["today_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid,"bill_type"=>"0"])->whereTime("create_time", "today")->sum("amount");
-        //累计收益
-        $responseParams["total_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid,"bill_type"=>"0"])->sum("amount");
+        //今日任务佣金收益
+        $responseParams["today_task_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid,"bill_type"=>"5"])->whereTime("create_time", "today")->sum("amount");
+        //今日分享佣金收益
+        $responseParams["today_share_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid,"bill_type"=>"6"])->whereTime("create_time", "today")->sum("amount");
+        // //累计收益
+        // $responseParams["total_income"] = AiBalanceBill::where(["amount_type" => 1,"uid"=>$uid,"bill_type"=>"0"])->sum("amount");
         //成功邀请
         $responseParams["total_invite"] = AiUser::where(["pid" => $uid])->count();
         //推广链接
@@ -48,7 +57,6 @@ class AiPromotion extends AiBase
         $uid = $this->uid;
         $promotionData = AiPromotionModel::promotionRecord($uid, $params["limit"], $params["page"]);
         return responseParams(["code" => 1, "msg" => "succ", "data" => $promotionData]);
-
     }
     //获取账户记录
     public function getUserBalanceRecord()
@@ -162,5 +170,65 @@ class AiPromotion extends AiBase
             return responseParams(["code" => 0, "msg" => $e->getMessage(), "data" => ""]);
         }
         return responseParams(["code" => 1, "msg" => "succ", "data" => ""]);
+    }
+    //佣金任务列表
+    public function getPromotionTaskList()
+    {
+         if (input("get.page") == "" || input("get.limit") == "") {
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $params = [
+            "page" => input("get.page"),
+            "limit" => input("get.limit"),
+        ];
+        $uid = $this->uid;
+        $commissionTaskList = Products::commissionTaskList($uid, $params["page"], $params["limit"]);
+     
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $commissionTaskList]);
+    }
+    //获取佣金任务详情
+    public function getPromotionTaskDetail()
+    {
+        if (input("get.pid") == "") {
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $pid = input("get.pid");
+        $uid = $this->uid;
+        $productData = Products::getProductDetail($pid, $uid);
+        if (!$productData) {
+            return responseParams(["code" => 0, "msg" => "任务不存在", "data" => ""]);
+        }
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $productData]);
+    }
+    //保存安装下载截图
+    public function setActivityImg()
+    {
+        if (input("post.pid") == "" || input("post.img") == "") {
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $pid = input("post.pid");
+        $img = input("post.img");
+        $uid = $this->uid;
+        //查询产品数据
+        $productData = Products::getProductDetail($pid, $uid);
+        $res = AiPromotionTaskRecord::setActivityImg($pid, $img, $uid, $productData);
+        if ($res) {
+            return responseParams(["code" => 1, "msg" => "保存成功", "data" => ""]);
+        } else {
+            return responseParams(["code" => 0, "msg" => "保存失败", "data" => ""]);
+        }
+    }
+    //收益记录
+    public function getPromotionTaskRecord(){
+        if (input("get.page") == "" || input("get.limit") == "") {
+            return responseParams(["code" => 0, "msg" => "参数错误", "data" => ""]);
+        }
+        $params = [
+            "page" => input("get.page"),
+            "limit" => input("get.limit"),
+        ];
+        $uid = $this->uid;
+        $promotionTaskRecord = AiPromotionModel::promotionTaskRecord($uid, $params["limit"], $params["page"]);
+        return responseParams(["code" => 1, "msg" => "succ", "data" => $promotionTaskRecord]);
     }
 }

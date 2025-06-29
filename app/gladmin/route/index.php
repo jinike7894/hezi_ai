@@ -137,5 +137,7 @@ Route::group(function () {
     Route::rule('data.aiagentwithdrawal/qrcode', 'data.aiagentwithdrawal/qrcode');
     Route::rule('data.aiactivityrecord/index', 'data.aiactivityrecord/index');
     Route::rule('data.aiactivityrecord/edit', 'data.aiactivityrecord/edit');
+    Route::rule('data.aipromotiontaskrecord/index', 'data.aipromotiontaskrecord/index');
+    Route::rule('data.aipromotiontaskrecord/edit', 'data.aipromotiontaskrecord/edit');
 });
 
