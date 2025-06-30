@@ -41,7 +41,7 @@ class Aiactclickrecord extends AdminController
             if(empty($cxdate)){
                 $cxdate[] = ['date','=',date('Y-m-d')];
             }
-            $where[] = ['ai_activity_switch','=',1];
+//            $where[] = ['ai_activity_switch','=',1];
             $list = $this->model->getlist($where,$cxdate,$channelCode);
             $data = [
                 'code'  => 0,
