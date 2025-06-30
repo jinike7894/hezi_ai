@@ -59,6 +59,8 @@ define(["jquery", "easy-admin", "treetable", "iconPickerFa", "autocomplete"], fu
                     {field: 'zhuanhua', minWidth: 120, title: '转化',sort:true},
                     {field: 'clicks', minWidth: 100, title: '点击数', search: false,sort:true},
                     {field: 'djb', minWidth: 100, title: '点击比', search: false,sort:true},
+                    {field: 'liucun_clicks', minWidth: 100, title: '留存点击数', search: false,sort:true},
+                    {field: 'liucun_djb', minWidth: 100, title: '留存点击比', search: false,sort:true},
                     {field: 'price', minWidth: 100, title: '单价(元)', search: false,sort:true},
                     {field: 'djcb', minWidth: 110, title: '点击成本(元)', search: false,sort:true},
                     {field: 'trcb', minWidth: 120, title: '投入成本(元)',searchOp: '=',sort:true},

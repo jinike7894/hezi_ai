@@ -160,6 +160,9 @@ class Channel extends AdminController
                 //$list[$i]['estimate'] = ($channels[$channelCode]['price'] ?? 0) > 0 ? @ceil($item['clicks'] * ($channels[$channels]['coefficient'] ?? 0) / $channels[$channelCode]['price']) : 0;
                 //$list[$i]['ratio'] =$channels[$channelCode]['ratio']??0;
                 //$list[$i]['autoc'] =$channels[$channelCode]['autoc']??0;
+                $liucun_clicks = \app\common\model\AiUser::getaaa($channelCode,$item['date']);
+                $list[$i]['liucun_clicks'] =$liucun_clicks??0;
+                $list[$i]['liucun_djb'] = ($list[$i]['clicks']??0) > 0 ? @ceil(100*$list[$i]['liucun_clicks']  / $list[$i]['clicks']) ."%" : 0 ;
                 $list[$i]['remark'] =$channels[$channelCode]['remark']??'';
                 $list[$i]['price'] =$channels[$channelCode]['price']??0;
                 // 投入成本
