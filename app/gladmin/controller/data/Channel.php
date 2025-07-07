@@ -122,6 +122,7 @@ class Channel extends AdminController
             $where2 = [
                 ['create_time','>=',strtotime(date('Y-m-d').' 00:00:00')], ['create_time','<=',strtotime(date('Y-m-d').' 23:59:59')]
             ];
+            $date1 = date('Y-m-d');
             foreach ($list as $i => $item) {
                     
                 //$channelCode = $this->Channelcode->getByChannelcode($list[$i]['channelCode']);
@@ -129,6 +130,7 @@ class Channel extends AdminController
                 $where2 = [
                     ['create_time','>=',strtotime($item['date'].' 00:00:00')], ['create_time','<=',strtotime($item['date'].' 23:59:59')]
                 ];
+                $date1 = $item['date'];
                 $tongjis = AiProductClickRecord::field('count(id) as total_clicks')
                     ->where([['channelCode', '=', $channelCode],['create_time','>=',strtotime($item['date'].' 00:00:00')], ['create_time','<=',strtotime($item['date'].' 23:59:59')],['pid', 'not in', $buttonPros]])
                     ->group('channelCode')->find();
@@ -215,7 +217,7 @@ class Channel extends AdminController
             $totalMap = $where2;
             $totalMap[] = ['pid', 'not in', $buttonPros];
             $tongjiTotal = AiProductClickRecord::field('count(id) as total_clicks')->where($totalMap)->find();
-          
+            $liucun_clicks = \app\common\model\AiUser::getbbb($date1);
             $data = [
                 'code'  => 0,
                 'msg'   => 'ok1',
@@ -225,6 +227,7 @@ class Channel extends AdminController
                     'sum' => $totalNum,
                     //'shows' => $tongjiTotal['total_shows'] ?? 0,
                     'clicks' => $tongjiTotal['total_clicks'] ?? 0,
+                    'liucun_djb' => ($tongjiTotal['total_clicks']??0) > 0 ? @ceil(100*$liucun_clicks  / $tongjiTotal['total_clicks']) ."%" : 0,
                     "bofangqi_djb"=>$bofangqi_click>0?  round(100*$bofangqi_click / $tongjiTotal['total_clicks'],2) ."%":"0%",
                     "zhibo_djb"=>$zhibo_clicks>0?  round(100*$zhibo_clicks/ $tongjiTotal['total_clicks'],2) ."%":"0%",
                     "paotai_djb"=>$paotai_clicks>0?  round(100*$paotai_clicks/$tongjiTotal['total_clicks'],2) ."%":"0%",

@@ -202,6 +202,20 @@ class AiUser extends \think\Model
 
         return $data;
     }
+
+    public static function getbbb($date){
+        $data = self::alias('user')
+            ->where([
+                ['click.create_time','>=',strtotime($date.' 00:00:00')],
+                ['click.create_time','<=',strtotime($date.' 23:59:59')],
+                ['user.create_time','<=',strtotime($date.' 00:00:00')]
+            ])
+            ->join('ai_product_click_record click', 'click.uid = user.id')
+            ->field('click.id')
+            ->count();
+
+        return $data;
+    }
 }
 
 ?>
