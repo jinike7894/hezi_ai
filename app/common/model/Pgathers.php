@@ -22,6 +22,7 @@ class Pgathers extends \think\Model
 	{
 	    $products = new Products();
 	    $tongji = new Tongji();
+        $aiProductClickRecord = new AiProductClickRecord();
 	    //$list1 = $products::field('id')->where($where1)->select()->toArray();
 	    $list = $products::field('id,name,cid,pid,k_name,androidurl')->where($where)->select()->toArray();/*->group('name')*/
 	    $results = [];
@@ -42,14 +43,12 @@ class Pgathers extends \think\Model
 	        }
 	        $map1[] =['pid','=',$list[$i]['id']];
 	        
-	        $data['shows'] = $tongji::where($map1)->sum('shows');
-	        $data['clicks'] = $tongji::where($map1)->sum('clicks');
-	        $data['downfinish'] = $tongji::where($map1)->sum('downfinish');
-	        if ($data['shows'] == 0 && $data['clicks'] == 0 && $data['downfinish'] == 0) {
+
+	        $data['clicks'] = $aiProductClickRecord::where($map1)->count();
+
+	        if ($data['clicks'] == 0) {
 	            //continue;
 	        } else{
-	            $data['ratio'] = $data['clicks'] > 0 ? @round($data['downfinish']/$data['clicks']*100,2) : '0';
-    	        $data['ratio1'] = $data['shows'] > 0 ? @round($data['clicks']/$data['shows']*100,2) : '0';
     	        $data['channelCode'] = $channelCode;
     	        if($data['clicks'] == 0){
     	            $data['cost'] = 0;

@@ -75,16 +75,19 @@ class Pgather extends AdminController
             if(empty($cxdate)){
 				$cxdate[] = ['date','=',date('Y-m-d')];
 			}
-            $list = $this->model->getlist($where,$cxdate,$channelCode);
+            $cxdate2[] = ['create_time','>=',strtotime($cxdate[0][2].' 00:00:00')];
+            $cxdate2[] = ['create_time','<=',strtotime($cxdate[0][2].' 23:59:59')];
+
+            $list = $this->model->getlist($where,$cxdate2,$channelCode);
            
             $totalShows = 0;
             $totalClicks = 0;
             $totalDownfinish = 0;
         
             foreach ($list as $k => $item) { // 因为没有分页，总计可以循环求和即可
-                $totalShows += $item['shows'];
+                //$totalShows += $item['shows'];
                 $totalClicks += $item['clicks'];
-                $totalDownfinish += $item['downfinish'];
+                //$totalDownfinish += $item['downfinish'];
             }
              $groupedData=[];
              
